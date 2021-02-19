@@ -1,3 +1,5 @@
+const isProd = process.env.NODE_ENV === `production`;
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -11,6 +13,20 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        cssLoaderOptions: Object.assign(
+          {
+            camelCase: false,
+          },
+          // Uglify the classnames for production
+          isProd && {
+            localIdentName: `[hash:base64:8]`,
+          },
+        ),
       },
     },
     `gatsby-transformer-sharp`,

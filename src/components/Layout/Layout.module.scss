@@ -1,0 +1,12 @@
+@use '~@htv/ui-kit/styles/colors';
+@use '~@htv/ui-kit/styles/fonts';
+
+@include fonts.init('@htv/ui-kit/assets/fonts/');
+@include colors.init;
+
+:global {
+    body {
+        padding: 0;
+        margin: 0;
+    }
+}
