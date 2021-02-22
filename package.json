@@ -1,19 +1,23 @@
 {
   "name": "@htv/hackhack-the-front",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Join 750 innovative and creative developers, designers, and creators for 36 hours of hacking. You'll get access to some of the best hardware and APIs on the market. Plus get to meet some experienced and awesome mentors! All this in just one weekend? I know, it's hard to believe.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": {
+    "name": "Hack The Valley",
+    "email": "hello@hackthevalley.io",
+    "url": "https://hackthevalley.io"
+  },
   "dependencies": {
-    "@htv/ui-kit": "0.0.3",
+    "@htv/ui-kit": "^0.0.6",
     "babel-plugin-dev-expression": "^0.2.2",
     "babel-preset-gatsby": "^0.12.1",
     "classnames": "^2.2.6",
     "eslint-config-react-app": "^5.2.1",
-    "gatsby": "^2.26.1",
+    "gatsby": "^2.32.4",
     "gatsby-image": "^2.5.0",
     "gatsby-plugin-manifest": "^2.6.1",
-    "gatsby-plugin-offline": "^3.4.0",
+    "gatsby-plugin-offline": "^3.10.1",
     "gatsby-plugin-react-helmet": "^3.4.0",
     "gatsby-plugin-sass": "^3.2.0",
     "gatsby-plugin-sharp": "^2.8.0",
@@ -23,20 +27,33 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
-    "sass": "^1.32.7"
+    "react-icons": "^4.2.0",
+    "sass": "^1.32.8"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "husky": "^5.1.0",
+    "prettier": "2.2.1",
+    "pretty-quick": "^3.1.0"
   },
   "keywords": [
-    "gatsby"
+    "hackathon",
+    "programming",
+    "computer science",
+    "student",
+    "university",
+    "toronto",
+    "hack the valley",
+    "hack valley",
+    "utsc",
+    "uoft",
+    "owo"
   ],
   "license": "0BSD",
   "scripts": {
+    "start": "gatsby develop",
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "lint": "prettier --check \"**/*.{js,jsx,scss}\"",
+    "lint:fix": "prettier --write \"**/*.{js,jsx,scss}\"",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
@@ -47,5 +64,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
