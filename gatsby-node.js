@@ -1,13 +1,24 @@
-exports.onCreateWebpackConfig = ({ actions, loaders }) => {
+const path = require('path');
+
+exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+  const config = getConfig();
+  config.module.rules = [
+    ...config.module.rules.filter(
+      rule => String(rule.test) !== String(/\.jsx?$/)
+    ),
+    {
+      ...loaders.js(),
+      test: /\.(js|jsx)?$/,
+      exclude: modulePath =>
+        /node_modules/.test(modulePath) &&
+        !/node_modules(\/|\\)@htv(\/|\\)(ui-kit)/.test(path.normalize(modulePath))
+      ,
+    }
+  ];
+  actions.replaceWebpackConfig();
   actions.setWebpackConfig({
-    // Include ui-library into the gatsby webpack process
     module: {
       rules: [
-        {
-          test: /\.(js|jsx)$/,
-          exclude: (modulePath) => !modulePath.includes(`@htv/ui-kit`),
-          use: loaders.js(),
-        },
         // Spinoff of gatsby-plugin-sass
         {
           test: /\.deferred.scss$/,
