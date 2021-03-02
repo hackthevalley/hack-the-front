@@ -28,13 +28,13 @@ const items = [
 ];
 
 export default function Navigation() {
-  const [ current, setCurrent ] = useState();
-  const [ animate, setAnimate ] = useState();
+  const [current, setCurrent] = useState();
+  const [animate, setAnimate] = useState();
   const lineProps = Object.assign(
     {},
     current && {
-      "--width": current.offsetWidth + `px`,
-      "--left": current.offsetLeft + `px`,
+      '--width': current.offsetWidth + `px`,
+      '--left': current.offsetLeft + `px`,
     },
   );
 
@@ -45,33 +45,21 @@ export default function Navigation() {
     return () => {
       window.cancelAnimationFrame(request);
     };
-  }, [ current ]);
-  
+  }, [current]);
+
   return (
-    <Section
-      backgroundColor='charcoal'
-      className={styles.section}
-      as='nav'
-    >
-      <div
-        className={classNames(
-          styles[`section--before`],
-          styles.section,
-        )}
-      >
-        <Link className={styles.logo} to='/'>
-          <Logo width='32'/>
+    <Section backgroundColor='charcoal' className={styles.section} as='nav'>
+      <div className={classNames(styles[`section--before`], styles.section)}>
+        <Link title='Link to homepage' className={styles.logo} to='/'>
+          <Logo width='32' />
         </Link>
       </div>
       <ul
         onMouseLeave={() => setCurrent(null)}
-        className={classNames(
-          styles[`section--list`],
-          styles.section,
-        )}
+        className={classNames(styles[`section--list`], styles.section)}
       >
         {items.map(({ text, ...props }, key, { length }) => {
-          if (key === (length - 1)) {
+          if (key === length - 1) {
             props.onBlur = () => setCurrent(null);
           }
           return (
@@ -103,35 +91,28 @@ export default function Navigation() {
             </li>
           );
         })}
-        <div
+        <li
           className={classNames(
             animate && styles[`line--animated`],
             styles.line,
           )}
           style={lineProps}
+          aria-hidden='true'
         />
       </ul>
-      <div
-        className={classNames(
-          styles[`section--after`],
-          styles.section,
-        )}
-      >
-        <Button
-          className={styles.button}
-          disabled
-        >
+      <div className={classNames(styles[`section--after`], styles.section)}>
+        <Button className={styles.button} disabled>
           Coming soon
         </Button>
         <a
-          href="https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white"
+          href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
           className={styles.banner}
           rel='noreferrer noopenner'
-          target="_blank"
+          target='_blank'
         >
           <img
-            src="https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg"
-            alt="Major League Hacking 2021 Hackathon Season"
+            src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
+            alt='Major League Hacking 2021 Hackathon Season'
             className={styles.banner__content}
           />
         </a>

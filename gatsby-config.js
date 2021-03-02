@@ -3,6 +3,7 @@ const isProd = process.env.NODE_ENV === `production`;
 
 module.exports = {
   siteMetadata: {
+    siteUrl: process.env.URL || `http://localhost`,
     title: `Hack The Valley 5`,
     author: author.name,
     description,
@@ -11,6 +12,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-sass`,
