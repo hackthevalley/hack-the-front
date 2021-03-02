@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import DeferredStyles from '../DeferredStyles';
 import Footer from '../Footer';
 import Navigation from '../Navigation';
@@ -11,6 +12,12 @@ export default function Layout({ title, children }) {
       throw new Error(`Page needs to have a title`);
     }
   }
+
+  useEffect(() => {
+    window.requestAnimationFrame(() => {
+      document.body.classList.add('animate');
+    });
+  }, []);
 
   return (
     <>
