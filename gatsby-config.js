@@ -13,13 +13,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-sass`,
       options: {
         sassRuleTest: /\.((?!deferred).)\.scss$/,
@@ -43,7 +36,7 @@ module.exports = {
         background_color: `#86cd74`,
         theme_color: `#86cd74`,
         display: `minimal-ui`,
-        icon: `./icon.png`,
+        icon: `./node_modules/@htv/ui-kit/assets/icon.png`,
       },
     },
     `gatsby-plugin-offline`,
