@@ -43,7 +43,7 @@ module.exports = {
         background_color: `#86cd74`,
         theme_color: `#86cd74`,
         display: `minimal-ui`,
-        icon: `./node_modules/@htv/ui-kit/assets/icon.png`,
+        icon: `./icon.png`,
       },
     },
     `gatsby-plugin-offline`,
