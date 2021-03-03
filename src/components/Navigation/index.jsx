@@ -6,7 +6,20 @@ import { FaBars } from 'react-icons/fa';
 import classNames from 'classnames';
 import toSvg from 'svgr.macro';
 import { Link } from 'gatsby';
-import styles from './Navigation.module.scss';
+import {
+  section,
+  sectionBefore,
+  sectionList,
+  sectionAfter,
+  item,
+  line,
+  lineAnimated,
+  logo,
+  menu,
+  button,
+  banner,
+  banner__content,
+} from './Navigation.module.scss';
 
 const Logo = toSvg('../../../node_modules/@htv/ui-kit/assets/logo.svg');
 export const items = [
@@ -49,14 +62,14 @@ export default function Navigation() {
   }, [current]);
 
   return (
-    <Section backgroundColor='charcoal' className={styles.section} as='nav'>
-      <div className={classNames(styles[`section--before`], styles.section)}>
-        <Link title='Link to homepage' className={styles.logo} to='/'>
+    <Section backgroundColor='charcoal' className={section} as='nav'>
+      <div className={classNames(sectionBefore, section)}>
+        <Link title='Link to homepage' className={logo} to='/'>
           <Logo width='32' />
         </Link>
       </div>
       <ul
-        className={classNames(styles[`section--list`], styles.section)}
+        className={classNames(sectionList, section)}
         onMouseLeave={() => setCurrent(null)}
       >
         {items.map(({ text, ...props }, key, { length }) => {
@@ -80,7 +93,7 @@ export default function Navigation() {
                     setCurrent(currentTarget);
                   }
                 }}
-                className={styles.item}
+                className={item}
                 transform='uppercase'
                 lineHeight='normal'
                 weight='bold'
@@ -93,37 +106,34 @@ export default function Navigation() {
           );
         })}
         <li
-          className={classNames(
-            animate && styles[`line--animated`],
-            styles.line,
-          )}
+          className={classNames(animate && lineAnimated, line)}
           style={lineProps}
           aria-hidden='true'
         />
       </ul>
-      <div className={classNames(styles[`section--after`], styles.section)}>
+      <div className={classNames(sectionAfter, section)}>
         <Button
-          aria-label="Toggle mobile navigation"
-          className={styles.menu}
+          aria-label='Toggle mobile navigation'
+          className={menu}
           leftIcon={FaBars}
           color='white'
           type='ghost'
         >
-            Menu
+          Menu
         </Button>
-        <Button className={styles.button} disabled>
+        <Button className={button} disabled>
           Coming soon
         </Button>
         <a
           href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
-          className={styles.banner}
+          className={banner}
           rel='noreferrer noopenner'
           target='_blank'
         >
           <img
             src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
             alt='Major League Hacking 2021 Hackathon Season'
-            className={styles.banner__content}
+            className={banner__content}
           />
         </a>
       </div>

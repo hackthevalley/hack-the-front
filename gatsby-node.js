@@ -4,16 +4,15 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
   const config = getConfig();
   config.module.rules = [
     ...config.module.rules.filter(
-      rule => String(rule.test) !== String(/\.jsx?$/)
+      (rule) => String(rule.test) !== String(/\.jsx?$/),
     ),
     {
       ...loaders.js(),
       test: /\.(js|jsx)?$/,
-      exclude: modulePath =>
+      exclude: (modulePath) =>
         /node_modules/.test(modulePath) &&
-        !/node_modules\/@htv\/(ui-kit)/.test(path.normalize(modulePath))
-      ,
-    }
+        !/node_modules\/@htv\/(ui-kit)/.test(path.normalize(modulePath)),
+    },
   ];
   actions.replaceWebpackConfig();
   actions.setWebpackConfig({
