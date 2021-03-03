@@ -2,13 +2,14 @@ import Section from '@htv/ui-kit/components/Section';
 import Button from '@htv/ui-kit/components/Button';
 import Text from '@htv/ui-kit/components/Text';
 import { useEffect, useState } from 'react';
+import { FaBars } from 'react-icons/fa';
 import classNames from 'classnames';
 import toSvg from 'svgr.macro';
 import { Link } from 'gatsby';
 import styles from './Navigation.module.scss';
 
 const Logo = toSvg('../../../node_modules/@htv/ui-kit/assets/logo.svg');
-const items = [
+export const items = [
   {
     text: `About`,
     to: `/#about`,
@@ -55,8 +56,8 @@ export default function Navigation() {
         </Link>
       </div>
       <ul
-        onMouseLeave={() => setCurrent(null)}
         className={classNames(styles[`section--list`], styles.section)}
+        onMouseLeave={() => setCurrent(null)}
       >
         {items.map(({ text, ...props }, key, { length }) => {
           if (key === length - 1) {
@@ -101,6 +102,15 @@ export default function Navigation() {
         />
       </ul>
       <div className={classNames(styles[`section--after`], styles.section)}>
+        <Button
+          aria-label="Toggle mobile navigation"
+          className={styles.menu}
+          leftIcon={FaBars}
+          color='white'
+          type='ghost'
+        >
+            Menu
+        </Button>
         <Button className={styles.button} disabled>
           Coming soon
         </Button>

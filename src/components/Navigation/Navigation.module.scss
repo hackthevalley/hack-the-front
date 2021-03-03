@@ -10,6 +10,10 @@
     position: relative;
     margin: 0.8rem 0;
     padding: 0;
+
+    @include mixins.media(laptop) {
+      display: none;
+    }
   }
 
   &--before {
@@ -47,6 +51,18 @@
   padding: 0.6rem 1.5rem;
   margin-right: 1.5rem;
   font-size: 0.9rem;
+
+  @include mixins.media(laptop) {
+    display: none;
+  }
+}
+
+.menu {
+  display: none;
+  @include mixins.media(laptop) {
+    margin: 0.86rem 1rem 0.86rem 0;
+    display: flex;
+  }
 }
 
 .line {

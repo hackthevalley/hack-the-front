@@ -11,7 +11,7 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
       test: /\.(js|jsx)?$/,
       exclude: modulePath =>
         /node_modules/.test(modulePath) &&
-        !/node_modules(\/|\\)@htv(\/|\\)(ui-kit)/.test(path.normalize(modulePath))
+        !/node_modules\/@htv\/(ui-kit)/.test(path.normalize(modulePath))
       ,
     }
   ];
@@ -24,7 +24,7 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
           test: /\.deferred.scss$/,
           use: [
             loaders.file({
-              name: `static/[hash:base64:16].css`,
+              name: `static/[hash:base64:8].css`,
             }),
             loaders.postcss(),
             `sass-loader`,
