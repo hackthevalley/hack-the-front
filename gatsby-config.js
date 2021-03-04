@@ -14,6 +14,13 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Hack The Valley 5`,
