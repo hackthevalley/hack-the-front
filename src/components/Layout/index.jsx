@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import DeferredStyles from '../DeferredStyles';
-import Footer from '../Footer';
+import StyleLoader from '../StyleLoader';
 import Navigation from '../Navigation';
+import Footer from '../Footer';
 import Seo from '../Seo';
 import './Layout.module.scss';
 
@@ -13,13 +13,12 @@ export default function Layout({ title, children }) {
   }
 
   return (
-    <>
+    <StyleLoader>
       <Seo title={title} />
-      <DeferredStyles styleSheets={[require(`./Layout.deferred.scss`)]} />
       <Navigation />
       <main>{children}</main>
       <Footer />
-    </>
+    </StyleLoader>
   );
 }
 

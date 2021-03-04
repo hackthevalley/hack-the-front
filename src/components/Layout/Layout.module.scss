@@ -1,5 +1,5 @@
-@use '~@htv/ui-kit/styles/colors';
-@use '~@htv/ui-kit/styles/fonts';
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/fonts';
 
 @include fonts.init('@htv/ui-kit/assets/fonts/');
 @include colors.init;

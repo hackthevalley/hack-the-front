@@ -14,6 +14,7 @@ export default function HomePage() {
       <Faq />
       <Factions />
       <Sponsors />
+      <div style={{ height: '300vh' }} />
     </Layout>
   );
 }

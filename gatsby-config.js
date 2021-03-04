@@ -1,8 +1,8 @@
 const { description, keywords, author } = require('./package.json');
-const isProd = process.env.NODE_ENV === `production`;
 
 module.exports = {
   siteMetadata: {
+    siteUrl: process.env.URL || `http://localhost`,
     title: `Hack The Valley 5`,
     author: author.name,
     description,
@@ -18,21 +18,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        sassRuleTest: /\.((?!deferred).)\.scss$/,
-        cssLoaderOptions: Object.assign(
-          {
-            camelCase: false,
-          },
-          // Uglify the classnames for production
-          isProd && {
-            localIdentName: `[hash:base64:8]`,
-          },
-        ),
       },
     },
     {

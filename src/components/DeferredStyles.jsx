@@ -13,7 +13,7 @@ export default function DeferredStyles({ styleSheets = [] }) {
       {styleSheets.map((styleSheet, key) => (
         <link
           onLoad='this.onload=null;this.rel="stylesheet"'
-          href={styleSheet}
+          href={styleSheet.default}
           rel='preload'
           as='style'
           key={key}
