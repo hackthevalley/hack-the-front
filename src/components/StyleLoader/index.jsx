@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import importAll from 'import-all.macro';
 import DeferredStyles from '../DeferredStyles';
+import './Core.module.scss';
 
 const fonts = importAll.sync(
   '../../../node_modules/@htv/ui-kit/assets/fonts/*.{woff2,woff,ttf}',

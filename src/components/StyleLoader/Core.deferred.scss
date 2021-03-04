@@ -1,10 +1,2 @@
 @use '@htv/ui-kit/styles/colors';
-@use '@htv/ui-kit/styles/mixins';
-
 @include colors.deferInit();
-
-html {
-  @include mixins.media(phone) {
-    font-size: 13px;
-  }
-}
