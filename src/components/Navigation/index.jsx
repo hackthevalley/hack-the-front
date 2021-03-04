@@ -1,8 +1,7 @@
-import Section from '@htv/ui-kit/components/Section';
+import { FaBars } from '@react-icons/all-files/fa/FaBars';
 import Button from '@htv/ui-kit/components/Button';
 import Text from '@htv/ui-kit/components/Text';
 import { useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa';
 import classNames from 'classnames';
 import toSvg from 'svgr.macro';
 import { Link } from 'gatsby';
@@ -58,10 +57,8 @@ export default function Navigation() {
     <NavigationBar
       backgroundColor='charcoal'
       as='nav'
-      atmosphere={(
-        <MobileNav {...mobileState}/>
-      )}
-      before={(
+      atmosphere={<MobileNav {...mobileState} />}
+      before={
         <Link
           className={logoContainer}
           title='Link to homepage'
@@ -70,12 +67,9 @@ export default function Navigation() {
         >
           <Logo className={logo} width='32' />
         </Link>
-      )}
-      center={(
-        <ul
-          onMouseLeave={() => setCurrent(null)}
-          className={items}
-        >
+      }
+      center={
+        <ul onMouseLeave={() => setCurrent(null)} className={items}>
           {navItems.map(({ text, ...props }, key, { length }) => {
             if (key === length - 1) {
               props.onBlur = () => setCurrent(null);
@@ -116,8 +110,8 @@ export default function Navigation() {
             aria-hidden='true'
           />
         </ul>
-      )}
-      after={(
+      }
+      after={
         <>
           <Button
             className={classNames(button, buttonMobile)}
@@ -151,7 +145,7 @@ export default function Navigation() {
             />
           </a>
         </>
-      )}
+      }
     />
   );
 }

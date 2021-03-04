@@ -1,12 +1,12 @@
 module.exports = {
-  ci: {
-    preset: 'lighthouse:recommended',
-    collect: {
-      url: [`http://localhost`],
-      staticDistDir: './public',
+    ci: {
+      preset: 'lighthouse:recommended',
+      collect: {
+        url: [`http://localhost`],
+        staticDistDir: './public',
+      },
+      upload: {
+        target: 'temporary-public-storage',
+      },
     },
-    upload: {
-      target: 'temporary-public-storage',
-    },
-  },
-};
+  };

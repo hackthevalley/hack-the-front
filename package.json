@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@htv/ui-kit": "^0.1.1",
+    "@react-icons/all-files": "^4.1.0",
     "babel-plugin-dev-expression": "^0.2.2",
     "babel-preset-gatsby": "^1.0.0",
     "classnames": "^2.2.6",
@@ -28,7 +29,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "react-icons": "^4.2.0",
     "sass": "^1.32.8",
     "svgr.macro": "^1.0.4"
   },

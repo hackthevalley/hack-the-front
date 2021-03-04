@@ -4,7 +4,9 @@ import Helmet from 'react-helmet';
 import importAll from 'import-all.macro';
 import DeferredStyles from '../DeferredStyles';
 
-const fonts = importAll.sync('../../../node_modules/@htv/ui-kit/assets/fonts/*.{woff2,woff,ttf}');
+const fonts = importAll.sync(
+  '../../../node_modules/@htv/ui-kit/assets/fonts/*.{woff2,woff,ttf}',
+);
 
 export default function StyleLoader({ children }) {
   useEffect(() => {
@@ -20,11 +22,11 @@ export default function StyleLoader({ children }) {
         {Object.values(fonts).map(({ default: font }) => (
           <link
             type={`font/${font.split('.').slice(-1)[0]}`}
-            rel="preload"
+            rel='preload'
             crossorigin
             href={font}
             key={font}
-            as="font"
+            as='font'
           />
         ))}
       </Helmet>
@@ -35,4 +37,4 @@ export default function StyleLoader({ children }) {
 
 StyleLoader.propTypes = {
   children: PropTypes.node,
-}
+};

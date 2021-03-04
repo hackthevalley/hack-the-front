@@ -4,7 +4,7 @@
 @include colors.deferInit();
 
 html {
-    @include mixins.media(phone) {
-        font-size: 13px;
-    }
+  @include mixins.media(phone) {
+    font-size: 13px;
+  }
 }

@@ -22,9 +22,14 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
           test: /\.module\.scss$/,
           use: [
             !isSSR && loaders.miniCssExtract({ modules: true }),
-            loaders.css({ importLoaders: 2, modules: {
-              localIdentName: isProd ? `[hash:base64:5]` : `[name]__[local]--[hash:base64:5]`,
-            }}),
+            loaders.css({
+              importLoaders: 2,
+              modules: {
+                localIdentName: isProd
+                  ? `[hash:base64:5]`
+                  : `[name]__[local]--[hash:base64:5]`,
+              },
+            }),
             loaders.postcss(),
             require.resolve(`sass-loader`),
           ].filter(Boolean),
