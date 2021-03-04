@@ -1,5 +1,4 @@
 const { description, keywords, author } = require('./package.json');
-const isProd = process.env.NODE_ENV === `production`;
 
 module.exports = {
   siteMetadata: {
@@ -13,21 +12,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        sassRuleTest: /\.((?!deferred).)\.scss$/,
-        cssLoaderOptions: Object.assign(
-          {
-            camelCase: false,
-          },
-          // Uglify the classnames for production
-          isProd && {
-            localIdentName: `[hash:base64:8]`,
-          },
-        ),
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -1,0 +1,7 @@
+@use '@htv/ui-kit/styles/units';
+
+:export {
+    @each $tag, $value in units.$speeds {
+        #{$tag}: $value,
+    }
+};

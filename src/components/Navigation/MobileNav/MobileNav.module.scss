@@ -1,0 +1,64 @@
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/units';
+
+.container {
+    @include mixins.transition(transform opacity, slow);
+    background-color: colors.css-color(charcoal);
+    transform: translateY(-100%);
+    box-sizing: border-box;
+    padding-bottom: 1rem;
+    position: fixed;
+    overflow: auto;
+    z-index: 200;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+
+    &--shown {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.footer {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+    display: flex;
+
+    @include mixins.media(phone) {
+        align-items: stretch;
+    }
+}
+
+.items {
+    list-style-type: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.text {
+    @include mixins.transition(transform);
+    max-width: units.$section-width;
+    display: block;
+    margin: 0 auto;
+}
+
+.item {
+    @include mixins.transition(background-color);
+    padding: (units.$section-padding / 2) units.$section-padding;
+    text-decoration: none;
+    display: block;
+
+    &:hover, &:focus {
+        background-color: colors.css-color(white, null, 0.05);
+        & .text {
+            transform: translateX(0.5rem);
+        }
+    }
+
+    &:active {
+        background-color: colors.css-color(white, null, 0.1);
+    }
+}

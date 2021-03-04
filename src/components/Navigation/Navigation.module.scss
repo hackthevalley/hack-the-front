@@ -1,43 +1,29 @@
 @use '@htv/ui-kit/styles/mixins';
 @use '@htv/ui-kit/styles/colors';
 
-.section {
-  align-items: center;
-  display: flex;
-
-  &--list {
-    list-style-type: none;
-    position: relative;
-    margin: 0.8rem 0;
-    padding: 0;
-
-    @include mixins.media(laptop) {
-      display: none;
-    }
-  }
-
-  &--before {
-    margin-right: auto;
-    flex-basis: 10rem;
-    flex-grow: 1;
-  }
-
-  &--after {
-    justify-content: flex-end;
-    align-self: stretch;
-    margin-left: auto;
-    flex-basis: 10rem;
-    flex-grow: 1;
-  }
-}
-
-.logo {
+.logoContainer {
   @include mixins.transition(color);
   color: colors.css-color(white);
   display: flex;
 
   &:hover {
     color: colors.css-color(lime);
+  }
+}
+
+.logo {
+  width: 2rem;
+}
+
+.items {
+  list-style-type: none;
+  position: relative;
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  @include mixins.media(laptop) {
+    display: none;
   }
 }
 
@@ -49,19 +35,24 @@
 
 .button {
   padding: 0.6rem 1.5rem;
-  margin-right: 1.5rem;
   font-size: 0.9rem;
 
   @include mixins.media(laptop) {
-    display: none;
+    font-size: 1rem;
   }
-}
 
-.menu {
-  display: none;
-  @include mixins.media(laptop) {
-    margin: 0.86rem 1rem 0.86rem 0;
+  &--mobile {
+    display: none;
+    @include mixins.media(laptop) {
+      display: flex;
+    }
+  }
+
+  &--desktop {
     display: flex;
+    @include mixins.media(laptop) {
+      display: none;
+    }
   }
 }
 
@@ -83,17 +74,17 @@
   }
 }
 
-.banner {
+.bannerContainer {
+  align-self: stretch;
   position: relative;
   overflow: visible;
   display: block;
   width: 4.6rem;
-  height: 100%;
+}
 
-  &__content {
-    position: absolute;
-    display: block;
-    height: auto;
-    width: 100%;
-  }
+.banner {
+  position: absolute;
+  display: block;
+  height: auto;
+  width: 100%;
 }

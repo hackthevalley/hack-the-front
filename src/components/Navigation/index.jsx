@@ -6,42 +6,27 @@ import { FaBars } from 'react-icons/fa';
 import classNames from 'classnames';
 import toSvg from 'svgr.macro';
 import { Link } from 'gatsby';
+import useMountedAnimations from '../../utils/useMountedAnimations';
+import MobileNav from './MobileNav';
+import navItems from './navItems';
 import {
-  section,
-  sectionBefore,
-  sectionList,
-  sectionAfter,
+  logoContainer,
+  logo,
+  items,
   item,
   line,
   lineAnimated,
-  logo,
-  menu,
   button,
+  buttonMobile,
+  buttonDesktop,
+  bannerContainer,
   banner,
-  banner__content,
 } from './Navigation.module.scss';
+import NavigationBar from './NavigationBar';
 
 const Logo = toSvg('../../../node_modules/@htv/ui-kit/assets/logo.svg');
-export const items = [
-  {
-    text: `About`,
-    to: `/#about`,
-  },
-  {
-    text: `FAQ`,
-    to: `/#faq`,
-  },
-  {
-    text: `Theme`,
-    to: `/#factions`,
-  },
-  {
-    text: `Sponsors`,
-    to: `/#sponsors`,
-  },
-];
-
 export default function Navigation() {
+  const mobileState = useMountedAnimations(`slow`);
   const [current, setCurrent] = useState();
   const [animate, setAnimate] = useState();
   const lineProps = Object.assign(
@@ -49,6 +34,14 @@ export default function Navigation() {
     current && {
       '--width': current.offsetWidth + `px`,
       '--left': current.offsetLeft + `px`,
+    },
+  );
+
+  const srProps = Object.assign(
+    {},
+    mobileState.isShown && {
+      tabIndex: -1,
+      'aria-hidden': true,
     },
   );
 
@@ -62,81 +55,103 @@ export default function Navigation() {
   }, [current]);
 
   return (
-    <Section backgroundColor='charcoal' className={section} as='nav'>
-      <div className={classNames(sectionBefore, section)}>
-        <Link title='Link to homepage' className={logo} to='/'>
-          <Logo width='32' />
+    <NavigationBar
+      backgroundColor='charcoal'
+      as='nav'
+      atmosphere={(
+        <MobileNav {...mobileState}/>
+      )}
+      before={(
+        <Link
+          className={logoContainer}
+          title='Link to homepage'
+          {...srProps}
+          to='/'
+        >
+          <Logo className={logo} width='32' />
         </Link>
-      </div>
-      <ul
-        className={classNames(sectionList, section)}
-        onMouseLeave={() => setCurrent(null)}
-      >
-        {items.map(({ text, ...props }, key, { length }) => {
-          if (key === length - 1) {
-            props.onBlur = () => setCurrent(null);
-          }
-          return (
-            <li
-              onMouseOver={({ currentTarget }) => {
-                if (currentTarget !== current) {
-                  setCurrent(currentTarget);
-                }
-              }}
-              key={key}
-            >
-              <Text
-                {...props}
-                onFocus={({ currentTarget }) => {
-                  const target = currentTarget.parentElement;
-                  if (target !== current) {
+      )}
+      center={(
+        <ul
+          onMouseLeave={() => setCurrent(null)}
+          className={items}
+        >
+          {navItems.map(({ text, ...props }, key, { length }) => {
+            if (key === length - 1) {
+              props.onBlur = () => setCurrent(null);
+            }
+            return (
+              <li
+                onMouseOver={({ currentTarget }) => {
+                  if (currentTarget !== current) {
                     setCurrent(currentTarget);
                   }
                 }}
-                className={item}
-                transform='uppercase'
-                lineHeight='normal'
-                weight='bold'
-                type='body2'
-                as={Link}
+                key={key}
               >
-                {text}
-              </Text>
-            </li>
-          );
-        })}
-        <li
-          className={classNames(animate && lineAnimated, line)}
-          style={lineProps}
-          aria-hidden='true'
-        />
-      </ul>
-      <div className={classNames(sectionAfter, section)}>
-        <Button
-          aria-label='Toggle mobile navigation'
-          className={menu}
-          leftIcon={FaBars}
-          color='white'
-          type='ghost'
-        >
-          Menu
-        </Button>
-        <Button className={button} disabled>
-          Coming soon
-        </Button>
-        <a
-          href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
-          className={banner}
-          rel='noreferrer noopenner'
-          target='_blank'
-        >
-          <img
-            src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
-            alt='Major League Hacking 2021 Hackathon Season'
-            className={banner__content}
+                <Text
+                  {...props}
+                  onFocus={({ currentTarget }) => {
+                    const target = currentTarget.parentElement;
+                    if (target !== current) {
+                      setCurrent(currentTarget);
+                    }
+                  }}
+                  transform='uppercase'
+                  lineHeight='normal'
+                  className={item}
+                  weight='bold'
+                  type='body2'
+                  {...srProps}
+                  as={Link}
+                >
+                  {text}
+                </Text>
+              </li>
+            );
+          })}
+          <li
+            className={classNames(animate && lineAnimated, line)}
+            style={lineProps}
+            aria-hidden='true'
           />
-        </a>
-      </div>
-    </Section>
+        </ul>
+      )}
+      after={(
+        <>
+          <Button
+            className={classNames(button, buttonMobile)}
+            onClick={() => mobileState.setState(true)}
+            aria-label='Toggle mobile navigation'
+            leftIcon={FaBars}
+            color='white'
+            type='ghost'
+            {...srProps}
+          >
+            Menu
+          </Button>
+          <Button
+            className={classNames(button, buttonDesktop)}
+            {...srProps}
+            disabled
+          >
+            Coming soon
+          </Button>
+          <a
+            href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
+            className={bannerContainer}
+            rel='noreferrer noopenner'
+            target='_blank'
+            {...srProps}
+          >
+            <img
+              src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
+              alt='Major League Hacking 2021 Hackathon Season'
+              className={banner}
+            />
+          </a>
+        </>
+      )}
+    />
   );
 }
