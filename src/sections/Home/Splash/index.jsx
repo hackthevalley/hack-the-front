@@ -1,18 +1,19 @@
+import Button from '@htv/ui-kit/components/Button';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import Button from '@htv/ui-kit/components/Button';
+import { StaticImage } from 'gatsby-plugin-image';
 import {
   container,
-  header,
-  infoContainer,
-  gt,
-  title,
   five,
-  subheader,
+  gt,
+  header,
+  imageContainer,
+  infoContainer,
+  linesContainer,
   prompt,
   registerButton,
-  imageContainer,
-  linesContainer,
+  subheader,
+  title,
 } from './Splash.module.scss';
 
 export default function Splash() {
@@ -64,7 +65,12 @@ export default function Splash() {
             </Text>
           </div>
         </div>
-        <div className={imageContainer}></div>
+        <div className={imageContainer}>
+          <StaticImage
+            src='../../../images/splash.png'
+            placeholder='tracedSVG'
+          />
+        </div>
       </div>
     </Section>
   );
