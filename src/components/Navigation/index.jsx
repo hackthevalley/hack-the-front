@@ -1,11 +1,12 @@
+import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
 import Button from '@htv/ui-kit/components/Button';
 import Text from '@htv/ui-kit/components/Text';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import toSvg from 'svgr.macro';
 import { Link } from 'gatsby';
 import useMountedAnimations from '../../utils/useMountedAnimations';
+import NavigationBar from './NavigationBar';
 import MobileNav from './MobileNav';
 import navItems from './navItems';
 import {
@@ -21,9 +22,7 @@ import {
   bannerContainer,
   banner,
 } from './Navigation.module.scss';
-import NavigationBar from './NavigationBar';
 
-const Logo = toSvg('../../../node_modules/@htv/ui-kit/assets/logo.svg');
 export default function Navigation() {
   const mobileState = useMountedAnimations(`slow`);
   const [current, setCurrent] = useState();

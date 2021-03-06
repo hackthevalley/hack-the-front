@@ -1,9 +1,9 @@
+import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import { FaTimes } from '@react-icons/all-files/fa/FaTimes';
 import Section from '@htv/ui-kit/components/Section';
 import Button from '@htv/ui-kit/components/Button';
 import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
-import toSvg from 'svgr.macro';
 import { Link } from 'gatsby';
 import NavigationBar from '../NavigationBar';
 import navItems from '../navItems';
@@ -16,8 +16,6 @@ import {
   footer,
 } from './MobileNav.module.scss';
 import { logoContainer, logo, button } from '../Navigation.module.scss';
-
-const Logo = toSvg('../../../../node_modules/@htv/ui-kit/assets/logo.svg');
 
 export default function MobileNav({ isShown, isMounted, setState }) {
   return isMounted ? (
