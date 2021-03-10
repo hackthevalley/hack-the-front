@@ -4,7 +4,7 @@ import {lists, mlh, lists2, icons, linkText} from './Footer.module.scss';
 import {ReactComponent as FacebookIcon} from "../../images/facebook.svg";
 import {ReactComponent as TwitterIcon} from "../../images/twitter.svg";
 import {ReactComponent as InstagramIcon} from "../../images/instagram.svg";
-import {ReactComponent as GithubIcon} from "../../images/Github.svg";
+import {ReactComponent as GithubIcon} from "../../images/github.svg";
 import {ReactComponent as LinkedInIcon} from "../../images/linkedin.svg";
 
 
