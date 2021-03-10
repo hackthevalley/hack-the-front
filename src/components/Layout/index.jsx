@@ -17,7 +17,7 @@ export default function Layout({ title, children }) {
       <Seo title={title} />
       <Navigation />
       <main>{children}</main>
-      <Footer />
+      <Footer/>
     </StyleLoader>
   );
 }
