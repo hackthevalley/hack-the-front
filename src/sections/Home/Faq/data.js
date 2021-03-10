@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Text from '@htv/ui-kit/components/Text';
 
-export default [
+export const Faqs = [
   {
     title: (
       <>
@@ -13,7 +13,6 @@ export default [
         <Text color='lime'>You'll need</Text>: A laptop and charger.
       </Fragment>,
       `Everything else is optional`,
-      // TODO: Add the rest :)
     ],
   },
 ];
