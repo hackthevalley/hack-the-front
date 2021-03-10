@@ -1,46 +1,30 @@
 import Card from '@htv/ui-kit/components/Card';
+import Text from '@htv/ui-kit/components/Text';
 import {
   accordionItemIcon,
   accordionItemContent,
   accordionItemInner,
+  wrapCard,
 } from './Faq.module.scss';
 
-export default function AccordionItem() {
-  state = {
-    opened: false,
-  };
-
-  const {
-    props: { title, content },
-    state: { opened },
-  } = this;
-
-  const onClick = () => {
-    this.setState({ opened: !opened });
-  };
-
-  const className = `accordionItem ${opened && accordionItemOpened}`;
-
+export default function AccordionItem(props) {
   return (
-    <Card
-      backgroundColor='#272532'
-      style={{ width: '465px', minHeight: '120px' }}
-    >
-      <div className={className} onClick={onClick}>
-        <span className={accordionItemIcon}>&gt;</span>
-        <Text type='body1' transform='uppercase'>
-          {title}
+    <div style={{ paddingTop: '34px' }}>
+      <Card backgroundColor='darkviolet' className={wrapCard}>
+        <Text
+          type='body1'
+          transform='uppercase'
+          weight='normal'
+          style={{ paddingLeft: '38px', paddingTop: '46px' }}
+        >
+          <span>&gt;</span> {props.title}
         </Text>
-      </div>
-      <div className={accordionItemInner}>
-        {content.map((portion, i) => {
-          return (
-            <div className={accordionItemContent} key={i}>
-              {portion}
-            </div>
-          );
-        })}
-      </div>
-    </Card>
+        <div
+          style={{ paddingLeft: '38px', width: '385px', paddingTop: '72px' }}
+        >
+          {props.content}
+        </div>
+      </Card>
+    </div>
   );
 }
