@@ -1,17 +1,29 @@
 export const questions = [
   {
     title: `What will the factions bring to Hack the Valley 5?`,
-    contnet: `owo in your uwu`,
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
   },
 ];
 
 export const factions = [
   {
-    name: `Nature`,
-    image: () => (
-      // TODO: Use gatsby-image for this
-      <img src='https://media.tenor.com/images/3983cfd95cf1de2cc9aa77cfbf40e6c0/tenor.gif' />
-    ),
-    content: `Ring ring ring ring ring, BANANA PHONE`,
+    name: `health`,
+    imageAlt: 'Health Faction',
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+  },
+  {
+    name: `nature`,
+    imageAlt: 'Nature Faction',
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+  },
+  {
+    name: `technology`,
+    imageAlt: 'Technology Faction',
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+  },
+  {
+    name: `discovery`,
+    imageAlt: 'Discovery Faction',
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
   },
 ];

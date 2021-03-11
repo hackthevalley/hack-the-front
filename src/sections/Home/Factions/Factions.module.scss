@@ -1,0 +1,129 @@
+@use "@htv/ui-kit/styles/colors";
+@use "@htv/ui-kit/styles/mixins";
+
+.header {
+  display: flex;
+}
+
+.header > span,
+.faction-faq > span,
+.faction-container > span,
+.back-button > span {
+  font-size: 1.5rem;
+
+  @include mixins.media(phone) {
+    font-size: 1.25rem;
+  }
+}
+
+.header > span:first-child {
+  padding-right: 1rem;
+}
+
+.factions-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  transform: translateX(-200%);
+  animation: slide-in 0.75s forwards;
+
+  @include mixins.media(phone) {
+    justify-content: center;
+  }
+}
+
+.factions-container,
+.expanded-faction-container {
+  padding: 6rem 0;
+}
+
+.faction-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  @include mixins.media(phone) {
+    width: 150px;
+  }
+}
+
+.factions-container > .faction-container {
+  padding: 1rem;
+}
+
+.faction-container:hover,
+.faction-container:focus {
+  outline: 2px solid colors.css-color(lime);
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button > span {
+  text-decoration: underline;
+}
+
+.expanded-faction {
+  display: flex;
+  background-image: url('@htv/ui-kit/assets/logo.svg');
+  background-position: right bottom;
+  background-repeat: no-repeat;
+
+  @include mixins.media(tablet) {
+    background: none;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.expanded-faction > .faction-container {
+  margin-right: 4rem;
+  transform: translateX(-200%);
+  animation: slide-in 0.5s forwards;
+
+  @include mixins.media(tablet) {
+    margin-top: 1rem;
+    margin-right: 0;
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+}
+
+.faction-content-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(100%);
+  animation: slide-in 0.5s forwards;
+}
+
+.faction-content-container > span:first-of-type {
+  padding-bottom: 2rem;
+}
+
+.faction-image {
+  margin: 2rem 0;
+}
+
+.faction-faq {
+  margin-bottom: 2rem;
+}
+
+.faction-faq > span {
+  display: block;
+  padding: 2rem 0;
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translate(0%);
+  }
+}
