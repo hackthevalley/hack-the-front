@@ -5,6 +5,7 @@ import {
   accordionItemContent,
   accordionItemInner,
   wrapCard,
+  wrapContent,
 } from './Faq.module.scss';
 
 export default function AccordionItem(props) {
@@ -15,15 +16,11 @@ export default function AccordionItem(props) {
           type='body1'
           transform='uppercase'
           weight='normal'
-          style={{ paddingLeft: '38px', paddingTop: '46px' }}
+          style={{ paddingLeft: '28px', paddingTop: '46px' }}
         >
           <span>&gt;</span> {props.title}
         </Text>
-        <div
-          style={{ paddingLeft: '38px', width: '385px', paddingTop: '72px' }}
-        >
-          {props.content}
-        </div>
+        <div className={wrapContent}>{props.content}</div>
       </Card>
     </div>
   );

@@ -1,3 +1,21 @@
+.wrap-accordion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.wrap-content {
+  padding-left: 28px;
+  padding-top: 72px;
+  padding-bottom: 39px;
+  width: 345px;
+}
+
+.wrap-card {
+  width: 401px;
+  min-height: 120px;
+}
+
 .accordion-item-opened {
   .accordion-item-icon {
     transform: rotate(90deg);
