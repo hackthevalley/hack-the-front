@@ -16,48 +16,11 @@
   min-height: 120px;
 }
 
-.accordion-item-opened {
-  .accordion-item-icon {
-    transform: rotate(90deg);
-  }
+.icon {
+  transition: all 0.1s;
+  transform: rotate(90deg);
 }
 
-.accordion-item-opened {
-  .accordion-item-inner {
-    max-height: 100rem;
-    transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-    transition-duration: 0.5s;
-    transition-property: max-height;
-  }
-}
-
-.accordion-item-opened {
-  .accordion-item-content {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.2s;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.2s;
-    transition-property: opacity, transform;
-  }
-}
-
-.accordion-item-inner {
-  max-height: 0;
-  overflow: hidden;
-  text-transform: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-  transition-duration: 0.5s;
-  transition-property: max-height;
-  z-index: 0;
-  position: relative;
-}
-
-.accordion-item-content {
-  opacity: 0;
-  transform: translateY(-1rem);
-  transition-timing-function: linear, ease;
-  transition-duration: 0.1s;
-  transition: opacity, transform;
-  transition-delay: 0.5s;
-  padding: 0 1.2rem 1.2rem;
+.icon-down {
+  transform: rotate(0deg);
 }

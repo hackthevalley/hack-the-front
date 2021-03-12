@@ -1,26 +1,33 @@
+import { useState } from 'react';
 import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
-import {
-  accordionItemIcon,
-  accordionItemContent,
-  accordionItemInner,
-  wrapCard,
-  wrapContent,
-} from './Faq.module.scss';
+import { icon, iconDown, wrapCard, wrapContent } from './Faq.module.scss';
 
 export default function AccordionItem(props) {
+  const [expand, setExpand] = useState(false);
   return (
     <div style={{ paddingTop: '34px' }}>
-      <Card backgroundColor='darkviolet' className={wrapCard}>
+      <Card
+        backgroundColor='darkviolet'
+        className={wrapCard}
+        onClick={() => setExpand((expand) => !expand)}
+      >
         <Text
           type='body1'
           transform='uppercase'
           weight='normal'
           style={{ paddingLeft: '28px', paddingTop: '46px' }}
         >
-          <span>&gt;</span> {props.title}
+          <Text
+            type='body1'
+            as='span'
+            className={`icon${!expand ? 'Down' : ''}`}
+          >
+            &gt;
+          </Text>
+          &nbsp;{props.title}
         </Text>
-        <div className={wrapContent}>{props.content}</div>
+        {expand && <div className={wrapContent}>{props.content}</div>}
       </Card>
     </div>
   );
