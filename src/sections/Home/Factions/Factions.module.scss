@@ -5,8 +5,9 @@
   display: flex;
 }
 
+.header > h2,
 .header > span,
-.faction-faq > span,
+.faction-faq > h3,
 .faction-container > span,
 .back-button > span {
   font-size: 1.5rem;
@@ -16,7 +17,7 @@
   }
 }
 
-.header > span:first-child {
+.header > *:first-child {
   padding-right: 1rem;
 }
 
@@ -45,22 +46,23 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 1rem 1.5rem;
 
   @include mixins.media(phone) {
     width: 150px;
   }
 }
 
-.factions-container > .faction-container {
-  padding: 1rem;
-}
-
 .faction-container:hover,
-.faction-container:focus {
-  outline: 2px solid colors.css-color(lime);
+.faction-container:focus,
+.back-button:hover,
+.back-button:focus {
+  background-color: colors.css-color(white, null, 0.06);
+  border-radius: 0.75rem;
 }
 
 .back-button {
+  width: max-content;
   background: none;
   border: none;
   cursor: pointer;
@@ -70,14 +72,14 @@
   text-decoration: underline;
 }
 
+.expanded-faction-container {
+  position: relative;
+}
+
 .expanded-faction {
   display: flex;
-  background-image: url('@htv/ui-kit/assets/logo.svg');
-  background-position: right bottom;
-  background-repeat: no-repeat;
 
   @include mixins.media(tablet) {
-    background: none;
     flex-direction: column;
     align-items: center;
   }
@@ -96,6 +98,35 @@
   }
 }
 
+.logo {
+  position: absolute;
+  width: 330px;
+  right: 0;
+  top: 20%;
+  opacity: 10%;
+  z-index: -1;
+
+  @include mixins.media(tablet) {
+    display: none;
+  }
+}
+
+.logo-accent-red {
+  color: colors.css-color(red);
+}
+
+.logo-accent-green {
+  color: colors.css-color(lime);
+}
+
+.logo-accent-blue {
+  color: colors.css-color(gray);
+}
+
+.logo-accent-yellow {
+  color: colors.css-color(yellow);
+}
+
 .faction-content-container {
   display: flex;
   flex: 1;
@@ -105,8 +136,8 @@
   animation: slide-in 0.5s forwards;
 }
 
-.faction-content-container > span:first-of-type {
-  padding-bottom: 2rem;
+.faction-content {
+  padding: 2rem 0;
 }
 
 .faction-image {
@@ -117,7 +148,7 @@
   margin-bottom: 2rem;
 }
 
-.faction-faq > span {
+.faction-faq > h3 {
   display: block;
   padding: 2rem 0;
 }
