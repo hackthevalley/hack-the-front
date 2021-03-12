@@ -28,22 +28,42 @@ export const query = graphql`
   {
     health: file(relativePath: { eq: "factions-health.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 200, height: 200, placeholder: TRACED_SVG)
+        gatsbyImageData(
+          width: 200
+          height: 200
+          placeholder: TRACED_SVG
+          quality: 100
+        )
       }
     }
     nature: file(relativePath: { eq: "factions-nature.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 200, height: 200, placeholder: TRACED_SVG)
+        gatsbyImageData(
+          width: 200
+          height: 200
+          placeholder: TRACED_SVG
+          quality: 100
+        )
       }
     }
     technology: file(relativePath: { eq: "factions-technology.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 200, height: 200, placeholder: TRACED_SVG)
+        gatsbyImageData(
+          width: 200
+          height: 200
+          placeholder: TRACED_SVG
+          quality: 100
+        )
       }
     }
     discovery: file(relativePath: { eq: "factions-discovery.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 200, height: 200, placeholder: TRACED_SVG)
+        gatsbyImageData(
+          width: 200
+          height: 200
+          placeholder: TRACED_SVG
+          quality: 100
+        )
       }
     }
   }
