@@ -103,7 +103,7 @@
   width: 330px;
   right: 0;
   top: 20%;
-  opacity: 10%;
+  opacity: 0.1;
   z-index: -1;
 
   @include mixins.media(tablet) {
