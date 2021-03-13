@@ -3,11 +3,19 @@ import Text from '@htv/ui-kit/components/Text';
 import { Faqs } from './data';
 import AccordionItem from './AccordionItem';
 import { wrapAccordion } from './Faq.module.scss';
+import transparentQM from '../../../images/transparent-question-marks.svg';
+import filledQM from '../../../images/filled-question-marks.svg';
+import { transparentQMStyle } from './Faq.module.scss';
 
 export default function Faq() {
   return (
-    <Section backgroundColor='charcoal'>
-      <Text type='heading2' color='darkviolet'>
+    <Section backgroundColor='charcoal' style={{ position: 'relative' }}>
+      <img
+        src={transparentQM}
+        alt='Transparent question marks'
+        className={transparentQMStyle}
+      />
+      <Text type='heading2' color='darkviolet' style={{ position: 'relative' }}>
         console.log(“
         <Text type='heading2' as='span'>
           Frequently Asked Questions
@@ -22,6 +30,7 @@ export default function Faq() {
           <AccordionItem title={Faqs[5].title} content={Faqs[5].content} />
         </div>
       </Text>
+      <img src={filledQM} alt='Filled question marks' />
     </Section>
   );
 }

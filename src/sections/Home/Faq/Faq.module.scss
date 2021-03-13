@@ -18,9 +18,15 @@
 
 .icon {
   transition: all 0.1s;
-  transform: rotate(90deg);
 }
 
 .icon-down {
-  transform: rotate(0deg);
+  transform: rotate(-90deg);
+}
+
+.transparent-q-m-style {
+  position: absolute;
+  right: -3%;
+  width: 555px;
+  height: 278px;
 }

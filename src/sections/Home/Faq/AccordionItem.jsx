@@ -21,7 +21,7 @@ export default function AccordionItem(props) {
           <Text
             type='body1'
             as='span'
-            className={`icon${!expand ? 'Down' : ''}`}
+            className={`${!expand ? 'icon' : 'iconDown'}`}
           >
             &gt;
           </Text>
