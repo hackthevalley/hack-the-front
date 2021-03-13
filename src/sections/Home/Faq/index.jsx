@@ -5,7 +5,7 @@ import AccordionItem from './AccordionItem';
 import { wrapAccordion } from './Faq.module.scss';
 import transparentQM from '../../../images/transparent-question-marks.svg';
 import filledQM from '../../../images/filled-question-marks.svg';
-import { transparentQMStyle } from './Faq.module.scss';
+import { transparentQMStyle, filledQMStyle } from './Faq.module.scss';
 
 export default function Faq() {
   return (
@@ -15,7 +15,7 @@ export default function Faq() {
         alt='Transparent question marks'
         className={transparentQMStyle}
       />
-      <Text type='heading2' color='darkviolet' style={{ position: 'relative' }}>
+      <Text type='heading2' color='darkviolet'>
         console.log(“
         <Text type='heading2' as='span'>
           Frequently Asked Questions
@@ -30,7 +30,11 @@ export default function Faq() {
           <AccordionItem title={Faqs[5].title} content={Faqs[5].content} />
         </div>
       </Text>
-      <img src={filledQM} alt='Filled question marks' />
+      <img
+        src={filledQM}
+        alt='Filled question marks'
+        className={filledQMStyle}
+      />
     </Section>
   );
 }
