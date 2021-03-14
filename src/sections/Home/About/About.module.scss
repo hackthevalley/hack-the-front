@@ -1,0 +1,57 @@
+@use "@htv/ui-kit/styles/mixins";
+
+.container {
+    display: flex;
+    padding: 8%;
+    background-image: url('../../../images/rectangle9.svg');
+    background-position: 'center';
+    background-size: 'cover';
+    background-repeat: 'no-repeat';
+    @include mixins.media(tablet) {
+        flex-direction: column;
+    }
+}
+
+.rectangle {
+    position: inline-block;
+    width: 65vw;
+    height: 75vh;
+    margin: 0 auto;
+
+    background: #272532;
+    border-radius: 10px;
+}
+
+.bashHeader {
+    margin: 1rem;
+    text-align: center;
+}
+
+.button {
+    margin-right: 0.2rem;
+    float: left;
+    transform: scale(0.8, 0.8);
+}
+
+.bashText {
+    padding-right: 4rem;
+    color: #3D3A4F;
+}
+
+.aboutTitle {
+    padding-top: 1rem;
+    margin-left: 1rem;
+    font-size: 18px;
+}
+
+.aboutText {
+    margin-top: 2.5rem;
+    margin-left: 5rem;
+    margin-right: 2.5rem;
+    font-size: 12.5px;
+}
+
+.greenText {
+    color: #86CD74;
+    font-weight: bold;
+}
