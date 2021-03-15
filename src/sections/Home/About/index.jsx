@@ -1,6 +1,8 @@
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import { StaticImage } from 'gatsby-plugin-image';
+import ellipse1 from '../../../images/ellipse1.png';
+import ellipse2 from '../../../images/ellipse2.png';
+import ellipse3 from '../../../images/ellipse3.png';
 import {
   container,
   rectangle,
@@ -18,9 +20,15 @@ export default function About() {
       <div className={container}>       
         <div className={rectangle}>
           <div className={bashHeader}>
-            <StaticImage className={button} src='../../../images/ellipse1.png'/>
-            <StaticImage className={button} src='../../../images/ellipse2.png'/>
-            <StaticImage className={button} src='../../../images/ellipse3.png'/>
+            <div className={button}>
+              <img src={ellipse1}/>
+            </div>
+            <div className={button}>
+              <img src={ellipse2}/>
+            </div>
+            <div className={button}>
+              <img src={ellipse3}/>
+            </div>
             <Text className={bashText} lineHeight='normal' align='center' type='meta1'>bash</Text>
           </div>
           <Text className={aboutTitle} lineHeight='relaxed' type='heading2'>$&nbsp; about hack the valley</Text>
