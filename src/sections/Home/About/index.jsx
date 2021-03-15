@@ -18,18 +18,12 @@ export default function About() {
       <div className={container}>       
         <div className={rectangle}>
           <div className={bashHeader}>
-            <StaticImage className={button}
-              src='../../../images/ellipse1.png'
-              placeholder='tracedSVG'/>
-            <StaticImage className={button}
-              src='../../../images/ellipse2.png'
-              placeholder='tracedSVG'/>
-            <StaticImage className={button}
-              src='../../../images/ellipse3.png'
-              placeholder='tracedSVG'/>
+            <StaticImage className={button} src='../../../images/ellipse1.png'/>
+            <StaticImage className={button} src='../../../images/ellipse2.png'/>
+            <StaticImage className={button} src='../../../images/ellipse3.png'/>
             <Text className={bashText} lineHeight='normal' align='center' type='meta1'>bash</Text>
           </div>
-          <Text className={aboutTitle} lineHeight='relaxed' type='body1'>$&nbsp; about hack the valley</Text>
+          <Text className={aboutTitle} lineHeight='relaxed' type='heading2'>$&nbsp; about hack the valley</Text>
           <Text className={aboutText} lineHeight='relaxed' type='body2'>
             Join&nbsp;
             <span className={greenText}>750 </span>

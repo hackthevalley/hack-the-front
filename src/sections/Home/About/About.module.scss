@@ -14,9 +14,11 @@
 
 .rectangle {
     position: inline-block;
-    width: 65vw;
-    height: 75vh;
+    max-width: 65vw;
+    width: 80%;
+    max-height: 65vh;
     margin: 0 auto;
+    padding-bottom: 5rem;
 
     background: #272532;
     border-radius: 10px;
@@ -41,14 +43,12 @@
 .aboutTitle {
     padding-top: 1rem;
     margin-left: 1rem;
-    font-size: 18px;
 }
 
 .aboutText {
     margin-top: 2.5rem;
     margin-left: 5rem;
     margin-right: 2.5rem;
-    font-size: 12.5px;
 }
 
 .greenText {
