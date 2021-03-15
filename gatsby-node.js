@@ -13,8 +13,8 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
       ...loaders.js(),
       test: /\.(js|jsx)?$/,
       exclude: (modulePath) =>
-        /node_modules/.test(modulePath) && !/@htv(\/|\\)(ui-kit)/.test(modulePath) &&
-        !/node_modules\/@htv\/(ui-kit)/.test(path.normalize(modulePath)),
+        /node_modules/.test(modulePath) &&
+        !/@htv(\/|\\)(ui-kit)/.test(modulePath),
     },
     {
       oneOf: [
