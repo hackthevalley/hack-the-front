@@ -29,10 +29,34 @@
     text-align: center;
 }
 
-.button {
-    margin-right: 0.2rem;
+.redButton {
+    position: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.3rem;
     float: left;
-    transform: scale(0.8, 0.8);
+    border-radius: 999px;
+    background-color: #FF5552;
+}
+
+.yellowButton {
+    position: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.3rem;
+    float: left;
+    border-radius: 999px;
+    background-color: #FFBE42;
+}
+
+.greenButton {
+    position: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.3rem;
+    float: left;
+    border-radius: 999px;
+    background-color: #31C74A;
 }
 
 .bashText {
