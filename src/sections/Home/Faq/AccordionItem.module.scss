@@ -1,0 +1,19 @@
+.wrap-content {
+  padding-left: 28px;
+  padding-top: 72px;
+  padding-bottom: 39px;
+  width: 345px;
+}
+
+.wrap-card {
+  width: 401px;
+  min-height: 120px;
+}
+
+.icon {
+  transition: all 0.1s;
+}
+
+.icon-down {
+  transform: rotate(-90deg);
+}
