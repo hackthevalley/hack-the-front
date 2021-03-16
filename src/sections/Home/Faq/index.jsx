@@ -2,14 +2,18 @@ import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 import { Faqs } from './data';
 import AccordionItem from './AccordionItem';
-import { wrapAccordion } from './Faq.module.scss';
 import transparentQM from '../../../images/transparent-question-marks.svg';
 import filledQM from '../../../images/filled-question-marks.svg';
-import { transparentQMStyle, filledQMStyle } from './Faq.module.scss';
+import {
+  wrapAccordion,
+  transparentQMStyle,
+  filledQMStyle,
+  wrapSection,
+} from './Faq.module.scss';
 
 export default function Faq() {
   return (
-    <Section backgroundColor='charcoal' style={{ position: 'relative' }}>
+    <Section backgroundColor='charcoal' className={wrapSection}>
       <img
         src={transparentQM}
         alt='Transparent question marks'

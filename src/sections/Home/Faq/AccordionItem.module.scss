@@ -1,13 +1,13 @@
 .wrap-content {
-  padding-left: 28px;
-  padding-top: 72px;
-  padding-bottom: 39px;
-  width: 345px;
+  padding-left: 1.75rem;
+  padding-top: 4.5rem;
+  padding-bottom: 2.4375rem;
+  width: 21.5625rem;
 }
 
 .wrap-card {
-  width: 401px;
-  min-height: 120px;
+  width: 25.0625rem;
+  min-height: 7.5rem;
 }
 
 .icon {
@@ -16,4 +16,13 @@
 
 .icon-down {
   transform: rotate(-90deg);
+}
+
+.wrapping-div {
+  padding-top: 2.125rem;
+}
+
+.wrapping-text {
+  padding-left: 1.75rem;
+  padding-top: 2.875rem;
 }

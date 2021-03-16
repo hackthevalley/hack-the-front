@@ -4,38 +4,23 @@
   justify-content: space-evenly;
 }
 
-.wrap-content {
-  padding-left: 28px;
-  padding-top: 72px;
-  padding-bottom: 39px;
-  width: 345px;
-}
-
-.wrap-card {
-  width: 401px;
-  min-height: 120px;
-}
-
-.icon {
-  transition: all 0.1s;
-}
-
-.icon-down {
-  transform: rotate(-90deg);
-}
-
 .transparent-q-m-style {
   position: absolute;
   right: -3%;
-  width: 555px;
-  height: 278px;
+  width: 34.6875rem;
+  height: 17.375rem;
   opacity: 40%;
 }
 
 .filled-q-m-style {
   position: absolute;
   left: -4.5%;
-  width: 505px;
-  height: 274px;
-  transform: translate(0, -60%)
+  width: 31.5625rem;
+  height: 17.125rem;
+  transform: translate(0, -60%);
+  opacity: 40%;
+}
+
+.wrap-section {
+  position: relative;
 }
