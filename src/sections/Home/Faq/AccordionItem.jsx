@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import classNames from 'classnames';
 import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
 import {
@@ -28,7 +29,7 @@ export default function AccordionItem(props) {
           <Text
             type='body1'
             as='span'
-            className={`${!expand ? { icon } : { iconDown }}`}
+            className={classNames(expand && iconDown, icon)}
           >
             &gt;
           </Text>
