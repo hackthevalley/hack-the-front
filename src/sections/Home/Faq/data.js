@@ -1,5 +1,5 @@
-import { Fragment } from 'react';
 import Text from '@htv/ui-kit/components/Text';
+import './data.module.scss';
 
 export const Faqs = [
   {
@@ -26,18 +26,19 @@ export const Faqs = [
           </Text>
           to bring a:
         </Text>
-        <Text type='body2' weight='normal'>
-          &nbsp;&nbsp;&nbsp;&nbsp; + sleeping bag
-        </Text>
-        <Text type='body2' weight='normal'>
-          &nbsp;&nbsp;&nbsp;&nbsp; + pillows
-        </Text>
-        <Text type='body2' weight='normal'>
-          &nbsp;&nbsp;&nbsp;&nbsp; + toiletries
-        </Text>
-        <Text type='body2' weight='normal'>
-          &nbsp;&nbsp;&nbsp;&nbsp; & a couple of change of clothes. <br />
-          <br />
+        <Text type='body2' as='ul' weight='normal'>
+          <Text type='body2' as='li'>
+            sleeping bag
+          </Text>
+          <Text type='body2' as='li'>
+            pillows
+          </Text>
+          <Text type='body2' as='li'>
+            toiletries
+          </Text>
+          <Text type='body2' as='li'>
+            a couple of change of clothes. <br /> <br />
+          </Text>
         </Text>
         <Text color='red' type='body2' weight='normal'>
           You won't need
