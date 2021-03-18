@@ -12,12 +12,11 @@ import {
 } from './AccordionItem.module.scss';
 
 export default function AccordionItem(props) {
-  console.log(props);
   const [expand, setExpand] = useState(false);
   return (
     <div className={wrappingDiv}>
       <Card
-        // type='flat'
+        type='flat'
         backgroundColor='darkviolet'
         className={wrapCard}
         onClick={() => setExpand((expand) => !expand)}
