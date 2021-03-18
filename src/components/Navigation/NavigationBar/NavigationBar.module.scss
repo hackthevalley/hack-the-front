@@ -14,16 +14,16 @@
   grid-gap: 1rem;
   display: grid;
 
-  &--before {
+  &__before {
     grid-area: b;
   }
 
-  &--center {
+  &__center {
     justify-content: center;
     grid-area: c;
   }
 
-  &--after {
+  &__after {
     justify-content: end;
     grid-area: a;
   }

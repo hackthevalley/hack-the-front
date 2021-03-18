@@ -1,160 +1,127 @@
 @use "@htv/ui-kit/styles/colors";
 @use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/units";
 
 .header {
   display: flex;
-}
-
-.header > h2,
-.header > span,
-.faction-faq > h3,
-.faction-container > span,
-.back-button > span {
-  font-size: 1.5rem;
-
-  @include mixins.media(phone) {
-    font-size: 1.25rem;
-  }
-}
-
-.header > *:first-child {
-  padding-right: 1rem;
-}
-
-.factions-container {
-  display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  transform: translateX(-200%);
-  animation: slide-in 0.75s forwards;
+}
 
-  @include mixins.media(phone) {
-    justify-content: center;
+.title {
+  margin-right: 1rem;
+}
+
+.factionButton {
+  @include mixins.transition(background-color);
+  border-radius: units.$border-radius;
+  background-color: transparent;
+  box-sizing: border-box;
+  margin-right: 2rem;
+  margin-bottom: auto;
+  max-width: 16rem;
+  width: 25%;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 2rem;
+  border: none;
+
+  &:not(:disabled) {
+    &:hover, &:focus {
+      background-color: colors.css-color(white, $opacity: 0.06);
+    }
+  
+    &:active {
+      background-color: colors.css-color(white, $opacity: 0.12);
+    }
   }
 }
 
-.factions-container,
-.expanded-faction-container {
-  padding: 6rem 0;
+.factionItemLabel {
+  margin-top: 1rem;
 }
 
-.faction-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 1rem 1.5rem;
-
-  @include mixins.media(phone) {
-    width: 150px;
-  }
-}
-
-.faction-container:hover,
-.faction-container:focus,
-.back-button:hover,
-.back-button:focus {
-  background-color: colors.css-color(white, null, 0.06);
-  border-radius: 0.75rem;
-}
-
-.back-button {
-  width: max-content;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.back-button > span {
-  text-decoration: underline;
-}
-
-.expanded-faction-container {
+.factionDetails {
+  @include mixins.transition(height, fast);
+  list-style-type: none;
+  margin: 4rem 0;
   position: relative;
+  padding: 0;
+  height: var(--height);
+  overflow: hidden;
 }
 
-.expanded-faction {
-  display: flex;
-
-  @include mixins.media(tablet) {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-.expanded-faction > .faction-container {
-  margin-right: 4rem;
-  transform: translateX(-200%);
-  animation: slide-in 0.5s forwards;
-
-  @include mixins.media(tablet) {
-    margin-top: 1rem;
-    margin-right: 0;
-    justify-content: center;
-    flex-direction: column-reverse;
-  }
-}
-
-.logo {
+.factionDetail {
+  @include mixins.transition(transform opacity, slow);
   position: absolute;
-  width: 330px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
   right: 0;
-  top: 20%;
-  opacity: 0.1;
-  z-index: -1;
+  margin: 0 auto auto;
+  height: fit-content;
+  display: flex;
 
-  @include mixins.media(tablet) {
-    display: none;
+  transform: translateX(calc(25% * var(--offset)));
+
+  &__active {
+    transform: translateX(0);
+
+    & .factionContent {
+      opacity: 1;
+    }
+  }
+
+  &__hidden {
+    pointer-events: none;
+    opacity: 0;
   }
 }
 
-.logo-accent-red {
-  color: colors.css-color(red);
+.factionContent {
+  @include mixins.transition(opacity, slow);
+  opacity: 0;
 }
 
-.logo-accent-green {
-  color: colors.css-color(lime);
+.factionHeading {
+  padding: 1.5rem 0;
 }
 
-.logo-accent-blue {
-  color: colors.css-color(gray);
+.back {
+  margin-top: 2rem;
 }
 
-.logo-accent-yellow {
-  color: colors.css-color(yellow);
-}
-
-.faction-content-container {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  transform: translateY(100%);
-  animation: slide-in 0.5s forwards;
-}
-
-.faction-content {
-  padding: 2rem 0;
-}
-
-.faction-image {
-  margin: 2rem 0;
-}
-
-.faction-faq {
+.factionFaqTitle {
   margin-bottom: 2rem;
 }
 
-.faction-faq > h3 {
-  display: block;
-  padding: 2rem 0;
-}
+.icon {
+  @include mixins.transition(color, slow);
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  bottom: auto;
+  margin: 0;
+  height: 100%;
+  max-height: 20rem;
+  width: auto;
+  color: colors.css-color(charcoal);
+  opacity: 0.1;
 
-@keyframes slide-in {
-  100% {
-    transform: translate(0%);
+  &Health {
+    color: colors.css-color(red);
+  }
+
+  &Nature {
+    color: colors.css-color(lime);
+  }
+
+  &Technology {
+    color: colors.css-color(disabled);
+  }
+
+  &Discovery {
+    color: colors.css-color(yellow);
   }
 }

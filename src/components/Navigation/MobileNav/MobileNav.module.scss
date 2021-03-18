@@ -15,7 +15,7 @@
   width: 100%;
   opacity: 0;
 
-  &--shown {
+  &__shown {
     transform: translateY(0);
     opacity: 1;
   }

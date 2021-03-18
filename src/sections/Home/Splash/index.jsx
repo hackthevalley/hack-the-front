@@ -69,7 +69,7 @@ export default function Splash() {
           <StaticImage
             src='../../../images/splash.png'
             placeholder='tracedSVG'
-            alt="People using computers"
+            alt='People using computers'
           />
         </div>
       </div>

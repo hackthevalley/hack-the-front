@@ -1,81 +1,70 @@
+@use "@htv/ui-kit/styles/colors";
 @use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/units";
 
 .container {
-    display: flex;
-    padding: 8%;
-    background-image: url('../../../images/rectangle9.svg');
-    background-position: 'center';
-    background-size: 'cover';
-    background-repeat: 'no-repeat';
-    @include mixins.media(tablet) {
-        flex-direction: column;
-    }
+  padding-bottom: 10rem;
 }
 
 .rectangle {
-    position: inline-block;
-    max-width: 65vw;
-    width: 80%;
-    max-height: 65vh;
-    margin: 0 auto;
-    padding-bottom: 5rem;
-
-    background: #272532;
-    border-radius: 10px;
+  max-width: units.$section-width * 0.72;
+  padding: 1rem 1.2rem;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .bashHeader {
-    margin: 1rem;
-    text-align: center;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  margin-bottom: 2rem;
 }
 
-.redButton {
-    position: inline-block;
-    width: 0.8rem;
-    height: 0.8rem;
-    margin-right: 0.3rem;
-    float: left;
-    border-radius: 999px;
-    background-color: #FF5552;
+.bashControls {
+  display: grid;
+  grid-template-columns: repeat(3, 0.8rem);
+  grid-gap: 0.3rem;
 }
 
-.yellowButton {
-    position: inline-block;
-    width: 0.8rem;
-    height: 0.8rem;
-    margin-right: 0.3rem;
-    float: left;
-    border-radius: 999px;
-    background-color: #FFBE42;
+.bashButton {
+  border-radius: 999px;
+  height: 0.8rem;
+  width: 0.8rem;
+
+  &__red {
+    background-color: colors.css-color(red);
+  }
+
+  &__yellow {
+    background-color: colors.css-color(yellow);
+  }
+
+  &__green {
+    background-color: colors.css-color(lime);
+  }
 }
 
-.greenButton {
-    position: inline-block;
-    width: 0.8rem;
-    height: 0.8rem;
-    margin-right: 0.3rem;
-    float: left;
-    border-radius: 999px;
-    background-color: #31C74A;
+.title {
+  display: flex;
 }
 
-.bashText {
-    padding-right: 4rem;
-    color: #3D3A4F;
+.body {
+  padding: 0 4rem 6rem;
+
+  @include mixins.media(phone) {
+    padding: 0 2rem 6rem;
+  }
 }
 
-.aboutTitle {
-    padding-top: 1rem;
-    margin-left: 1rem;
+.text {
+  margin-top: 2.5rem;
 }
 
-.aboutText {
-    margin-top: 2.5rem;
-    margin-left: 5rem;
-    margin-right: 2.5rem;
+.atmosphere {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
-.greenText {
-    color: #86CD74;
-    font-weight: bold;
+.wave {
+  color: colors.css-color(charcoal);
 }

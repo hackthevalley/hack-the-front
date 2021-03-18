@@ -1,4 +1,3 @@
-const path = require('path');
 const isProd = process.env.NODE_ENV === `production`;
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
@@ -13,7 +12,8 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
       ...loaders.js(),
       test: /\.(js|jsx)?$/,
       exclude: (modulePath) =>
-      /node_modules/.test(modulePath) && !/@htv(\/|\\)(ui-kit)/.test(modulePath),
+        /node_modules/.test(modulePath) &&
+        !/@htv(\/|\\)(ui-kit)/.test(modulePath),
     },
     {
       oneOf: [

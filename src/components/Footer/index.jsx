@@ -1,54 +1,70 @@
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import {lists, mlh, lists2, icons, linkText} from './Footer.module.scss';
-import {ReactComponent as FacebookIcon} from "../../images/facebook.svg";
-import {ReactComponent as TwitterIcon} from "../../images/twitter.svg";
-import {ReactComponent as InstagramIcon} from "../../images/instagram.svg";
-import {ReactComponent as GithubIcon} from "../../images/github.svg";
-import {ReactComponent as LinkedInIcon} from "../../images/linkedin.svg";
-
+import { ReactComponent as FacebookIcon } from '../../images/social-icons/facebook.svg';
+import { ReactComponent as TwitterIcon } from '../../images/social-icons/twitter.svg';
+import { ReactComponent as InstagramIcon } from '../../images/social-icons/instagram.svg';
+import { ReactComponent as GithubIcon } from '../../images/social-icons/github.svg';
+import { ReactComponent as LinkedInIcon } from '../../images/social-icons/linkedin.svg';
+import { container, items, item, icon, mlh } from './Footer.module.scss';
 
 const links = [
   {
-      img: FacebookIcon,
-      to: 'https://www.facebook.com/hackthevalley',
-      name: ' hackthevalley ',
+    img: FacebookIcon,
+    to: 'https://www.facebook.com/hackthevalley',
+    name: ' hackthevalley ',
   },
   {
-      img: GithubIcon,
-      to: 'https://github.com/hackthevalley',
-      name: ' hackthevalley ',
+    img: GithubIcon,
+    to: 'https://github.com/hackthevalley',
+    name: ' hackthevalley ',
   },
   {
-      img: TwitterIcon,
-      to: 'https://twitter.com/hackthevalley5',
-      name: ' hackthevalley5 ',
+    img: TwitterIcon,
+    to: 'https://twitter.com/hackthevalley5',
+    name: ' hackthevalley5 ',
   },
   {
-      img: InstagramIcon,
-      to: 'https://www.instagram.com/hackthevalley/',
-      name: ' hackthevalley ',
+    img: InstagramIcon,
+    to: 'https://www.instagram.com/hackthevalley/',
+    name: ' hackthevalley ',
   },
   {
-      img: LinkedInIcon,
-      to: 'https://www.linkedin.com/company/hack-the-valley',
-      name: ' hackthevalley ',
+    img: LinkedInIcon,
+    to: 'https://www.linkedin.com/company/hack-the-valley',
+    name: ' hackthevalley ',
   },
-]
-
+];
 
 export default function Footer() {
-
   return (
-    <Section as={'footer'} backgroundColor='darkviolet'>
-     
-      <ul className={lists}>
-        {links.map(({ img: Icon, ...link }, index) => 
-          (<li key={index} className={lists2}><Text color="white" as={'a'} href={link.to} type="meta1" className={linkText}><Icon className={icons}/>{link.name}</Text></li>) 
-        )}
+    <Section as='footer' className={container} backgroundColor='charcoal'>
+      <ul className={items}>
+        {links.map(({ img: Icon, ...link }, index) => (
+          <li key={index}>
+            <Text
+              rel='noreferrer noopener'
+              className={item}
+              target='_blank'
+              href={link.to}
+              color='white'
+              type='meta1'
+              as='a'
+            >
+              <Icon className={icon} />
+              {link.name}
+            </Text>
+          </li>
+        ))}
       </ul>
-      <Text as={'a'} href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" type="meta1" className={mlh}> 
-          MLH Code of Conduct
+      <Text
+        href='https://static.mlh.io/docs/mlh-code-of-conduct.pdf'
+        rel='noreferrer noopener'
+        className={mlh}
+        target='_blank'
+        type='meta1'
+        as='a'
+      >
+        MLH Code of Conduct
       </Text>
     </Section>
   );

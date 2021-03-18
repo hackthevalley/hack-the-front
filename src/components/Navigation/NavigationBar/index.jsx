@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import {
   container,
   section,
-  sectionBefore,
-  sectionCenter,
-  sectionAfter,
+  section__before,
+  section__center,
+  section__after,
 } from './NavigationBar.module.scss';
 
 export default function NavigationBar({
@@ -18,13 +18,13 @@ export default function NavigationBar({
   return (
     <Section {...props} className={classNames(className, container)}>
       {before && (
-        <div className={classNames(section, sectionBefore)}>{before}</div>
+        <div className={classNames(section, section__before)}>{before}</div>
       )}
       {center && (
-        <div className={classNames(section, sectionCenter)}>{center}</div>
+        <div className={classNames(section, section__center)}>{center}</div>
       )}
       {after && (
-        <div className={classNames(section, sectionAfter)}>{after}</div>
+        <div className={classNames(section, section__after)}>{after}</div>
       )}
     </Section>
   );

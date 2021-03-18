@@ -9,19 +9,7 @@ import useMountedAnimations from '../../utils/useMountedAnimations';
 import NavigationBar from './NavigationBar';
 import MobileNav from './MobileNav';
 import navItems from './navItems';
-import {
-  logoContainer,
-  logo,
-  items,
-  item,
-  line,
-  lineAnimated,
-  button,
-  buttonMobile,
-  buttonDesktop,
-  bannerContainer,
-  banner,
-} from './Navigation.module.scss';
+import * as styles from './Navigation.module.scss';
 
 export default function Navigation() {
   const mobileState = useMountedAnimations(`slow`);
@@ -59,16 +47,16 @@ export default function Navigation() {
       atmosphere={<MobileNav {...mobileState} />}
       before={
         <Link
-          className={logoContainer}
+          className={styles.logoContainer}
           title='Link to homepage'
           {...srProps}
           to='/'
         >
-          <Logo className={logo} width='32' />
+          <Logo className={styles.logo} width='32' />
         </Link>
       }
       center={
-        <ul onMouseLeave={() => setCurrent(null)} className={items}>
+        <ul onMouseLeave={() => setCurrent(null)} className={styles.items}>
           {navItems.map(({ text, ...props }, key, { length }) => {
             if (key === length - 1) {
               props.onBlur = () => setCurrent(null);
@@ -92,7 +80,7 @@ export default function Navigation() {
                   }}
                   transform='uppercase'
                   lineHeight='normal'
-                  className={item}
+                  className={styles.item}
                   weight='bold'
                   type='body2'
                   {...srProps}
@@ -104,7 +92,7 @@ export default function Navigation() {
             );
           })}
           <li
-            className={classNames(animate && lineAnimated, line)}
+            className={classNames(animate && styles.line__animated, styles.line)}
             style={lineProps}
             aria-hidden='true'
           />
@@ -113,7 +101,7 @@ export default function Navigation() {
       after={
         <>
           <Button
-            className={classNames(button, buttonMobile)}
+            className={classNames(styles.button, styles.button__mobile)}
             onClick={() => mobileState.setState(true)}
             aria-label='Toggle mobile navigation'
             leftIcon={FaBars}
@@ -124,7 +112,7 @@ export default function Navigation() {
             Menu
           </Button>
           <Button
-            className={classNames(button, buttonDesktop)}
+            className={classNames(styles.button, styles.button__desktop)}
             {...srProps}
             disabled
           >
@@ -132,7 +120,7 @@ export default function Navigation() {
           </Button>
           <a
             href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
-            className={bannerContainer}
+            className={styles.bannerContainer}
             rel='noreferrer noopenner'
             target='_blank'
             {...srProps}
@@ -140,7 +128,7 @@ export default function Navigation() {
             <img
               src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
               alt='Major League Hacking 2021 Hackathon Season'
-              className={banner}
+              className={styles.banner}
             />
           </a>
         </>

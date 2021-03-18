@@ -41,17 +41,17 @@
     font-size: 1rem;
   }
 
-  &--mobile {
-    display: none;
+  &__mobile {
+    display: none !important;
     @include mixins.media(laptop) {
-      display: flex;
+      display: flex !important;
     }
   }
 
-  &--desktop {
-    display: flex;
+  &__desktop {
+    display: flex !important;
     @include mixins.media(laptop) {
-      display: none;
+      display: none !important;
     }
   }
 }
@@ -68,7 +68,7 @@
   left: var(--left, 0px);
   width: var(--width, 0px);
 
-  &--animated {
+  &__animated {
     @include mixins.transition(width left opacity);
     opacity: 1;
   }

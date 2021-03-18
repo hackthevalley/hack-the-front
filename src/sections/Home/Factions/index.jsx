@@ -1,162 +1,132 @@
 import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import Section from '@htv/ui-kit/components/Section';
+import Button from '@htv/ui-kit/components/Button';
 import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
-import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { factions, questions } from './data';
-import {
-  backButton,
-  expandedFaction,
-  expandedFactionContainer,
-  factionContainer,
-  factionContent,
-  factionContentContainer,
-  factionFaq,
-  factionImage,
-  factionsContainer,
-  header,
-  logo,
-  logoAccentBlue,
-  logoAccentGreen,
-  logoAccentRed,
-  logoAccentYellow,
-} from './Factions.module.scss';
+import * as styles from './Factions.module.scss';
 
-export const query = graphql`
-  {
-    health: file(relativePath: { eq: "factions-health.png" }) {
-      childImageSharp {
-        gatsbyImageData(
-          width: 200
-          height: 200
-          placeholder: TRACED_SVG
-          quality: 100
-        )
-      }
-    }
-    nature: file(relativePath: { eq: "factions-nature.png" }) {
-      childImageSharp {
-        gatsbyImageData(
-          width: 200
-          height: 200
-          placeholder: TRACED_SVG
-          quality: 100
-        )
-      }
-    }
-    technology: file(relativePath: { eq: "factions-technology.png" }) {
-      childImageSharp {
-        gatsbyImageData(
-          width: 200
-          height: 200
-          placeholder: TRACED_SVG
-          quality: 100
-        )
-      }
-    }
-    discovery: file(relativePath: { eq: "factions-discovery.png" }) {
-      childImageSharp {
-        gatsbyImageData(
-          width: 200
-          height: 200
-          placeholder: TRACED_SVG
-          quality: 100
-        )
-      }
-    }
-  }
-`;
 
+// TODO: Find a better implementation which uses positioning with flow, then apply transform
+const initRef = factions.map(() => ({}));
 export default function Factions() {
-  let data = useStaticQuery(query);
-  let [faction, setFaction] = useState(null);
+  const [ faction, setFaction ] = useState();
+  const [ height, setHeight ] = useState(0);
+  const elements = useRef(initRef);
 
-  let logoClassName = classNames(
-    logo,
-    faction?.name == 'health' && logoAccentRed,
-    faction?.name == 'nature' && logoAccentGreen,
-    faction?.name == 'technology' && logoAccentBlue,
-    faction?.name == 'discovery' && logoAccentYellow,
-  );
+  const heightHandler = useCallback(() => {
+    let newHeight = 0;
+    if (faction) {
+      const index = factions.findIndex(({ name }) => name === faction);
+      newHeight = Math.max(
+        elements.current[index].button.clientHeight,
+        elements.current[index].content.clientHeight,
+      );
+    } else {
+      newHeight = Math.max(
+        ...elements.current.map(el => el.button.clientHeight)
+      );
+    }
+    setHeight(newHeight);
+  }, [ faction ]);
 
-  let displayFaction = (faction) => (
-    <>
-      <GatsbyImage
-        image={getImage(data[faction.name])}
-        alt={faction.imageAlt}
-        className={factionImage}
-      />
-      <Text type='heading2' as='h3' transform='uppercase' weight='normal'>
-        {faction.name}
-      </Text>
-    </>
-  );
-
-  let displayExpandedFactionContainer = (faction) => (
-    <div className={expandedFactionContainer}>
-      <div className={expandedFaction}>
-        <button className={factionContainer} onClick={() => setFaction(null)}>
-          {displayFaction(faction)}
-        </button>
-        <div className={factionContentContainer}>
-          <Text type='heading2' transform='uppercase' as='h3' weight='normal'>
-            {faction.name} Faction
-          </Text>
-          <Text type='body1' className={factionContent}>
-            {faction.content}
-          </Text>
-          <button className={backButton} onClick={() => setFaction(null)}>
-            <Text type='heading2' transform='uppercase' as='span'>
-              &larr; All Factions
-            </Text>
-          </button>
-        </div>
-      </div>
-      <Logo className={logoClassName} />
-    </div>
-  );
-
-  let displayFactionsContainer = () => (
-    <div className={factionsContainer}>
-      {factions.map((faction) => (
-        <button
-          className={factionContainer}
-          key={faction.name}
-          onClick={() => setFaction(faction)}
-        >
-          {displayFaction(faction)}
-        </button>
-      ))}
-    </div>
-  );
+  useLayoutEffect(() => {
+    heightHandler();
+    window.addEventListener('resize', heightHandler, { passive: true });
+    return () => {
+      window.removeEventListener('resize', heightHandler, { passive: true });
+    };
+  }, [ heightHandler ]);
 
   return (
-    <Section backgroundColor='charcoal'>
-      <div className={header}>
-        <Text type='heading2' transform='uppercase' weight='normal'>
+    <Section id='factions' backgroundColor='charcoal'>
+      <div className={styles.header}>
+        <Text className={styles.title} type='heading2' transform='uppercase' weight='normal'>
           The Factions
         </Text>
         <Text type='heading2' color='lime' as='span'>
           // Click to view details
         </Text>
       </div>
-      {faction
-        ? displayExpandedFactionContainer(faction)
-        : displayFactionsContainer()}
-      {/* For accessibility reasons */}
+      <ul style={{ "--height": height + `px` }} className={styles.factionDetails}>
+        {factions.map(({ name, content, image: FactionIcon }, key) => (
+          <li
+            className={classNames(
+              faction && (
+                faction === name
+                  ? styles.factionDetail__active
+                  : styles.factionDetail__hidden
+              ),
+              styles.factionDetail,
+            )}
+            style={{ '--offset': key }}
+            key={key}
+          >
+            <button
+              ref={el => elements.current[key].button = el}
+              onClick={() => setFaction(name)}
+              aria-hidden={faction !== name}
+              className={styles.factionButton}
+              disabled={faction}
+            >
+              <FactionIcon/>
+              <Text className={styles.factionItemLabel} type='body1' as='p' align='center' transform='uppercase'>{name}</Text>
+            </button>
+            <div
+              ref={el => elements.current[key].content = el}
+              aria-hidden={faction !== name}
+              className={styles.factionContent}
+            >
+              <Text className={styles.factionHeading} type='heading2' as='h3' transform='uppercase'>{name} Faction</Text>
+              <Text type='body1'>{content}</Text>
+              <Button disabled={faction !== name} onClick={() => setFaction(null)} className={styles.back}>
+                Back to all factions
+              </Button>
+            </div>
+          </li>
+        ))}
+        <li>
+          <Logo
+            className={classNames(
+              !!faction && styles[`icon${faction}`],
+              styles.icon,
+            )}
+          />
+        </li>
+      </ul>
       <Text type='heading2' style={{ display: 'none' }}>
         Questions about Factions
       </Text>
       {questions.map(({ title, content }) => (
-        <div key={title} className={factionFaq}>
-          <Text type='heading2' as='h3' transform='uppercase'>
+        <div key={title}>
+          <Text className={styles.factionFaqTitle} type='heading2' as='h3' transform='uppercase'>
             &gt; {title}
           </Text>
           <Text type='body1'>{content}</Text>
         </div>
       ))}
+      <noscript>
+        <style
+          dangerouslySetInnerHTML={{__html: `
+            #factions > ul {
+              height: auto;
+            }
+            #factions li {
+              transform: none;
+              position: relative;
+            }
+
+            #factions li > div {
+              opacity: 1;
+            }
+
+            #factions li > div button {
+              display: none;
+            }
+          `}}
+        />
+      </noscript>
     </Section>
   );
 }

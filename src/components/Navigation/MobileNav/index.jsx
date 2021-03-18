@@ -9,7 +9,7 @@ import NavigationBar from '../NavigationBar';
 import navItems from '../navItems';
 import {
   container,
-  containerShown,
+  container__shown,
   items,
   item,
   text,
@@ -19,7 +19,7 @@ import { logoContainer, logo, button } from '../Navigation.module.scss';
 
 export default function MobileNav({ isShown, isMounted, setState }) {
   return isMounted ? (
-    <div className={classNames(container, isShown && containerShown)}>
+    <div className={classNames(container, isShown && container__shown)}>
       <NavigationBar
         before={
           <Link

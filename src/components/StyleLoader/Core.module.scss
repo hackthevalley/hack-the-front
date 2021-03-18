@@ -1,7 +1,7 @@
 @use '@htv/ui-kit/styles/mixins';
 
 :global {
-    html {
+  html {
     @include mixins.media(phone) {
       font-size: 13px;
     }
