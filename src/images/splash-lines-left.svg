@@ -1,0 +1,10 @@
+<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 360">
+  <rect x="0" width="3" height="58" rx="1.5"/>
+  <rect x="19" width="3" height="31" rx="1.5"/>
+  <rect x="78" y="216" width="30" height="3" rx="1.5"/>
+  <rect x="78" y="197" width="16" height="3" rx="1.5"/>
+  <circle id="a" cx="44.9" cy="264" r="2.2"/>
+  <use href="#a" y="16"/>
+  <use href="#a" y="46.5"/>
+  <use href="#a" y="93.7"/>
+</svg>
