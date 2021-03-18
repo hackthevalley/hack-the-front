@@ -25,7 +25,8 @@
   margin: 0 2rem;
   display: flex;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: colors.css-color(white, $opacity: 0.06);
   }
 
@@ -46,7 +47,8 @@
   @include mixins.transition(color);
   margin: 2rem 0;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: colors.css-color(lime);
   }
 

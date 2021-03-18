@@ -26,10 +26,11 @@
   border: none;
 
   &:not(:disabled) {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: colors.css-color(white, $opacity: 0.06);
     }
-  
+
     &:active {
       background-color: colors.css-color(white, $opacity: 0.12);
     }

@@ -23,8 +23,8 @@ export default function StyleLoader({ children }) {
         {Object.values(fonts).map(({ default: font }) => (
           <link
             type={`font/${font.split('.').slice(-1)[0]}`}
+            crossOrigin="anonymous"
             rel='preload'
-            crossorigin
             href={font}
             key={font}
             as='font'

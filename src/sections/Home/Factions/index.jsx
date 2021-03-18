@@ -7,12 +7,11 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { factions, questions } from './data';
 import * as styles from './Factions.module.scss';
 
-
 // TODO: Find a better implementation which uses positioning with flow, then apply transform
 const initRef = factions.map(() => ({}));
 export default function Factions() {
-  const [ faction, setFaction ] = useState();
-  const [ height, setHeight ] = useState(0);
+  const [faction, setFaction] = useState();
+  const [height, setHeight] = useState(0);
   const elements = useRef(initRef);
 
   const heightHandler = useCallback(() => {
@@ -25,11 +24,11 @@ export default function Factions() {
       );
     } else {
       newHeight = Math.max(
-        ...elements.current.map(el => el.button.clientHeight)
+        ...elements.current.map((el) => el.button.clientHeight),
       );
     }
     setHeight(newHeight);
-  }, [ faction ]);
+  }, [faction]);
 
   useLayoutEffect(() => {
     heightHandler();
@@ -37,50 +36,76 @@ export default function Factions() {
     return () => {
       window.removeEventListener('resize', heightHandler, { passive: true });
     };
-  }, [ heightHandler ]);
+  }, [heightHandler]);
 
   return (
     <Section id='factions' backgroundColor='charcoal'>
       <div className={styles.header}>
-        <Text className={styles.title} type='heading2' transform='uppercase' weight='normal'>
+        <Text
+          className={styles.title}
+          type='heading2'
+          transform='uppercase'
+          weight='normal'
+        >
           The Factions
         </Text>
         <Text type='heading2' color='lime' as='span'>
           // Click to view details
         </Text>
       </div>
-      <ul style={{ "--height": height + `px` }} className={styles.factionDetails}>
+      <ul
+        style={{ '--height': height + `px` }}
+        className={styles.factionDetails}
+      >
         {factions.map(({ name, content, image: FactionIcon }, key) => (
           <li
             className={classNames(
-              faction && (
-                faction === name
+              faction &&
+                (faction === name
                   ? styles.factionDetail__active
-                  : styles.factionDetail__hidden
-              ),
+                  : styles.factionDetail__hidden),
               styles.factionDetail,
             )}
             style={{ '--offset': key }}
             key={key}
           >
             <button
-              ref={el => elements.current[key].button = el}
+              ref={(el) => (elements.current[key].button = el)}
               onClick={() => setFaction(name)}
               aria-hidden={faction !== name}
               className={styles.factionButton}
               disabled={faction}
             >
-              <FactionIcon/>
-              <Text className={styles.factionItemLabel} type='body1' as='p' align='center' transform='uppercase'>{name}</Text>
+              <FactionIcon />
+              <Text
+                className={styles.factionItemLabel}
+                type='body1'
+                as='p'
+                align='center'
+                transform='uppercase'
+              >
+                {name}
+              </Text>
             </button>
             <div
-              ref={el => elements.current[key].content = el}
+              ref={(el) => (elements.current[key].content = el)}
               aria-hidden={faction !== name}
               className={styles.factionContent}
             >
-              <Text className={styles.factionHeading} type='heading2' as='h3' transform='uppercase'>{name} Faction</Text>
+              <Text
+                className={styles.factionHeading}
+                type='heading2'
+                as='h3'
+                transform='uppercase'
+              >
+                {name} Faction
+              </Text>
               <Text type='body1'>{content}</Text>
-              <Button disabled={faction !== name} onClick={() => setFaction(null)} className={styles.back}>
+              <Button
+                disabled={faction !== name}
+                onClick={() => setFaction(null)}
+                className={styles.back}
+              >
                 Back to all factions
               </Button>
             </div>
@@ -100,7 +125,12 @@ export default function Factions() {
       </Text>
       {questions.map(({ title, content }) => (
         <div key={title}>
-          <Text className={styles.factionFaqTitle} type='heading2' as='h3' transform='uppercase'>
+          <Text
+            className={styles.factionFaqTitle}
+            type='heading2'
+            as='h3'
+            transform='uppercase'
+          >
             &gt; {title}
           </Text>
           <Text type='body1'>{content}</Text>
@@ -108,7 +138,8 @@ export default function Factions() {
       ))}
       <noscript>
         <style
-          dangerouslySetInnerHTML={{__html: `
+          dangerouslySetInnerHTML={{
+            __html: `
             #factions > ul {
               height: auto;
             }
@@ -124,7 +155,8 @@ export default function Factions() {
             #factions li > div button {
               display: none;
             }
-          `}}
+          `,
+          }}
         />
       </noscript>
     </Section>

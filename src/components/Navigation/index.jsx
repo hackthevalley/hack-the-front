@@ -92,7 +92,10 @@ export default function Navigation() {
             );
           })}
           <li
-            className={classNames(animate && styles.line__animated, styles.line)}
+            className={classNames(
+              animate && styles.line__animated,
+              styles.line,
+            )}
             style={lineProps}
             aria-hidden='true'
           />

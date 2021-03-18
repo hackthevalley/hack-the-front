@@ -22,42 +22,41 @@ import {
 export default function About() {
   return (
     <Section
-      atmosphere={(
+      atmosphere={
         <div className={atmosphere}>
-          <AboutWave className={wave}/>
+          <AboutWave className={wave} />
         </div>
-      )}
+      }
       backgroundColor='cactus'
       className={container}
     >
       <Card className={rectangle}>
         <div className={bashHeader}>
           <div className={bashControls}>
-            <div className={classNames(bashButton, bashButton__red)}/>
-            <div className={classNames(bashButton, bashButton__yellow)}/>
-            <div className={classNames(bashButton, bashButton__green)}/>
+            <div className={classNames(bashButton, bashButton__red)} />
+            <div className={classNames(bashButton, bashButton__yellow)} />
+            <div className={classNames(bashButton, bashButton__green)} />
           </div>
-          <Text
-            lineHeight='normal'
-            align='center'
-            type='meta1'
-          >
+          <Text lineHeight='normal' align='center' type='meta1'>
             bash
           </Text>
         </div>
         <Text className={title} type='heading2'>
           $&nbsp;
-          <span>
-            about hack the valley
-          </span>
+          <span>about hack the valley</span>
         </Text>
         <div className={body}>
           <Text className={text} lineHeight='relaxed' type='body2'>
-            Join <Text type='body2' color='lime' as='span'>750</Text> innovative
-            and creative developers, designers, and creators for <Text type='body2' color='lime' as='span'>
+            Join{' '}
+            <Text type='body2' color='lime' as='span'>
+              750
+            </Text>{' '}
+            innovative and creative developers, designers, and creators for{' '}
+            <Text type='body2' color='lime' as='span'>
               36 hours of hacking
-            </Text>. You'll get access to some of the best hardware and APIs on
-            the market. Plus get to meet some experienced and awesome mentors! All
+            </Text>
+            . You'll get access to some of the best hardware and APIs on the
+            market. Plus get to meet some experienced and awesome mentors! All
             this in just one weekend? I know, it's hard to believe.
           </Text>
           <Text className={text} lineHeight='relaxed' type='body2'>

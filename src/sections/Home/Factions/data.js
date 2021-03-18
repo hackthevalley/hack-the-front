@@ -10,12 +10,12 @@ export const questions = [
 export const factions = [
   {
     name: `Health`,
-    image: props => (
+    image: (props) => (
       <StaticImage
         className={props.className}
-        src="../../../images/faction-icons/factions-health.png"
-        placeholder="TRACED_SVG"
-        alt="Health Faction"
+        src='../../../images/faction-icons/factions-health.png'
+        placeholder='TRACED_SVG'
+        alt='Health Faction'
         width={400}
       />
     ),
@@ -23,12 +23,12 @@ export const factions = [
   },
   {
     name: `Nature`,
-    image: props => (
+    image: (props) => (
       <StaticImage
         className={props.className}
-        src="../../../images/faction-icons/factions-nature.png"
-        placeholder="TRACED_SVG"
-        alt="Nature Faction"
+        src='../../../images/faction-icons/factions-nature.png'
+        placeholder='TRACED_SVG'
+        alt='Nature Faction'
         width={400}
       />
     ),
@@ -36,12 +36,12 @@ export const factions = [
   },
   {
     name: `Technology`,
-    image: props => (
+    image: (props) => (
       <StaticImage
         className={props.className}
-        src="../../../images/faction-icons/factions-technology.png"
-        placeholder="TRACED_SVG"
-        alt="Technology Faction"
+        src='../../../images/faction-icons/factions-technology.png'
+        placeholder='TRACED_SVG'
+        alt='Technology Faction'
         width={400}
       />
     ),
@@ -49,12 +49,12 @@ export const factions = [
   },
   {
     name: `Discovery`,
-    image: props => (
+    image: (props) => (
       <StaticImage
         className={props.className}
-        src="../../../images/faction-icons/factions-discovery.png"
-        placeholder="TRACED_SVG"
-        alt="Discovery Faction"
+        src='../../../images/faction-icons/factions-discovery.png'
+        placeholder='TRACED_SVG'
+        alt='Discovery Faction'
         width={400}
       />
     ),
