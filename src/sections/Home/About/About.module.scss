@@ -1,0 +1,81 @@
+@use "@htv/ui-kit/styles/mixins";
+
+.container {
+    display: flex;
+    padding: 8%;
+    background-image: url('../../../images/rectangle9.svg');
+    background-position: 'center';
+    background-size: 'cover';
+    background-repeat: 'no-repeat';
+    @include mixins.media(tablet) {
+        flex-direction: column;
+    }
+}
+
+.rectangle {
+    position: inline-block;
+    max-width: 65vw;
+    width: 80%;
+    max-height: 65vh;
+    margin: 0 auto;
+    padding-bottom: 5rem;
+
+    background: #272532;
+    border-radius: 10px;
+}
+
+.bashHeader {
+    margin: 1rem;
+    text-align: center;
+}
+
+.redButton {
+    position: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.3rem;
+    float: left;
+    border-radius: 999px;
+    background-color: #FF5552;
+}
+
+.yellowButton {
+    position: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.3rem;
+    float: left;
+    border-radius: 999px;
+    background-color: #FFBE42;
+}
+
+.greenButton {
+    position: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.3rem;
+    float: left;
+    border-radius: 999px;
+    background-color: #31C74A;
+}
+
+.bashText {
+    padding-right: 4rem;
+    color: #3D3A4F;
+}
+
+.aboutTitle {
+    padding-top: 1rem;
+    margin-left: 1rem;
+}
+
+.aboutText {
+    margin-top: 2.5rem;
+    margin-left: 5rem;
+    margin-right: 2.5rem;
+}
+
+.greenText {
+    color: #86CD74;
+    font-weight: bold;
+}
