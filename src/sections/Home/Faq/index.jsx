@@ -39,8 +39,8 @@ export default function Faq() {
         ”)
       </Text>
       <div className={wrapAccordion}>
-        {Faqs.map((faq) => {
-          return <AccordionItem {...faq} key={faq.id} />;
+        {Faqs.map((faq, i) => {
+          return <AccordionItem {...faq} key={i} />;
         })}
       </div>
     </Section>
