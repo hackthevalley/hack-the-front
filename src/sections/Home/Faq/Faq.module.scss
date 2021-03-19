@@ -6,23 +6,22 @@
 
 .transparent-q-m-style {
   position: absolute;
-  right: -3%;
   width: 34.6875rem;
   height: 17.375rem;
-  opacity: 40%;
+  margin-left: 54rem;
+  margin-top: -4rem;
 }
 
 .filled-q-m-style {
   position: absolute;
-  left: -4.5%;
   width: 31.5625rem;
   height: 17.125rem;
-  transform: translate(0, -60%);
-  opacity: 40%;
+  margin-top: 36rem;
 }
 
-.wrap-section {
-  position: relative;
+.wrap-div {
+  position: absolute;
+  left: 0%;
 }
 
 .title-style {

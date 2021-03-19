@@ -8,18 +8,29 @@ import {
   wrapAccordion,
   transparentQMStyle,
   filledQMStyle,
-  wrapSection,
+  wrapDiv,
   titleStyle,
 } from './Faq.module.scss';
 
 export default function Faq() {
   return (
-    <Section backgroundColor='charcoal' className={wrapSection}>
-      <img
-        src={transparentQM}
-        alt='Transparent question marks'
-        className={transparentQMStyle}
-      />
+    <Section
+      backgroundColor='charcoal'
+      atmosphere={
+        <div className={wrapDiv}>
+          <img
+            src={transparentQM}
+            alt='Transparent question marks'
+            className={transparentQMStyle}
+          />
+          <img
+            src={filledQM}
+            alt='Filled question marks'
+            className={filledQMStyle}
+          />
+        </div>
+      }
+    >
       <Text type='body1' color='darkviolet' className={titleStyle}>
         console.log(“
         <Text type='body1' as='span'>
@@ -32,11 +43,6 @@ export default function Faq() {
           return <AccordionItem {...faq} key={faq.id} />;
         })}
       </div>
-      <img
-        src={filledQM}
-        alt='Filled question marks'
-        className={filledQMStyle}
-      />
     </Section>
   );
 }
