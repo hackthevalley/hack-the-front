@@ -1,0 +1,29 @@
+.wrap-accordion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.transparent-q-m-style {
+  position: absolute;
+  width: 34.6875rem;
+  height: 17.375rem;
+  margin-left: 54rem;
+  margin-top: -4.5rem;
+}
+
+.filled-q-m-style {
+  position: absolute;
+  width: 31.5625rem;
+  height: 17.125rem;
+  margin-top: 36rem;
+}
+
+.wrap-div {
+  position: absolute;
+  left: 0%;
+}
+
+.title-style {
+  padding-left: 1.9rem;
+}

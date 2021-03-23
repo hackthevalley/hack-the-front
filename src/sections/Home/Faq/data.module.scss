@@ -1,0 +1,18 @@
+ul {
+  list-style: none;
+  margin-left: 0;
+  text-indent: 0.5rem;
+}
+
+li::before,
+li:last-child::before {
+  padding-right: 0.5rem;
+}
+
+li::before {
+  content: '+';
+}
+
+li:last-child::before {
+  content: '&';
+}
