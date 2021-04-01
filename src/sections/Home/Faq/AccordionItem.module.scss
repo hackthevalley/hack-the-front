@@ -1,0 +1,36 @@
+.wrap-content {
+  display: block;
+  padding-left: 1.75rem;
+  padding-top: 4.5rem;
+  padding-bottom: 2.4375rem;
+  width: 21.5625rem;
+}
+
+.wrap-card {
+  width: 25.0625rem;
+  min-height: 7.5rem;
+}
+
+.icon {
+  transition: all 0.2s ease;
+}
+
+.icon-down {
+  transform: rotate(90deg);
+  display: inline-block;
+  position: static;
+}
+
+.wrapping-div {
+  padding-top: 2.125rem;
+}
+
+.wrapping-text {
+  padding-left: 1.75rem;
+  padding-top: 2.875rem;
+  height: 4.63rem;
+}
+
+.hidden-div {
+  display: none;
+}
