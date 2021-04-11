@@ -1,29 +1,107 @@
-.wrap-accordion {
+@use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/colors";
+@use "@htv/ui-kit/styles/units";
+
+.grid {
+  grid-template-columns: repeat(3, 1fr);
+  list-style-type: none;
+  margin: 1rem 0 0;
+  grid-gap: 1rem;
+  display: grid;
+  padding: 0;
+}
+
+.item {
+  @include mixins.transition(background-color);
+  padding: 2rem 1.5rem;
+  text-align: start;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+
+  &:hover, &:focus {
+    background-color: colors.css-color(darkviolet, hover);
+  }
+
+  &:active {
+    background-color: colors.css-color(darkviolet, active);
+  }
+}
+
+.content {
+  @include mixins.transition(max-height, slow);
+  max-height: 30rem;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 1rem;
+  }
+
+  &__hidden {
+    max-height: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+  & ul {
+    margin-top: -1rem;
+  }
+
+  & li {
+    &::marker {
+      content: '+ ';
+    }
+
+    &:last-child::marker {
+      content: '& ';
+    }
+  }
+}
+
+.container {
+  margin: 10rem auto;
+}
+
+.frame {
+  max-width: units.$section-width;
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.transparent-q-m-style {
+.cover {
   position: absolute;
-  width: 34.6875rem;
-  height: 17.375rem;
-  margin-left: 54rem;
-  margin-top: -4.5rem;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 
-.filled-q-m-style {
+.question {
   position: absolute;
-  width: 31.5625rem;
-  height: 17.125rem;
-  margin-top: 36rem;
+  font-size: 20rem;
+  opacity: 0.4;
+
+  &__outline {
+    color: transparent;
+    -webkit-text-stroke: 0.25rem colors.css-color(darkviolet);
+    margin-top: 2rem;
+    right: -10rem;
+  }
+
+  &__solid {
+    align-self: flex-end;
+    left: -10rem;
+  }
 }
 
-.wrap-div {
+.angle {
   position: absolute;
-  left: 0%;
-}
-
-.title-style {
-  padding-left: 1.9rem;
+  color: colors.css-color(cactus);
+  width: 100%;
 }

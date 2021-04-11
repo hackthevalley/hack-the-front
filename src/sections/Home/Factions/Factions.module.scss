@@ -1,128 +1,54 @@
-@use "@htv/ui-kit/styles/colors";
-@use "@htv/ui-kit/styles/mixins";
-@use "@htv/ui-kit/styles/units";
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/mixins';
 
 .header {
   display: flex;
   flex-wrap: wrap;
 }
 
-.title {
+.heading {
   margin-right: 1rem;
 }
 
-.factionButton {
-  @include mixins.transition(background-color);
-  border-radius: units.$border-radius;
+.items {
+  @include mixins.transition(min-height);
+  grid-template-columns: repeat(4, minmax(0, 14rem));
+  justify-content: space-between;
+  list-style-type: none;
+  position: relative;
+  grid-gap: 2rem;
+  margin: 3rem 0;
+  display: grid;
+  padding: 0;
+
+  // The magic sauce
+  min-height: var(--min-height, 1px);
+}
+
+.button {
+  @include mixins.transition(background-color opacity);
   background-color: transparent;
-  box-sizing: border-box;
-  margin-right: 2rem;
-  margin-bottom: auto;
-  max-width: 16rem;
-  width: 25%;
-  flex-shrink: 0;
   cursor: pointer;
   padding: 2rem;
   border: none;
 
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      background-color: colors.css-color(white, $opacity: 0.06);
-    }
-
-    &:active {
-      background-color: colors.css-color(white, $opacity: 0.12);
-    }
-  }
-}
-
-.factionItemLabel {
-  margin-top: 1rem;
-}
-
-.factionDetails {
-  @include mixins.transition(height, fast);
-  list-style-type: none;
-  margin: 4rem 0;
-  position: relative;
-  padding: 0;
-  height: var(--height);
-  overflow: hidden;
-}
-
-.factionDetail {
-  @include mixins.transition(transform opacity, slow);
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: 0 auto auto;
-  height: fit-content;
-  display: flex;
-
-  transform: translateX(calc(25% * var(--offset)));
-
-  &__active {
-    transform: translateX(0);
-
-    & .factionContent {
-      opacity: 1;
-    }
+  &:hover, &:focus {
+    background-color: colors.css-color(white, $opacity: 0.02);
   }
 
-  &__hidden {
+  &:active {
+    background-color: colors.css-color(white, $opacity: 0.04);
+  }
+
+  &__hide {
     pointer-events: none;
     opacity: 0;
   }
 }
 
-.factionContent {
-  @include mixins.transition(opacity, slow);
-  opacity: 0;
-}
-
-.factionHeading {
-  padding: 1.5rem 0;
-}
-
-.back {
-  margin-top: 2rem;
-}
-
-.factionFaqTitle {
-  margin-bottom: 2rem;
-}
-
-.icon {
-  @include mixins.transition(color, slow);
+.content {
   position: absolute;
+  display: none;
+  left: 0;
   top: 0;
-  left: auto;
-  right: 0;
-  bottom: auto;
-  margin: 0;
-  height: 100%;
-  max-height: 20rem;
-  width: auto;
-  color: colors.css-color(charcoal);
-  opacity: 0.1;
-
-  &Health {
-    color: colors.css-color(red);
-  }
-
-  &Nature {
-    color: colors.css-color(lime);
-  }
-
-  &Technology {
-    color: colors.css-color(disabled);
-  }
-
-  &Discovery {
-    color: colors.css-color(yellow);
-  }
 }

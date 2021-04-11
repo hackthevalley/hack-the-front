@@ -1,6 +1,4 @@
 import Text from '@htv/ui-kit/components/Text';
-import './data.module.scss';
-
 export const Faqs = [
   {
     title: (
@@ -8,51 +6,37 @@ export const Faqs = [
         What do I need to <strong>bring</strong>?
       </>
     ),
-    content: [
-      <div>
-        <Text color='lime' type='body2' weight='normal'>
-          You'll need:&nbsp;
-          <Text as='span' type='body2'>
-            A laptop and charger. <br /> <br />
+    content: (
+      <>
+        <p>
+          <Text as='span' color='lime' type='body2'>
+            You'll need:&nbsp;
           </Text>
-        </Text>
-        <Text type='body2' weight='normal'>
-          Everything else is optional. <br /> <br />
-        </Text>
-        <Text type='body2' weight='normal'>
-          However, we strongly&nbsp;
-          <Text color='yellow' type='body2' as='span'>
-            encourage you&nbsp;
+          A laptop and charger.
+        </p>
+        <p>Everything else is optional.</p>
+        <div>
+          <p>However, we strongly <Text as='span' type='body2' color='yellow'>encourge you</Text> to bring a:</p>
+          <ul>
+            <li>sleeping bag</li>
+            <li>pillows</li>
+            <li>toiletries</li>
+            <li>a couple of change of clothes.</li>
+          </ul>
+        </div>
+        <p>
+          <Text as='span' color='red' type='body2'>
+            You'll need:&nbsp;
           </Text>
-          to bring a:
-        </Text>
-        <Text type='body2' as='ul' weight='normal'>
-          <Text type='body2' as='li'>
-            sleeping bag
-          </Text>
-          <Text type='body2' as='li'>
-            pillows
-          </Text>
-          <Text type='body2' as='li'>
-            toiletries
-          </Text>
-          <Text type='body2' as='li'>
-            a couple of change of clothes. <br /> <br />
-          </Text>
-        </Text>
-        <Text color='red' type='body2' weight='normal'>
-          You won't need
-          <Text as='span' type='body2'>
-            : An idea, or a team. <br /> <br />
-          </Text>
-        </Text>
-        <Text type='body2' weight='normal'>
+          An idea, or a team.
+        </p>
+        <p>
           You can create your own team (teams of 4 recommended) during the
           hackathon, and generate some amazing creations along the way. You also
           don't need to worry about food, we've got you covered.
-        </Text>
-      </div>,
-    ],
+        </p>
+      </>
+    ),
   },
   {
     title: (
@@ -60,16 +44,14 @@ export const Faqs = [
         How much will it <strong>cost</strong> me?
       </>
     ),
-    content: [
-      <div>
-        <Text type='body2' weight='normal'>
-          It’s completely free, so don’t worry! We'll provide you with a
-          weekend's worth of meals, drinks, and snacks and a place to crash when
-          you need a break from coding. In fact, you’ll probably walk away
-          loaded with all the swag that you’ll get at Hack the Valley.
-        </Text>
-      </div>,
-    ],
+    content: (
+      <p>
+        It’s completely free, so don’t worry! We'll provide you with a
+        weekend's worth of meals, drinks, and snacks and a place to crash when
+        you need a break from coding. In fact, you’ll probably walk away
+        loaded with all the swag that you’ll get at Hack the Valley.
+      </p>
+    ),
   },
   {
     title: (
@@ -77,17 +59,15 @@ export const Faqs = [
         How is Hack The Valley <strong>run</strong>?
       </>
     ),
-    content: [
-      <div>
-        <Text type='body2' weight='normal'>
-          Hack The Valley almost entirely by (sleep-deprived) University of
-          Toronto students, with some advice and assistance from our friends at
-          Department of Student Life (DSL) and Association of Mathematical and
-          Computer Science Students (AMACSS). One hundred percent of the funding
-          for Hack the Valley comes from corporate sponsor donations.
-        </Text>
-      </div>,
-    ],
+    content: (
+      <p>
+        Hack The Valley almost entirely by (sleep-deprived) University of
+        Toronto students, with some advice and assistance from our friends at
+        Department of Student Life (DSL) and Association of Mathematical and
+        Computer Science Students (AMACSS). One hundred percent of the funding
+        for Hack the Valley comes from corporate sponsor donations.
+      </p>
+    ),
   },
   {
     title: (
@@ -95,17 +75,16 @@ export const Faqs = [
         How to become a <strong>sponsor</strong>?
       </>
     ),
-    content: [
-      <div>
-        <Text type='body2' weight='normal'>
-          Interested in being a sponsor? <br />
-          Send us an inquiry at&nbsp;
-          <Text type='body2' as='a' href='mailto:sponsorships@hackthevalley.io'>
+    content: (
+      <>
+        <p>Interested in being a sponsor?</p>
+        <p>
+          Send us an inquiry at <Text type='body2' as='a' href='mailto:sponsorships@hackthevalley.io'>
             sponsorships@hackthevalley.io
           </Text>
-        </Text>
-      </div>,
-    ],
+        </p>
+      </>
+    ),
   },
   {
     title: (
@@ -113,13 +92,11 @@ export const Faqs = [
         <strong>When</strong> is it?
       </>
     ),
-    content: [
-      <div>
-        <Text type='body2' weight='normal'>
-          Hack The Valley will be taking place on Month Date, Year.
-        </Text>
-      </div>,
-    ],
+    content: (
+      <p>
+        Hack The Valley will be taking place on Month Date, Year.
+      </p>
+    ),
   },
   {
     title: (
@@ -127,16 +104,12 @@ export const Faqs = [
         More <strong>questions</strong>?
       </>
     ),
-    content: [
-      <div>
-        <Text type='body2' weight='normal'>
-          Have any uncertainty? <br />
-          Voice it at&nbsp;
-          <Text type='body2' as='a' href='mailto:hello@hackthevalley.io'>
-            hello@hackthevalley.io
-          </Text>
+    content: (
+      <p>
+        Have any uncertainties? Voice it at <Text type='body2' as='a' href='mailto:hello@hackthevalley.io'>
+          hello@hackthevalley.io
         </Text>
-      </div>,
-    ],
+      </p>
+    ),
   },
 ];

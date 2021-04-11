@@ -16,6 +16,7 @@ import {
   title,
   body,
   text,
+  outline,
   wave,
 } from './About.module.scss';
 
