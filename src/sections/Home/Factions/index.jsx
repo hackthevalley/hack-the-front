@@ -54,7 +54,7 @@ function _FactionContent({ data, selected, onClick }, ref) {
         <Text type='heading2' weight='normal' as='h3' transform='uppercase'>
           {data.name} Faction
         </Text>
-        <Text className={styles.content_text} type='body2' as='p'>
+        <Text className={styles.content_text} lineHeight='relaxed' type='body2' as='p'>
           {data.content}
         </Text>
         <Button onClick={onClick}>
