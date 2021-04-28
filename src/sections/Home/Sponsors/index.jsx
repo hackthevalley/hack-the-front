@@ -6,7 +6,7 @@ import * as styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
   return (
-    <Section className={styles.container} backgroundColor='charcoal'>
+    <Section className={styles.container} backgroundColor='charcoal' id='sponsors'>
       <div className={styles.sign}>
         <SponsorBackground/>
         <Text className={styles.label} type='heading2'>Sponsors</Text>

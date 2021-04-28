@@ -30,6 +30,7 @@ export default function About() {
       }
       backgroundColor='cactus'
       className={container}
+      id='about'
     >
       <Card className={rectangle}>
         <div className={bashHeader}>

@@ -10,8 +10,9 @@
 .rectangle {
   max-width: units.$section-width * 0.72;
   padding: 1rem 1.2rem;
+  box-sizing: border-box;
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
 }
 
 .bashHeader {

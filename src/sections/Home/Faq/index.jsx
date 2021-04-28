@@ -32,10 +32,11 @@ export default function Faq() {
       atmosphere={atmosphere}
       backgroundColor='charcoal'
       className={container}
+      id='faq'
     >
       <Text type='heading2' color='darkviolet'>
         console.log(“
-        <Text type='heading2' as='span' color="white">
+        <Text type='heading2' as='span' color="white" weight='normal'>
           Frequently Asked Questions
         </Text>
         ”)

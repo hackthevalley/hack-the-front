@@ -5,6 +5,10 @@
 @include colors.init;
 
 :global {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     padding: 0;
     margin: 0;

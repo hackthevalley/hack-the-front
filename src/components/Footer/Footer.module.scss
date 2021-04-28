@@ -34,6 +34,10 @@
   &:active {
     background-color: colors.css-color(white, $opacity: 0.12);
   }
+
+  @include mixins.media(tablet) {
+    margin: 0 1rem;
+  }
 }
 
 .icon {
@@ -42,6 +46,10 @@
   display: flex;
   width: 1.2rem;
   height: auto;
+
+  @include mixins.media(tablet) {
+    margin-right: 0;
+  }
 }
 
 .mlh {
@@ -55,5 +63,11 @@
 
   &:active {
     color: colors.css-color(lime, hover);
+  }
+}
+
+.label {
+  @include mixins.media(tablet) {
+    display: none;
   }
 }

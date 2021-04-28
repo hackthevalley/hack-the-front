@@ -52,7 +52,7 @@ export default function Splash() {
               as='span'
               className={prompt}
             >
-              &gt; Up for the challenge?
+              Up for the challenge?
             </Text>
             <Button
               onClick={() => console.log('owo')}

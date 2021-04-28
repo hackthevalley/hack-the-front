@@ -39,7 +39,7 @@
   }
 
   @include mixins.media(phone) {
-    grid-template-columns: minmax(0, 14rem);
+    grid-template-columns: repeat(2, minmax(0, 12rem));
   }
 }
 
@@ -78,6 +78,10 @@
     opacity: 0;
   }
 
+  @include mixins.media(laptop) {
+    grid-gap: 2rem;
+  }
+
   @include mixins.media(tablet) {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -85,7 +89,10 @@
 }
 
 .content_header {
-  max-width: 16rem;
+  max-width: 14rem;
+  @include mixins.media(tablet) {
+    max-width: 12rem;
+  }
 }
 
 .content_text {
