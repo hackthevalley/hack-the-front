@@ -1,6 +1,7 @@
 import Button from '@htv/ui-kit/components/Button';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
+import { navigate } from "gatsby";
 import { StaticImage } from 'gatsby-plugin-image';
 import {
   container,
@@ -55,7 +56,9 @@ export default function Splash() {
               Up for the challenge?
             </Text>
             <Button
-              onClick={() => console.log('owo')}
+              onClick={() => {
+                navigate("/login")
+              }}
               className={registerButton}
             >
               Register for HTV
