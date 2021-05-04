@@ -1,0 +1,21 @@
+@use "@htv/ui-kit/styles/colors";
+
+.checkbox {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0.0625rem solid colors.css-color(white);
+    box-sizing: border-box;
+    appearance: none;
+    cursor: pointer;
+    border-radius: 0.125rem;
+    transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+    margin-right: 1.9375rem;
+    &:checked {
+        border-color: colors.css-color(lime);
+        background: colors.css-color(lime);
+        &::before {
+            opacity: 1;
+        }
+    }
+}
