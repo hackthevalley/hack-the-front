@@ -3,7 +3,7 @@ import StyleLoader from '../StyleLoader';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import Seo from '../Seo';
-import './Layout.module.scss';
+import {content} from './Layout.module.scss';
 
 export default function Layout({ title, children }) {
   if (__DEV__) {
@@ -16,7 +16,7 @@ export default function Layout({ title, children }) {
     <StyleLoader>
       <Seo title={title} />
       <Navigation />
-      <main>{children}</main>
+      <main className={content}>{children}</main>
       <Footer />
     </StyleLoader>
   );

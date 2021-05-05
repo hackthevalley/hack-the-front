@@ -27,12 +27,7 @@ export default function Splash() {
             <Text className={gt} lineHeight='normal' type='heading1' as='span'>
               &gt;
             </Text>
-            <Text
-              className={title}
-              transform='uppercase'
-              lineHeight='spaced'
-              type='heading1'
-            >
+            <Text className={title} transform='uppercase' lineHeight='spaced' type='heading1' >
               <span>Hack The</span>
               <span>
                 Valley <span className={five}>5</span>
