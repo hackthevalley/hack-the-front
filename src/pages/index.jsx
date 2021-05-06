@@ -1,4 +1,5 @@
 import React from 'react';
+import FileDropzone from '../components/FileDropzone';
 import Layout from '../components/Layout';
 import About from '../sections/Home/About';
 import Factions from '../sections/Home/Factions';
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Faq />
       <Factions />
       <Sponsors />
+      <FileDropzone onUpload={()=>{}}/>
     </Layout>
   );
 }

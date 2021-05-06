@@ -11,6 +11,7 @@
   border: 2px dashed colors.css-color(white);
   border-radius: 5px;
   box-sizing: border-box;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .dropzoneHover {

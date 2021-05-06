@@ -21,7 +21,7 @@ export default function FileDropzone({ onUpload, hasError = false }) {
 
   const containsFiles = (e) => {
     if (e.dataTransfer.types) {
-      for (var i = 0; i < e.dataTransfer.types.length; i++) {
+      for (let i = 0; i < e.dataTransfer.types.length; i++) {
         if (e.dataTransfer.types[i] == 'Files') {
           return true;
         }
@@ -64,52 +64,54 @@ export default function FileDropzone({ onUpload, hasError = false }) {
   };
 
   return (
-    <div
-      className={classNames(
-        dropzone,
-        isFileHovering && dropzoneHover,
-        hasError && dropzoneError,
-      )}
-      onDragOver={onDragover}
-      onDragLeave={onDragleave}
-      onDragEnd={onDragleave}
-      onDrop={onDrop}
-    >
-      <div className={text}>
-        {file && (
-          <Text color='white' type='meta1'>
-            {file.name}
-          </Text>
+    <div style={{ backgroundColor: 'rgba(var(--c_charcoal), 1)' }}>
+      <div
+        className={classNames(
+          dropzone,
+          isFileHovering && dropzoneHover,
+          hasError && dropzoneError,
         )}
-        <div className={prompt}>
-          <Text
-            color='lime'
-            type='meta1'
-            as='button'
-            className={fileInputButton}
-            onClick={openFileInput}
-          >
-            <AttachFileIcon className={icon} />
-            Browse files
-          </Text>
-          <Text color='white' type='meta1'>
-            or drop resume here
+        onDragOver={onDragover}
+        onDragLeave={onDragleave}
+        onDragEnd={onDragleave}
+        onDrop={onDrop}
+      >
+        <div className={text}>
+          {file && (
+            <Text color='white' type='meta1' className={fileInputButton}>
+              {file.name}
+            </Text>
+          )}
+          <div className={prompt}>
+            <Text
+              color='lime'
+              type='meta1'
+              as='button'
+              className={fileInputButton}
+              onClick={openFileInput}
+            >
+              <AttachFileIcon className={icon} />
+              Browse files
+            </Text>
+            <Text color='white' type='meta1'>
+              or drop resume here
+            </Text>
+          </div>
+          <Text color='gray' type='meta1'>
+            Supports: PDF
           </Text>
         </div>
-        <Text color='gray' type='meta1'>
-          Supports: PDF
-        </Text>
-      </div>
 
-      <input
-        ref={fileInputRef}
-        type='file'
-        required
-        name='resume'
-        accept='.pdf'
-        className={fileInput}
-        onChange={onFileChange}
-      />
+        <input
+          ref={fileInputRef}
+          type='file'
+          required
+          name='resume'
+          accept='.pdf'
+          className={fileInput}
+          onChange={onFileChange}
+        />
+      </div>
     </div>
   );
 }
