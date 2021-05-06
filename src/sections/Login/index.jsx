@@ -4,20 +4,26 @@ import Button from '@htv/ui-kit/components/Button'
 import { useState } from 'react'
 import { Link } from "gatsby"
 import { IoChevronBack } from '@react-icons/all-files/io5/IoChevronBack'
-import { 
-    loginForm,
-    backPage,
-    centerLogin,
-    backLink,
+import {
+    container,
+    backButton,
+    header,
     signIn,
+    body,
+    npm,
+    socials,
+    line,
     emailInput,
     forgotPassword,
     signUp,
+    content,
     forgotLink,
-    registerLink } from './Login.module.scss'
+    registerLink
+} from './Login.module.scss';
+
 export default function Login() {
     // helper for setting username and password
-    function useInput(initValue) { 
+    function useInput(initValue) {
         const [value, setValue] = useState(initValue);
 
         function handleChange(event) {
@@ -32,52 +38,68 @@ export default function Login() {
 
     function sendInfo(event) {
         event.preventDefault();
-        console.log("password and username sent here..") 
+        console.log("password and username sent here..")
     }
 
     return (
-        <Section backgroundColor='charcoal'>
-        <div className={backLink}>
-            <a href='/' className={backPage}>
-                <IoChevronBack/>
-                <Text lineheight='spaced' type='meta1'> Back to website</Text>
-            </a>
+        <div className={container}>
+            <Section className={content} backgroundColor='charcoal'>
+                <div className={header}>
+                    <Button
+                        className={backButton}
+                        leftIcon={IoChevronBack}
+                        color='white'
+                        type='ghost'
+                        as={Link}
+                        to='/'
+                    >
+                        <Text type='meta1' as='span' color='white'>
+                            Back to website
+                        </Text>
+                    </Button>
+                </div>
+                <div className={body}>
+                    <Text className={npm} type='body1' color='gray' as='p'>
+                        npm start challenge
+                    </Text>
+                    <div>
+                        <Text font='secondary' type='heading2' weight='normal'>Welcome,</Text>
+                        <Text font='secondary' type='body1'>Sign in to view dashboard</Text>
+                        <div class={socials}>
+                            <Button>Google</Button>
+                            <Button>Facebook</Button>
+                        </div>
+                    </div>
+                    <hr className={line}/>
+                    <form onSubmit={sendInfo}>
+                            <input
+                                type='text'
+                                placeholder='Micheal@Reeves.com'
+                                id='username'
+                                value={username}
+                                onChange={setUsername}
+                                className={emailInput} />
+                            <Text lineheight='spaced' type='body2'>Password</Text>
+                            <input
+                                type='password'
+                                value={password}
+                                placeholder='<insert> password here </insert>'
+                                onChange={setPassword} />
+                            <Text className={forgotPassword} lineheight='normal' type='body2'>{<Link className={forgotLink} to='/register'>Forgot Password?</Link>}</Text>
+                            <Button className={signIn}> Sign in </Button>
+                            <Text
+                                lineheight='normal'
+                                type='body2'
+                                className={signUp}> Don't have an account? {<Link to='/register' className={registerLink}>
+                                    <Text lineheight='spaced'
+                                        type='body2'
+                                        color='Cactus' as='span'>
+                                        Sign up
+                                                                                </Text>
+                                </Link>}</Text>
+                    </form>
+                </div>
+            </Section>
         </div>
-        {/* Login information below */}
-        <form className={loginForm} onSubmit={sendInfo}>
-            <div className={centerLogin}>
-                
-                <Text lineheight='normal' type='meta1'> $ npm start challenge</Text>
-                <Text lineheight='spaced' type='body1'>Welcome,</Text>
-                <Text lineheight='spaced' type='body1'>Sign in to view dashboard</Text>
-                <Text lineheight='normal' type='body2'>Email Address</Text>
-                <input 
-                    type='text' 
-                    placeholder='Micheal@Reeves.com' 
-                    id='username'  
-                    value={username} 
-                    onChange={setUsername}
-                    className={emailInput}/>
-                <Text lineheight='spaced' type='body2'>Password</Text>
-                <input 
-                    type='password' 
-                    value={password} 
-                    placeholder='<insert> password here </insert>' 
-                    onChange={setPassword}/>
-                <Text className={forgotPassword} lineheight='normal' type='body2'>{<Link className={forgotLink} to='/register'>Forgot Password?</Link>}</Text>
-                <Button className={signIn}> Sign in </Button>
-                <Text 
-                lineheight='normal' 
-                type='body2'
-                className={signUp}> Don't have an account? {<Link to='/register' className={registerLink}>
-                                                                <Text lineheight='spaced'
-                                                                      type='body2' 
-                                                                      color='Cactus'>
-                                                                        Sign up
-                                                                        </Text> 
-                                                            </Link>}</Text>
-            </div>
-        </form>
-        </Section>
     )
 }

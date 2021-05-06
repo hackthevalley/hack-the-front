@@ -5,7 +5,7 @@ import Footer from '../Footer';
 import Seo from '../Seo';
 import {content} from './Layout.module.scss';
 
-export default function Layout({ title, children }) {
+export default function Layout({ title, noNav, noFooter, children }) {
   if (__DEV__) {
     if (!title) {
       throw new Error(`Page needs to have a title`);
@@ -15,14 +15,18 @@ export default function Layout({ title, children }) {
   return (
     <StyleLoader>
       <Seo title={title} />
-      <Navigation />
+      <Navigation noNav={noNav}/>
       <main className={content}>{children}</main>
-      <Footer />
+      {!noFooter && (
+        <Footer />
+      )}
     </StyleLoader>
   );
 }
 
 Layout.propTypes = {
   children: PropTypes.node,
+  noFooter: PropTypes.bool,
+  noNav: PropTypes.bool,
   ...Seo.propTypes,
 };
