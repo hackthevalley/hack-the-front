@@ -1,20 +1,17 @@
-import { useState } from "react";
-import { checkbox } from './Checkbox.module.scss';
+import { checkbox, text } from './Checkbox.module.scss';
 
 export default function Checkbox(label) {
-    const [isChecked, setIsChecked] = useState(false);
-
     return (
         <div>
-            <label className={checkbox}>
-                <input
-                    type="checkbox"
-                    value={label.text}
-                    checked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)}
-                />
+            <label className={text} htmlFor='agreement_text'>
                 {label.text}
             </label>
+            <input
+                className={checkbox}
+                name='agreement_text'
+                type="checkbox"
+                value={label.text}
+            />
         </div>
     );
 }
