@@ -1,31 +1,32 @@
 @use "@htv/ui-kit/styles/colors";
 
+.text {
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+  padding: 0.9375rem 0 0.9375rem 0;
+}
+
 .checkbox {
-    display: inline-flex;
-    cursor: pointer;
-    position: relative;
-    padding: 0.9375rem 0 0.9375rem 0;
-    input {
-      margin-right: 31px;
-      width: 1.25em;
-      height: 1.25em;
-      border: 0.0625rem solid colors.css-color(white);
-      border-radius: 0.125rem;
-      appearance: none;
-      cursor: pointer;
-      transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
-      &:checked {
-        border-color: colors.css-color(lime);
-        background: colors.css-color(lime);
-        &::after {
-          padding-left: 0.1rem;
-          content: '\2713';
-          color: colors.css-color(white);
-          position: absolute;
-        }
-        &::before {
-          opacity: 1;
-        }
-      }
+  margin-right: 31px;
+  width: 1.25em;
+  height: 1.25em;
+  border: 0.0625rem solid colors.css-color(white);
+  border-radius: 0.125rem;
+  appearance: none;
+  cursor: pointer;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+  &:checked {
+    border-color: colors.css-color(lime);
+    background: colors.css-color(lime);
+    &::after {
+      padding-left: 0.1rem;
+      content: '\2713';
+      color: colors.css-color(white);
+      position: absolute;
+    }
+    &::before {
+      opacity: 1;
     }
   }
+}
