@@ -1,0 +1,43 @@
+.btnfb {
+    width: 200px;
+    height:35px;  
+    border-radius: 4px;
+    background: #1877F2;
+    color:white;
+    text-align: center;
+    margin:5px;
+    display: inline-block;
+
+    &:hover{
+        background: #1877F2;
+        opacity: 0.6;
+    }
+}
+
+.fbtext {
+    padding-left: 15px;
+}
+
+.btngoogle {
+    width: 200px;
+    height: 35px;
+    border-radius: 4px;
+    margin:5px;
+    padding-bottom: 2rem;
+    background: #FFFFFF;
+    text-align: center;
+    display: inline-block;
+
+    &:hover{
+        background: #FFFFFF;
+        opacity:0.6;
+    }
+}
+
+.googletext {
+   display: inline-block;
+   align-items: center;
+   position: relative;
+   padding-left: 15px;
+   top: -4px;
+}
