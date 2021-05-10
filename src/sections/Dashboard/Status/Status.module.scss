@@ -1,0 +1,25 @@
+@use "@htv/ui-kit/styles/colors";
+
+.statusText {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+}
+
+.submittedText {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: normal;
+}
+
+.applicationButton {
+    float: right;
+    margin-right: 1.5rem;
+}
+
+.appDueText {
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+    display: flex;
+    color: colors.css-color(gray);
+}
