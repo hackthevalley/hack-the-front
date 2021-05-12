@@ -1,15 +1,31 @@
 @use "@htv/ui-kit/styles/colors";
 
-.statusText {
-    padding-left: 1.5rem;
-    padding-top: 1rem;
-}
-
 .submittedText {
     padding-left: 1.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-weight: normal;
+}
+
+.acceptedText {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: normal;
+    color: colors.css-color(lime);
+}
+
+.declinedText {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: normal;
+    color: colors.css-color(red);
+}
+
+.statusText {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
 }
 
 .applicationButton {
