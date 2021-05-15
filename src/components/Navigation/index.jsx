@@ -11,7 +11,7 @@ import MobileNav from './MobileNav';
 import navItems from './navItems';
 import * as styles from './Navigation.module.scss';
 
-export default function Navigation() {
+export default function Navigation({ noNav }) {
   const mobileState = useMountedAnimations(`slow`);
   const [current, setCurrent] = useState();
   const [animate, setAnimate] = useState();
@@ -55,7 +55,7 @@ export default function Navigation() {
           <Logo className={styles.logo} width='32' />
         </Link>
       }
-      center={
+      center={!noNav ? (
         <ul onMouseLeave={() => setCurrent(null)} className={styles.items}>
           {navItems.map(({ text, ...props }, key, { length }) => {
             if (key === length - 1) {
@@ -100,8 +100,8 @@ export default function Navigation() {
             aria-hidden='true'
           />
         </ul>
-      }
-      after={
+      ) : undefined}
+      after={!noNav ? (
         <>
           <Button
             className={classNames(styles.button, styles.button__mobile)}
@@ -135,7 +135,7 @@ export default function Navigation() {
             />
           </a>
         </>
-      }
+      ): undefined}
     />
   );
 }
