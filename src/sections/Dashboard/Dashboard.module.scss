@@ -1,0 +1,100 @@
+@use "@htv/ui-kit/styles/colors";
+@use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/units";
+
+.linesContainer {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    height: 50vh;
+    width: 80vw;
+    background-image: url('../../images/splash-lines.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.logoContainer {
+    @include mixins.transition(color);
+    color: colors.css-color(white);
+    display: flex;
+  
+    &:hover {
+      color: colors.css-color(lime);
+    }
+}
+
+.logo {
+    width: 2rem;
+}
+
+.dashboardContainer {
+    padding-left: 7rem;
+    padding-right: 7rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.npmText {
+    color: colors.css-color(gray);
+}
+
+.welcomeText {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+}
+
+.logoutText {
+    color: colors.css-color(red);
+}
+
+.exploreText {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.grid {
+    grid-template-columns: repeat(2, 1fr);
+    list-style-type: none;
+    grid-gap: 1rem;
+    display: grid;
+    text-align: left;
+}
+
+.factionContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.space {
+    margin-bottom: 1rem;
+}
+
+.factionIcon {
+    width: 3rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    height: auto;
+    vertical-align: middle;
+}
+
+.factionText {
+    padding-left: 3.5rem;
+}
+
+.questionMarks {
+    margin: 2rem;
+    padding-top: 0.2rem;
+    display: flex;
+    align-items: center;
+    color: colors.css-color(gray);
+}
+
+.faqText {
+    padding-left: 2.5rem;
+    font-weight: normal;
+}
