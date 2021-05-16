@@ -1,4 +1,7 @@
 {
+  "experimentalBabelParserPluginsList": ["jsx"],
+  "importOrder": ["^@htv/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
   "arrowParens": "always",
   "jsxSingleQuote": true,
   "trailingComma": "all",

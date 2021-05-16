@@ -50,7 +50,8 @@
   padding: 2rem;
   border: none;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: colors.css-color(white, $opacity: 0.02);
   }
 
@@ -59,7 +60,8 @@
   }
 }
 
-.items, .content {
+.items,
+.content {
   position: absolute;
   bottom: auto;
   right: 0;

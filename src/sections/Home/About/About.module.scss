@@ -52,7 +52,7 @@
 .body {
   padding: 0 4rem 6rem;
 
-  @include mixins.media(phone) {
+  @include mixins.media(tablet) {
     padding: 0 2rem 6rem;
   }
 }

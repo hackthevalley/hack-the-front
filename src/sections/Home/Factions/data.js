@@ -16,7 +16,7 @@ export const factions = [
         src='../../../images/faction-icons/factions-health.png'
         placeholder='TRACED_SVG'
         alt='Health Faction'
-        loading="eager"
+        loading='eager'
         width={400}
       />
     ),
@@ -30,7 +30,7 @@ export const factions = [
         src='../../../images/faction-icons/factions-nature.png'
         placeholder='TRACED_SVG'
         alt='Nature Faction'
-        loading="eager"
+        loading='eager'
         width={400}
       />
     ),
@@ -44,7 +44,7 @@ export const factions = [
         src='../../../images/faction-icons/factions-technology.png'
         placeholder='TRACED_SVG'
         alt='Technology Faction'
-        loading="eager"
+        loading='eager'
         width={400}
       />
     ),
@@ -58,7 +58,7 @@ export const factions = [
         src='../../../images/faction-icons/factions-discovery.png'
         placeholder='TRACED_SVG'
         alt='Discovery Faction'
-        loading="eager"
+        loading='eager'
         width={400}
       />
     ),

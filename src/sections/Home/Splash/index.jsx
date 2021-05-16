@@ -1,8 +1,10 @@
+import { navigate } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+
 import Button from '@htv/ui-kit/components/Button';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import { navigate } from "gatsby";
-import { StaticImage } from 'gatsby-plugin-image';
+
 import {
   container,
   five,
@@ -27,7 +29,12 @@ export default function Splash() {
             <Text className={gt} lineHeight='normal' type='heading1' as='span'>
               &gt;
             </Text>
-            <Text className={title} transform='uppercase' lineHeight='spaced' type='heading1' >
+            <Text
+              className={title}
+              transform='uppercase'
+              lineHeight='spaced'
+              type='heading1'
+            >
               <span>Hack The</span>
               <span>
                 Valley <span className={five}>5</span>
@@ -52,7 +59,7 @@ export default function Splash() {
             </Text>
             <Button
               onClick={() => {
-                navigate("/login")
+                navigate('/login');
               }}
               className={registerButton}
             >

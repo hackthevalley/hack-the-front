@@ -27,7 +27,8 @@
   border: none;
   width: 100%;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: colors.css-color(darkviolet, hover);
   }
 

@@ -1,7 +1,9 @@
-import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { createRef, useState } from 'react';
+
+import Text from '@htv/ui-kit/components/Text';
+
 import { ReactComponent as AttachFileIcon } from '../../images/attach-file.svg';
 import {
   dropzone,

@@ -5,7 +5,9 @@
 @include colors.init;
 
 :global {
-  #___gatsby, #gatsby-focus-wrapper, body {
+  #___gatsby,
+  #gatsby-focus-wrapper,
+  body {
     height: 100%;
   }
 

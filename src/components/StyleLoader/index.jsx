@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import importAll from 'import-all.macro';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import Helmet from 'react-helmet';
+
 import DeferredStyles from '../DeferredStyles';
+import './Core.deferred.scss';
 import './Core.module.scss';
 
 const fonts = importAll.sync(
@@ -23,7 +25,7 @@ export default function StyleLoader({ children }) {
         {Object.values(fonts).map(({ default: font }) => (
           <link
             type={`font/${font.split('.').slice(-1)[0]}`}
-            crossOrigin="anonymous"
+            crossOrigin='anonymous'
             rel='preload'
             href={font}
             key={font}

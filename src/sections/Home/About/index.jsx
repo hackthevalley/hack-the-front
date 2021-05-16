@@ -1,7 +1,9 @@
+import classNames from 'classnames';
+
+import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import Card from '@htv/ui-kit/components/Card';
-import classNames from 'classnames';
+
 import { ReactComponent as AboutWave } from '../../../images/about-wave.svg';
 import {
   rectangle,

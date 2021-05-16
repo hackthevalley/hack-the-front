@@ -1,10 +1,11 @@
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
+
 import { ReactComponent as FacebookIcon } from '../../images/social-icons/facebook.svg';
-import { ReactComponent as TwitterIcon } from '../../images/social-icons/twitter.svg';
-import { ReactComponent as InstagramIcon } from '../../images/social-icons/instagram.svg';
 import { ReactComponent as GithubIcon } from '../../images/social-icons/github.svg';
+import { ReactComponent as InstagramIcon } from '../../images/social-icons/instagram.svg';
 import { ReactComponent as LinkedInIcon } from '../../images/social-icons/linkedin.svg';
+import { ReactComponent as TwitterIcon } from '../../images/social-icons/twitter.svg';
 import { container, items, item, icon, label, mlh } from './Footer.module.scss';
 
 const links = [
@@ -51,9 +52,7 @@ export default function Footer() {
               as='a'
             >
               <Icon className={icon} />
-              <span className={label}>
-                {link.name}
-              </span>
+              <span className={label}>{link.name}</span>
             </Text>
           </li>
         ))}

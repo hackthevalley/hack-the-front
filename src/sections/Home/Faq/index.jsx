@@ -1,23 +1,48 @@
-import Section from '@htv/ui-kit/components/Section';
-import Text from '@htv/ui-kit/components/Text';
-import Card from '@htv/ui-kit/components/Card';
 import classNames from 'classnames';
 import { useState } from 'react';
-import { Faqs } from './data';
 
-import filledQM from '../../../images/filled-question-marks.svg';
+import Card from '@htv/ui-kit/components/Card';
+import Section from '@htv/ui-kit/components/Section';
+import Text from '@htv/ui-kit/components/Text';
+
 import { ReactComponent as Angle } from '../../../images/angle.svg';
-import { grid, item, content, content__hidden, container, cover, angle, frame, question, question__outline, question__solid } from './Faq.module.scss';
+import filledQM from '../../../images/filled-question-marks.svg';
+import {
+  grid,
+  item,
+  content,
+  content__hidden,
+  container,
+  cover,
+  angle,
+  frame,
+  question,
+  question__outline,
+  question__solid,
+} from './Faq.module.scss';
+import { Faqs } from './data';
 
 const atmosphere = (
   <>
-    <Angle className={angle}/>
+    <Angle className={angle} />
     <div className={cover}>
       <div className={frame}>
-        <Text as='span' lineHeight='normal' type='heading1' color='darkviolet' className={classNames(question, question__outline)}>
+        <Text
+          as='span'
+          lineHeight='normal'
+          type='heading1'
+          color='darkviolet'
+          className={classNames(question, question__outline)}
+        >
           ???
         </Text>
-        <Text as='span' lineHeight='normal' type='heading1' color='darkviolet' className={classNames(question, question__solid)}>
+        <Text
+          as='span'
+          lineHeight='normal'
+          type='heading1'
+          color='darkviolet'
+          className={classNames(question, question__solid)}
+        >
           ???
         </Text>
       </div>
@@ -26,7 +51,7 @@ const atmosphere = (
 );
 
 export default function Faq() {
-  const [ expanded, setExpanded ] = useState({});
+  const [expanded, setExpanded] = useState({});
   return (
     <Section
       atmosphere={atmosphere}
@@ -36,7 +61,7 @@ export default function Faq() {
     >
       <Text type='heading2' color='darkviolet'>
         console.log(“
-        <Text type='heading2' as='span' color="white" weight='normal'>
+        <Text type='heading2' as='span' color='white' weight='normal'>
           Frequently Asked Questions
         </Text>
         ”)
@@ -47,10 +72,12 @@ export default function Faq() {
             <Card
               as='button'
               className={item}
-              onClick={() => setExpanded({
-                ...expanded,
-                [key]: !expanded[key],
-              })}
+              onClick={() =>
+                setExpanded({
+                  ...expanded,
+                  [key]: !expanded[key],
+                })
+              }
             >
               <Text type='body1' transform='uppercase' as='h3' weight='normal'>
                 <span>&gt;</span> {faq.title}
@@ -62,13 +89,13 @@ export default function Faq() {
                 lineHeight='relaxed'
                 className={classNames(
                   expanded[key] || content__hidden,
-                  content
+                  content,
                 )}
               >
                 {faq.content}
               </Text>
             </Card>
-          </li> 
+          </li>
         ))}
       </ul>
     </Section>
