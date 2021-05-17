@@ -14,7 +14,7 @@ const fonts = importAll.sync(
 export default function StyleLoader({ children }) {
   useEffect(() => {
     window.requestAnimationFrame(() => {
-      document.body.classList.add('animate');
+      document.documentElement.classList.add('animate');
     });
   }, []);
 

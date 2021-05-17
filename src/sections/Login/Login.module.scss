@@ -54,6 +54,10 @@
   grid-template-columns: 1fr 1fr;
   margin: 1rem 0;
   grid-gap: 1rem;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .line {
@@ -70,6 +74,10 @@
   padding-left: 3.5rem;
   padding-right: 3.5rem;
   margin: 1.5rem 0 2.75rem;
+
+  @include mixins.media(tablet) {
+    width: 100%;
+  }
 }
 
 .password-field {

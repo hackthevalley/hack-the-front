@@ -17,8 +17,10 @@
   }
 
   html {
-    scroll-behavior: smooth;
     height: 100%;
+    &.animate {
+      scroll-behavior: smooth;
+    }
   }
 
   body {

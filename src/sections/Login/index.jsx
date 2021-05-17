@@ -7,6 +7,8 @@ import Button from '@htv/ui-kit/components/Button';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 
+import Facebook from '../../components/Facebook';
+import Google from '../../components/Google';
 import Input from '../../components/Input';
 import {
   container,
@@ -63,8 +65,8 @@ export default function Login() {
               Sign in to view dashboard
             </Text>
             <div className={socials}>
-              <Button>Sign in with Google</Button>
-              <Button>Sign in with Facebook</Button>
+              <Google>Sign in with Google</Google>
+              <Facebook>Sign in with Facebook</Facebook>
             </div>
           </div>
           <hr className={line} />
