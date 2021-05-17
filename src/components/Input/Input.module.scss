@@ -34,11 +34,16 @@
 
 .field {
   font-family: map-get(fonts.$fonts, secondary);
-  background: none;
+  background-color: transparent;
   font-size: 1rem;
   color: white;
   outline: none;
   border: none;
   width: 100%;
   padding: 0;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: inherit;
+    transition-delay: 999999s;
+  }
 }
