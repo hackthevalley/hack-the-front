@@ -2,6 +2,16 @@
 
 .button {
   color: colors.css-color(gray);
+
+  &:hover, &:focus {
+    background-color: colors.css-color(white, hover);
+    border-color: colors.css-color(white, hover);
+  }
+
+  &:active {
+    background-color: colors.css-color(white, active);
+    border-color: colors.css-color(white, active);
+  }
 }
 
 .icon {

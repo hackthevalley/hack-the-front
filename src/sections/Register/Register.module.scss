@@ -1,0 +1,82 @@
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/units';
+
+.container {
+  height: 100%;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.section {
+  max-width: 64rem;
+  padding-bottom: 2rem;
+}
+
+.back {
+  text-decoration: none;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+
+  & svg {
+    margin-left: -0.5rem;
+    width: 1.25rem;
+    height: auto;
+  }
+}
+
+.content {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.npm {
+  margin: 1rem 0 0.5rem;
+  &::before {
+    content: '$';
+    margin-right: 1rem;
+  }
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 3px 1fr;
+  grid-gap: 2rem 4rem;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 3px 1fr;
+  }
+}
+
+.socials {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1.25rem;
+  
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.line {
+  background-color: colors.css-color(darkviolet);
+  border-radius: 999px;
+  height: 70%;
+  margin: auto 0;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.25rem;
+
+  &__full {
+    grid-column: span 2;
+  }
+}

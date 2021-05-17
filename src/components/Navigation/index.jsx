@@ -121,10 +121,11 @@ export default function Navigation({ noNav }) {
             </Button>
             <Button
               className={classNames(styles.button, styles.button__desktop)}
+              to='/register'
+              as={Link}
               {...srProps}
-              disabled
             >
-              Coming soon
+              Register Now
             </Button>
             <a
               href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'

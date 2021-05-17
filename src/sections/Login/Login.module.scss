@@ -14,7 +14,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  max-width: units.$section-width * 0.75 !important;
+  max-width: 64rem;
   margin-top: 2rem;
   height: 100%;
 }
@@ -45,7 +45,7 @@
 
   &::before {
     content: '$';
-    margin-right: 1.5rem;
+    margin-right: 1rem;
   }
 }
 

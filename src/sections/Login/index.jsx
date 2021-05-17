@@ -48,9 +48,7 @@ export default function Login() {
             as={Link}
             to='/'
           >
-            <Text type='meta1' as='span' color='white'>
-              Back to website
-            </Text>
+            Back to website
           </Button>
         </div>
         <div className={body}>

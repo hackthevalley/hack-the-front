@@ -13,6 +13,7 @@ import navItems from '../navItems';
 import {
   container,
   container__shown,
+  register,
   items,
   item,
   text,
@@ -67,7 +68,13 @@ export default function MobileNav({ isShown, isMounted, setState }) {
         })}
       </ul>
       <Section className={footer} as='div'>
-        <Button disabled>Coming Soon</Button>
+        <Button
+          className={register}
+          to='/register'
+          as={Link}
+        >
+          Register Now
+        </Button>
       </Section>
     </div>
   ) : null;

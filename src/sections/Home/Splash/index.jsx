@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby';
+import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 
 import Button from '@htv/ui-kit/components/Button';
@@ -58,9 +58,8 @@ export default function Splash() {
               Up for the challenge?
             </Text>
             <Button
-              onClick={() => {
-                navigate('/login');
-              }}
+              as={Link}
+              to='/register'
               className={registerButton}
             >
               Register for HTV
