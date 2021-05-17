@@ -20,6 +20,7 @@ import {
   form,
   form__full,
 } from './Register.module.scss';
+import { Link } from 'gatsby';
 
 const initState = {
   first_name: '',
@@ -41,7 +42,7 @@ export default function Register() {
   return (
     <div className={container}>
       <Section className={section} backgroundColor='charcoal'>
-        <Button className={back} leftIcon={IoChevronBack} type='ghost' color='white'>
+        <Button as={Link} to='/' className={back} leftIcon={IoChevronBack} type='ghost' color='white'>
           Back to website
         </Button>
         <div className={content}>
