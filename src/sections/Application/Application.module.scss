@@ -1,0 +1,12 @@
+.fieldset {
+  margin-top: 2rem;
+  border: none;
+  padding: 0;
+}
+
+.legend {
+  &::before {
+    content: '>';
+    margin-right: 0.3rem;
+  }
+}
