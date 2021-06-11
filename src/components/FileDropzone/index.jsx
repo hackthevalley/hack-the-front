@@ -1,9 +1,7 @@
+import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { createRef, useState } from 'react';
-
-import Text from '@htv/ui-kit/components/Text';
-
 import { ReactComponent as AttachFileIcon } from '../../images/attach-file.svg';
 import {
   dropzone,
@@ -25,6 +23,7 @@ export default function FileDropzone({
   fileInputNameAttribute,
   // Can be set to true to visibly show the user that there is an error (e.g. in the form)
   hasError = false,
+  className,
 }) {
   const [isFileHovering, setFileHovering] = useState(false);
   const [file, setFile] = useState(null);
@@ -92,6 +91,7 @@ export default function FileDropzone({
         dropzone,
         isFileHovering && dropzoneHover,
         (hasError || isWrongFileExtension) && dropzoneError,
+        className,
       )}
       onDragOver={onDragover}
       onDragLeave={onDragleave}
