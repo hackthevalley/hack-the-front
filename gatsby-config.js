@@ -3,8 +3,8 @@ const { description, keywords, author } = require('./package.json');
 module.exports = {
   siteMetadata: {
     siteUrl: process.env.URL || `http://localhost`,
-    startDate: new Date(2021, 10, 15),
-    endDate: new Date(2021, 10, 17),
+    startDate: new Date(2021, 9, 15),
+    endDate: new Date(2021, 9, 17),
     title: `Hack The Valley 5`,
     author: author.name,
     description,
