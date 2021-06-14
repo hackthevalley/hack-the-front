@@ -1,4 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
+import { useEffect } from 'react';
 
 import Layout from '../components/Layout';
 import Login from '../sections/Login';
@@ -6,10 +7,12 @@ import Login from '../sections/Login';
 export default function LoginPage() {
   const { site } = useStaticQuery(query);
 
-  if (!site.siteMetadata.featureFlags.open) {
-    navigate('/');
-    return null;
-  }
+  useEffect(() => {
+    if (!site.siteMetadata.featureFlags.open) {
+      navigate('/');
+      return null;
+    }
+  }, [site]);
 
   return (
     <Layout title='Login' noNav noFooter>

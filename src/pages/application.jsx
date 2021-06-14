@@ -1,4 +1,5 @@
 import { graphql, navigate, useStaticQuery } from 'gatsby';
+import { useEffect } from 'react';
 
 import Layout from '../components/Layout';
 import Consent from '../sections/Application/Consent';
@@ -12,10 +13,12 @@ import School from '../sections/Application/School';
 export default function DashboardPage() {
   const { site } = useStaticQuery(query);
 
-  if (!site.siteMetadata.featureFlags.open) {
-    navigate('/');
-    return null;
-  }
+  useEffect(() => {
+    if (!site.siteMetadata.featureFlags.open) {
+      navigate('/');
+      return null;
+    }
+  }, [site]);
 
   return (
     <Layout title='Application' noNav>

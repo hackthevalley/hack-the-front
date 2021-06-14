@@ -1,4 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
+import { useEffect } from 'react';
 
 import Layout from '../components/Layout';
 import Register from '../sections/Register';
@@ -6,10 +7,12 @@ import Register from '../sections/Register';
 export default function RegisterPage() {
   const { site } = useStaticQuery(query);
 
-  if (!site.siteMetadata.featureFlags.open) {
-    navigate('/');
-    return null;
-  }
+  useEffect(() => {
+    if (!site.siteMetadata.featureFlags.open) {
+      navigate('/');
+      return null;
+    }
+  }, [site]);
 
   return (
     <Layout title='Register' noNav noFooter>

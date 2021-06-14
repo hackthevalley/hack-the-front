@@ -1,4 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
+import { useEffect } from 'react';
 
 import Layout from '../components/Layout';
 import Dashboard from '../sections/Dashboard';
@@ -6,10 +7,12 @@ import Dashboard from '../sections/Dashboard';
 export default function DashboardPage() {
   const { site } = useStaticQuery(query);
 
-  if (!site.siteMetadata.featureFlags.open) {
-    navigate('/');
-    return null;
-  }
+  useEffect(() => {
+    if (!site.siteMetadata.featureFlags.open) {
+      navigate('/');
+      return null;
+    }
+  }, [site]);
 
   return (
     <Layout title='Dashboard' noNav>
