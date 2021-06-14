@@ -1,4 +1,20 @@
+const { siteMetadata } = require('./gatsby-config');
+const replacePath = path => path === `/` ? path : path.replace(/\/$/, ``);
 const isProd = process.env.NODE_ENV === `production`;
+
+exports.onCreatePage = ({ page, actions }) => {
+  // Remove pages protected by featureFlag
+  if (!siteMetadata.featureFlags.open) {
+    if ([
+      '/application',
+      '/dashboard',
+      '/register',
+      '/login',
+    ].includes(replacePath(page.path))) {
+      actions.deletePage(page);
+    }
+  }
+};
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
   const isSSR = [`develop-html`, `build-html`].includes(stage);

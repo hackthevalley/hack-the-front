@@ -1,0 +1,24 @@
+@use '@htv/ui-kit/styles/units';
+@use 'sass:math';
+
+.container {
+  height: 100%;
+  display: flex;
+
+  & > div {
+    width: 100%;
+  }
+}
+
+.content {
+  max-width: math.div(units.$section-width, 2);
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  display: flex;
+}
+
+.button {
+  text-decoration: none;
+  margin: 2.5rem auto 4rem;
+}
