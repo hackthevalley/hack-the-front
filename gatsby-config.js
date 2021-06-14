@@ -3,10 +3,16 @@ const { description, keywords, author } = require('./package.json');
 module.exports = {
   siteMetadata: {
     siteUrl: process.env.URL || `http://localhost`,
+    startDate: new Date(2021, 10, 15),
+    endDate: new Date(2021, 10, 17),
     title: `Hack The Valley 5`,
     author: author.name,
     description,
     keywords,
+    featureFlags: {
+      mlh: false,
+      open: false,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

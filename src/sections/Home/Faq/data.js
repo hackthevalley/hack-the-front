@@ -100,7 +100,9 @@ export const Faqs = [
         <strong>When</strong> is it?
       </>
     ),
-    content: <p>Hack The Valley will be taking place on Month Date, Year.</p>,
+    content: (
+      <p>Hack The Valley will be taking place on October 15-17, 2021.</p>
+    ),
   },
   {
     title: (

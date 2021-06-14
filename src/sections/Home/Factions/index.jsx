@@ -142,7 +142,7 @@ export default function Factions() {
           );
         })}
       </div>
-      <Text type='heading2' style={{ display: 'none' }}>
+      {/*<Text type='heading2' style={{ display: 'none' }}>
         Questions about Factions
       </Text>
       {questions.map(({ title, content }) => (
@@ -154,7 +154,7 @@ export default function Factions() {
             {content}
           </Text>
         </div>
-      ))}
+      ))}*/}
     </Section>
   );
 }

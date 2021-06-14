@@ -1,3 +1,5 @@
+import { useStaticQuery, graphql } from 'gatsby';
+
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 
@@ -37,6 +39,8 @@ const links = [
 ];
 
 export default function Footer() {
+  const { site } = useStaticQuery(query);
+
   return (
     <Section as='footer' className={container} backgroundColor='charcoal'>
       <ul className={items}>
@@ -57,16 +61,30 @@ export default function Footer() {
           </li>
         ))}
       </ul>
-      <Text
-        href='https://static.mlh.io/docs/mlh-code-of-conduct.pdf'
-        rel='noreferrer noopener'
-        className={mlh}
-        target='_blank'
-        type='meta1'
-        as='a'
-      >
-        MLH Code of Conduct
-      </Text>
+      {site.siteMetadata.featureFlags.mlh && (
+        <Text
+          href='https://static.mlh.io/docs/mlh-code-of-conduct.pdf'
+          rel='noreferrer noopener'
+          className={mlh}
+          target='_blank'
+          type='meta1'
+          as='a'
+        >
+          MLH Code of Conduct
+        </Text>
+      )}
     </Section>
   );
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          mlh
+        }
+      }
+    }
+  }
+`;

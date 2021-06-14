@@ -1,6 +1,6 @@
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
 import classNames from 'classnames';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import { useEffect, useState } from 'react';
 
 import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
@@ -15,6 +15,7 @@ import navItems from './navItems';
 
 export default function Navigation({ noNav }) {
   const mobileState = useMountedAnimations(`slow`);
+  const { site } = useStaticQuery(query);
   const [current, setCurrent] = useState();
   const [animate, setAnimate] = useState();
   const lineProps = Object.assign(
@@ -120,29 +121,50 @@ export default function Navigation({ noNav }) {
               Menu
             </Button>
             <Button
-              className={classNames(styles.button, styles.button__desktop)}
-              to='/register'
+              className={classNames(
+                site.siteMetadata.featureFlags.open || styles.button__disabled,
+                styles.button__desktop,
+                styles.button,
+              )}
+              to={site.siteMetadata.featureFlags.open ? '/register' : '#'}
               as={Link}
               {...srProps}
             >
-              Register Now
+              {site.siteMetadata.featureFlags.open
+                ? 'Register Now'
+                : 'Coming soon'}
             </Button>
-            <a
-              href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
-              className={styles.bannerContainer}
-              rel='noreferrer noopenner'
-              target='_blank'
-              {...srProps}
-            >
-              <img
-                src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
-                alt='Major League Hacking 2021 Hackathon Season'
-                className={styles.banner}
-              />
-            </a>
+            {site.siteMetadata.featureFlags.mlh && (
+              <a
+                href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
+                className={styles.bannerContainer}
+                rel='noreferrer noopenner'
+                target='_blank'
+                {...srProps}
+              >
+                <img
+                  src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
+                  alt='Major League Hacking 2021 Hackathon Season'
+                  className={styles.banner}
+                />
+              </a>
+            )}
           </>
         ) : undefined
       }
     />
   );
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          open
+          mlh
+        }
+      }
+    }
+  }
+`;

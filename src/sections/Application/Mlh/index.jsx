@@ -1,9 +1,7 @@
 import Text from '@htv/ui-kit/components/Text';
-import {
-  fieldset,
-  legend,
-} from '../Application.module.scss';
-import {} from './Mlh.module.scss';
+
+import { fieldset, legend } from '../Application.module.scss';
+import './Mlh.module.scss';
 
 export default function Mlh() {
   return (

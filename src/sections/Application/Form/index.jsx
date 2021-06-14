@@ -1,9 +1,11 @@
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
-import Section from '@htv/ui-kit/components/Section';
-import Button from '@htv/ui-kit/components/Button';
-import Text from '@htv/ui-kit/components/Text';
-import Card from '@htv/ui-kit/components/Card';
 import { useReducer, createContext } from 'react';
+
+import Button from '@htv/ui-kit/components/Button';
+import Card from '@htv/ui-kit/components/Card';
+import Section from '@htv/ui-kit/components/Section';
+import Text from '@htv/ui-kit/components/Text';
+
 import {
   container,
   content,
@@ -48,25 +50,29 @@ export const FormContext = createContext(defaultForm());
 export const ActionsContext = createContext({});
 
 export default function Form({ children }) {
-  const [ validity, setValidity ] = useReducer(reducer, {}, defaultValidity);
-  const [ store, setForm ] = useReducer(reducer, {}, defaultForm);
+  const [validity, setValidity] = useReducer(reducer, {}, defaultValidity);
+  const [store, setForm] = useReducer(reducer, {}, defaultForm);
 
-  const submit = async () => {
-
-  };
+  const submit = async () => {};
 
   return (
     <Section backgroundColor='charcoal' className={container}>
       <div className={content}>
-        <Text className={npm} type='body1' color='gray'>npm start challenge</Text>
+        <Text className={npm} type='body1' color='gray'>
+          npm start challenge
+        </Text>
         <div className={header}>
-          <Text type='heading2' font='secondary' as='h1'>Application</Text>
+          <Text type='heading2' font='secondary' as='h1'>
+            Application
+          </Text>
           <Button type='ghost' color='white' leftIcon={FaAngleLeft}>
             Back to Dashboard
           </Button>
         </div>
         <Card className={card}>
-          <Text type='body1' font='secondary'>Please fill out all mandotory Fields.</Text>
+          <Text type='body1' font='secondary'>
+            Please fill out all mandotory Fields.
+          </Text>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -87,9 +93,7 @@ export default function Form({ children }) {
               </ValidityContext.Provider>
             </ActionsContext.Provider>
             <div className={footer}>
-              <Button
-                disabled={!Object.values(validity).every(Boolean)}
-              >
+              <Button disabled={!Object.values(validity).every(Boolean)}>
                 Submit Application
               </Button>
             </div>

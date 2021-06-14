@@ -1,6 +1,6 @@
 import { FaTimes } from '@react-icons/all-files/fa/FaTimes';
 import classNames from 'classnames';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import Button from '@htv/ui-kit/components/Button';
@@ -13,6 +13,7 @@ import navItems from '../navItems';
 import {
   container,
   container__shown,
+  register__disabled,
   register,
   items,
   item,
@@ -21,6 +22,7 @@ import {
 } from './MobileNav.module.scss';
 
 export default function MobileNav({ isShown, isMounted, setState }) {
+  const { site } = useStaticQuery(query);
   return isMounted ? (
     <div className={classNames(container, isShown && container__shown)}>
       <NavigationBar
@@ -69,13 +71,28 @@ export default function MobileNav({ isShown, isMounted, setState }) {
       </ul>
       <Section className={footer} as='div'>
         <Button
-          className={register}
-          to='/register'
+          className={classNames(
+            site.siteMetadata.featureFlags.open || register__disabled,
+            register,
+          )}
+          to={site.siteMetadata.featureFlags.open ? '/register' : '#'}
           as={Link}
         >
-          Register Now
+          {site.siteMetadata.featureFlags.open ? 'Register Now' : 'Coming soon'}
         </Button>
       </Section>
     </div>
   ) : null;
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          open
+        }
+      }
+    }
+  }
+`;

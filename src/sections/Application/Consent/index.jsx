@@ -1,9 +1,7 @@
 import Text from '@htv/ui-kit/components/Text';
-import {
-  fieldset,
-  legend,
-} from '../Application.module.scss';
-import {} from './Consent.module.scss';
+
+import { fieldset, legend } from '../Application.module.scss';
+import './Consent.module.scss';
 
 export default function Consent() {
   return (

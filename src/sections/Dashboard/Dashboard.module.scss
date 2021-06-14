@@ -27,11 +27,12 @@
     width: 1.25rem;
     height: auto;
   }
-  
+
   @include mixins.media(tablet) {
     background-color: colors.css-color(red, $opacity: 6%);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: colors.css-color(red, $opacity: 12%);
     }
 
