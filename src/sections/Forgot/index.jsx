@@ -57,7 +57,7 @@ export default function Forgot() {
                             Reset your password here
                         </Text>
                     </div>
-                    <Text className={emailInstructions} font='secondary' type='meta1' color='white'>
+                    <Text className={emailInstructions} font='secondary' type='meta1' color='white' lineHeight='spaced'>
                         Enter the email associated with your account and we’ll send an email with instructions to reset your password.
                     </Text>
                     <form className={form} onSubmit={sendInfo}>
