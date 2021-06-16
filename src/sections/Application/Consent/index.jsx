@@ -1,11 +1,18 @@
 import Text from '@htv/ui-kit/components/Text';
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Checkbox from '../../../components/Checkbox';
 import { container, fieldset, legend } from '../Application.module.scss';
+import { ActionsContext, FormContext } from '../Form';
 import { checkbox } from './Consent.module.scss';
 
 export default function Consent() {
-  const [checked, setChecked] = useState(false);
+  const store = useContext(FormContext);
+  const { setForm, setValidity } = useContext(ActionsContext);
+
+  useEffect(() => {
+    const isValid = [store.media_consent_confirm].every(Boolean);
+    setValidity({ mlh: isValid });
+  }, [setValidity, store]);
 
   return (
     <fieldset className={fieldset}>
@@ -19,10 +26,16 @@ export default function Consent() {
           news releases, online, and in other communication related to the
           mission of Hack the Valley. I further give my consent and submit my
           compliance to the use of a third party video conference service for
-          the virtual participation of Hack the Valley V
+          the virtual participation of Hack the Valley V.
         </Text>
         <div className={checkbox}>
-          <Checkbox checked={checked} onChange={setChecked} required>
+          <Checkbox
+            checked={store.media_consent_confirm}
+            onChange={(e) =>
+              setForm({ media_consent_confirm: e.target.checked })
+            }
+            required
+          >
             <Text type='body1' font='secondary' as='span' lineHeight='relaxed'>
               I agree
             </Text>

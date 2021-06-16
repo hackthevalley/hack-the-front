@@ -1,13 +1,22 @@
 import Text from '@htv/ui-kit/components/Text';
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Checkbox from '../../../components/Checkbox';
-import { fieldset, container, legend } from '../Application.module.scss';
+import { container, fieldset, legend } from '../Application.module.scss';
+import { ActionsContext, FormContext } from '../Form';
 import { checkbox } from './Mlh.module.scss';
 
 export default function Mlh() {
-  const [codeChecked, setCodeChecked] = useState(false);
-  const [privacyChecked, setPrivacyChecked] = useState(false);
-  const [emailChecked, setEmailChecked] = useState(false);
+  const store = useContext(FormContext);
+  const { setForm, setValidity } = useContext(ActionsContext);
+
+  useEffect(() => {
+    const isValid = [
+      store.code_of_conduct_confirm,
+      store.privacy_confirm,
+      store.email_consent_confirm,
+    ].every(Boolean);
+    setValidity({ mlh: isValid });
+  }, [setValidity, store]);
 
   const NormalText = ({ text }) => (
     <Text type='body1' font='secondary' as='span' lineHeight='relaxed'>
@@ -36,7 +45,11 @@ export default function Mlh() {
       </Text>
       <div className={container}>
         <div className={checkbox}>
-          <Checkbox checked={codeChecked} onChange={setCodeChecked} required>
+          <Checkbox
+            checked={store.privacy_confirm}
+            onChange={(e) => setForm({ privacy_confirm: e.target.checked })}
+            required
+          >
             <NormalText text='I have read and agree to the ' />
             <LinkText text='MLH Code of Conduct' />
             <NormalText text='.' />
@@ -44,8 +57,10 @@ export default function Mlh() {
         </div>
         <div className={checkbox}>
           <Checkbox
-            checked={privacyChecked}
-            onChange={setPrivacyChecked}
+            checked={store.code_of_conduct_confirm}
+            onChange={(e) =>
+              setForm({ code_of_conduct_confirm: e.target.checked })
+            }
             required
           >
             <NormalText
@@ -63,7 +78,13 @@ export default function Mlh() {
           </Checkbox>
         </div>
         <div className={checkbox}>
-          <Checkbox checked={emailChecked} onChange={setEmailChecked} required>
+          <Checkbox
+            checked={store.email_consent_confirm}
+            onChange={(e) =>
+              setForm({ email_consent_confirm: e.target.checked })
+            }
+            required
+          >
             <NormalText text='I authorize Major League Hacking to send me occasional messages about hackathons including pre- and post-event informational emails.' />
           </Checkbox>
         </div>

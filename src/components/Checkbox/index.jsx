@@ -1,6 +1,7 @@
 import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Required from '../Required';
 import { ReactComponent as CheckmarkIcon } from '../../images/checkmark.svg';
 import {
   checkbox,
@@ -21,6 +22,12 @@ export default function Checkbox({
   className,
   children,
 }) {
+  const CheckboxLabel = (
+    <Text htmlFor={name} color='white' type='meta1' as='label'>
+      {children}
+    </Text>
+  );
+
   return (
     <div
       className={classNames(hasError && checkbox__error, checkbox, className)}
@@ -41,11 +48,8 @@ export default function Checkbox({
           </div>
         </div>
       </span>
-      {children && (
-        <Text htmlFor={name} color='white' type='meta1' as='label'>
-          {children}
-        </Text>
-      )}
+      {children &&
+        (required ? <Required>{CheckboxLabel}</Required> : CheckboxLabel)}
     </div>
   );
 }

@@ -1,15 +1,15 @@
-import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
-import Section from '@htv/ui-kit/components/Section';
 import Button from '@htv/ui-kit/components/Button';
-import Text from '@htv/ui-kit/components/Text';
 import Card from '@htv/ui-kit/components/Card';
-import { useReducer, createContext } from 'react';
+import Section from '@htv/ui-kit/components/Section';
+import Text from '@htv/ui-kit/components/Text';
+import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
+import { createContext, useReducer } from 'react';
 import {
+  card,
   container,
   content,
-  header,
   footer,
-  card,
+  header,
   npm,
 } from './Form.module.scss';
 
@@ -32,6 +32,10 @@ const defaultForm = () => ({
   github: '',
   linkedin: '',
   resume: null,
+  code_of_conduct_confirm: false,
+  privacy_confirm: false,
+  email_consent_confirm: false,
+  media_consent_confirm: false,
 });
 
 const defaultValidity = () => ({

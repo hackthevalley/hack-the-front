@@ -1,31 +1,25 @@
 import Text from '@htv/ui-kit/components/Text';
-import { useReducer, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import FileDropzone from '../../../components/FileDropzone';
 import Input from '../../../components/Input';
+import Required from '../../../components/Required';
 import { container, fieldset, legend } from '../Application.module.scss';
-import {
-  fileDropper,
-  inputs,
-  required,
-  span_1,
-} from './Experience.module.scss';
-
-const initState = {
-  number_of_hackathons: '',
-  github: '',
-  linkedin: '',
-};
-
-function reducer(state, { target }) {
-  return {
-    ...state,
-    [target.name]: target.value,
-  };
-}
+import { ActionsContext, FormContext } from '../Form';
+import { fileDropper, inputs, span_1 } from './Experience.module.scss';
 
 export default function Experience() {
-  const [store, dispatch] = useReducer(reducer, initState);
-  const [file, setFile] = useState(null);
+  const store = useContext(FormContext);
+  const { setForm, setValidity } = useContext(ActionsContext);
+
+  useEffect(() => {
+    const isValid = [
+      store.number_of_hackathons !== '',
+      store.github !== '',
+      store.linkedin !== '',
+      store.resume !== null,
+    ].every(Boolean);
+    setValidity({ experience: isValid });
+  }, [setValidity, store]);
 
   return (
     <fieldset className={fieldset}>
@@ -36,15 +30,15 @@ export default function Experience() {
         <div className={inputs}>
           <Input
             type='number'
-            min='0'
-            onChange={dispatch}
+            min={0}
+            onChange={(e) => setForm({ number_of_hackathons: e.target.value })}
             value={store.number_of_hackathons}
             label='Number of Hackathons attended'
             placeholder='Number of Hackathons attended'
             name='number_of_hackathons'
           />
           <Input
-            onChange={dispatch}
+            onChange={(e) => setForm({ github: e.target.value })}
             value={store.github}
             label='GitHub'
             placeholder='Your GitHub Account'
@@ -52,18 +46,20 @@ export default function Experience() {
             className={span_1}
           />
           <Input
-            onChange={dispatch}
+            onChange={(e) => setForm({ linkedin: e.target.value })}
             value={store.linkedin}
             label='LinkedIn'
             placeholder='Your LinkedIn Profile'
             name='linkedin'
           />
         </div>
-        <Text type='body1' font='secondary' as='span' lineHeight='relaxed'>
-          Attach your resume <span className={required}>*</span>
-        </Text>
+        <Required>
+          <Text type='body1' font='secondary' as='span' lineHeight='relaxed'>
+            Attach your resume
+          </Text>
+        </Required>
         <FileDropzone
-          onUpload={setFile}
+          onUpload={(file) => setForm({ resume: file })}
           fileInputNameAttribute='resume'
           supportedFileExtensions={['pdf']}
           className={fileDropper}
