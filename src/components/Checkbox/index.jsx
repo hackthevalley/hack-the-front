@@ -12,7 +12,6 @@ import {
 
 export default function Checkbox({
   checked,
-  defaultChecked = false,
   disabled = false,
   required = false,
   onChange,
@@ -23,19 +22,18 @@ export default function Checkbox({
   children,
 }) {
   return (
-    <label
+    <div
       className={classNames(hasError && checkbox__error, checkbox, className)}
     >
       <span className={checkbox__input}>
         <input
           type='checkbox'
           checked={checked}
-          defaultChecked={defaultChecked}
           disabled={disabled}
           name={name}
           form={form}
           required={required}
-          onChange={() => onChange(() => !checked)}
+          onChange={onChange}
         />
         <div className={checkbox__control}>
           <div className={checkmarkContainer}>
@@ -48,7 +46,7 @@ export default function Checkbox({
           {children}
         </Text>
       )}
-    </label>
+    </div>
   );
 }
 

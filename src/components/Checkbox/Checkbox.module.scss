@@ -32,15 +32,16 @@
 
 .checkbox__input {
   display: grid;
-  grid-template-areas: 'checkbox';
-  font-size: 2rem;
-  color: transparent;
+  grid-template-columns: 1fr;
 
   > * {
-    grid-area: checkbox;
+    grid-area: none;
   }
 
   input {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin: 0;
     opacity: 0;
 
     &:checked + .checkbox__control {
@@ -61,6 +62,11 @@
       .checkmarkContainer {
         background-color: colors.css-color(gray);
       }
+    }
+
+    &:focus + .checkbox__control {
+      outline: colors.css-color(lime) solid 1px;
+      box-shadow: 0 0px 8px colors.css-color(lime);
     }
   }
 }
