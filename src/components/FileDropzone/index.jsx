@@ -1,7 +1,7 @@
 import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { createRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ReactComponent as AttachFileIcon } from '../../images/attach-file.svg';
 import {
   dropzone,
@@ -29,7 +29,7 @@ export default function FileDropzone({
   const [file, setFile] = useState(null);
   // Used for when the user drops in a file that is invalid, in which case we show the user
   const [isWrongFileExtension, setIsWrongFileExtension] = useState(false);
-  const fileInputRef = createRef();
+  const fileInputRef = useRef();
 
   const containsFiles = (e) => {
     if (e.dataTransfer.types) {
