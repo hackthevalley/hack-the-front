@@ -51,9 +51,9 @@ export default function Sponsors() {
       <Card className={styles.sponsors} backgroundColor='white' type='flat'>
         {sponsors.nodes.map((tier) => (
           <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}>
-            <Text transform='uppercase' type='meta1' as='h3'>
+            {/*<Text transform='uppercase' type='meta1' as='h3'>
               {tier.data.Name} Sponsors
-            </Text>
+            </Text>*/}
             <ul className={styles.sponsors__list}>
               {tier.data.Sponsors.map((sponsor) => (
                 <li key={sponsor.recordId}>
