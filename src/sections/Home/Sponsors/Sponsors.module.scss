@@ -70,7 +70,7 @@
 
 .sponsor__asset {
   & img {
-    height: calc(var(--scale) * 0.25rem);
-    width: auto;
+    height: calc(var(--scale) * 0.25rem) !important;
+    width: auto !important;
   }
 }
