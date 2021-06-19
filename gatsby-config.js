@@ -1,4 +1,5 @@
 const { description, keywords, author } = require('./package.json');
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
@@ -20,6 +21,24 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
     'gatsby-plugin-svgr',
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableLinks: ['Sponsors'],
+            tableName: `Sponsor Types`,
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            mapping: { Logo: 'fileNode' },
+            tableName: `Sponsors`,
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
