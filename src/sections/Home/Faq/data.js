@@ -16,21 +16,6 @@ export const Faqs = [
           A laptop and charger.
         </p>
         <p>Everything else is optional.</p>
-        <div>
-          <p>
-            However, we strongly{' '}
-            <Text as='span' type='body2' color='yellow'>
-              encourge you
-            </Text>{' '}
-            to bring a:
-          </p>
-          <ul>
-            <li>sleeping bag</li>
-            <li>pillows</li>
-            <li>toiletries</li>
-            <li>a couple of change of clothes.</li>
-          </ul>
-        </div>
         <p>
           <Text as='span' color='red' type='body2'>
             You'll need:&nbsp;
