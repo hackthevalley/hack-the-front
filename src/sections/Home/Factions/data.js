@@ -1,11 +1,6 @@
 import { StaticImage } from 'gatsby-plugin-image';
 
-export const questions = [
-  {
-    title: `What will the factions bring to Hack the Valley 5?`,
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
-  },
-];
+export const questions = [];
 
 export const factions = [
   {
@@ -20,7 +15,12 @@ export const factions = [
         width={400}
       />
     ),
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+    content: `Participants in the health tribe show affection
+    towards solutions within the problem space of both interpersonal
+    and intrapersonal health. Whether it be mental health, physical,
+    social, or some other more precise discipline, participants here
+    care about leveraging our technology to better serve our health
+    and our well-being as a people.`,
   },
   {
     name: `Nature`,
@@ -34,7 +34,13 @@ export const factions = [
         width={400}
       />
     ),
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+    content: `The nature tribe is all about finding ways to bring
+    technology together to serve the ecosystem and environment. Unlike
+    the health tribe, nature tribe participants care about the health
+    of animals, plants, the Earth, and the ecosystem in general. Working
+    together, they aim to create a technological tool that will help
+    solve issues like global warming, greenhouse gas emissions, species
+    extinction, and many more.`,
   },
   {
     name: `Technology`,
@@ -48,7 +54,12 @@ export const factions = [
         width={400}
       />
     ),
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+    content: `Participants in the technology tribe are all about finding
+    ways to bring us closer together and connect better with one another.
+    If this year has taught us anything, it’s the importance of working
+    together and finding ways to be there for one another, even against
+    the odds. Participants in the connection tribe aim to find a solution
+    using technology to advance that exact goal and challenge.`,
   },
   {
     name: `Discovery`,
@@ -62,6 +73,12 @@ export const factions = [
         width={400}
       />
     ),
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, augue ac elementum feugiat, odio felis iaculis ex, ac mattis eros magna at felis. Phasellus vitae sodales dui. Sed vitae porta nunc, vel mattis nisl. Donec sodales neque non eros interdum elementum. Quisque non suscipit urna. Praesent volutpat cursus feugiat. Quisque blandit arcu id velit condimentum dictum. Donec dui ante, cursus varius mattis non, rutrum maximus ligula. Vivamus posuere lacus est, quis fringilla sem volutpat in.`,
+    content: `Participants in the discovery challenge aim to create
+    technological solutions that push the boundaries of what we’re
+    used to and what we can expect. Whether they want to dive deep
+    into the new worlds of VR and AR or leverage new ML and AI tools,
+    these participants want to create a solution that uses up-and-coming
+    technology or taking innovative approaches to create something
+    brand new.`,
   },
 ];

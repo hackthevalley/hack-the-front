@@ -39,7 +39,7 @@ function _FactionContent({ data, selected, onClick }, ref) {
       </div>
       <div>
         <Text type='heading2' weight='normal' as='h3' transform='uppercase'>
-          {data.name} Faction
+          {data.name} Route
         </Text>
         <Text
           className={styles.content_text}
@@ -94,7 +94,7 @@ export default function Factions() {
   }, [selected]);
 
   return (
-    <Section id='factions' backgroundColor='charcoal'>
+    <Section id='routes' backgroundColor='charcoal'>
       <div className={styles.header}>
         <Text
           className={styles.heading}
@@ -102,7 +102,7 @@ export default function Factions() {
           transform='uppercase'
           weight='normal'
         >
-          The Factions
+          The Routes
         </Text>
         <Text type='heading2' color='lime' as='span'>
           //Click to view details
@@ -142,7 +142,7 @@ export default function Factions() {
           );
         })}
       </div>
-      <Text type='heading2' style={{ display: 'none' }}>
+      {/*<Text type='heading2' style={{ display: 'none' }}>
         Questions about Factions
       </Text>
       {questions.map(({ title, content }) => (
@@ -154,7 +154,7 @@ export default function Factions() {
             {content}
           </Text>
         </div>
-      ))}
+      ))}*/}
     </Section>
   );
 }

@@ -57,7 +57,6 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1.25rem;
-  
 
   @include mixins.media(tablet) {
     grid-template-columns: 1fr 1fr;

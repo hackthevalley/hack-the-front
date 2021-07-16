@@ -1,12 +1,19 @@
 const { description, keywords, author } = require('./package.json');
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
     siteUrl: process.env.URL || `http://localhost`,
+    startDate: new Date(2021, 9, 15),
+    endDate: new Date(2021, 9, 17),
     title: `Hack The Valley 5`,
     author: author.name,
     description,
     keywords,
+    featureFlags: {
+      mlh: false,
+      open: false,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,6 +21,24 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
     'gatsby-plugin-svgr',
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableLinks: ['Sponsors'],
+            tableName: `Sponsor Types`,
+          },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            mapping: { Logo: 'fileNode' },
+            tableName: `Sponsors`,
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

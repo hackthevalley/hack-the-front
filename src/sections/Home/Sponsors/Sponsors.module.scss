@@ -1,3 +1,5 @@
+@use "@htv/ui-kit/styles/mixins";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -31,5 +33,44 @@
   &__column {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.sponsors {
+  grid-template-columns: 1fr;
+  box-sizing: border-box;
+  max-width: 70rem;
+  padding: 2.75rem;
+  grid-gap: 1rem;
+  display: grid;
+  width: 100%;
+}
+
+.sponsors__list {
+  justify-content: space-evenly;
+  list-style-type: none;
+  flex-wrap: wrap;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.sponsor__link {
+  @include mixins.transition(transform);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem;
+  height: 100%;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.sponsor__asset {
+  & img {
+    height: calc(var(--scale) * 0.25rem) !important;
+    width: auto !important;
   }
 }

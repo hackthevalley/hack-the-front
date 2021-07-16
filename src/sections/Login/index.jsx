@@ -85,7 +85,7 @@ export default function Login() {
               type='password'
               className={passwordField}
             />
-            {/*<Text
+            {<Text
               font='secondary'
               to='/forgot'
               type='meta1'
@@ -97,7 +97,7 @@ export default function Login() {
               as={Link}
             >
               Forgot Password?
-              </Text>*/}
+            </Text>}
             <div>
               <Button className={signIn}>Sign in</Button>
             </div>

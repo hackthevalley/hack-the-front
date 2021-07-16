@@ -9,7 +9,7 @@ export default [
   },
   {
     text: `Theme`,
-    to: `/#factions`,
+    to: `/#routes`,
   },
   {
     text: `Sponsors`,

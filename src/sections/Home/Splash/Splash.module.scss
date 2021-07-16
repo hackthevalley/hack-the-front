@@ -1,11 +1,12 @@
 @use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/colors";
 
 .container {
   padding-bottom: 5rem;
   padding-top: 10rem;
   display: flex;
 
-  @include mixins.media(tablet) {
+  @include mixins.media(laptop) {
     flex-direction: column;
   }
 }
@@ -50,6 +51,14 @@
   display: flex;
   flex-direction: column;
   letter-spacing: 0.25rem;
+
+  & > span {
+    white-space: nowrap;
+
+    @include mixins.media(phone) {
+      white-space: normal;
+    }
+  }
 }
 
 .five {
@@ -78,10 +87,20 @@
   outline: none;
   text-decoration: none;
   display: inline-flex;
+
+  &__disabled,
+  &__disabled:hover,
+  &__disabled:focus,
+  &__disabled:active {
+    background-color: colors.css-color(disabled) !important;
+    border-color: colors.css-color(disabled) !important;
+    cursor: not-allowed;
+  }
 }
 
 .image-container {
   display: flex;
   align-items: center;
   flex: 0 1 60%;
+  flex-shrink: 1;
 }

@@ -3,7 +3,8 @@
 .button {
   color: colors.css-color(gray);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: colors.css-color(white, hover);
     border-color: colors.css-color(white, hover);
   }

@@ -1,6 +1,7 @@
 @use '@htv/ui-kit/styles/mixins';
 @use '@htv/ui-kit/styles/colors';
 @use '@htv/ui-kit/styles/units';
+@use "sass:math";
 
 .container {
   @include mixins.transition(transform opacity, slow);
@@ -47,7 +48,7 @@
 
 .item {
   @include mixins.transition(background-color);
-  padding: (units.$section-padding / 2) units.$section-padding;
+  padding: math.div(units.$section-padding, 2) units.$section-padding;
   text-decoration: none;
   display: block;
 
@@ -66,4 +67,13 @@
 
 .register {
   text-decoration: none;
+
+  &__disabled,
+  &__disabled:hover,
+  &__disabled:focus,
+  &__disabled:active {
+    background-color: colors.css-color(disabled) !important;
+    border-color: colors.css-color(disabled) !important;
+    cursor: not-allowed;
+  }
 }
