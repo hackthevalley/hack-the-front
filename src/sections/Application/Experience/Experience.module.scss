@@ -1,0 +1,16 @@
+@use '@htv/ui-kit/styles/colors';
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.25rem 1.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.span_1 {
+  grid-column: 1;
+}
+
+.fileDropper {
+  margin-top: 1.25rem;
+}

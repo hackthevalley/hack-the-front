@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+.container {
+  padding: 0 4rem;
+  margin-top: 2rem;
+}
+
 .legend {
   &::before {
     content: '>';
