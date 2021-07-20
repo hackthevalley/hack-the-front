@@ -28,6 +28,7 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_BASE_ID,
+            tableView: 'Grid view',
             tableLinks: ['Sponsors'],
             tableName: `Sponsor Types`,
           },
