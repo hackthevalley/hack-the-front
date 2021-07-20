@@ -12,8 +12,6 @@ import * as styles from './Sponsors.module.scss';
 export default function Sponsors() {
   const { sponsors } = useStaticQuery(query);
 
-  console.log(sponsors);
-
   return (
     <Section
       className={styles.container}
@@ -88,7 +86,15 @@ export default function Sponsors() {
 
 const query = graphql`
   {
-    sponsors: allAirtable(filter: { table: { eq: "Sponsor Types" } }) {
+    sponsors: allAirtable(
+      sort: {
+        fields: data___Sort_Order,
+        order: ASC
+      }
+      filter: {
+        table: { eq: "Sponsor Types" }
+      }
+    ) {
       nodes {
         recordId
         data {
