@@ -46,7 +46,7 @@ export default function Splash() {
               &gt; October xx - xx, 2021
             </Text>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; U of T, Scarborough
+              &gt; U of T, Scarborough - Virtual
             </Text>
             <Text
               lineHeight='normal'
