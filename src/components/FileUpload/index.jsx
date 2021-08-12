@@ -40,7 +40,6 @@ export default function FileUpload({
   const [isUploading, setIsUploading] = useState(false);
 
   const upload = async (event) => {
-    console.log(event.target.files);
     if (!event.target.files[0]) return;
 
     setIsUploading(true);

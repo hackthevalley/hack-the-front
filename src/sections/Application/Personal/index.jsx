@@ -16,7 +16,12 @@ export default function Personal() {
         <FormField index='0' />
         <FormField index='1' />
         <FormField index='2' />
-        <FormField index='3' />
+        <FormField
+          fieldProps={{
+            placeholder: 'e.g. +1-4162878872',
+          }}
+          index='3'
+        />
       </div>
     </fieldset>
   );

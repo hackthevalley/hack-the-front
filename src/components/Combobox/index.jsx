@@ -18,7 +18,7 @@ import { display, field, icon } from './Combobox.module.scss';
 export default function Combobox({
   historySize = 10, // Size of history for searches (More RAM vs snappiness)
   threshold = 0.2, // Sensativity of search
-  limit = 10, // Size of displayed options
+  limit = 5, // Size of displayed options
   options = [],
   className,
   onChange,

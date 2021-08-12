@@ -138,14 +138,14 @@ export default function Register() {
                 {...applyField('firstName')}
                 label='First Name'
                 placeholder='first name'
-                autocomplete='given-name'
+                autoComplete='given-name'
                 required
               />
               <Input
                 {...applyField('lastName')}
                 label='Last Name'
                 placeholder='last name'
-                autocomplete='family-name'
+                autoComplete='family-name'
                 required
               />
               <Input
@@ -154,7 +154,7 @@ export default function Register() {
                 label='Email'
                 placeholder='email'
                 type='email'
-                autocomplete='email'
+                autoComplete='email'
                 required
               />
               <Input
@@ -162,14 +162,14 @@ export default function Register() {
                 label='Password'
                 placeholder='password'
                 type='password'
-                autocomplete='new-password'
+                autoComplete='new-password'
                 required
               />
               <Input
                 {...applyField('rePassword')}
                 label='Confirm Password'
                 placeholder='confirm password'
-                autocomplete='off'
+                autoComplete='off'
                 type='password'
                 required
               />

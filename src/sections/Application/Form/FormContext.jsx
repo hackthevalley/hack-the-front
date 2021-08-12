@@ -29,13 +29,27 @@ export function FormField({
   index,
   id,
 }) {
-  const { setFormState, formState, formInfo, setIsSaving } = useForm();
+  const {
+    setFormState,
+    formState,
+    formInfo,
+    setIsSaving,
+    isReady,
+    isDisabled,
+  } = useForm();
   const fieldInfo = id
     ? formInfo?.questions?.find((field) => field.id === id)
     : formInfo?.questions[index];
 
   useEffect(() => {
-    if (!formState.form[fieldInfo.id] || formState.errors[fieldInfo.id]) return;
+    if (
+      !formState.form[fieldInfo.id] ||
+      formState.errors[fieldInfo.id] ||
+      isDisabled ||
+      !isReady
+    ) {
+      return;
+    }
 
     const controller = new AbortController();
     const timer = window.setTimeout(async () => {
@@ -80,7 +94,12 @@ export function FormField({
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [formState.form[fieldInfo.id], formState.errors[fieldInfo.id]]);
+  }, [
+    formState.errors[fieldInfo.id],
+    formState.form[fieldInfo.id],
+    isDisabled,
+    isReady,
+  ]);
 
   // Props that all form elements share
   const defaultProps = {
@@ -173,6 +192,7 @@ export function FormProvider({ children }) {
     }),
   });
 
+  const [isDisabled, setIsDisabled] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [isSaving, setIsSaving] = useState(0);
   const [formState, setFormState] = useState({
@@ -188,6 +208,7 @@ export function FormProvider({ children }) {
   });
 
   useEffect(() => {
+    setIsReady(false);
     if (isLoadingForm || isLoadingResponse) return;
     if (!(responseInfo?.isDraft ?? true)) {
       toast.error('You have already applied');
@@ -251,22 +272,30 @@ export function FormProvider({ children }) {
   // Save prompt
   const toastPrompt = useRef();
   useEffect(() => {
-    if (isSaving === 0) {
-      toast.dismiss(toastPrompt.current);
-      if (toastPrompt.current) {
-        toastPrompt.current = toast.success('Application has been saved!');
-      }
-      return () => {
-        toastPrompt.current = toast.loading('Saving application...', {
-          duration: 999999,
-        });
-      };
+    if (!isReady || isSaving) return;
+    toast.dismiss(toastPrompt.current);
+    if (toastPrompt.current) {
+      toastPrompt.current = toast.success('Application has been saved!');
     }
-  }, [isSaving]);
+    return () => {
+      toastPrompt.current = toast.loading('Saving application...', {
+        duration: 999999,
+      });
+    };
+  }, [isSaving, isReady]);
 
   return (
     <FormContext.Provider
-      value={{ setFormState, formState, formInfo, setIsSaving, isSaving }}
+      value={{
+        setFormState,
+        formState,
+        formInfo,
+        setIsSaving,
+        isSaving,
+        isReady,
+        setIsDisabled,
+        isDisabled,
+      }}
     >
       <Loading isLoading={!isReady}>{children}</Loading>
     </FormContext.Provider>

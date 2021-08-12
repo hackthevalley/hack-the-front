@@ -1,5 +1,6 @@
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { navigate } from 'gatsby';
+import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 import Button from '@htv/ui-kit/components/Button';
@@ -19,23 +20,29 @@ import {
 import { useForm } from './FormContext';
 
 export default function Form({ children }) {
-  const { formState, formInfo, isSaving } = useForm();
+  const { formState, formInfo, isSaving, setIsDisabled } = useForm();
   const submit = async () => {
-    toast
-      .promise(
-        fetchApi('/forms/hacker_application/response/submit', {
-          method: 'POST',
-        }),
-        {
-          loading: 'Submitting application...',
-          success: 'Application successfully submitted!',
-          error: 'Unable to submit application. Try again later',
-        },
-      )
-      .then(() => {
-        navigate('/dashboard');
+    const toastId = toast.loading('Submitting application...', {
+      duration: 99999999,
+    });
+    try {
+      await fetchApi('/forms/hacker_application/response/submit', {
+        method: 'POST',
       });
+      toast.dismiss(toastId);
+      toast.success('Application successfully submitted!');
+      navigate('/dashboard');
+    } catch (err) {
+      toast.dismiss(toastId);
+      toast.error('Unable to submit application. Try again later.');
+    }
   };
+
+  // Prevent weirdness when unmounted
+  useEffect(() => {
+    setIsDisabled(false);
+    return () => setIsDisabled(true);
+  }, [setIsDisabled]);
 
   const isDisabled =
     isSaving ||

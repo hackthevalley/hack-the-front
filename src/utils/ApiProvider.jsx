@@ -49,7 +49,11 @@ export async function fetchApi(path, options = {}) {
   });
 
   if (!res.ok) throw await res.json();
-  return res.json();
+  try {
+    return res.json();
+  } catch (err) {
+    return res.text();
+  }
 }
 
 export default function ApiProvider({ authenticated, children }) {
