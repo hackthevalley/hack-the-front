@@ -84,7 +84,7 @@ function Dashboard() {
           as='a'
           target='_blank'
           rel='noreferrer noopenner'
-          href='/#factions'
+          href='/#routes'
           backgroundColor='darkviolet'
           className={classNames(card, factions)}
         >
