@@ -33,6 +33,7 @@ export default function Form({ children }) {
       toast.success('Application successfully submitted!');
       navigate('/dashboard');
     } catch (err) {
+      console.log(err);
       toast.dismiss(toastId);
       toast.error('Unable to submit application. Try again later.');
     }

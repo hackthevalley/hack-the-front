@@ -40,11 +40,14 @@ export function FormField({
   const fieldInfo = id
     ? formInfo?.questions?.find((field) => field.id === id)
     : formInfo?.questions[index];
+  
+  const lastValue = useRef(formState.form[fieldInfo.id]);
 
   useEffect(() => {
     if (
-      !formState.form[fieldInfo.id] ||
+      formState.form[fieldInfo.id] === lastValue.current ||
       formState.errors[fieldInfo.id] ||
+      !formState.form[fieldInfo.id] ||
       isDisabled ||
       !isReady
     ) {
@@ -86,9 +89,11 @@ export function FormField({
           }));
         }
       } finally {
-        setIsSaving((_state) => _state - 1);
+        window.setTimeout(() => {
+          setIsSaving((_state) => _state - 1);
+        }, 2000);
       }
-    }, 2000);
+    }, 1000);
 
     return () => {
       window.clearTimeout(timer);
@@ -97,8 +102,6 @@ export function FormField({
   }, [
     formState.errors[fieldInfo.id],
     formState.form[fieldInfo.id],
-    isDisabled,
-    isReady,
   ]);
 
   // Props that all form elements share
@@ -194,7 +197,7 @@ export function FormProvider({ children }) {
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const [isSaving, setIsSaving] = useState(0);
+  const [isSaving, setIsSaving] = useState(0); // Semaphores are cool
   const [formState, setFormState] = useState({
     errors: {},
     form: {},
@@ -272,15 +275,30 @@ export function FormProvider({ children }) {
   // Save prompt
   const toastPrompt = useRef();
   useEffect(() => {
-    if (!isReady || isSaving) return;
-    toast.dismiss(toastPrompt.current);
+    if (!isReady || isSaving || isDisabled) {
+      if (!isReady || isDisabled) {
+        toast.remove(toastPrompt.current);
+      }
+      return;
+    }
+
     if (toastPrompt.current) {
-      toastPrompt.current = toast.success('Application has been saved!');
+      toastPrompt.current = toast.success(
+        'Application has been saved!',
+        {
+          id: toastPrompt.current,
+          duration: 2000,
+        },
+      );
     }
     return () => {
-      toastPrompt.current = toast.loading('Saving application...', {
-        duration: 999999,
-      });
+      toastPrompt.current = toast.loading(
+        'Saving application...',
+        {
+          id: toastPrompt.current,
+          duration: 999999,
+        },
+      );
     };
   }, [isSaving, isReady]);
 

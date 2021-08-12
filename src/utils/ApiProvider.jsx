@@ -48,11 +48,11 @@ export async function fetchApi(path, options = {}) {
     headers,
   });
 
-  if (!res.ok) throw await res.json();
-  try {
+  if (!res.ok) {
+    throw await res.json();
+  }
+  if (res.status !== 204) {
     return res.json();
-  } catch (err) {
-    return res.text();
   }
 }
 
