@@ -1,7 +1,9 @@
-import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+
+import Text from '@htv/ui-kit/components/Text';
+
 import { ReactComponent as AttachFileIcon } from '../../images/attach-file.svg';
 import {
   dropzone,
@@ -105,16 +107,16 @@ export default function FileDropzone({
           </Text>
         )}
         <div className={prompt}>
-          <Text
-            color='lime'
-            type='meta1'
-            as='button'
-            className={fileInputButton}
+          <button
+            type='button'
             onClick={openFileInput}
+            className={fileInputButton}
           >
             <AttachFileIcon className={icon} />
-            Browse files
-          </Text>
+            <Text color='lime' type='meta1'>
+              Browse files
+            </Text>
+          </button>
           <Text color='white' type='meta1'>
             or drop resume here
           </Text>

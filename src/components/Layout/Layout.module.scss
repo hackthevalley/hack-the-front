@@ -32,3 +32,9 @@
 .content {
   flex-grow: 1;
 }
+
+.toastContainer .toast {
+  background-color: colors.css-color(darkviolet);
+  font-family: map-get(fonts.$fonts, secondary);
+  color: colors.css-color(white);
+}

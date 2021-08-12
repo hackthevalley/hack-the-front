@@ -1,44 +1,17 @@
-import classNames from 'classnames';
-import { useState } from 'react';
+import InputLayout from '../InputLayout';
+import { input } from '../InputLayout/InputLayout.module.scss';
 
-import Text from '@htv/ui-kit/components/Text';
-
-import {
-  input,
-  input__active,
-  input__error,
-  label,
-  label__required,
-  field,
-} from './Input.module.scss';
-
-export default function Input({ className, hasError, ...props }) {
-  const [focused, setFocused] = useState(false);
+export default function Input({ className, error, label, ...props }) {
   return (
-    <div
-      className={classNames(
-        hasError && input__error,
-        focused && input__active,
-        className,
-        input,
-      )}
+    <InputLayout
+      required={props.required}
+      disabled={props.disabled}
+      className={className}
+      name={props.name}
+      label={label}
+      error={error}
     >
-      <Text
-        htmlFor={props.name}
-        className={label}
-        color='white'
-        type='meta1'
-        as='label'
-      >
-        {props.label}
-        {props.required && <span className={label__required}>*</span>}
-      </Text>
-      <input
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        className={field}
-        {...props}
-      />
-    </div>
+      <input {...props} className={input} />
+    </InputLayout>
   );
 }

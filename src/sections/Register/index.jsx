@@ -1,13 +1,14 @@
 import { IoChevronBack } from '@react-icons/all-files/io5/IoChevronBack';
+import classNames from 'classnames';
 import { Link } from 'gatsby';
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
+import { useMutate } from 'restful-react';
 
 import Button from '@htv/ui-kit/components/Button';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 
-import Facebook from '../../components/Facebook';
-import Google from '../../components/Google';
 import Input from '../../components/Input';
 import {
   container,
@@ -16,29 +17,91 @@ import {
   content,
   npm,
   body,
-  socials,
-  line,
   form,
   form__full,
+  controls,
+  link,
+  btn,
 } from './Register.module.scss';
 
+const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+
 const initState = {
-  first_name: '',
-  last_name: '',
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
-  confirm: '',
+  rePassword: '',
+  _errors: {},
 };
 
-function reducer(state, { target }) {
-  return {
-    ...state,
-    [target.name]: target.value,
-  };
+function reducer(state, update) {
+  if (!update) return {};
+  return { ...state, ...update };
 }
 
 export default function Register() {
   const [store, dispatch] = useReducer(reducer, initState);
+  const [errors, setErrors] = useReducer(reducer, {});
+  const { mutate, loading } = useMutate({
+    path: '/account/users',
+    verb: 'POST',
+  });
+
+  const submit = async () => {
+    const { _errors, ...input } = store;
+    toast.promise(mutate(input), {
+      loading: 'Registering user...',
+      success: () => {
+        dispatch(null);
+        return `Success! An email confirmation has been sent to ${input.email}`;
+      },
+      error: ({ data }) => {
+        setErrors(null);
+        setErrors(
+          data.detail.fieldErrors.reduce((acc, field) => {
+            acc[field.field] = field.message;
+            return acc;
+          }, {}),
+        );
+        return 'Error: Unable to register user';
+      },
+    });
+  };
+
+  const applyField = (field) => ({
+    onChange: ({ target }) => {
+      setErrors({ [field]: false });
+      dispatch({ [field]: target.value });
+    },
+    error: errors[field],
+    value: store[field],
+    name: field,
+  });
+
+  useEffect(() => {
+    setErrors({
+      rePassword:
+        [
+          store.rePassword,
+          store.password,
+          store.password !== store.rePassword,
+        ].every(Boolean) && "The two passwords don't match",
+      email:
+        [store.email, !emailRegex.test(store.email)].every(Boolean) &&
+        'Invalid email format',
+    });
+  }, [store]);
+
+  const hasErrors = Object.values(errors).some(Boolean);
+  const isComplete = [
+    store.firstName,
+    store.lastName,
+    store.email,
+    store.password,
+    store.rePassword,
+  ].every(Boolean);
+
   return (
     <div className={container}>
       <Section className={section} backgroundColor='charcoal'>
@@ -60,60 +123,71 @@ export default function Register() {
             Hi There,
           </Text>
           <div className={body}>
-            <div>
-              <Text type='body1' font='secondary' as='p'>
-                Create an account to register
-              </Text>
-              <div className={socials}>
-                <Google>Continue with Google</Google>
-                <Facebook>Continue with Facebook</Facebook>
-              </div>
-            </div>
-            <div className={line} />
-            <form className={form}>
-              <Text className={form__full} font='secondary' type='body1'>
-                Create account with an Email
-              </Text>
+            <Text type='body1' font='secondary' as='p'>
+              Create an account to register
+            </Text>
+            <form
+              className={form}
+              onSubmit={(e) => {
+                e.preventDefault();
+                submit();
+                return false;
+              }}
+            >
               <Input
-                onChange={dispatch}
-                value={store.first_name}
+                {...applyField('firstName')}
                 label='First Name'
                 placeholder='first name'
-                name='first_name'
+                autocomplete='given-name'
+                required
               />
               <Input
-                onChange={dispatch}
-                value={store.last_name}
+                {...applyField('lastName')}
                 label='Last Name'
                 placeholder='last name'
-                name='last_name'
+                autocomplete='family-name'
+                required
               />
               <Input
                 className={form__full}
-                onChange={dispatch}
-                value={store.email}
+                {...applyField('email')}
                 label='Email'
                 placeholder='email'
-                name='email'
                 type='email'
+                autocomplete='email'
+                required
               />
               <Input
-                onChange={dispatch}
-                value={store.password}
+                {...applyField('password')}
                 label='Password'
                 placeholder='password'
-                name='password'
                 type='password'
+                autocomplete='new-password'
+                required
               />
               <Input
-                onChange={dispatch}
-                value={store.confirm}
+                {...applyField('rePassword')}
                 label='Confirm Password'
                 placeholder='confirm password'
-                name='confirm'
+                autocomplete='off'
                 type='password'
+                required
               />
-              <Button>Sign Up</Button>
+              <div className={classNames(form__full, controls)}>
+                <Button
+                  disabled={loading || hasErrors || !isComplete}
+                  className={btn}
+                >
+                  Sign Up
+                </Button>
+                <Text as='p' type='meta1'>
+                  Already have an account?{' '}
+                  <Link className={link} to='/login'>
+                    Sign in
+                  </Link>
+                  .
+                </Text>
+              </div>
             </form>
           </div>
         </div>

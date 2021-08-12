@@ -1,9 +1,11 @@
+import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
+import { navigate } from 'gatsby';
+
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
-import { createContext, useReducer } from 'react';
+import { useForm } from './FormContext';
 
 import {
   card,
@@ -13,50 +15,30 @@ import {
   header,
   npm,
 } from './Form.module.scss';
-
-const reducer = (state, newState) => ({ ...state, ...newState });
-
-const defaultForm = () => ({
-  first_name: '',
-  last_name: '',
-  email: '',
-  phone: '',
-  country: '',
-  school: '',
-  major: '',
-  level_of_study: '',
-  expected_graduation: '',
-  age: '',
-  gender: '',
-  race: '',
-  number_of_hackathons: '',
-  github: '',
-  linkedin: '',
-  resume: null,
-  code_of_conduct_confirm: false,
-  privacy_confirm: false,
-  email_consent_confirm: false,
-  media_consent_confirm: false,
-});
-
-const defaultValidity = () => ({
-  personal: false,
-  school: false,
-  demography: false,
-  experience: false,
-  mlh: false,
-  consent: false,
-});
-
-export const ValidityContext = createContext(defaultValidity());
-export const FormContext = createContext(defaultForm());
-export const ActionsContext = createContext({});
+import toast from 'react-hot-toast';
+import { fetchApi } from '../../../utils/ApiProvider';
 
 export default function Form({ children }) {
-  const [validity, setValidity] = useReducer(reducer, {}, defaultValidity);
-  const [store, setForm] = useReducer(reducer, {}, defaultForm);
+  const { formState, formInfo, isSaving } = useForm();
+  const submit = async () => {
+    toast.promise(
+      fetchApi('/forms/hacker_application/response/submit', { method: 'POST' }),
+      {
+        loading: 'Submitting application...',
+        success: 'Application successfully submitted!',
+        error: 'Unable to submit application. Try again later',
+      },
+    ).then(() => {
+      navigate('/dashboard');
+    });
+  };
 
-  const submit = async () => {};
+  const isDisabled = isSaving
+    || !Object.values(formState.local).every(Boolean)
+    || Object.values(formState.errors).some(Boolean)
+    || formInfo.questions
+        .map(question => question.required && formState.form[question.id] === '')
+        .some(Boolean);
 
   return (
     <Section backgroundColor='charcoal' className={container}>
@@ -68,7 +50,12 @@ export default function Form({ children }) {
           <Text type='heading2' font='secondary' as='h1'>
             Application
           </Text>
-          <Button type='ghost' color='white' leftIcon={FaAngleLeft}>
+          <Button
+            onClick={() => navigate('/dashboard')}
+            type='ghost'
+            color='white'
+            leftIcon={FaAngleLeft}
+          >
             Back to Dashboard
           </Button>
         </div>
@@ -82,21 +69,11 @@ export default function Form({ children }) {
               submit();
               return false;
             }}
+            noValidate
           >
-            <ActionsContext.Provider
-              value={{
-                setValidity,
-                setForm,
-              }}
-            >
-              <ValidityContext.Provider value={validity}>
-                <FormContext.Provider value={store}>
-                  {children}
-                </FormContext.Provider>
-              </ValidityContext.Provider>
-            </ActionsContext.Provider>
+            {children}
             <div className={footer}>
-              <Button disabled={!Object.values(validity).every(Boolean)}>
+              <Button disabled={isDisabled}>
                 Submit Application
               </Button>
             </div>

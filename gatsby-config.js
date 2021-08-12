@@ -12,7 +12,7 @@ module.exports = {
     keywords,
     featureFlags: {
       mlh: false,
-      open: false,
+      open: true,
     },
   },
   plugins: [

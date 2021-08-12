@@ -1,0 +1,26 @@
+@use "@htv/ui-kit/styles/mixins";
+
+.container {
+  grid-template-columns: auto max-content;
+  grid-column: span 2;
+  padding: 1.5rem;
+  grid-gap: 1rem;
+  display: grid;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+    grid-column: span 1;
+  }
+}
+
+.status {
+  margin: 0.75rem 0;
+}
+
+.button {
+  margin: auto 1rem;
+
+  @include mixins.media(tablet) {
+    margin: 0;
+  }
+}

@@ -23,7 +23,7 @@ export default function SEO({ lang = `en`, title = ``, meta = [] }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`${title ? '%s | ' : ''}${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
