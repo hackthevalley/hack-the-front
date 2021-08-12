@@ -189,7 +189,7 @@ export function FormProvider({ children }) {
 
   useEffect(() => {
     if (isLoadingForm || isLoadingResponse) return;
-    if (!responseInfo?.isDraft) {
+    if (!(responseInfo?.isDraft ?? true)) {
       toast.error('You have already applied');
       return navigate('/dashboard');
     }
