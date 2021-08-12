@@ -29,7 +29,7 @@ export async function getJwt() {
   }
 }
 
-export function fetchApi(path, options = {}) {
+export async function fetchApi(path, options = {}) {
   const headers = options.headers === null ? {} : {
     'content-type': 'application/json',
     ...options.headers,
@@ -40,10 +40,13 @@ export function fetchApi(path, options = {}) {
     headers.authorization = `JWT ${jwt.token}`;
   }
 
-  return fetch(`${process.env.GATSBY_API_URL}${path}`, {
+  const res = await fetch(`${process.env.GATSBY_API_URL}${path}`, {
     ...options,
     headers,
-  }).then((data) => data.json());
+  });
+
+  if (!res.ok) throw await res.json();
+  return res.json();
 }
 
 export default function ApiProvider({ authenticated, children }) {

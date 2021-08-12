@@ -14,24 +14,8 @@ export default function Personal() {
       <div className={layout}>
         <FormField index='0'/>
         <FormField index='1'/>
-        <FormField
-          index='2'
-          validator={value => {
-            if (!value.match(EMAIL_REGEX)) {
-              return 'Please provide a valid email address.';
-            }
-          }}
-        />
-        <FormField
-          index='3'
-          validator={value => {
-            if (!value.startsWith('+')) {
-              return 'Phone number must include area code';
-            } else if (value.length < 9) {
-              return 'Please provide a valid phone number';
-            }
-          }}
-        />
+        <FormField index='2'/>
+        <FormField index='3'/>
       </div>
     </fieldset>
   );

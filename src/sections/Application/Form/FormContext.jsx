@@ -14,6 +14,7 @@ import FileUpload from '../../../components/FileUpload';
 import { fetchApi } from '../../../utils/ApiProvider';
 import questionTypes from '../../../utils/enums/questionTypes';
 import toast from 'react-hot-toast';
+import { navigate } from 'gatsby';
 
 const FormContext = createContext({});
 const hasOptions = [
@@ -70,7 +71,13 @@ export function FormField({
         );
       } catch (err) {
         if (err.name !== 'AbortError') {
-          toast.error('Unable to save a question... Please try again later'); 
+          setFormState(_state => ({
+            ..._state,
+            errors: {
+              ..._state.errors,
+              [fieldInfo.id]: err.detail.fieldErrors[0].message,
+            },
+          }))
         }
       } finally {
         setIsSaving(_state => _state - 1);
@@ -196,6 +203,10 @@ export function FormProvider({ children }) {
 
   useEffect(() => {
     if (isLoadingForm || isLoadingResponse) return;
+    if (!responseInfo?.isDraft) {
+      toast.error('You have already applied');
+      return navigate('/dashboard');
+    }
     (async () => {
       // If no response, create one for the user
       if (!responseInfo) {
