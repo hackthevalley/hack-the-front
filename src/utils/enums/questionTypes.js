@@ -1,0 +1,15 @@
+export default {
+  SHORT_TEXT: 'SHORT_TEXT',
+  // LONG_TEXT: 'LONG_TEXT',
+  SELECT: 'SELECT',
+  // MULTISELECT: 'MULTISELECT',
+  // RADIO: 'RADIO',
+  HTTP_URL: 'HTTP_URL',
+  PHONE: 'PHONE',
+  EMAIL: 'EMAIL',
+  PDF_FILE: 'PDF_FILE',
+  // IMAGE_FILE: 'IMAGE_FILE',
+  // Custom types
+  _FREE_SELECT: '_FREE_SELECT',
+  _NUMBER: '_NUMBER',
+};

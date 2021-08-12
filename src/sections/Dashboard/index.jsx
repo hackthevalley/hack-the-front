@@ -1,13 +1,16 @@
 import { IoChevronBack } from '@react-icons/all-files/io5/IoChevronBack';
 import classNames from 'classnames';
-import { Link } from 'gatsby';
+import { navigate } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import { useEffect, useState } from 'react';
+import { useGet } from 'restful-react';
 
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
+
+import Loading from '../../components/Loading';
+import Status from './Status';
 
 import {
   container,
@@ -15,54 +18,31 @@ import {
   back,
   npm,
   header,
-  status,
   explore,
   factions,
   faq,
-  app,
-  statusText,
   factionIcons,
-  loading,
   card,
 } from './Dashboard.module.scss';
 
-const dueDate = new Date();
-const formatDate = (date) =>
-  new Intl.DateTimeFormat(`en-US`, {
-    month: 'long',
-    day: '2-digit',
-    year: 'numeric',
-  }).format(date);
-
 function Dashboard() {
-  const [userInfo, setUserInfo] = useState();
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      window.setTimeout(() => {
-        if (mounted) {
-          setUserInfo({
-            name: 'Stephanie',
-            status: 'Submitted!',
-          });
-        }
-      }, 5000);
-    })();
+  const { loading: isLoadingForm, data: formInfo } = useGet({
+    path: `/forms/hacker_application`,
+  });
+  const { loading: isLoadingUserInfo, data: userInfo } = useGet({
+    path: '/account/users/me',
+  });
+  const { loading: isLoadingResponse, data: responseInfo } = useGet({
+    path: `/forms/hacker_application/response`,
+  });
 
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  if (!userInfo) {
+  if (isLoadingForm || isLoadingUserInfo || isLoadingResponse) {
     return (
-      <div className={container}>
-        <Section className={content} backgroundColor='charcoal'>
-          <Text className={loading} type='heading2' font='secondary'>
-            Loading...
-          </Text>
-        </Section>
-      </div>
+      <Loading
+        description="You're page would be ready soon owo"
+        title='Loading...'
+        isLoading
+      />
     );
   }
 
@@ -75,10 +55,14 @@ function Dashboard() {
               npm start challenge
             </Text>
             <Text type='heading2' font='secondary'>
-              Welcome Back, {userInfo.name}
+              Welcome Back, {userInfo.firstName}
             </Text>
           </div>
           <Button
+            onClick={() => {
+              localStorage.removeItem('auth');
+              navigate('/login');
+            }}
             className={back}
             leftIcon={IoChevronBack}
             type='ghost'
@@ -87,30 +71,7 @@ function Dashboard() {
             Log Out
           </Button>
         </div>
-        <Card backgroundColor='darkviolet' className={status}>
-          <div>
-            <Text type='meta1' font='secondary' color='white'>
-              Current Application Status
-            </Text>
-            <Text
-              className={statusText}
-              type='heading2'
-              font='secondary'
-              as='p'
-            >
-              {userInfo.status}
-            </Text>
-            <Text type='meta1' font='secondary'>
-              Application due on{' '}
-              <Text type='meta1' font='secondary' color='white'>
-                {formatDate(dueDate)}
-              </Text>
-            </Text>
-          </div>
-          <Button as={Link} to='/application' className={app}>
-            View Application
-          </Button>
-        </Card>
+        <Status responseInfo={responseInfo} formInfo={formInfo} />
         <Text
           className={explore}
           type='body1'
@@ -130,26 +91,26 @@ function Dashboard() {
         >
           <div className={factionIcons}>
             <StaticImage
-              height='60'
-              width='60'
+              height={60}
+              width={60}
               alt='Health'
               src='../../images/faction-icons/factions-health.png'
             />
             <StaticImage
-              height='60'
-              width='60'
+              height={60}
+              width={60}
               alt='Nature'
               src='../../images/faction-icons/factions-nature.png'
             />
             <StaticImage
-              height='60'
-              width='60'
+              height={60}
+              width={60}
               alt='Technology'
               src='../../images/faction-icons/factions-technology.png'
             />
             <StaticImage
-              height='60'
-              width='60'
+              height={60}
+              width={60}
               alt='Discovery'
               src='../../images/faction-icons/factions-discovery.png'
             />

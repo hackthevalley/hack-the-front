@@ -75,19 +75,6 @@
   }
 }
 
-.status {
-  grid-area: status;
-  padding: 1.5rem 2.5rem 1.5rem 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: 1.25rem;
-
-  @include mixins.media(tablet) {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-  }
-}
-
 .explore {
   grid-area: explore;
 }
@@ -121,37 +108,8 @@
   grid-gap: 2.5rem;
 }
 
-.app {
-  margin: auto 0;
-  text-decoration: none;
-}
-
-.statusText {
-  margin: 0.5rem 0;
-}
-
 .factionIcons {
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   display: grid;
-}
-
-.loading {
-  margin-top: 2rem;
-  animation: pulse 1s linear 0s infinite;
-
-  @keyframes pulse {
-    0% {
-      opacity: 0.4;
-    }
-    40% {
-      opacity: 0.8;
-    }
-    60% {
-      opacity: 0.8;
-    }
-    100% {
-      opacity: 0.4;
-    }
-  }
 }

@@ -1,46 +1,52 @@
 import Text from '@htv/ui-kit/components/Text';
-import { useContext, useEffect } from 'react';
+
 import Checkbox from '../../../components/Checkbox';
-import { container, fieldset, legend } from '../Application.module.scss';
-import { ActionsContext, FormContext } from '../Form';
-import { checkbox } from './Consent.module.scss';
+import { layout, fieldset, legend, full_col } from '../Application.module.scss';
+import { useForm } from '../Form/FormContext';
 
 export default function Consent() {
-  const store = useContext(FormContext);
-  const { setForm, setValidity } = useContext(ActionsContext);
+  const { formState, setFormState } = useForm();
 
-  useEffect(() => {
-    const isValid = [store.media_consent_confirm].every(Boolean);
-    setValidity({ mlh: isValid });
-  }, [setValidity, store]);
+  const applyProps = name => ({
+    onChange: ({ target }) => {
+      setFormState({
+        ...formState,
+        local: {
+          ...formState.local,
+          [name]: target.value,
+        },
+      });
+    },
+    value: formState.local[name],
+    required: true,
+    name,
+  });
 
   return (
     <fieldset className={fieldset}>
       <Text className={legend} type='body1' font='secondary' as='legend'>
         Consent Form
       </Text>
-      <div className={container}>
-        <Text type='body1' font='secondary' as='span' lineHeight='relaxed'>
+      <div className={layout}>
+        <Text
+          lineHeight='relaxed'
+          className={full_col}
+          color='white'
+          type='meta1'
+          as='p'
+        >
           I, hereby grant permission to Hack the Valley to use screenshots
           and/or video of me taken during Hack the Valley V in publications,
           news releases, online, and in other communication related to the
           mission of Hack the Valley. I further give my consent and submit my
           compliance to the use of a third party video conference service for
-          the virtual participation of Hack the Valley V.
+          the virtual participation of Hack the Valley V
         </Text>
-        <div className={checkbox}>
-          <Checkbox
-            checked={store.media_consent_confirm}
-            onChange={(e) =>
-              setForm({ media_consent_confirm: e.target.checked })
-            }
-            required
-          >
-            <Text type='body1' font='secondary' as='span' lineHeight='relaxed'>
-              I agree
-            </Text>
-          </Checkbox>
-        </div>
+        <Checkbox
+          {...applyProps('htv_consent')}
+          className={full_col}
+          label='I agree'
+        />
       </div>
     </fieldset>
   );

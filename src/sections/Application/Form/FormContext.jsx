@@ -1,0 +1,276 @@
+import {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+} from 'react';
+import { useGet } from 'restful-react';
+import Input from '../../../components/Input';
+import Select from '../../../components/Select';
+import Combobox from '../../../components/Combobox';
+import Loading from '../../../components/Loading';
+import FileUpload from '../../../components/FileUpload';
+import { fetchApi } from '../../../utils/ApiProvider';
+import questionTypes from '../../../utils/enums/questionTypes';
+import toast from 'react-hot-toast';
+
+const FormContext = createContext({});
+const hasOptions = [
+  questionTypes.SELECT,
+];
+
+function byOrder(a, b) {
+  return a.order - b.order;
+}
+
+export function useForm() {
+  return useContext(FormContext);
+}
+
+export function FormField({
+  validator = () => {},
+  fieldProps,
+  forceType,
+  index,
+  id,
+}) {
+  const { setFormState, formState, formInfo, setIsSaving } = useForm();
+  const fieldInfo = id
+    ? formInfo?.questions?.find(field => field.id === id)
+    : formInfo?.questions[index];
+
+  useEffect(() => {
+    if (!formState.form[fieldInfo.id] || formState.errors[fieldInfo.id]) return;
+
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      setIsSaving(_state => _state + 1);
+      try {
+        await fetchApi(
+          '/forms/hacker_application/response/answer_question',
+          {
+            signal: controller.signal,
+            method: 'PUT',
+            body: JSON.stringify({
+              question: fieldInfo.id,
+              ...(
+                hasOptions.includes(fieldInfo.type)
+                  ? {
+                      answerOptions: [{
+                        option: formState.form[fieldInfo.id],
+                      }]
+                    }
+                  : {
+                      answer: formState.form[fieldInfo.id]?.id ?? formState.form[fieldInfo.id],
+                    }
+              ),
+            }),
+          },
+        );
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          toast.error('Unable to save a question... Please try again later'); 
+        }
+      } finally {
+        setIsSaving(_state => _state - 1);
+      }
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [ formState.form[fieldInfo.id], formState.errors[fieldInfo.id] ]);
+ 
+  // Props that all form elements share
+  const defaultProps = {
+    onBlur: () => {
+      // Check required then custom validator
+      const value = formState.form[fieldInfo.id];
+      const checkRequired = fieldInfo.required && !value && 'This field is required';
+      const isValid = validator(value, { fieldInfo, formState, formInfo });
+
+      setFormState({
+        ...formState,
+        errors: {
+          ...formState.errors,
+          [fieldInfo.id]: checkRequired || isValid,
+        },
+      });
+    },
+    onChange: ({ target }) => {
+      setFormState({
+        ...formState,
+        changed: {
+          ...formState.changed,
+          [fieldInfo.id]: true,
+        },
+        form: {
+          ...formState.form,
+          [fieldInfo.id]: target.value,
+        },
+        errors: {
+          ...formState.errors,
+          [fieldInfo.id]: false,
+        },
+      });
+    },
+    error: formState.errors[fieldInfo.id],
+    value: formState.form[fieldInfo.id],
+    placeholder: fieldInfo.placeholder,
+    required: fieldInfo.required,
+    label: fieldInfo.label,
+    name: fieldInfo.id,
+    ...fieldProps,
+  };
+
+  switch(forceType ?? fieldInfo.type) {
+    case questionTypes.SHORT_TEXT:
+      return <Input {...defaultProps}/>;
+    case questionTypes.SELECT:
+      return (
+        <Select
+          {...defaultProps}
+          options={fieldInfo.options.sort(byOrder).map(option => ({
+            label: option.label,
+            value: option.id,
+          }))}
+        />
+      );
+    case questionTypes.HTTP_URL:
+      return <Input {...defaultProps} type='url'/>;
+    case questionTypes.PHONE:
+      return <Input {...defaultProps} type='tel'/>;
+    case questionTypes.EMAIL:
+      return <Input {...defaultProps} type='email'/>;
+    case questionTypes.PDF_FILE:
+      return (
+        <FileUpload
+          {...defaultProps}
+          uploadUrl='/forms/hacker_application/response/files/upload'
+          accept={[FileUpload.supportedFiles.PDF]}
+          questionId={fieldInfo.id}
+        />
+      );
+    case questionTypes._FREE_SELECT:
+      return <Combobox {...defaultProps}/>;
+    case questionTypes._NUMBER:
+      return <Input {...defaultProps} type='number'/>;
+  }
+}
+
+export function FormProvider({ children }) {
+  const {
+    loading: isLoadingResponse,
+    data: responseInfo,
+    refetch,
+  } = useGet({
+    path: '/forms/hacker_application/response',
+  });
+
+  const {
+    loading: isLoadingForm,
+    data: formInfo,
+  } = useGet({
+    path: '/forms/hacker_application',
+    resolve: data => ({
+      ...data,
+      questions: data.questions.sort(byOrder),
+    }),
+  });
+
+  const [ isReady, setIsReady ] = useState(false);
+  const [ isSaving, setIsSaving ] = useState(0);
+  const [formState, setFormState] = useState({
+    errors: {},
+    form: {},
+    // Anything that is not submitted
+    local: {
+      mlh_coc: false,
+      mlh_share: false,
+      mlh_email: false,
+      htv_consent: false,
+    },
+  });
+
+  useEffect(() => {
+    if (isLoadingForm || isLoadingResponse) return;
+    (async () => {
+      // If no response, create one for the user
+      if (!responseInfo) {
+        await fetchApi('/forms/hacker_application/response', {
+          method: 'POST',
+          body: JSON.stringify({
+            form: formInfo.id,
+            isDraft: true,
+            answers: [],
+          }),
+        });
+
+        // At this point, the effect is "done"
+        await refetch();
+        return;
+      }
+
+      // Create a map of responses to questions
+      const responsesToQuestion = responseInfo.answers.reduce((acc, response) => {
+        acc[response.question] = response.answer ?? response.answerOptions[0]?.option;
+        return acc;
+      }, {});
+
+      // Hydrate form with response
+      const asyncOperations = [];
+      const form = formInfo.questions.reduce((acc, question) => {
+        const value = responsesToQuestion[question.id];
+        acc[question.id] = value ?? question.defaultAnswer ?? '';
+
+        // If it's a file, then load it's info
+        if (value && question.type === questionTypes.PDF_FILE) {
+          asyncOperations.push(
+            fetchApi(`/forms/hacker_application/response/files/${value}`)
+              .then(data => acc[data.question] = data),
+          );
+        }
+        return acc;
+      }, {});
+
+      await Promise.all(asyncOperations);
+      setFormState(_state => ({
+        ..._state,
+        errors: {},
+        form,
+      }));
+
+      setIsReady(true);
+    })();
+  }, [
+    isLoadingResponse,
+    isLoadingForm,
+    responseInfo,
+    formInfo,
+    refetch,
+  ]);
+
+  // Save prompt
+  const toastPrompt = useRef();
+  useEffect(() => {
+    if (isSaving === 0) {
+      toast.dismiss(toastPrompt.current);
+      if (toastPrompt.current) {
+        toastPrompt.current = toast.success('Application has been saved!');
+      }
+      return () => {
+        toastPrompt.current = toast.loading('Saving application...', { duration: 999999 });
+      }
+    }
+  }, [ isSaving ]);
+
+  return (
+    <FormContext.Provider value={{ setFormState, formState, formInfo, setIsSaving, isSaving }}>
+      <Loading isLoading={!isReady}>
+        {children}
+      </Loading>
+    </FormContext.Provider>
+  );
+};

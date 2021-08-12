@@ -1,3 +1,17 @@
-.checkbox:not(:last-child) {
-  margin-bottom: 2rem;
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/colors';
+
+.link {
+  @include mixins.transition(color);
+  color: colors.css-color(lime);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: colors.css-color(lime, hover);
+  }
+
+  &:active {
+    color: colors.css-color(lime, active);
+  }
 }

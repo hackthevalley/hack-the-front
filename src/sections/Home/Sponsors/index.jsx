@@ -12,8 +12,6 @@ import * as styles from './Sponsors.module.scss';
 export default function Sponsors() {
   const { sponsors } = useStaticQuery(query);
 
-  console.log(sponsors);
-
   return (
     <Section
       className={styles.container}

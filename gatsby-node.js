@@ -40,8 +40,8 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
               importLoaders: 2,
               modules: {
                 localIdentName: isProd
-                  ? `[hash:base64:5]`
-                  : `[name]__[local]--[hash:base64:5]`,
+                  ? `[hash:base64:8]`
+                  : `[name]__[local]--[hash:base64:8]`,
               },
             }),
             loaders.postcss(),

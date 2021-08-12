@@ -1,0 +1,71 @@
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/mixins';
+
+.required {
+  color: colors.css-color(red);
+  margin-left: 0.25rem;
+}
+
+.browse {
+  color: colors.css-color(lime);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  height: auto;
+  width: 1rem;
+}
+
+.frame {
+  position: relative;
+}
+
+.box {
+  @include mixins.transition(background-color border-color);
+  background-color: colors.css-color(white, $opacity: 0.1);
+  border: 2px dashed colors.css-color(white);
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  padding: 2.5rem;
+}
+
+.field {
+  position: absolute;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  margin: 0;
+  inset: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+
+    & .box {
+      background-color: colors.css-color(disabled, $opacity: 0.1);
+      border-color: colors.css-color(disabled);
+    }
+  }
+
+  &:focus, &:hover {
+    & ~ .box {
+      background-color: colors.css-color(lime, $opacity: 0.1);
+      border-color: colors.css-color(lime);
+    }
+  }
+
+  &:active {
+    & ~ .box {
+      background-color: colors.css-color(lime, $modifier: active, $opacity: 0.1);
+      border-color: colors.css-color(lime, active);
+    }
+  }
+}

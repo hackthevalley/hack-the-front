@@ -29,7 +29,7 @@
 }
 
 .content {
-  max-width: 52rem;
+  max-width: 38rem;
   margin: 0 auto;
 }
 
@@ -43,31 +43,8 @@
 
 .body {
   display: grid;
-  grid-template-columns: 1fr 3px 1fr;
-  grid-gap: 2rem 4rem;
-
-  @include mixins.media(tablet) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 3px 1fr;
-  }
-}
-
-.socials {
-  margin-top: 4rem;
-  display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1.25rem;
-
-  @include mixins.media(tablet) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.line {
-  background-color: colors.css-color(darkviolet);
-  border-radius: 999px;
-  height: 70%;
-  margin: auto 0;
+  grid-gap: 2rem;
 }
 
 .form {
@@ -78,4 +55,30 @@
   &__full {
     grid-column: span 2;
   }
+}
+
+.link {
+  @include mixins.transition(color);
+  color: colors.css-color(lime);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: colors.css-color(lime, hover);
+  }
+
+  &:active {
+    color: colors.css-color(lime, active);
+  }
+}
+
+.controls {
+  grid-template-columns: 1fr;
+  padding-top: 1rem;
+  grid-gap: 2rem;
+  display: grid;
+}
+
+.btn {
+  max-width: 10rem;
 }

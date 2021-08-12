@@ -44,3 +44,18 @@
   margin-top: 4rem;
   display: flex;
 }
+
+.upload {
+  &__content {
+    padding-top: 2rem;
+  };
+
+  &__layout {
+    & label {
+      font-size: 0.9rem;
+      right: 0;
+      left: 0;
+      top: 0;
+    }
+  }
+}

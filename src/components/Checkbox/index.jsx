@@ -1,68 +1,70 @@
-import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import Required from '../Required';
-import { ReactComponent as CheckmarkIcon } from '../../images/checkmark.svg';
+import { useState } from 'react';
+
+import Text from '@htv/ui-kit/components/Text';
+
+import { ReactComponent as Check } from '../../images/checkmark.svg';
 import {
+  container,
   checkbox,
-  checkbox__control,
-  checkbox__error,
-  checkbox__input,
-  checkmarkContainer,
+  checkbox__checked,
+  checkbox__focused,
+  field,
+  check,
+  required,
 } from './Checkbox.module.scss';
 
 export default function Checkbox({
-  checked,
-  disabled = false,
-  required = false,
+  label: labelText,
   onChange,
-  hasError = false,
-  name,
-  form,
   className,
-  children,
+  error,
+  ...props
 }) {
-  const CheckboxLabel = (
-    <Text htmlFor={name} color='white' type='meta1' as='label'>
-      {children}
-    </Text>
-  );
+  const [focused, setFocused] = useState(false);
 
   return (
-    <div
-      className={classNames(hasError && checkbox__error, checkbox, className)}
-    >
-      <span className={checkbox__input}>
+    <div className={classNames(className, container)}>
+      <div
+        className={classNames(
+          props.disabled && checkbox__disabled,
+          props.value && checkbox__checked,
+          focused && checkbox__focused,
+          checkbox,
+        )}
+      >
         <input
+          onChange={(event) => {
+            event.target = {
+              ...event.target,
+              value: !props.value,
+            };
+            onChange(event);
+          }}
+          className={field}
           type='checkbox'
-          checked={checked}
-          disabled={disabled}
-          name={name}
-          form={form}
-          required={required}
-          onChange={onChange}
+          {...props}
+          onFocus={(e) => {
+            setFocused(true);
+            props.onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            setFocused(false);
+            props.onBlur?.(e);
+          }}
         />
-        <div className={checkbox__control}>
-          <div className={checkmarkContainer}>
-            <CheckmarkIcon width={12} height={10} viewBox='0 0 12 10' />
-          </div>
-        </div>
-      </span>
-      {children &&
-        (required ? <Required>{CheckboxLabel}</Required> : CheckboxLabel)}
+        <Check className={check} />
+      </div>
+      <Text
+        htmlFor={props.name}
+        lineHeight='relaxed'
+        color='white'
+        type='meta1'
+        as='label'
+      >
+        {labelText}
+        {props.required && <span className={required}>*</span>}
+      </Text>
     </div>
   );
 }
-
-Checkbox.propTypes = {
-  checked: PropTypes.bool.isRequired,
-  defaultChecked: PropTypes.bool,
-  disabled: PropTypes.bool,
-  required: PropTypes.bool,
-  name: PropTypes.string,
-  form: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  label: PropTypes.string,
-  hasError: PropTypes.bool,
-  className: PropTypes.string,
-};

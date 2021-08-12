@@ -5,13 +5,51 @@
 }
 
 .container {
-  padding: 0 4rem;
   margin-top: 2rem;
+  padding: 0 4rem;
 }
 
 .legend {
   &::before {
     content: '>';
     margin-right: 0.3rem;
+  }
+}
+
+.layout {
+  grid-template-columns: minmax(1px, 1fr) minmax(1px, 1fr);
+  grid-gap: 1.25rem 1.5rem;
+  padding: 1.75rem 2rem;
+  display: grid;
+}
+
+.two_col {
+  grid-template-columns: minmax(1px, 1fr) minmax(1px, 1fr);
+  grid-gap: 1.25rem;
+  display: grid;
+}
+
+.full_col {
+  grid-column: span 2;
+}
+
+@media only screen and (max-width: 950px) {
+  .layout {
+    grid-template-columns: minmax(1px, 1fr);
+  }
+
+  .full_col {
+    grid-column: span 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .two_col {
+    grid-template-columns: minmax(1px, 1fr);
+  }
+
+  .layout {
+    padding-right: 0;
+    padding-left: 0;
   }
 }

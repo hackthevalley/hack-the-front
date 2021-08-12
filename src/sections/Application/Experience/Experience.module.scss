@@ -1,16 +1,12 @@
-@use '@htv/ui-kit/styles/colors';
-
-.inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1.25rem 1.875rem;
-  margin-bottom: 1.25rem;
+.upload {
+  padding-top: 2rem;
 }
 
-.span_1 {
-  grid-column: 1;
-}
-
-.fileDropper {
-  margin-top: 1.25rem;
+.upload__layout {
+  & label {
+    font-size: 0.9rem;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
 }
