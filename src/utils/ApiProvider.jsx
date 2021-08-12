@@ -30,10 +30,13 @@ export async function getJwt() {
 }
 
 export async function fetchApi(path, options = {}) {
-  const headers = options.headers === null ? {} : {
-    'content-type': 'application/json',
-    ...options.headers,
-  };
+  const headers =
+    options.headers === null
+      ? {}
+      : {
+          'content-type': 'application/json',
+          ...options.headers,
+        };
 
   const jwt = JSON.parse(localStorage.getItem('auth') ?? null);
   if (jwt) {

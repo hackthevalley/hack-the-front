@@ -19,9 +19,9 @@ export default function Demography() {
               min: 0,
             }}
           />
-          <FormField index='10'/>
+          <FormField index='10' />
         </div>
-        <FormField index='11'/>
+        <FormField index='11' />
       </div>
     </fieldset>
   );

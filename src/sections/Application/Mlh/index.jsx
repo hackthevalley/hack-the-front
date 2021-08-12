@@ -8,7 +8,7 @@ import { link } from './Mlh.module.scss';
 export default function Mlh() {
   const { formState, setFormState } = useForm();
 
-  const applyProps = name => ({
+  const applyProps = (name) => ({
     onChange: ({ target }) => {
       setFormState({
         ...formState,

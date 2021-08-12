@@ -1,25 +1,18 @@
-import {
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-  createContext,
-} from 'react';
+import { navigate } from 'gatsby';
+import { useRef, useState, useEffect, useContext, createContext } from 'react';
+import toast from 'react-hot-toast';
 import { useGet } from 'restful-react';
-import Input from '../../../components/Input';
-import Select from '../../../components/Select';
+
 import Combobox from '../../../components/Combobox';
-import Loading from '../../../components/Loading';
 import FileUpload from '../../../components/FileUpload';
+import Input from '../../../components/Input';
+import Loading from '../../../components/Loading';
+import Select from '../../../components/Select';
 import { fetchApi } from '../../../utils/ApiProvider';
 import questionTypes from '../../../utils/enums/questionTypes';
-import toast from 'react-hot-toast';
-import { navigate } from 'gatsby';
 
 const FormContext = createContext({});
-const hasOptions = [
-  questionTypes.SELECT,
-];
+const hasOptions = [questionTypes.SELECT];
 
 function byOrder(a, b) {
   return a.order - b.order;
@@ -38,7 +31,7 @@ export function FormField({
 }) {
   const { setFormState, formState, formInfo, setIsSaving } = useForm();
   const fieldInfo = id
-    ? formInfo?.questions?.find(field => field.id === id)
+    ? formInfo?.questions?.find((field) => field.id === id)
     : formInfo?.questions[index];
 
   useEffect(() => {
@@ -46,41 +39,40 @@ export function FormField({
 
     const controller = new AbortController();
     const timer = window.setTimeout(async () => {
-      setIsSaving(_state => _state + 1);
+      setIsSaving((_state) => _state + 1);
       try {
-        await fetchApi(
-          '/forms/hacker_application/response/answer_question',
-          {
-            signal: controller.signal,
-            method: 'PUT',
-            body: JSON.stringify({
-              question: fieldInfo.id,
-              ...(
-                hasOptions.includes(fieldInfo.type)
-                  ? {
-                      answerOptions: [{
-                        option: formState.form[fieldInfo.id],
-                      }]
-                    }
-                  : {
-                      answer: formState.form[fieldInfo.id]?.id ?? formState.form[fieldInfo.id],
-                    }
-              ),
-            }),
-          },
-        );
+        await fetchApi('/forms/hacker_application/response/answer_question', {
+          signal: controller.signal,
+          method: 'PUT',
+          body: JSON.stringify({
+            question: fieldInfo.id,
+            ...(hasOptions.includes(fieldInfo.type)
+              ? {
+                  answerOptions: [
+                    {
+                      option: formState.form[fieldInfo.id],
+                    },
+                  ],
+                }
+              : {
+                  answer:
+                    formState.form[fieldInfo.id]?.id ??
+                    formState.form[fieldInfo.id],
+                }),
+          }),
+        });
       } catch (err) {
         if (err.name !== 'AbortError') {
-          setFormState(_state => ({
+          setFormState((_state) => ({
             ..._state,
             errors: {
               ..._state.errors,
               [fieldInfo.id]: err.detail.fieldErrors[0].message,
             },
-          }))
+          }));
         }
       } finally {
-        setIsSaving(_state => _state - 1);
+        setIsSaving((_state) => _state - 1);
       }
     }, 2000);
 
@@ -88,14 +80,15 @@ export function FormField({
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [ formState.form[fieldInfo.id], formState.errors[fieldInfo.id] ]);
- 
+  }, [formState.form[fieldInfo.id], formState.errors[fieldInfo.id]]);
+
   // Props that all form elements share
   const defaultProps = {
     onBlur: () => {
       // Check required then custom validator
       const value = formState.form[fieldInfo.id];
-      const checkRequired = fieldInfo.required && !value && 'This field is required';
+      const checkRequired =
+        fieldInfo.required && !value && 'This field is required';
       const isValid = validator(value, { fieldInfo, formState, formInfo });
 
       setFormState({
@@ -132,25 +125,25 @@ export function FormField({
     ...fieldProps,
   };
 
-  switch(forceType ?? fieldInfo.type) {
+  switch (forceType ?? fieldInfo.type) {
     case questionTypes.SHORT_TEXT:
-      return <Input {...defaultProps}/>;
+      return <Input {...defaultProps} />;
     case questionTypes.SELECT:
       return (
         <Select
           {...defaultProps}
-          options={fieldInfo.options.sort(byOrder).map(option => ({
+          options={fieldInfo.options.sort(byOrder).map((option) => ({
             label: option.label,
             value: option.id,
           }))}
         />
       );
     case questionTypes.HTTP_URL:
-      return <Input {...defaultProps} type='url'/>;
+      return <Input {...defaultProps} type='url' />;
     case questionTypes.PHONE:
-      return <Input {...defaultProps} type='tel'/>;
+      return <Input {...defaultProps} type='tel' />;
     case questionTypes.EMAIL:
-      return <Input {...defaultProps} type='email'/>;
+      return <Input {...defaultProps} type='email' />;
     case questionTypes.PDF_FILE:
       return (
         <FileUpload
@@ -161,34 +154,27 @@ export function FormField({
         />
       );
     case questionTypes._FREE_SELECT:
-      return <Combobox {...defaultProps}/>;
+      return <Combobox {...defaultProps} />;
     case questionTypes._NUMBER:
-      return <Input {...defaultProps} type='number'/>;
+      return <Input {...defaultProps} type='number' />;
   }
 }
 
 export function FormProvider({ children }) {
-  const {
-    loading: isLoadingResponse,
-    data: responseInfo,
-    refetch,
-  } = useGet({
+  const { loading: isLoadingResponse, data: responseInfo, refetch } = useGet({
     path: '/forms/hacker_application/response',
   });
 
-  const {
-    loading: isLoadingForm,
-    data: formInfo,
-  } = useGet({
+  const { loading: isLoadingForm, data: formInfo } = useGet({
     path: '/forms/hacker_application',
-    resolve: data => ({
+    resolve: (data) => ({
       ...data,
       questions: data.questions.sort(byOrder),
     }),
   });
 
-  const [ isReady, setIsReady ] = useState(false);
-  const [ isSaving, setIsSaving ] = useState(0);
+  const [isReady, setIsReady] = useState(false);
+  const [isSaving, setIsSaving] = useState(0);
   const [formState, setFormState] = useState({
     errors: {},
     form: {},
@@ -225,10 +211,14 @@ export function FormProvider({ children }) {
       }
 
       // Create a map of responses to questions
-      const responsesToQuestion = responseInfo.answers.reduce((acc, response) => {
-        acc[response.question] = response.answer ?? response.answerOptions[0]?.option;
-        return acc;
-      }, {});
+      const responsesToQuestion = responseInfo.answers.reduce(
+        (acc, response) => {
+          acc[response.question] =
+            response.answer ?? response.answerOptions[0]?.option;
+          return acc;
+        },
+        {},
+      );
 
       // Hydrate form with response
       const asyncOperations = [];
@@ -239,15 +229,16 @@ export function FormProvider({ children }) {
         // If it's a file, then load it's info
         if (value && question.type === questionTypes.PDF_FILE) {
           asyncOperations.push(
-            fetchApi(`/forms/hacker_application/response/files/${value}`)
-              .then(data => acc[data.question] = data),
+            fetchApi(`/forms/hacker_application/response/files/${value}`).then(
+              (data) => (acc[data.question] = data),
+            ),
           );
         }
         return acc;
       }, {});
 
       await Promise.all(asyncOperations);
-      setFormState(_state => ({
+      setFormState((_state) => ({
         ..._state,
         errors: {},
         form,
@@ -255,13 +246,7 @@ export function FormProvider({ children }) {
 
       setIsReady(true);
     })();
-  }, [
-    isLoadingResponse,
-    isLoadingForm,
-    responseInfo,
-    formInfo,
-    refetch,
-  ]);
+  }, [isLoadingResponse, isLoadingForm, responseInfo, formInfo, refetch]);
 
   // Save prompt
   const toastPrompt = useRef();
@@ -272,16 +257,18 @@ export function FormProvider({ children }) {
         toastPrompt.current = toast.success('Application has been saved!');
       }
       return () => {
-        toastPrompt.current = toast.loading('Saving application...', { duration: 999999 });
-      }
+        toastPrompt.current = toast.loading('Saving application...', {
+          duration: 999999,
+        });
+      };
     }
-  }, [ isSaving ]);
+  }, [isSaving]);
 
   return (
-    <FormContext.Provider value={{ setFormState, formState, formInfo, setIsSaving, isSaving }}>
-      <Loading isLoading={!isReady}>
-        {children}
-      </Loading>
+    <FormContext.Provider
+      value={{ setFormState, formState, formInfo, setIsSaving, isSaving }}
+    >
+      <Loading isLoading={!isReady}>{children}</Loading>
     </FormContext.Provider>
   );
-};
+}

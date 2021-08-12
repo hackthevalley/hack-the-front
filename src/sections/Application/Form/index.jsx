@@ -1,12 +1,13 @@
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { navigate } from 'gatsby';
+import toast from 'react-hot-toast';
 
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import { useForm } from './FormContext';
 
+import { fetchApi } from '../../../utils/ApiProvider';
 import {
   card,
   container,
@@ -15,30 +16,36 @@ import {
   header,
   npm,
 } from './Form.module.scss';
-import toast from 'react-hot-toast';
-import { fetchApi } from '../../../utils/ApiProvider';
+import { useForm } from './FormContext';
 
 export default function Form({ children }) {
   const { formState, formInfo, isSaving } = useForm();
   const submit = async () => {
-    toast.promise(
-      fetchApi('/forms/hacker_application/response/submit', { method: 'POST' }),
-      {
-        loading: 'Submitting application...',
-        success: 'Application successfully submitted!',
-        error: 'Unable to submit application. Try again later',
-      },
-    ).then(() => {
-      navigate('/dashboard');
-    });
+    toast
+      .promise(
+        fetchApi('/forms/hacker_application/response/submit', {
+          method: 'POST',
+        }),
+        {
+          loading: 'Submitting application...',
+          success: 'Application successfully submitted!',
+          error: 'Unable to submit application. Try again later',
+        },
+      )
+      .then(() => {
+        navigate('/dashboard');
+      });
   };
 
-  const isDisabled = isSaving
-    || !Object.values(formState.local).every(Boolean)
-    || Object.values(formState.errors).some(Boolean)
-    || formInfo.questions
-        .map(question => question.required && formState.form[question.id] === '')
-        .some(Boolean);
+  const isDisabled =
+    isSaving ||
+    !Object.values(formState.local).every(Boolean) ||
+    Object.values(formState.errors).some(Boolean) ||
+    formInfo.questions
+      .map(
+        (question) => question.required && formState.form[question.id] === '',
+      )
+      .some(Boolean);
 
   return (
     <Section backgroundColor='charcoal' className={container}>
@@ -73,9 +80,7 @@ export default function Form({ children }) {
           >
             {children}
             <div className={footer}>
-              <Button disabled={isDisabled}>
-                Submit Application
-              </Button>
+              <Button disabled={isDisabled}>Submit Application</Button>
             </div>
           </form>
         </Card>

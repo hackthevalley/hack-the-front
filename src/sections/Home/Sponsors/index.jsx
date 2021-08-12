@@ -87,13 +87,8 @@ export default function Sponsors() {
 const query = graphql`
   {
     sponsors: allAirtable(
-      sort: {
-        fields: data___Sort_Order,
-        order: ASC
-      }
-      filter: {
-        table: { eq: "Sponsor Types" }
-      }
+      sort: { fields: data___Sort_Order, order: ASC }
+      filter: { table: { eq: "Sponsor Types" } }
     ) {
       nodes {
         recordId

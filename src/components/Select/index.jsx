@@ -82,7 +82,8 @@ export default function Select({
           type='body1'
           as='span'
         >
-          {options.find(option => option.value === props.value)?.label ?? placeholder}
+          {options.find((option) => option.value === props.value)?.label ??
+            placeholder}
         </Text>
         <Caret className={caret} />
       </button>

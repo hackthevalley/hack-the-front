@@ -1,10 +1,19 @@
-import { ReactComponent as AttachFileIcon } from '../../images/attach-file.svg';
-import Text from '@htv/ui-kit/components/Text';
 import { useState, useRef } from 'react';
-
-import { required, frame, box, field, icon, browse, header } from './FileUpload.module.scss';
-import { fetchApi } from '../../utils/ApiProvider';
 import toast from 'react-hot-toast';
+
+import Text from '@htv/ui-kit/components/Text';
+
+import { ReactComponent as AttachFileIcon } from '../../images/attach-file.svg';
+import { fetchApi } from '../../utils/ApiProvider';
+import {
+  required,
+  frame,
+  box,
+  field,
+  icon,
+  browse,
+  header,
+} from './FileUpload.module.scss';
 
 const supportedFiles = {
   PDF: 'PDF',
@@ -28,9 +37,9 @@ export default function FileUpload({
   value,
   ...props
 }) {
-  const [ isUploading, setIsUploading ] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const upload = async event => {
+  const upload = async (event) => {
     console.log(event.target.files);
     if (!event.target.files[0]) return;
 
@@ -65,38 +74,37 @@ export default function FileUpload({
 
   let title = (
     <>
-      <AttachFileIcon className={icon}/>
+      <AttachFileIcon className={icon} />
       <span>
         <span className={browse}>Browse files</span> or drop file here
       </span>
     </>
   );
-  let description = `Supports: ${accept.map(file => fileInfo[file].label).join(', ')}`;
+  let description = `Supports: ${accept
+    .map((file) => fileInfo[file].label)
+    .join(', ')}`;
 
   if (value) {
     title = value.originalFilename;
-    description = 'Your file has been uploaded. Click or drop another file to re-upload';
+    description =
+      'Your file has been uploaded. Click or drop another file to re-upload';
   }
 
   if (isUploading) {
     title = 'Uploading file...';
-    description = 'You\'re file would be ready shortly :3';
+    description = "You're file would be ready shortly :3";
   }
 
   return (
     <div className={className}>
-      <Text
-        type='meta1'
-        color='white'
-        as='label'
-      >
+      <Text type='meta1' color='white' as='label'>
         {label}
         {props.required && <span className={required}>*</span>}
       </Text>
       <div className={frame}>
         <input
           {...props}
-          accept={accept.map(file => fileInfo[file].mime).join(',')}
+          accept={accept.map((file) => fileInfo[file].mime).join(',')}
           className={field}
           onChange={upload}
           type='file'
@@ -111,11 +119,7 @@ export default function FileUpload({
           >
             {title}
           </Text>
-          <Text
-            type='meta1'
-            align='center'
-            as='p'
-          >
+          <Text type='meta1' align='center' as='p'>
             {description}
           </Text>
         </div>

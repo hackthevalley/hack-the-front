@@ -1,4 +1,5 @@
 import Text from '@htv/ui-kit/components/Text';
+
 import _countries from '../../../utils/enums/countries';
 import _majors from '../../../utils/enums/majors';
 import questionTypes from '../../../utils/enums/questionTypes';
@@ -46,7 +47,7 @@ export default function School() {
           }}
         />
         <div className={two_col}>
-          <FormField index='7'/>
+          <FormField index='7' />
           <FormField
             index='8'
             forceType={questionTypes._NUMBER}

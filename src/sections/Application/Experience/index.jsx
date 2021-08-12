@@ -1,8 +1,8 @@
 import Text from '@htv/ui-kit/components/Text';
 
+import questionTypes from '../../../utils/enums/questionTypes';
 import { fieldset, legend, layout, full_col } from '../Application.module.scss';
 import { FormField } from '../Form/FormContext';
-import questionTypes from '../../../utils/enums/questionTypes';
 
 export default function Experience() {
   return (
@@ -18,9 +18,9 @@ export default function Experience() {
             min: 0,
           }}
         />
-        <FormField index='13'/>
-        <FormField index='14'/>
-        <FormField index='15'/>
+        <FormField index='13' />
+        <FormField index='14' />
+        <FormField index='15' />
         <FormField
           index='16'
           fieldProps={{

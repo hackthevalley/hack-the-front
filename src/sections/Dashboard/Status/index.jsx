@@ -4,8 +4,8 @@ import { navigate } from 'gatsby';
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
-import statuses from '../../../utils/enums/statuses';
 
+import statuses from '../../../utils/enums/statuses';
 import { container, status, button } from './Status.module.scss';
 
 const formatDate = (date) =>

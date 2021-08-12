@@ -55,7 +55,8 @@
     }
   }
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     & ~ .box {
       background-color: colors.css-color(lime, $opacity: 0.1);
       border-color: colors.css-color(lime);
@@ -64,7 +65,11 @@
 
   &:active {
     & ~ .box {
-      background-color: colors.css-color(lime, $modifier: active, $opacity: 0.1);
+      background-color: colors.css-color(
+        lime,
+        $modifier: active,
+        $opacity: 0.1
+      );
       border-color: colors.css-color(lime, active);
     }
   }

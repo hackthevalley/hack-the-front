@@ -7,7 +7,7 @@ import { useForm } from '../Form/FormContext';
 export default function Consent() {
   const { formState, setFormState } = useForm();
 
-  const applyProps = name => ({
+  const applyProps = (name) => ({
     onChange: ({ target }) => {
       setFormState({
         ...formState,

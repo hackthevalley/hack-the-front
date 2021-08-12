@@ -10,8 +10,6 @@ import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 
 import Loading from '../../components/Loading';
-import Status from './Status';
-
 import {
   container,
   content,
@@ -24,6 +22,7 @@ import {
   factionIcons,
   card,
 } from './Dashboard.module.scss';
+import Status from './Status';
 
 function Dashboard() {
   const { loading: isLoadingForm, data: formInfo } = useGet({
