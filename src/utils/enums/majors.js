@@ -1,4 +1,5 @@
 export default [
+  'Secondary School Diploma',
   'Computer Science',
   'Business Administration',
   'Mechanical Engineering',
