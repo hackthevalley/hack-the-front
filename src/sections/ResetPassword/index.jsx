@@ -21,7 +21,7 @@ import {
 } from './ResetPassword.module.scss';
 
 export default function ResetPasswordForm() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return null;
 
   const [reNewPassword, setReNewPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
