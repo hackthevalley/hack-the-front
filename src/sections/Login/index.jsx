@@ -109,18 +109,16 @@ export default function Login() {
               type='password'
               className={passwordField}
             />
-            {/*
-              <Text
-                font='secondary'
-                to='/forgot'
-                type='meta1'
-                color='white'
-                className={classNames(link, link__forgot)}
-                as={Link}
-              >
-                Forgot Password?
-              </Text>
-            */}
+            <Text
+              font='secondary'
+              to='/forgot'
+              type='meta1'
+              color='white'
+              className={classNames(link, link__forgot)}
+              as={Link}
+            >
+              Forgot Password?
+            </Text>
             <div>
               <Button
                 disabled={!email || !password || loading}

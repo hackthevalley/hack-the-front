@@ -40,7 +40,7 @@ export function FormField({
   const fieldInfo = id
     ? formInfo?.questions?.find((field) => field.id === id)
     : formInfo?.questions[index];
-  
+
   const lastValue = useRef(formState.form[fieldInfo.id]);
 
   useEffect(() => {
@@ -99,10 +99,7 @@ export function FormField({
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [
-    formState.errors[fieldInfo.id],
-    formState.form[fieldInfo.id],
-  ]);
+  }, [formState.errors[fieldInfo.id], formState.form[fieldInfo.id]]);
 
   // Props that all form elements share
   const defaultProps = {
@@ -283,22 +280,16 @@ export function FormProvider({ children }) {
     }
 
     if (toastPrompt.current) {
-      toastPrompt.current = toast.success(
-        'Application has been saved!',
-        {
-          id: toastPrompt.current,
-          duration: 2000,
-        },
-      );
+      toastPrompt.current = toast.success('Application has been saved!', {
+        id: toastPrompt.current,
+        duration: 2000,
+      });
     }
     return () => {
-      toastPrompt.current = toast.loading(
-        'Saving application...',
-        {
-          id: toastPrompt.current,
-          duration: 999999,
-        },
-      );
+      toastPrompt.current = toast.loading('Saving application...', {
+        id: toastPrompt.current,
+        duration: 999999,
+      });
     };
   }, [isSaving, isReady]);
 

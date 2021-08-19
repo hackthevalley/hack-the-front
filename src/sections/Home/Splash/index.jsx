@@ -50,7 +50,8 @@ export default function Splash() {
               &gt; {site.siteMetadata.startDate} - {site.siteMetadata.endDate}
             </Text>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; Online, brought to you by the University of Toronto Scarborough
+              &gt; Online, brought to you by the University of Toronto
+              Scarborough
             </Text>
             <Text
               lineHeight='normal'
