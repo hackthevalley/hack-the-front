@@ -758,6 +758,7 @@ export default [
   'Indira Gandhi Institute of Technology, Sarang',
   'Indira Gandhi National Open University',
   'Indraprastha Institute of Information Technology',
+  'Indraprastha Institute of Management & Technology, Saharanpur',
   'Indus University, Ahmedabad',
   'Insight PA Cyber Charter School',
   'Institut polytechnique de Bordeaux (INP)',
