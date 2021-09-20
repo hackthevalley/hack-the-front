@@ -2,6 +2,7 @@ export default [
   '21st Century Cyber Charter School',
   'ABES Engineering College',
   'ACT Academy Cyber Charter School',
+  'Alexander Mackenzie High School',
   'AGH University of Science and Technology',
   'AMC Engineering College',
   'APPA Institute of Engineering and Technology',
