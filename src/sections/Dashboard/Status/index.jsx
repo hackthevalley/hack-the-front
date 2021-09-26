@@ -6,7 +6,10 @@ import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
 
 import statuses from '../../../utils/enums/statuses';
-import { container, status, button } from './Status.module.scss';
+import { fetchApi } from '../../../utils/ApiProvider';
+import { container, status, button, buttonGroup } from './Status.module.scss';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat(`en-US`, {
@@ -16,34 +19,50 @@ const formatDate = (date) =>
   }).format(date);
 
 const getStatus = (response) => {
-  if (response?.isDraft === false) {
-    return {
-      text: 'Submitted!',
-      status: statuses.SUBMITTED,
-    };
-  }
-
+  const config = statuses[response.applicant.status];
   return {
-    text: 'Not Submitted.',
-    status: statuses.NOT_SUBMITTED,
+    text: config.label,
+    status: config.value,
   };
 };
 
-export default function Status({ formInfo, responseInfo }) {
+export default function Status({ formInfo, responseInfo, refresh }) {
+  const [ isRsvping, setIsRsvping ] = useState(false);
   const statusInfo = getStatus(responseInfo);
   const start = new Date(formInfo.startAt);
   const end = new Date(formInfo.endAt);
   const now = new Date();
 
-  let isDisabled = statusInfo.status === statuses.SUBMITTED;
+  let isDisabled = statusInfo.status !== statuses.NOT_SUBMITTED.value;
   let btnText = 'View Application';
+  let isClosed;
 
   if (start > now) {
     btnText = 'Coming soon';
-    isDisabled = true;
+    isClosed = true;
   } else if (now > end) {
     btnText = 'Closed';
-    isDisabled = true;
+    isClosed = true;
+  }
+
+  const rsvp = async (isAccept) => {
+    setIsRsvping(true);
+    await toast.promise(
+      fetchApi(
+        `/forms/hacker_application/response/${isAccept? 'accept' : 'reject'}_invite`,
+        {
+          method: 'POST',
+        },
+      ),
+      {
+        loading: 'Confirming invitation...',
+        success: 'Application has been updated!',
+        error: 'Unable to confirm status. Please try again later.',
+      },
+    );
+
+    setIsRsvping(false);
+    refresh();
   }
 
   return (
@@ -53,7 +72,10 @@ export default function Status({ formInfo, responseInfo }) {
           Current Application Status
         </Text>
         <Text
-          className={classNames(statusInfo.class, status)}
+          className={classNames(
+            status,
+            isClosed ? 'closed' : statusInfo.status.toLowerCase()
+          )}
           type='heading2'
           font='secondary'
           as='p'
@@ -67,13 +89,32 @@ export default function Status({ formInfo, responseInfo }) {
           </Text>
         </Text>
       </div>
-      <Button
-        onClick={() => navigate('/application')}
-        disabled={isDisabled}
-        className={button}
-      >
-        {btnText}
-      </Button>
+      {statusInfo.status !== statuses.ACCEPTED.value ? (
+        <Button
+          onClick={() => navigate('/application')}
+          disabled={isClosed || isDisabled}
+          className={button}
+        >
+          {btnText}
+        </Button>
+      ) : (
+        <div className={buttonGroup}>
+          <Button
+            onClick={() => rsvp(true)}
+            disabled={isRsvping}
+            color="lime"
+          >
+            Accept
+          </Button>
+          <Button
+            onClick={() => rsvp(false)}
+            disabled={isRsvping}
+            color="red"
+          >
+            Decline
+          </Button>
+        </div>
+      )}
     </Card>
   );
 }

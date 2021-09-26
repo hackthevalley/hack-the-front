@@ -60,7 +60,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "start": "gatsby develop",
+    "start": "gatsby develop -H 0.0.0.0",
     "build": "gatsby build",
     "lint": "prettier --check \"**/*.{js,jsx,scss}\"",
     "lint:fix": "prettier --write \"**/*.{js,jsx,scss}\"",

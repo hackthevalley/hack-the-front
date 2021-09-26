@@ -31,7 +31,7 @@ function Dashboard() {
   const { loading: isLoadingUserInfo, data: userInfo } = useGet({
     path: '/account/users/me',
   });
-  const { loading: isLoadingResponse, data: responseInfo } = useGet({
+  const { loading: isLoadingResponse, data: responseInfo, refetch: refresh } = useGet({
     path: `/forms/hacker_application/response`,
   });
 
@@ -70,7 +70,7 @@ function Dashboard() {
             Log Out
           </Button>
         </div>
-        <Status responseInfo={responseInfo} formInfo={formInfo} />
+        <Status responseInfo={responseInfo} formInfo={formInfo} refresh={refresh}/>
         <Text
           className={explore}
           type='body1'
