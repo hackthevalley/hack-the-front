@@ -1,11 +1,15 @@
 export default {
+  NOT_SUBMITTED: {
+    value: 'NOT_SUBMITTED',
+    label: 'Not Submitted.',
+  },
   SUBMITTED: {
     value: 'SUBMITTED',
     label: 'Submitted!',
   },
-  NOT_SUBMITTED: {
-    value: 'NOT_SUBMITTED',
-    label: 'Not Submitted.'
+  APPLYING: {
+    value: 'APPLYING',
+    label: 'Applying.'
   },
   WAITLISTED: {
     value: 'WAITLISTED',

@@ -33,7 +33,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   const end = new Date(formInfo.endAt);
   const now = new Date();
 
-  let isDisabled = statusInfo.status !== statuses.NOT_SUBMITTED.value;
+  let isDisabled = ![statuses.NOT_SUBMITTED.value, statuses.APPLYING.value].includes(statusInfo.status);
   let btnText = 'View Application';
   let isClosed;
 
