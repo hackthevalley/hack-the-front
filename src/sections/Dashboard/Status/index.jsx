@@ -19,7 +19,7 @@ const formatDate = (date) =>
   }).format(date);
 
 const getStatus = (response) => {
-  const config = statuses[response.applicant.status];
+  const config = statuses[response?.applicant?.status ?? statuses.NOT_SUBMITTED.value];
   return {
     text: config.label,
     status: config.value,
