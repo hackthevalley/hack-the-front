@@ -11,6 +11,10 @@ export default {
     value: 'APPLYING',
     label: 'Applying.'
   },
+  APPLIED: {
+    value: 'APPLIED',
+    label: 'Applied',
+  },
   WAITLISTED: {
     value: 'WAITLISTED',
     label: 'Waitlisted.',
