@@ -1,6 +1,6 @@
 import { IoChevronBack } from '@react-icons/all-files/io5/IoChevronBack';
 import classNames from 'classnames';
-import { navigate } from 'gatsby';
+import { navigate, useStaticQuery, graphql } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import { useGet } from 'restful-react';
 
@@ -8,6 +8,7 @@ import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
+import placeholderImage from '../../images/monke.gif';
 
 import Loading from '../../components/Loading';
 import {
@@ -17,12 +18,15 @@ import {
   npm,
   header,
   explore,
+  cards,
   factions,
   faq,
   factionIcons,
   card,
 } from './Dashboard.module.scss';
 import Status from './Status';
+import statuses from '../../utils/enums/statuses';
+import { getJwt } from '../../utils/ApiProvider';
 
 function Dashboard() {
   const { loading: isLoadingForm, data: formInfo } = useGet({
@@ -34,8 +38,13 @@ function Dashboard() {
   const { loading: isLoadingResponse, data: responseInfo, refetch: refresh } = useGet({
     path: `/forms/hacker_application/response`,
   });
+  const { loading: isLoadingDiscord, data: discordInfo } = useGet({
+    path: '/api/discord',
+    base: '',
+  });
+  const { site } = useStaticQuery(query);
 
-  if (isLoadingForm || isLoadingUserInfo || isLoadingResponse) {
+  if (isLoadingForm || isLoadingUserInfo || isLoadingResponse || isLoadingDiscord) {
     return (
       <Loading
         description="You're page would be ready soon owo"
@@ -80,62 +89,126 @@ function Dashboard() {
         >
           Explore
         </Text>
-        <Card
-          as='a'
-          target='_blank'
-          rel='noreferrer noopenner'
-          href='/#routes'
-          backgroundColor='darkviolet'
-          className={classNames(card, factions)}
-        >
-          <div className={factionIcons}>
-            <StaticImage
-              height={60}
-              width={60}
-              alt='Health'
-              src='../../images/faction-icons/factions-health.png'
-            />
-            <StaticImage
-              height={60}
-              width={60}
-              alt='Nature'
-              src='../../images/faction-icons/factions-nature.png'
-            />
-            <StaticImage
-              height={60}
-              width={60}
-              alt='Technology'
-              src='../../images/faction-icons/factions-technology.png'
-            />
-            <StaticImage
-              height={60}
-              width={60}
-              alt='Discovery'
-              src='../../images/faction-icons/factions-discovery.png'
-            />
-          </div>
-          <Text type='heading2' font='secondary' as='h3'>
-            The Factions of <strong>HTV5</strong>
-          </Text>
-        </Card>
-        <Card
-          as='a'
-          target='_blank'
-          rel='noreferrer noopenner'
-          href='/#faq'
-          backgroundColor='darkviolet'
-          className={classNames(card, faq)}
-        >
-          <Text type='heading1' as='span' color='gray'>
-            ???
-          </Text>
-          <Text type='heading2' font='secondary' as='h3'>
-            FAQs
-          </Text>
-        </Card>
+        <div className={cards}>
+          <Card
+            as='a'
+            target='_blank'
+            rel='noreferrer noopenner'
+            href='/#routes'
+            backgroundColor='darkviolet'
+            className={classNames(card, factions)}
+          >
+            <div className={factionIcons}>
+              <StaticImage
+                height={60}
+                width={60}
+                alt='Health'
+                src='../../images/faction-icons/factions-health.png'
+              />
+              <StaticImage
+                height={60}
+                width={60}
+                alt='Nature'
+                src='../../images/faction-icons/factions-nature.png'
+              />
+              <StaticImage
+                height={60}
+                width={60}
+                alt='Technology'
+                src='../../images/faction-icons/factions-technology.png'
+              />
+              <StaticImage
+                height={60}
+                width={60}
+                alt='Discovery'
+                src='../../images/faction-icons/factions-discovery.png'
+              />
+            </div>
+            <Text type='heading2' font='secondary' as='h3'>
+              The Factions of <strong>HTV5</strong>
+            </Text>
+          </Card>
+          <Card
+            as='a'
+            target='_blank'
+            rel='noreferrer noopenner'
+            href='/#faq'
+            backgroundColor='darkviolet'
+            className={classNames(card, faq)}
+          >
+            <Text type='heading1' as='span' color='gray'>
+              ???
+            </Text>
+            <Text type='heading2' font='secondary' as='h3'>
+              FAQs
+            </Text>
+          </Card>
+          {site.siteMetadata.featureFlags.discord
+            && responseInfo?.applicant?.status === statuses.ACCEPTED_INVITE.value
+            && (
+            <>
+              <Card
+                as='a'
+                target='_blank'
+                rel='noreferrer noopenner'
+                href={process.env.GATSBY_DISCORD_INVITE_LINK}
+                backgroundColor='darkviolet'
+                className={classNames(card, factions)}
+              >
+                <StaticImage
+                  width={100}
+                  alt='Discord'
+                  src='../../images/discord.png'
+                />
+                <Text type='heading2' font='secondary' as='h3'>
+                  Join the discord!
+                </Text>
+              </Card>
+              <Card
+                as='a'
+                onClick={async e => {
+                  e.preventDefault();
+                  const { token } = await getJwt();
+                  window.location = `/api/discord/link?${ new URLSearchParams({ token })}`;
+                }}
+                href='/api/discord/link'
+                backgroundColor='darkviolet'
+                className={classNames(card, factions)}
+              >
+                <img
+                  src={discordInfo?.message?.avatar?.url ?? placeholderImage}
+                  alt="Discord user avatar"
+                  width='100'
+                />
+                <div>
+                  <Text type='heading2' font='secondary' as='h3'>
+                    {discordInfo?.message?.tag ?? 'Link your Discord'}
+                  </Text>
+                  {discordInfo?.message?.tag && (
+                    <Text type='meta1' font='secondary' as='p'>
+                      Click here to re-link your discord
+                    </Text>
+                  )}
+                </div>
+              </Card>
+            </>
+          )}
+        </div>
       </Section>
     </div>
   );
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          discord
+        }
+      }
+    }
+  }
+`;
 
 export default Dashboard;

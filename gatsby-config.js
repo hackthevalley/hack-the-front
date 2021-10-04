@@ -13,6 +13,7 @@ module.exports = {
     featureFlags: {
       mlh: true,
       open: true,
+      discord: false,
     },
   },
   plugins: [

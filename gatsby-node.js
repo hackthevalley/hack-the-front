@@ -13,6 +13,12 @@ exports.onCreatePage = ({ page, actions }) => {
       actions.deletePage(page);
     }
   }
+  
+  if (!siteMetadata.featureFlags.discord) {
+    if (['/discord'].includes(replacePath(page.path))) {
+      actions.deletePage(page);
+    }
+  }
 };
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {

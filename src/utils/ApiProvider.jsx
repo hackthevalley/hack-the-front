@@ -5,6 +5,19 @@ import { RestfulProvider } from 'restful-react';
 
 import Loading from '../components/Loading';
 
+async function refreshToken() {
+  const jwt = JSON.parse(localStorage.getItem('auth'));
+  const newJwt = await fetchApi('/account/auth/token/refresh', {
+    body: JSON.stringify({ token: jwt.token }),
+    method: 'POST',
+  });
+  localStorage.setItem(
+    'auth',
+    JSON.stringify(newJwt),
+  );
+  return newJwt;
+}
+
 export async function getJwt() {
   // For gatsby SSR
   if (!window) return {};
@@ -17,9 +30,13 @@ export async function getJwt() {
 
     // If jwt is expired
     if (new Date(jwt.payload.exp * 1000) < now) {
-      localStorage.removeItem('auth');
-      toast('Session has expired. Please sign in again');
-      return navigate('/login', { replace: true });
+      try {
+        jwt = await refreshToken();
+      } catch (err) {
+        localStorage.removeItem('auth');
+        toast('Session has expired. Please sign in again');
+        return navigate('/login', { replace: true });
+      }
     }
 
     return jwt;
@@ -70,18 +87,7 @@ export default function ApiProvider({ authenticated, children }) {
         }
 
         setLoading(false);
-        timer = window.setInterval(async () => {
-          const jwt = JSON.parse(localStorage.getItem('auth'));
-          localStorage.setItem(
-            'auth',
-            JSON.stringify(
-              await fetchApi('/account/auth/token/refresh', {
-                body: JSON.stringify({ token: jwt.token }),
-                method: 'POST',
-              }),
-            ),
-          );
-        }, 60000);
+        timer = window.setInterval(refreshToken, 60000);
       });
 
       return () => {

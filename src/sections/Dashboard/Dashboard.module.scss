@@ -48,7 +48,7 @@
     'header header'
     'status status'
     'explore explore'
-    'factions faq';
+    'cards cards';
   max-width: 64rem;
   grid-gap: 1.5rem 1.25rem;
   display: grid;
@@ -59,8 +59,7 @@
       'header'
       'status'
       'explore'
-      'factions'
-      'faq';
+      'cards';
   }
 }
 
@@ -77,6 +76,13 @@
 
 .explore {
   grid-area: explore;
+}
+
+.cards {
+  grid-area: cards;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem 1.25rem;
+  display: grid;
 }
 
 .card {
@@ -99,12 +105,10 @@
 }
 
 .factions {
-  grid-area: factions;
   grid-gap: 2rem;
 }
 
 .faq {
-  grid-area: faq;
   grid-gap: 2.5rem;
 }
 
