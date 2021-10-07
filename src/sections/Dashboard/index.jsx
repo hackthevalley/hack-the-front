@@ -29,6 +29,7 @@ import statuses from '../../utils/enums/statuses';
 import { getJwt } from '../../utils/ApiProvider';
 
 function Dashboard() {
+  const { site } = useStaticQuery(query);
   const { loading: isLoadingForm, data: formInfo } = useGet({
     path: `/forms/hacker_application`,
   });
@@ -39,10 +40,10 @@ function Dashboard() {
     path: `/forms/hacker_application/response`,
   });
   const { loading: isLoadingDiscord, data: discordInfo } = useGet({
+    lazy: !site.siteMetadata.featureFlags.discord,
     path: '/api/discord',
     base: '',
   });
-  const { site } = useStaticQuery(query);
 
   if (isLoadingForm || isLoadingUserInfo || isLoadingResponse || isLoadingDiscord) {
     return (
