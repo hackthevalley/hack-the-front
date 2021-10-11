@@ -90,7 +90,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
           </Text>
         </Text>
       </div>
-      {statusInfo.status !== statuses.ACCEPTED.value ? (
+      {!site.siteMetadata.featureFlags.rsvp || statusInfo.status !== statuses.ACCEPTED.value ? (
         <Button
           onClick={() => navigate('/application')}
           disabled={isClosed || isDisabled}
