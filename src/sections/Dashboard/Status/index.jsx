@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { navigate } from 'gatsby';
+import { graphql, useStaticQuery, navigate } from 'gatsby';
 
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
@@ -29,6 +29,7 @@ const getStatus = (response) => {
 export default function Status({ formInfo, responseInfo, refresh }) {
   const [ isRsvping, setIsRsvping ] = useState(false);
   const statusInfo = getStatus(responseInfo);
+  const { site } = useStaticQuery(query);
   const start = new Date(formInfo.startAt);
   const end = new Date(formInfo.endAt);
   const now = new Date();
@@ -40,7 +41,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   if (start > now) {
     btnText = 'Coming soon';
     isClosed = true;
-  } else if (now > end) {
+  } else if (now > end || !site.siteMetadata.featureFlags.rsvp) {
     btnText = 'Closed';
     isClosed = true;
   }
@@ -118,3 +119,15 @@ export default function Status({ formInfo, responseInfo, refresh }) {
     </Card>
   );
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          rsvp
+        }
+      }
+    }
+  }
+`;
