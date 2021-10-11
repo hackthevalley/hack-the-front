@@ -14,7 +14,7 @@ module.exports = {
       mlh: true,
       open: true,
       discord: false,
-      rsvp: true,
+      rsvp: false,
     },
   },
   plugins: [
