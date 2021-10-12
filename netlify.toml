@@ -1,2 +1,3 @@
 [[plugins]]
   package = "@netlify/plugin-gatsby"
+  node_bundler = "esbuild"
