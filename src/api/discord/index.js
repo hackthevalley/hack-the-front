@@ -1,8 +1,6 @@
 import Airtable from 'airtable';
 import fetch from 'node-fetch';
 
-console.log(fetch);
-
 const base = new Airtable({
   apiKey: process.env.DISCORD_AIRTABLE_API_KEY
 }).base(process.env.DISCORD_AIRTABLE_BASE);
