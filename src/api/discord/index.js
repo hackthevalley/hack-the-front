@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require("node-fetch");
 import Airtable from 'airtable';
 
 const base = new Airtable({

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import Airtable from 'airtable';
-import fetch from 'node-fetch';
+const fetch = require("node-fetch");
 
 const base = new Airtable({
   apiKey: process.env.DISCORD_AIRTABLE_API_KEY

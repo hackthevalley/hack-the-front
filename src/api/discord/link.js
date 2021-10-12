@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require("node-fetch");
 import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
