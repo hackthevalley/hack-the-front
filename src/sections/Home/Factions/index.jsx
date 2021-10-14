@@ -1,21 +1,20 @@
 import classNames from 'classnames';
 import { useEffect, useState, useRef, forwardRef } from 'react';
 
-import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 
 import * as styles from './Factions.module.scss';
-import { factions, questions } from './data';
+import { factions } from './data';
 
 function FactionAction({ data, onClick }) {
   const FactionIcon = data.image;
   return (
     <li>
       <Card onClick={onClick} className={styles.button} as='button' type='flat'>
-        <FactionIcon />
+        <FactionIcon className={styles.icon}/>
         <Text type='body1' as='p' align='center' transform='uppercase'>
           {data.name}
         </Text>
@@ -32,7 +31,7 @@ function _FactionContent({ data, selected, onClick }, ref) {
       ref={ref}
     >
       <div className={styles.content_header}>
-        <FactionIcon />
+        <FactionIcon className={styles.icon}/>
         <Text type='body1' as='p' align='center' transform='uppercase'>
           {data.name}
         </Text>
@@ -42,10 +41,10 @@ function _FactionContent({ data, selected, onClick }, ref) {
           {data.name} Route
         </Text>
         <Text
+          as={typeof data.content === 'string' ? 'p' : 'div'}
           className={styles.content_text}
           lineHeight='relaxed'
           type='body2'
-          as='p'
         >
           {data.content}
         </Text>

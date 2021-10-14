@@ -19,7 +19,7 @@
 
 .items {
   @include mixins.transition(opacity);
-  grid-template-columns: repeat(4, minmax(0, 14rem));
+  grid-template-columns: repeat(5, minmax(0, 14rem));
   justify-content: space-between;
   list-style-type: none;
   position: relative;
@@ -58,6 +58,10 @@
   &:active {
     background-color: colors.css-color(white, $opacity: 0.04);
   }
+}
+
+.icon {
+  margin-bottom: 1rem;
 }
 
 .items,
@@ -99,6 +103,18 @@
 
 .content_text {
   margin: 2rem 0;
+  a {
+    @include mixins.transition(color);
+    color: colors.css-color(lime);
+
+    &:hover, &:focus {
+      color: colors.css-color(lime, hover);
+    }
+
+    &:active {
+      color: colors.css-color(lime, active);
+    }
+  }
 }
 
 .question_body {
