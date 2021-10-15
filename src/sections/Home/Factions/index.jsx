@@ -14,10 +14,27 @@ function FactionAction({ data, onClick }) {
   return (
     <li>
       <Card onClick={onClick} className={styles.button} as='button' type='flat'>
-        <FactionIcon className={styles.icon}/>
-        <Text type='body1' as='p' align='center' transform='uppercase'>
-          {data.name}
-        </Text>
+        {data.name === 'Battle of the Coding Clashers' ? (
+          <>
+            <FactionIcon className={styles.btcc_icons} />
+            <Text
+              type='body1'
+              as='p'
+              align='center'
+              transform='uppercase'
+              className={styles.btcc_title}
+            >
+              {data.name}
+            </Text>
+          </>
+        ) : (
+          <>
+            <FactionIcon className={styles.icon} />
+            <Text type='body1' as='p' align='center' transform='uppercase'>
+              {data.name}
+            </Text>
+          </>
+        )}
       </Card>
     </li>
   );
@@ -31,7 +48,7 @@ function _FactionContent({ data, selected, onClick }, ref) {
       ref={ref}
     >
       <div className={styles.content_header}>
-        <FactionIcon className={styles.icon}/>
+        <FactionIcon className={styles.icon} />
         <Text type='body1' as='p' align='center' transform='uppercase'>
           {data.name}
         </Text>

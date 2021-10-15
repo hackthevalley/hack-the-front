@@ -59,6 +59,9 @@
     background-color: colors.css-color(white, $opacity: 0.04);
   }
 }
+#pgq {
+  margin-top: 3rem;
+}
 
 .icon {
   margin-bottom: 1rem;
@@ -107,7 +110,8 @@
     @include mixins.transition(color);
     color: colors.css-color(lime);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: colors.css-color(lime, hover);
     }
 
@@ -119,4 +123,14 @@
 
 .question_body {
   margin-top: 2rem;
+}
+
+// Battle-of-Coding-Clashers specific styles
+.btcc_title {
+  margin-top: 1.5rem;
+}
+
+.btcc_icons {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
