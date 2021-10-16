@@ -1,0 +1,10 @@
+import Layout from '../components/Layout';
+import Schedule from '../sections/Schedule';
+
+export default function SchedulePage() {
+  return (
+    <Layout title='Schedule' noNav noFooter>
+      <Schedule/>
+    </Layout>
+  );
+}
