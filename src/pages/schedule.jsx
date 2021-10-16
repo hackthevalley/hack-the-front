@@ -3,7 +3,7 @@ import Schedule from '../sections/Schedule';
 
 export default function SchedulePage() {
   return (
-    <Layout title='Schedule' noNav noFooter>
+    <Layout title='Schedule'>
       <Schedule/>
     </Layout>
   );

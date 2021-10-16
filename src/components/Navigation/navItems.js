@@ -4,6 +4,10 @@ export default [
     to: `/#about`,
   },
   {
+    text: 'Schedule',
+    to: '/schedule',
+  },
+  {
     text: `FAQ`,
     to: `/#faq`,
   },
