@@ -5,7 +5,7 @@
 $light-grey: #3D3A4F;
 
 .list {
-  grid-template-columns: 7rem repeat(var(--cols), 1fr);
+  grid-template-columns: 7rem repeat(var(--cols), minmax(1px, 1fr));
   grid-template-rows: repeat(var(--rows), var(--size));
   list-style-type: none;
   padding-left: 1.5rem;
