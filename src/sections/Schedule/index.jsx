@@ -13,7 +13,7 @@ const dateFormat = (date = new Date) => {
     day: 'numeric',
     weekday: 'long',
     month: 'long',
-  }).formatToParts(new Date(date)).reduce((acc, { type, value }) => {
+  }).formatToParts(new Date(date.split('-'))).reduce((acc, { type, value }) => {
     switch (type) {
       case 'literal':
         return acc;
@@ -59,6 +59,7 @@ export default function Schedule() {
   }, [data, loading]);
 
   const dateParts = dateFormat(currentDate);
+  console.log(dateParts);
 
   return (
     <Loading isLoading={loading}>

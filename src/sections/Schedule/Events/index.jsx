@@ -18,7 +18,7 @@ export default function Events({ items, metadata }) {
     const minutes = rawMinutes % 60;
     const hours = (rawMinutes - minutes) / 60;
 
-    return `${(hours % 12) || 12}:${minutes.toString().padStart(2, '0')}${hours < 12 ? 'am' : 'pm'}`;
+    return `${(hours % 12) || 12}:${minutes.toString().padStart(2, '0')}${(hours < 12 || hours >= 24) ? 'am' : 'pm'}`;
   };
 
   // Who needs leetcode when you have to build a new schedule every hackathon every year?
