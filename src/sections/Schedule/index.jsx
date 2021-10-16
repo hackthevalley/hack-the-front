@@ -8,12 +8,12 @@ import Loading from '../../components/Loading';
 import Events from './Events';
 import { container, section, frame, header, tab, activeTab, tabs, dot, redDot, yellowDot, greenDot, dots, bar } from './Schedule.module.scss';
 
-const dateFormat = (date = new Date) => {
+const dateFormat = (date = new Date().toString()) => {
   return new Intl.DateTimeFormat('en', {
     day: 'numeric',
     weekday: 'long',
     month: 'long',
-  }).formatToParts(new Date(date)).reduce((acc, { type, value }) => {
+  }).formatToParts(new Date(date.split('-'))).reduce((acc, { type, value }) => {
     switch (type) {
       case 'literal':
         return acc;
