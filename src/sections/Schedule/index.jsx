@@ -59,7 +59,6 @@ export default function Schedule() {
   }, [data, loading]);
 
   const dateParts = dateFormat(currentDate);
-  console.log(dateParts);
 
   return (
     <Loading isLoading={loading}>
