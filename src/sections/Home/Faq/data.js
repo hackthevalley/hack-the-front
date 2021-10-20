@@ -86,7 +86,7 @@ export const Faqs = [
       </>
     ),
     content: (
-      <p>Hack The Valley will be taking place on October 15-17, 2021.</p>
+      <p>Hack The Valley will be taking place on February 25-27, 2022.</p>
     ),
   },
   {
