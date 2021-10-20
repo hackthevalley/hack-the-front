@@ -81,50 +81,50 @@ export const factions = [
     technology or taking innovative approaches to create something
     brand new.`,
   },
-  {
-    name: `Battle of the Coding Clashers`,
-    image: (props) => (
-      <>
-        <StaticImage
-          id='pgq'
-          className={props.className}
-          src='../../../images/faction-icons/pinnguaq.png'
-          placeholder='TRACED_SVG'
-          alt='Pinnguaq Faction'
-          loading='eager'
-          width={400}
-        />
-        <StaticImage
-          className={props.className}
-          src='../../../images/faction-icons/the-hub.png'
-          placeholder='TRACED_SVG'
-          alt='The Hub Logo'
-          loading='eager'
-          width={400}
-        />
-      </>
-    ),
-    content: (
-      <>
-        <p>
-          The main goal of the challenge is to encourage people to create video
-          games that are original and educational. The purpose of creating these
-          games is to provide creators with opportunities to encourage their
-          innovative thinking and technological skills. Additionally, this is
-          coupled with the requirement of introducing youth and adults to
-          computer science via educational video games.
-        </p>
-        <p>
-          To learn more about this challenge, check out the requirements{' '}
-          <a
-            href='/battle-of-the-coding-clashers.pdf'
-            rel='noreferrer noopener'
-            target='_blank'
-          >
-            here
-          </a>
-        </p>
-      </>
-    ),
-  },
+  // {
+  //   name: `Battle of the Coding Clashers`,
+  //   image: (props) => (
+  //     <>
+  //       <StaticImage
+  //         id='pgq'
+  //         className={props.className}
+  //         src='../../../images/faction-icons/pinnguaq.png'
+  //         placeholder='TRACED_SVG'
+  //         alt='Pinnguaq Faction'
+  //         loading='eager'
+  //         width={400}
+  //       />
+  //       <StaticImage
+  //         className={props.className}
+  //         src='../../../images/faction-icons/the-hub.png'
+  //         placeholder='TRACED_SVG'
+  //         alt='The Hub Logo'
+  //         loading='eager'
+  //         width={400}
+  //       />
+  //     </>
+  //   ),
+  //   content: (
+  //     <>
+  //       <p>
+  //         The main goal of the challenge is to encourage people to create video
+  //         games that are original and educational. The purpose of creating these
+  //         games is to provide creators with opportunities to encourage their
+  //         innovative thinking and technological skills. Additionally, this is
+  //         coupled with the requirement of introducing youth and adults to
+  //         computer science via educational video games.
+  //       </p>
+  //       <p>
+  //         To learn more about this challenge, check out the requirements{' '}
+  //         <a
+  //           href='/battle-of-the-coding-clashers.pdf'
+  //           rel='noreferrer noopener'
+  //           target='_blank'
+  //         >
+  //           here
+  //         </a>
+  //       </p>
+  //     </>
+  //   ),
+  // },
 ];
