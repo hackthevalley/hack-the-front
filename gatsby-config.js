@@ -6,14 +6,14 @@ module.exports = {
     siteUrl: process.env.URL || `http://localhost`,
     startDate: new Date(2021, 9, 15),
     endDate: new Date(2021, 9, 17),
-    title: `Hack The Valley 5`,
+    title: `Hack The Valley 6`,
     author: author.name,
     description,
     keywords,
     featureFlags: {
       mlh: true,
-      open: true,
-      discord: true,
+      open: false,
+      discord: false,
       rsvp: false,
       schedule: false,
     },
@@ -54,8 +54,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Hack The Valley 5`,
-        short_name: `htv5`,
+        name: `Hack The Valley 6`,
+        short_name: `htv6`,
         start_url: `/`,
         background_color: `#86cd74`,
         theme_color: `#86cd74`,
