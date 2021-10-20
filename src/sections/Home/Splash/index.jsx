@@ -8,7 +8,7 @@ import Text from '@htv/ui-kit/components/Text';
 
 import {
   container,
-  five,
+  six,
   gt,
   header,
   imageContainer,
@@ -41,17 +41,18 @@ export default function Splash() {
             >
               <span>Hack The</span>
               <span>
-                Valley <span className={five}>5</span>
+                Valley <span className={six}>6</span>
               </span>
             </Text>
           </div>
           <div className={subheader}>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; {site.siteMetadata.startDate} - {site.siteMetadata.endDate}
+              &gt; Last week of February, 2022
+              {/* &gt; {site.siteMetadata.startDate} - {site.siteMetadata.endDate} */}
             </Text>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; Online, brought to you by the University of Toronto
-              Scarborough
+              &gt; In-person (To be confirmed), brought to you by the University
+              of Toronto Scarborough
             </Text>
             <Text
               lineHeight='normal'
