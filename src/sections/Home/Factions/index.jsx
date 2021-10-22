@@ -126,6 +126,7 @@ export default function Factions() {
       </div>
       <div style={{ '--height': `${height}px` }} className={styles.frame}>
         <ul
+          style={{ '--faction-count': `${Object.keys(factions).length}` }}
           ref={actionsRef}
           className={classNames(
             selected !== undefined && styles.items__hide,
