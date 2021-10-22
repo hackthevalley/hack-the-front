@@ -1,3 +1,5 @@
+import { graphql, StaticQuery } from 'gatsby';
+
 import Text from '@htv/ui-kit/components/Text';
 
 export const Faqs = [
@@ -86,7 +88,25 @@ export const Faqs = [
       </>
     ),
     content: (
-      <p>Hack The Valley will be taking place on February 25-27, 2022.</p>
+      <StaticQuery
+        query={graphql`
+          {
+            site {
+              siteMetadata {
+                startDate(formatString: "MMMM D")
+                endDate(formatString: "D, YYYY")
+              }
+            }
+          }
+        `}
+        render={(data) => (
+          <p>
+            Hack The Valley will be taking place on{' '}
+            {data.site.siteMetadata.startDate} -{' '}
+            {data.site.siteMetadata.endDate}.
+          </p>
+        )}
+      />
     ),
   },
   {
