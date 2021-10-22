@@ -19,7 +19,7 @@
 
 .items {
   @include mixins.transition(opacity);
-  grid-template-columns: repeat(4, minmax(0, 14rem));
+  grid-template-columns: repeat(var(--faction-count), minmax(0, 14rem));
   justify-content: space-between;
   list-style-type: none;
   position: relative;
