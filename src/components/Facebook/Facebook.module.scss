@@ -1,0 +1,22 @@
+.button {
+  background-color: #1877f2;
+  border-color: #1877f2;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: darken(#1877f2, 6%);
+      border-color: darken(#1877f2, 6%);
+    }
+
+    &:active {
+      background-color: darken(#1877f2, 12%);
+      border-color: darken(#1877f2, 12%);
+    }
+  }
+}
+
+.icon {
+  width: auto;
+  height: 1.3rem;
+}

@@ -1,0 +1,16 @@
+@use '@htv/ui-kit/styles/colors';
+
+.display {
+  position: relative;
+}
+
+.field {
+  padding-right: 2.25rem;
+}
+
+.icon {
+  position: absolute;
+  inset: auto 1rem 1.5rem auto;
+  color: colors.css-color(white);
+  margin: auto;
+}

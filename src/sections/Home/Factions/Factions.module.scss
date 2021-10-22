@@ -19,7 +19,7 @@
 
 .items {
   @include mixins.transition(opacity);
-  grid-template-columns: repeat(4, minmax(0, 14rem));
+  grid-template-columns: repeat(var(--faction-count), minmax(0, 14rem));
   justify-content: space-between;
   list-style-type: none;
   position: relative;
@@ -39,7 +39,7 @@
   }
 
   @include mixins.media(phone) {
-    grid-template-columns: minmax(0, 14rem);
+    grid-template-columns: repeat(2, minmax(0, 12rem));
   }
 }
 
@@ -50,7 +50,8 @@
   padding: 2rem;
   border: none;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: colors.css-color(white, $opacity: 0.02);
   }
 
@@ -58,8 +59,16 @@
     background-color: colors.css-color(white, $opacity: 0.04);
   }
 }
+#pgq {
+  margin-top: 3rem;
+}
 
-.items, .content {
+.icon {
+  margin-bottom: 1rem;
+}
+
+.items,
+.content {
   position: absolute;
   bottom: auto;
   right: 0;
@@ -78,6 +87,10 @@
     opacity: 0;
   }
 
+  @include mixins.media(laptop) {
+    grid-gap: 2rem;
+  }
+
   @include mixins.media(tablet) {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -85,13 +98,39 @@
 }
 
 .content_header {
-  max-width: 16rem;
+  max-width: 14rem;
+  @include mixins.media(tablet) {
+    max-width: 12rem;
+  }
 }
 
 .content_text {
   margin: 2rem 0;
+  a {
+    @include mixins.transition(color);
+    color: colors.css-color(lime);
+
+    &:hover,
+    &:focus {
+      color: colors.css-color(lime, hover);
+    }
+
+    &:active {
+      color: colors.css-color(lime, active);
+    }
+  }
 }
 
 .question_body {
   margin-top: 2rem;
+}
+
+// Battle-of-Coding-Clashers specific styles
+.btcc_title {
+  margin-top: 1.5rem;
+}
+
+.btcc_icons {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }

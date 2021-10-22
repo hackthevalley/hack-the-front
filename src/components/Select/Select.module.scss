@@ -1,0 +1,96 @@
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/colors';
+
+.container > div {
+  display: flex;
+
+  & label {
+    z-index: 1;
+  }
+}
+
+.input__placeholder {
+  color: colors.css-color(gray);
+}
+
+.input__text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.select {
+  border-radius: 0.375rem;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
+  inset: 0;
+
+  &:focus ~ .selectInput {
+    border-color: colors.css-color(lime);
+  }
+
+  @media (hover: hover) {
+    z-index: 0;
+  }
+}
+
+.selectInput {
+  text-align: start;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.caret {
+  width: 0.75rem;
+  height: auto;
+  justify-self: flex-end;
+}
+
+.menu {
+  background-color: colors.css-color(darkviolet);
+  border: 2px solid colors.css-color(white);
+  border-radius: 0.375rem;
+  list-style-type: none;
+  height: fit-content;
+  position: absolute;
+  max-height: 10rem;
+  margin: 1rem 0 0;
+  inset: 100% 0 0;
+  overflow: auto;
+  z-index: 2;
+  padding: 0;
+}
+
+.menuItem {
+  @include mixins.transition(background-color color);
+  background: none;
+  cursor: pointer;
+  display: flex;
+  padding: 1rem;
+  border: none;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: colors.css-color(white, $opacity: 0.06);
+  }
+
+  &:active {
+    background-color: colors.css-color(white, $opacity: 0.12);
+  }
+
+  &__selected {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: colors.css-color(lime, $opacity: 0.12);
+    }
+  }
+}

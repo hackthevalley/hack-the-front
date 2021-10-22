@@ -1,0 +1,71 @@
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/colors';
+
+.container {
+  grid-template-columns: 1.25rem auto;
+  grid-gap: 1.5rem;
+  display: grid;
+}
+
+.checkbox {
+  @include mixins.transition(background-color border-color);
+  border: 2px solid colors.css-color(white);
+  background-color: transparent;
+  justify-content: center;
+  border-radius: 0.125rem;
+  box-sizing: border-box;
+  align-items: center;
+  position: relative;
+  padding: 0.2rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  display: flex;
+
+  &__checked {
+    background-color: colors.css-color(lime);
+    border-color: colors.css-color(lime);
+  }
+
+  &__focused {
+    border-color: colors.css-color(lime);
+  }
+
+  &__disabled {
+    &.checkbox__focused {
+      border-color: colors.css-color(disabled);
+    }
+
+    &.checkbox__checked {
+      background-color: colors.css-color(disabled);
+    }
+  }
+}
+
+.field {
+  background: transparent;
+  position: absolute;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  inset: 0;
+}
+
+.check {
+  @include mixins.transition(color);
+  color: transparent;
+
+  .checkbox__checked & {
+    color: colors.css-color(white);
+  }
+}
+
+.required {
+  color: colors.css-color(red);
+  margin-left: 0.25rem;
+  position: relative;
+}

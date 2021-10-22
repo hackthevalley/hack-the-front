@@ -1,6 +1,6 @@
+import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
 
 const query = graphql`
   {
@@ -23,7 +23,7 @@ export default function SEO({ lang = `en`, title = ``, meta = [] }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`${title ? '%s | ' : ''}${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,

@@ -13,6 +13,7 @@
 
 .logo {
   width: 2rem;
+  height: 2rem;
 }
 
 .items {
@@ -35,7 +36,17 @@
 
 .button {
   padding: 0.6rem 1.5rem;
+  text-decoration: none;
   font-size: 0.9rem;
+
+  &__disabled,
+  &__disabled:hover,
+  &__disabled:focus,
+  &__disabled:active {
+    background-color: colors.css-color(disabled) !important;
+    border-color: colors.css-color(disabled) !important;
+    cursor: not-allowed;
+  }
 
   @include mixins.media(laptop) {
     font-size: 1rem;

@@ -1,0 +1,72 @@
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/units';
+
+$light-grey: #3D3A4F;
+
+.list {
+  grid-template-columns: 7rem repeat(var(--cols), minmax(1px, 1fr));
+  grid-template-rows: repeat(var(--rows), var(--size));
+  list-style-type: none;
+  padding-left: 1.5rem;
+  grid-gap: 0 1rem;
+  display: grid;
+}
+
+.time {
+  grid-column: 1 / calc(var(--cols) + 1) span;
+  border-bottom: 2px solid $light-grey;
+  box-sizing: border-box;
+  grid-row: var(--row);
+  align-items: center;
+  padding: 0 1.5rem;
+  display: flex;
+
+  &:first-of-type {
+    border-top: 2px solid $light-grey;
+  }
+}
+
+.event {
+  grid-row: var(--row) / span var(--row-span);
+  grid-column: var(--col) / span var(--col-span);
+  padding: 0.75rem 0;
+}
+
+.eventCard {
+  background-color: $light-grey !important;
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+}
+
+.eventBar {
+  background-color: rgb(var(--color));
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 100%;
+}
+
+.eventContent {
+  padding: 1.5rem;
+}
+
+.eventTime {
+  color: colors.css-color(white, $opacity: 0.5);
+}
+
+%eventDetails {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.eventDetailsHead {
+  @extend %eventDetails;
+  grid-template-columns: min-content auto;
+  margin-bottom: 1rem;
+}
+
+.eventDetailsMeta {
+  @extend %eventDetails;
+  grid-template-columns: auto min-content auto;
+}

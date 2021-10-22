@@ -1,0 +1,60 @@
+@use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/colors";
+
+.container {
+  grid-template-columns: auto max-content;
+  grid-column: span 2;
+  padding: 1.5rem;
+  grid-gap: 1rem;
+  display: grid;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+    grid-column: span 1;
+  }
+}
+
+.status {
+  margin: 0.75rem 0;
+
+  &:global(.accepted), &:global(.accepted_invite) {
+    color: colors.css-color(lime);
+  }
+
+  &:global(.rejected), &:global(.rejected_invite) {
+    color: colors.css-color(red);
+  }
+
+  &:global(.waitlisted) {
+    color: colors.css-color(yellow);
+  }
+}
+
+.button {
+  margin: auto 1rem;
+
+  @include mixins.media(tablet) {
+    margin: 0;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10rem;
+  gap: 0.5rem;
+
+  @include mixins.media(tablet) {
+    flex-direction: row;
+    width: 100%;
+
+    & button {
+      width: 100%;
+    }
+  }
+
+  @include mixins.media(phone) {
+    flex-direction: column;
+  }
+}

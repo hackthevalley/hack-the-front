@@ -1,18 +1,21 @@
-import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
+import classNames from 'classnames';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import { useEffect, useState } from 'react';
+
+import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import Button from '@htv/ui-kit/components/Button';
 import Text from '@htv/ui-kit/components/Text';
-import { useEffect, useState } from 'react';
-import classNames from 'classnames';
-import { Link } from 'gatsby';
-import useMountedAnimations from '../../utils/useMountedAnimations';
-import NavigationBar from './NavigationBar';
-import MobileNav from './MobileNav';
-import navItems from './navItems';
-import * as styles from './Navigation.module.scss';
 
-export default function Navigation() {
+import useMountedAnimations from '../../utils/useMountedAnimations';
+import MobileNav from './MobileNav';
+import * as styles from './Navigation.module.scss';
+import NavigationBar from './NavigationBar';
+import navItems from './navItems';
+
+export default function Navigation({ noNav }) {
   const mobileState = useMountedAnimations(`slow`);
+  const { site } = useStaticQuery(query);
   const [current, setCurrent] = useState();
   const [animate, setAnimate] = useState();
   const lineProps = Object.assign(
@@ -56,86 +59,112 @@ export default function Navigation() {
         </Link>
       }
       center={
-        <ul onMouseLeave={() => setCurrent(null)} className={styles.items}>
-          {navItems.map(({ text, ...props }, key, { length }) => {
-            if (key === length - 1) {
-              props.onBlur = () => setCurrent(null);
-            }
-            return (
-              <li
-                onMouseOver={({ currentTarget }) => {
-                  if (currentTarget !== current) {
-                    setCurrent(currentTarget);
-                  }
-                }}
-                key={key}
-              >
-                <Text
-                  {...props}
-                  onFocus={({ currentTarget }) => {
-                    const target = currentTarget.parentElement;
-                    if (target !== current) {
+        !noNav ? (
+          <ul onMouseLeave={() => setCurrent(null)} className={styles.items}>
+            {navItems.map(({ text, ...props }, key, { length }) => {
+              if (key === length - 1) {
+                props.onBlur = () => setCurrent(null);
+              }
+              return (
+                <li
+                  onMouseOver={({ currentTarget }) => {
+                    if (currentTarget !== current) {
                       setCurrent(currentTarget);
                     }
                   }}
-                  transform='uppercase'
-                  lineHeight='normal'
-                  className={styles.item}
-                  weight='bold'
-                  type='body2'
-                  {...srProps}
-                  as={Link}
+                  key={key}
                 >
-                  {text}
-                </Text>
-              </li>
-            );
-          })}
-          <li
-            className={classNames(
-              animate && styles.line__animated,
-              styles.line,
-            )}
-            style={lineProps}
-            aria-hidden='true'
-          />
-        </ul>
+                  <Text
+                    {...props}
+                    onFocus={({ currentTarget }) => {
+                      const target = currentTarget.parentElement;
+                      if (target !== current) {
+                        setCurrent(currentTarget);
+                      }
+                    }}
+                    transform='uppercase'
+                    lineHeight='normal'
+                    className={styles.item}
+                    weight='bold'
+                    type='body2'
+                    {...srProps}
+                    as={Link}
+                  >
+                    {text}
+                  </Text>
+                </li>
+              );
+            })}
+            <li
+              className={classNames(
+                animate && styles.line__animated,
+                styles.line,
+              )}
+              style={lineProps}
+              aria-hidden='true'
+            />
+          </ul>
+        ) : undefined
       }
       after={
-        <>
-          <Button
-            className={classNames(styles.button, styles.button__mobile)}
-            onClick={() => mobileState.setState(true)}
-            aria-label='Toggle mobile navigation'
-            leftIcon={FaBars}
-            color='white'
-            type='ghost'
-            {...srProps}
-          >
-            Menu
-          </Button>
-          <Button
-            className={classNames(styles.button, styles.button__desktop)}
-            {...srProps}
-            disabled
-          >
-            Coming soon
-          </Button>
-          <a
-            href='https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white'
-            className={styles.bannerContainer}
-            rel='noreferrer noopenner'
-            target='_blank'
-            {...srProps}
-          >
-            <img
-              src='https://s3.amazonaws.com/logged-assets/trust-badge/2021/mlh-trust-badge-2021-white.svg'
-              alt='Major League Hacking 2021 Hackathon Season'
-              className={styles.banner}
-            />
-          </a>
-        </>
+        !noNav ? (
+          <>
+            <Button
+              className={classNames(styles.button, styles.button__mobile)}
+              onClick={() => mobileState.setState(true)}
+              aria-label='Toggle mobile navigation'
+              leftIcon={FaBars}
+              color='white'
+              type='ghost'
+              {...srProps}
+            >
+              Menu
+            </Button>
+            <Button
+              className={classNames(
+                site.siteMetadata.featureFlags.open || styles.button__disabled,
+                styles.button__desktop,
+                styles.button,
+              )}
+              to={site.siteMetadata.featureFlags.open ? '/register' : '#'}
+              as={Link}
+              {...srProps}
+            >
+              {site.siteMetadata.featureFlags.open
+                ? 'Register Now'
+                : 'Coming soon'}
+            </Button>
+            {site.siteMetadata.featureFlags.mlh && (
+              <a
+                href='https://mlh.io/seasons/2022/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2022-season&utm_content=white'
+                className={styles.bannerContainer}
+                rel='noreferrer noopenner'
+                target='_blank'
+                {...srProps}
+              >
+                <img
+                  src='https://s3.amazonaws.com/logged-assets/trust-badge/2022/mlh-trust-badge-2022-white.svg'
+                  alt='Major League Hacking 2022 Hackathon Season'
+                  className={styles.banner}
+                />
+              </a>
+            )}
+          </>
+        ) : undefined
       }
     />
   );
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          open
+          mlh
+        }
+      }
+    }
+  }
+`;

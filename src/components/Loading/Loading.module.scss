@@ -1,0 +1,35 @@
+@use '@htv/ui-kit/styles/units';
+@use 'sass:math';
+
+.container {
+  height: 100%;
+  display: flex;
+
+  & > div {
+    width: 100%;
+  }
+}
+
+.content {
+  max-width: math.div(units.$section-width, 2);
+  animation: pulse 1s ease infinite;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.8;
+    }
+    40% {
+      opacity: 0.4;
+    }
+    60% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+}

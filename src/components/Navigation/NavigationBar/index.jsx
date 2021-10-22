@@ -1,5 +1,7 @@
-import Section from '@htv/ui-kit/components/Section';
 import classNames from 'classnames';
+
+import Section from '@htv/ui-kit/components/Section';
+
 import {
   container,
   section,

@@ -1,22 +1,29 @@
+import classNames from 'classnames';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+
 import Button from '@htv/ui-kit/components/Button';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import { StaticImage } from 'gatsby-plugin-image';
+
 import {
   container,
-  five,
+  six,
   gt,
   header,
   imageContainer,
   infoContainer,
   linesContainer,
   prompt,
+  registerButton__disabled,
   registerButton,
   subheader,
   title,
 } from './Splash.module.scss';
 
 export default function Splash() {
+  const { site } = useStaticQuery(query);
+
   return (
     <Section backgroundColor='charcoal'>
       <div className={container}>
@@ -34,16 +41,17 @@ export default function Splash() {
             >
               <span>Hack The</span>
               <span>
-                Valley <span className={five}>5</span>
+                Valley <span className={six}>6</span>
               </span>
             </Text>
           </div>
           <div className={subheader}>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; October xx - xx, 2021
+              &gt; {site.siteMetadata.startDate} - {site.siteMetadata.endDate}
             </Text>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; U of T, Scarborough
+              &gt; In-person (To be confirmed), brought to you by the University
+              of Toronto Scarborough
             </Text>
             <Text
               lineHeight='normal'
@@ -52,17 +60,20 @@ export default function Splash() {
               as='span'
               className={prompt}
             >
-              &gt; Up for the challenge?
+              Up for the challenge?
             </Text>
             <Button
-              onClick={() => console.log('owo')}
-              className={registerButton}
+              as={Link}
+              to={site.siteMetadata.featureFlags.open ? '/register' : '#'}
+              className={classNames(
+                site.siteMetadata.featureFlags.open || registerButton__disabled,
+                registerButton,
+              )}
             >
-              Register for HTV
+              {site.siteMetadata.featureFlags.open
+                ? 'Register for HTV'
+                : 'Coming soon'}
             </Button>
-            <Text lineHeight='normal' type='meta1'>
-              *Applications close September XX, 2021
-            </Text>
           </div>
         </div>
         <div className={imageContainer}>
@@ -76,3 +87,17 @@ export default function Splash() {
     </Section>
   );
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        startDate(formatString: "MMMM D")
+        endDate(formatString: "D, YYYY")
+        featureFlags {
+          open
+        }
+      }
+    }
+  }
+`;

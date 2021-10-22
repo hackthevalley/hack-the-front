@@ -1,0 +1,57 @@
+@use '@htv/ui-kit/styles/colors';
+
+.dropzone {
+  width: stretch;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: colors.css-color(white);
+  background: colors.css-color(white, $opacity: 0.05);
+  border: 2px dashed colors.css-color(white);
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.dropzoneHover {
+  background: colors.css-color(lime, $opacity: 0.05);
+  border-color: colors.css-color(lime);
+}
+
+.dropzoneError {
+  background: colors.css-color(red, $opacity: 0.05);
+  border-color: colors.css-color(red);
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileInputButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-right: 0.25rem;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text > *:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}

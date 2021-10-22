@@ -1,0 +1,119 @@
+@use "@htv/ui-kit/styles/colors";
+@use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/units";
+
+.container {
+  height: 100%;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.npm {
+  margin: 2rem 0 0.5rem;
+  &::before {
+    content: '$';
+    margin-right: 1rem;
+  }
+}
+
+.back {
+  margin: auto 0 0;
+
+  & svg {
+    margin-left: -0.5rem;
+    width: 1.25rem;
+    height: auto;
+  }
+
+  @include mixins.media(tablet) {
+    background-color: colors.css-color(red, $opacity: 6%);
+
+    &:hover,
+    &:focus {
+      background-color: colors.css-color(red, $opacity: 12%);
+    }
+
+    &:active {
+      background-color: colors.css-color(red, $opacity: 18%);
+    }
+  }
+}
+
+.content {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'header header'
+    'status status'
+    'explore explore'
+    'cards cards';
+  max-width: 64rem;
+  grid-gap: 1.5rem 1.25rem;
+  display: grid;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'status'
+      'explore'
+      'cards';
+  }
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-area: header;
+  grid-gap: 0.5rem;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explore {
+  grid-area: explore;
+}
+
+.cards {
+  grid-area: cards;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem 1.25rem;
+  display: grid;
+}
+
+.card {
+  @include mixins.transition(background-color);
+  grid-template-columns: 6.25rem auto;
+  text-decoration: none;
+  align-items: center;
+  padding: 1.5rem;
+  cursor: pointer;
+  display: grid;
+
+  &:hover,
+  &:focus {
+    background-color: colors.css-color('darkviolet', hover);
+  }
+
+  &:active {
+    background-color: colors.css-color('darkviolet', active);
+  }
+}
+
+.factions {
+  grid-gap: 2rem;
+}
+
+.faq {
+  grid-gap: 2.5rem;
+}
+
+.factionIcons {
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  display: grid;
+}

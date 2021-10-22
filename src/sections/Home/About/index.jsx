@@ -1,7 +1,9 @@
+import classNames from 'classnames';
+
+import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import Card from '@htv/ui-kit/components/Card';
-import classNames from 'classnames';
+
 import { ReactComponent as AboutWave } from '../../../images/about-wave.svg';
 import {
   rectangle,
@@ -30,6 +32,7 @@ export default function About() {
       }
       backgroundColor='cactus'
       className={container}
+      id='about'
     >
       <Card className={rectangle}>
         <div className={bashHeader}>
@@ -72,7 +75,7 @@ export default function About() {
             color='lime'
             type='body2'
           >
-            COMING SOON Fall 2021
+            COMING SOON Winter 2022
           </Text>
         </div>
       </Card>

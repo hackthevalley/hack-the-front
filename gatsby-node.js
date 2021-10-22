@@ -1,4 +1,25 @@
+const { siteMetadata } = require('./gatsby-config');
+const replacePath = (path) => (path === `/` ? path : path.replace(/\/$/, ``));
 const isProd = process.env.NODE_ENV === `production`;
+
+exports.onCreatePage = ({ page, actions }) => {
+  // Remove pages protected by featureFlag
+  if (!siteMetadata.featureFlags.open) {
+    if (
+      ['/application', '/dashboard', '/register', '/login'].includes(
+        replacePath(page.path),
+      )
+    ) {
+      actions.deletePage(page);
+    }
+  }
+  
+  if (!siteMetadata.featureFlags.discord) {
+    if (['/discord'].includes(replacePath(page.path))) {
+      actions.deletePage(page);
+    }
+  }
+};
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
   const isSSR = [`develop-html`, `build-html`].includes(stage);
@@ -25,8 +46,8 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders, getConfig }) => {
               importLoaders: 2,
               modules: {
                 localIdentName: isProd
-                  ? `[hash:base64:5]`
-                  : `[name]__[local]--[hash:base64:5]`,
+                  ? `[hash:base64:8]`
+                  : `[name]__[local]--[hash:base64:8]`,
               },
             }),
             loaders.postcss(),

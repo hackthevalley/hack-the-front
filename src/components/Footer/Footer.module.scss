@@ -6,13 +6,14 @@
   flex-direction: column;
   align-items: center;
   display: flex;
+  padding: 1.5rem 0;
 }
 
 .items {
   justify-content: center;
   list-style-type: none;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 0 auto 1em;
   display: flex;
   padding: 0;
 }
@@ -34,6 +35,10 @@
   &:active {
     background-color: colors.css-color(white, $opacity: 0.12);
   }
+
+  @include mixins.media(tablet) {
+    margin: 0 1rem;
+  }
 }
 
 .icon {
@@ -42,11 +47,15 @@
   display: flex;
   width: 1.2rem;
   height: auto;
+
+  @include mixins.media(tablet) {
+    margin-right: 0;
+  }
 }
 
 .mlh {
   @include mixins.transition(color);
-  margin: 2rem 0;
+  display: block;
 
   &:hover,
   &:focus {
@@ -55,5 +64,11 @@
 
   &:active {
     color: colors.css-color(lime, hover);
+  }
+}
+
+.label {
+  @include mixins.media(tablet) {
+    display: none;
   }
 }

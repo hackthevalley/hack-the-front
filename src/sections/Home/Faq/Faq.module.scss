@@ -27,7 +27,8 @@
   border: none;
   width: 100%;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: colors.css-color(darkviolet, hover);
   }
 
@@ -99,12 +100,16 @@
     color: transparent;
     -webkit-text-stroke: 0.25rem colors.css-color(darkviolet);
     margin-top: 2rem;
-    right: -10rem;
+    right: -15rem;
+
+    @include mixins.media(tablet) {
+      display: none;
+    }
   }
 
   &__solid {
     align-self: flex-end;
-    left: -10rem;
+    left: -15rem;
   }
 }
 

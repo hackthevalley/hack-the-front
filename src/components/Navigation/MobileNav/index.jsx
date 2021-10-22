@@ -1,23 +1,28 @@
-import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
 import { FaTimes } from '@react-icons/all-files/fa/FaTimes';
-import Section from '@htv/ui-kit/components/Section';
-import Button from '@htv/ui-kit/components/Button';
-import Text from '@htv/ui-kit/components/Text';
 import classNames from 'classnames';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+
+import { ReactComponent as Logo } from '@htv/ui-kit/assets/logo.svg';
+import Button from '@htv/ui-kit/components/Button';
+import Section from '@htv/ui-kit/components/Section';
+import Text from '@htv/ui-kit/components/Text';
+
+import { logoContainer, logo, button } from '../Navigation.module.scss';
 import NavigationBar from '../NavigationBar';
 import navItems from '../navItems';
 import {
   container,
   container__shown,
+  register__disabled,
+  register,
   items,
   item,
   text,
   footer,
 } from './MobileNav.module.scss';
-import { logoContainer, logo, button } from '../Navigation.module.scss';
 
 export default function MobileNav({ isShown, isMounted, setState }) {
+  const { site } = useStaticQuery(query);
   return isMounted ? (
     <div className={classNames(container, isShown && container__shown)}>
       <NavigationBar
@@ -65,8 +70,29 @@ export default function MobileNav({ isShown, isMounted, setState }) {
         })}
       </ul>
       <Section className={footer} as='div'>
-        <Button disabled>Coming Soon</Button>
+        <Button
+          className={classNames(
+            site.siteMetadata.featureFlags.open || register__disabled,
+            register,
+          )}
+          to={site.siteMetadata.featureFlags.open ? '/register' : '#'}
+          as={Link}
+        >
+          {site.siteMetadata.featureFlags.open ? 'Register Now' : 'Coming soon'}
+        </Button>
       </Section>
     </div>
   ) : null;
 }
+
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          open
+        }
+      }
+    }
+  }
+`;
