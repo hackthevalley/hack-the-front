@@ -12,7 +12,6 @@ import * as styles from './Sponsors.module.scss';
 export default function Sponsors() {
   const { sponsors, site } = useStaticQuery(query);
   const sponsorsEnabled = site.siteMetadata.featureFlags.sponsors;
-  console.log(sponsors);
 
   return (
     <Section
