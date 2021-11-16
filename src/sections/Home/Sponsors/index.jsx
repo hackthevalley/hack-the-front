@@ -10,7 +10,8 @@ import { ReactComponent as SponsorBackground } from '../../../images/sponsor.svg
 import * as styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
-  //   const { sponsors } = useStaticQuery(query);
+  const { sponsors, site } = useStaticQuery(query);
+  const sponsorsEnabled = site.siteMetadata.featureFlags.sponsors;
 
   return (
     <Section
@@ -46,72 +47,84 @@ export default function Sponsors() {
           sponsorships@hackthevalley.io
         </Text>
       </Text>
-      {/* <Card className={styles.sponsors} backgroundColor='white' type='flat'> */}
-      {/* {sponsors.nodes.map((tier) => (
-          <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}> */}
-      {/*<Text transform='uppercase' type='meta1' as='h3'>
-              {tier.data.Name} Sponsors
-            </Text>*/}
-      {/* <ul className={styles.sponsors__list}>
-              {tier.data.Sponsors.map((sponsor) => (
-                <li key={sponsor.recordId}>
-                  <a
-                    className={styles.sponsor__link}
-                    href={sponsor.data.Link}
-                    target='_blank'
-                    rel='noopenner noreferrer'
-                  >
-                    <GatsbyImage
-                      image={getImage(sponsor.data.Logo.localFiles[0])}
-                      style={
-                        sponsor.data.Scale !== null
-                          ? { '--scale': tier.data.Scale * sponsor.data.Scale }
-                          : undefined
-                      }
-                      alt={`${sponsor.data.Name}'s logo`}
-                      className={styles.sponsor__asset}
-                      objectPosition='center'
-                      objectFit='contain'
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul> */}
-      {/* </div>
-        ))} */}
-      {/* </Card> */}
+      {sponsorsEnabled && (
+        <Card className={styles.sponsors} backgroundColor='white' type='flat'>
+          {sponsors.nodes
+            .filter(tier => (tier.data.Sponsors ?? []).length)
+            .map((tier) => (
+              <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}>
+                <Text transform='uppercase' type='meta1' as='h3'>
+                  {tier.data.Name} Sponsors
+                </Text>
+                <ul className={styles.sponsors__list}>
+                  {tier.data.Sponsors.map((sponsor) => (
+                    <li key={sponsor.recordId}>
+                      <a
+                        className={styles.sponsor__link}
+                        href={sponsor.data.Link}
+                        target='_blank'
+                        rel='noopenner noreferrer'
+                      >
+                        <GatsbyImage
+                          image={getImage(sponsor.data.Logo.localFiles[0])}
+                          style={
+                            sponsor.data.Scale !== null
+                              ? { '--scale': tier.data.Scale * sponsor.data.Scale }
+                              : undefined
+                          }
+                          alt={`${sponsor.data.Name}'s logo`}
+                          className={styles.sponsor__asset}
+                          objectPosition='center'
+                          objectFit='contain'
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </Card>
+      )}
     </Section>
   );
 }
 
-// const query = graphql`
-//   {
-//     sponsors: allAirtable(
-//       sort: { fields: data___Sort_Order, order: ASC }
-//       filter: { table: { eq: "Sponsor Types" } }
-//     ) {
-//       nodes {
-//         recordId
-//         data {
-//           Name
-//           Sponsors {
-//             recordId
-//             data {
-//               Link
-//               Name
-//               Scale
-//               Logo {
-//                 localFiles {
-//                   childImageSharp {
-//                     gatsbyImageData(width: 600)
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//           Scale
-//         }
-//       }
-//     }
-//   }
-// `;
+const query = graphql`
+  {
+    site {
+      siteMetadata {
+        featureFlags {
+          sponsors
+        }
+      }
+    }
+    sponsors: allAirtable(
+      sort: { fields: data___Sort_Order, order: ASC }
+      filter: { table: { eq: "Sponsor Types" } }
+    ) {
+      nodes {
+        recordId
+        data {
+          Name
+          Sponsors {
+            recordId
+            data {
+              Link
+              Name
+              Scale
+              Logo {
+                localFiles {
+                  childImageSharp {
+                    gatsbyImageData(width: 600)
+                  }
+                }
+              }
+            }
+          }
+          Scale
+        }
+      }
+    }
+  }
+`;
