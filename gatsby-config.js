@@ -20,6 +20,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify`,
@@ -64,6 +65,5 @@ module.exports = {
         icon: `./node_modules/@htv/ui-kit/assets/icon.png`,
       },
     },
-    `gatsby-plugin-offline`,
   ],
 };
