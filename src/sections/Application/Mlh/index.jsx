@@ -35,7 +35,7 @@ export default function Mlh() {
           label={
             <>
               I have read and agree to the{' '}
-              <a className={link} href='#'>
+              <a className={link} href='https://static.mlh.io/docs/mlh-code-of-conduct.pdf' target='_blank' rel='noreferrer noopener'>
                 MLH Code of Conduct
               </a>
               .
@@ -50,15 +50,15 @@ export default function Mlh() {
               I authorize you to share my application/registration information
               with Major League Hacking for event administration, ranking, MLH
               administration in-line with the{' '}
-              <a className={link} href='#'>
+              <a className={link} href='https://mlh.io/privacy' target='_blank' rel='noreferrer noopener'>
                 MLH Privacy Policy
               </a>
               . I further agree to the terms of both the{' '}
-              <a className={link} href='#'>
+              <a className={link} href='https://mlh.io/terms' target='_blank' rel='noreferrer noopener'>
                 MLH Contest Terms and Conditions
               </a>{' '}
               and the{' '}
-              <a className={link} href='#'>
+              <a className={link} href='https://mlh.io/privacy' target='_blank' rel='noreferrer noopener'>
                 MLH Privacy Policy
               </a>
               .

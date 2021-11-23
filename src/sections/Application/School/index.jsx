@@ -51,7 +51,11 @@ export default function School() {
           <FormField
             index='8'
             forceType={questionTypes._NUMBER}
-            fieldProps={{ min: 0 }}
+            fieldProps={{
+              label: 'Expected Graduation',
+              placeholder: 'ex. 2023',
+              min: 0
+            }}
           />
         </div>
       </div>
