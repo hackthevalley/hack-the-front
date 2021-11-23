@@ -40,14 +40,14 @@ export default function School() {
           }}
         />
         <FormField
-          index='6'
+          index='7'
           forceType={questionTypes._FREE_SELECT}
           fieldProps={{
             options: majors,
           }}
         />
         <div className={two_col}>
-          <FormField index='7' />
+          <FormField index='6' />
           <FormField
             index='8'
             forceType={questionTypes._NUMBER}
