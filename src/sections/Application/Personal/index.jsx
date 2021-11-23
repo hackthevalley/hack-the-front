@@ -1,21 +1,53 @@
 import Text from '@htv/ui-kit/components/Text';
+import { useEffect } from 'react';
 
 import { fieldset, legend, layout } from '../Application.module.scss';
-import { FormField } from '../Form/FormContext';
+import { FormField, useForm } from '../Form/FormContext';
 import './Personal.module.scss';
 
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export default function Personal({ userInfo }) {
+  const { formInfo, setFormState } = useForm();
 
-export default function Personal() {
+  useEffect(() => {
+    const [fn, sn, email] = formInfo.questions.slice(0, 3);
+    setFormState(_ => ({
+      ..._,
+      form: {
+        ..._.form,
+        [fn.id]: userInfo.firstName,
+        [sn.id]: userInfo.lastName,
+        [email.id]: userInfo.email,
+      },
+    }));
+  }, [ formInfo.questions, userInfo, setFormState ]);
+
   return (
     <fieldset className={fieldset}>
       <Text className={legend} type='body1' font='secondary' as='legend'>
         Personal
       </Text>
       <div className={layout}>
-        <FormField index='0' />
-        <FormField index='1' />
-        <FormField index='2' />
+        <FormField
+          index='0'
+          fieldProps={{
+            disabled: true,
+            readOnly: true,
+          }}
+        />
+        <FormField
+          index='1'
+          fieldProps={{
+            disabled: true,
+            readOnly: true,
+          }}
+        />
+        <FormField
+          index='2'
+          fieldProps={{
+            disabled: true,
+            readOnly: true,
+          }}
+        />
         <FormField
           fieldProps={{
             placeholder: 'e.g. +1-4162878872',

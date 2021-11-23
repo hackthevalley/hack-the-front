@@ -4,17 +4,23 @@ const isProd = process.env.NODE_ENV === `production`;
 
 exports.onCreatePage = ({ page, actions }) => {
   // Remove pages protected by featureFlag
-  if (!siteMetadata.featureFlags.open) {
+  if (isProd && !siteMetadata.featureFlags.open) {
     if (
-      ['/application', '/dashboard', '/register', '/login'].includes(
+      ['/application', '/dashboard', '/activate', '/forgot', '/reset_password', '/register', '/login'].includes(
         replacePath(page.path),
       )
     ) {
       actions.deletePage(page);
     }
   }
+
+  if (isProd && !siteMetadata.featureFlags.schedule) {
+    if (['/schedule'].includes(replacePath(page.path))) {
+      actions.deletePage(page);
+    }
+  }
   
-  if (!siteMetadata.featureFlags.discord) {
+  if (isProd && !siteMetadata.featureFlags.discord) {
     if (['/discord'].includes(replacePath(page.path))) {
       actions.deletePage(page);
     }
