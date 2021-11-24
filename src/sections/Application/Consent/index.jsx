@@ -2,7 +2,7 @@ import Text from '@htv/ui-kit/components/Text';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import Checkbox from '../../../components/Checkbox';
-import { layout, fieldset, legend, full_col } from '../Application.module.scss';
+import { layout, fieldset, legend, link, full_col } from '../Application.module.scss';
 import { useForm } from '../Form/FormContext';
 
 export default function Consent() {
@@ -47,6 +47,27 @@ export default function Consent() {
         </Text>
         <Checkbox
           {...applyProps('htv_consent')}
+          className={full_col}
+          label='I agree'
+        />
+        <Text
+          lineHeight='relaxed'
+          className={full_col}
+          color='white'
+          type='meta1'
+          as='p'
+        >
+          If I intend to attend the event in person, I agree that I will be fully
+          vaccinated based on local guidelines. Vaccines must be in the approved
+          list by <a
+            href="https://www.canada.ca/en/health-canada/services/drugs-health-products/covid19-industry/drugs-vaccines-treatments/vaccines.html"
+            rel='noreferrer noopener'
+            className={link}
+            target='_blank'
+          >Health Canada</a> (Proof of Vaccination will be required to enter the event)
+        </Text>
+        <Checkbox
+          {...applyProps('htv_vaccination')}
           className={full_col}
           label='I agree'
         />
