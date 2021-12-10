@@ -44,6 +44,7 @@ export default function Personal({ userInfo }) {
         <FormField
           index='2'
           fieldProps={{
+            description: 'For any institutional email, do check your spam for the confirmation',
             disabled: true,
             readOnly: true,
           }}

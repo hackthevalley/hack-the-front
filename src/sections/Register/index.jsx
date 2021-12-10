@@ -36,7 +36,11 @@ const initState = () => ({
 });
 
 function reducer(state, update) {
-  if (!update) return initState();
+  if (!update) {
+    const { _errors, ...newState } = initState(false);
+    return newState;
+  }
+
   return { ...state, ...update };
 }
 
