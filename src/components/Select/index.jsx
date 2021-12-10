@@ -21,6 +21,7 @@ import {
 export default function Select({
   options = [],
   placeholder,
+  description,
   className,
   error,
   label,
@@ -48,6 +49,7 @@ export default function Select({
   return (
     <InputLayout
       className={classNames(container, className)}
+      description={description}
       required={props.required}
       disabled={props.disabled}
       name={props.name}

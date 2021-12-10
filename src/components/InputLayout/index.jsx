@@ -2,13 +2,14 @@ import { forwardRef } from 'react';
 
 import Text from '@htv/ui-kit/components/Text';
 
-import { required, error, label, box } from './InputLayout.module.scss';
+import { required, label, info, box } from './InputLayout.module.scss';
 
 const ForwardInputLayout = forwardRef(function InputLayout(
   {
     required: requiredState,
     error: errorMessage,
     label: labelText,
+    description,
     className,
     children,
     disabled,
@@ -31,8 +32,13 @@ const ForwardInputLayout = forwardRef(function InputLayout(
         </Text>
         {children}
       </div>
+      {description && (
+        <Text className={info} color='white' type='meta1'>
+          {description}
+        </Text>
+      )}
       {!disabled && errorMessage && (
-        <Text className={error} color='red' type='meta1'>
+        <Text className={info} color='red' type='meta1'>
           {errorMessage}
         </Text>
       )}
