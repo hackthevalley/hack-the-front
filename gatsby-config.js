@@ -11,8 +11,8 @@ module.exports = {
     description,
     keywords,
     featureFlags: {
-      mlh: false,
-      open: true,
+      mlh: true,
+      open: false,
       discord: false,
       rsvp: true,
       schedule: false,
