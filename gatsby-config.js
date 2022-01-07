@@ -12,7 +12,7 @@ module.exports = {
     keywords,
     featureFlags: {
       mlh: true,
-      open: true,
+      open: false,
       discord: false,
       rsvp: true,
       schedule: false,
