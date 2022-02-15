@@ -47,11 +47,7 @@ export default function Splash() {
           </div>
           <div className={subheader}>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; {site.siteMetadata.startDate} - {site.siteMetadata.endDate}
-            </Text>
-            <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; In-person (To be confirmed), brought to you by the University
-              of Toronto Scarborough
+              &gt; HTV POSTPONED TO FALL 2022
             </Text>
             <Text
               lineHeight='normal'
