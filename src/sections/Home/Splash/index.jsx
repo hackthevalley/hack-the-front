@@ -47,7 +47,7 @@ export default function Splash() {
           </div>
           <div className={subheader}>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; Oct. 13-15, 2023
+              &gt; HTV POSTPONED TO FALL 2022
             </Text>
             <Text
               lineHeight='normal'
