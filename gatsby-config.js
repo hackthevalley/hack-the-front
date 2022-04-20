@@ -16,7 +16,7 @@ module.exports = {
       discord: false,
       rsvp: true,
       schedule: false,
-      sponsors: true,
+      sponsors: false,
     },
   },
   plugins: [
