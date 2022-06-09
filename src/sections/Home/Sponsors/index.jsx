@@ -10,8 +10,8 @@ import { ReactComponent as SponsorBackground } from '../../../images/sponsor.svg
 import * as styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
-  const { sponsors, site } = useStaticQuery(query);
-  const sponsorsEnabled = site.siteMetadata.featureFlags.sponsors;
+  // const { sponsors, site } = useStaticQuery(query);
+  const sponsorsEnabled = false; // site.siteMetadata.featureFlags.sponsors;
 
   return (
     <Section
