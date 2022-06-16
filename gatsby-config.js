@@ -4,8 +4,8 @@ require('dotenv').config();
 module.exports = {
   siteMetadata: {
     siteUrl: process.env.URL || `http://localhost`,
-    startDate: new Date(2022, 1, 25),
-    endDate: new Date(2022, 1, 27),
+    startDate: new Date(2022, 9, 14),
+    endDate: new Date(2022, 9, 16),
     title: `Hack the Valley 6`,
     author: author.name,
     description,
