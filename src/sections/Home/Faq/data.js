@@ -15,14 +15,14 @@ export const Faqs = [
           <Text as='span' color='lime' type='body2'>
             You'll need:&nbsp;
           </Text>
-          A laptop and charger.
+          A laptop and charger. We’d also recommend a sleeping bag if you plan to stay the night at the venue.
         </p>
         <p>Everything else is optional.</p>
         <p>
           <Text as='span' color='red' type='body2'>
-            You'll need:&nbsp;
+            You <strong>don’t</strong> need:&nbsp;
           </Text>
-          An idea, or a team.
+          An idea and a team.
         </p>
         <p>
           You can create your own team (teams of 4 recommended) during the
