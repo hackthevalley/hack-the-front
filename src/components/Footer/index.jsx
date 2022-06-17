@@ -23,8 +23,8 @@ const links = [
   },
   {
     img: TwitterIcon,
-    to: 'https://twitter.com/hackthevalley5',
-    name: ' hackthevalley5 ',
+    to: 'https://twitter.com/hackthevalley6',
+    name: ' hackthevalley6 ',
   },
   {
     img: InstagramIcon,
