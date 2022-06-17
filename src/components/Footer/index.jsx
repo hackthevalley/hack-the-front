@@ -24,7 +24,7 @@ const links = [
   {
     img: TwitterIcon,
     to: 'https://twitter.com/hackthevalley6',
-    name: ' hackthevalley8 ',
+    name: ' hackthevalley6 ',
   },
   {
     img: InstagramIcon,
