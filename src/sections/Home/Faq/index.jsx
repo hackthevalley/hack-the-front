@@ -80,7 +80,7 @@ export default function Faq() {
               }
             >
               <Text type='body1' transform='uppercase' as='h3' weight='normal'>
-                <span>&gt;</span> {faq.title}
+                <span > {expanded[key] ? <>&#8964;</> : <>&gt;</> }</span> {faq.title}
               </Text>
               <Text
                 as='div'
