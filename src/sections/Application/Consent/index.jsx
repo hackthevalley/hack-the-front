@@ -50,27 +50,6 @@ export default function Consent() {
           className={full_col}
           label='I agree'
         />
-        <Text
-          lineHeight='relaxed'
-          className={full_col}
-          color='white'
-          type='meta1'
-          as='p'
-        >
-          If I intend to attend the event in person, I agree that I will be fully
-          vaccinated based on local guidelines. Vaccines must be in the approved
-          list by <a
-            href="https://www.canada.ca/en/health-canada/services/drugs-health-products/covid19-industry/drugs-vaccines-treatments/vaccines.html"
-            rel='noreferrer noopener'
-            className={link}
-            target='_blank'
-          >Health Canada</a> (Proof of Vaccination will be required to enter the event)
-        </Text>
-        <Checkbox
-          {...applyProps('htv_vaccination')}
-          className={full_col}
-          label='I agree'
-        />
       </div>
     </fieldset>
   );

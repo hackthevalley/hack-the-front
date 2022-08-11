@@ -203,6 +203,7 @@ export function FormProvider({ children }) {
       mlh_coc: false,
       mlh_share: false,
       htv_consent: false,
+      htv_vaccination: false,
     },
   });
 
