@@ -67,7 +67,7 @@ export default function Splash() {
               )}
             >
               {site.siteMetadata.featureFlags.open
-                ? 'Register for HTV'
+                ? 'Apply for HTV'
                 : 'Coming soon'}
             </Button>
           </div>
