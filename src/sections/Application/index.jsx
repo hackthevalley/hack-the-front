@@ -7,7 +7,7 @@ import Mlh from './Mlh';
 import Personal from './Personal';
 import School from './School';
 import General from './General';
-import SkillConfidence from './SkillConfidence';
+import Covid from './Covid';
 import { useGet } from 'restful-react';
 
 export default function ApplicationForm() {
@@ -25,6 +25,7 @@ export default function ApplicationForm() {
         <Experience />
         <SkillConfidence />
         <General />
+        <Covid />
         <Mlh />
         <Consent />
       </Form>
