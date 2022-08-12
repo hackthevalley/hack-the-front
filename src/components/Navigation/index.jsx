@@ -131,7 +131,7 @@ export default function Navigation({ noNav }) {
               {...srProps}
             >
               {site.siteMetadata.featureFlags.open
-                ? 'Register Now'
+                ? 'Apply Now'
                 : 'Coming soon'}
             </Button>
             {site.siteMetadata.featureFlags.mlh && (

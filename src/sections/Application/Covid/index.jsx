@@ -1,14 +1,11 @@
 import Text from '@htv/ui-kit/components/Text';
-import { graphql, useStaticQuery } from 'gatsby';
 
 import Checkbox from '../../../components/Checkbox';
-import { layout, fieldset, legend, link, full_col } from '../Application.module.scss';
+import { layout, fieldset, legend, full_col } from '../Application.module.scss';
 import { useForm } from '../Form/FormContext';
 
-export default function Consent() {
+export default function Covid() {
   const { formState, setFormState } = useForm();
-  const { site } = useStaticQuery(query);
-  const htv = site.siteMetadata.title;
 
   const applyProps = (name) => ({
     onChange: ({ target }) => {
@@ -28,7 +25,7 @@ export default function Consent() {
   return (
     <fieldset className={fieldset}>
       <Text className={legend} type='body1' font='secondary' as='legend'>
-        Consent Form
+        Possible Covid-19 Precaution
       </Text>
       <div className={layout}>
         <Text
@@ -38,29 +35,18 @@ export default function Consent() {
           type='meta1'
           as='p'
         >
-          I, hereby grant permission to Hack the Valley to use screenshots
-          and/or video of me taken during {htv} in publications,
-          news releases, online, and in other communication related to the
-          mission of Hack the Valley. I further give my consent and submit my
-          compliance to the use of a third party video conference service for
-          the virtual participation of {htv}
+          I agree to complete an exposure screening questionnaire before
+          traveling to the hackathon venue. If restrictions are enforced
+          further, I understand that I may need to provide proof of vaccination
+          based on local guidelines and that proof of vaccination will be needed
+          to enter the event.
         </Text>
         <Checkbox
-          {...applyProps('htv_consent')}
+          {...applyProps('htv_vaccination')}
           className={full_col}
-          label='I agree'
+          label='I have read and agree to the Covid-19 precaution above.'
         />
       </div>
     </fieldset>
   );
 }
-
-const query = graphql`
-{
-  site {
-    siteMetadata {
-      title
-    }
-  }
-}
-`;
