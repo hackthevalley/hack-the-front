@@ -78,7 +78,7 @@ export default function MobileNav({ isShown, isMounted, setState }) {
           to={site.siteMetadata.featureFlags.open ? '/register' : '#'}
           as={Link}
         >
-          {site.siteMetadata.featureFlags.open ? 'Register Now' : 'Coming soon'}
+          {site.siteMetadata.featureFlags.open ? 'Apply Now' : 'Coming soon'}
         </Button>
       </Section>
     </div>
