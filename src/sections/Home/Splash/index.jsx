@@ -8,7 +8,7 @@ import Text from '@htv/ui-kit/components/Text';
 
 import {
   container,
-  seven,
+  version,
   gt,
   header,
   imageContainer,
@@ -41,7 +41,7 @@ export default function Splash() {
             >
               <span>Hack The</span>
               <span>
-                Valley <span className={seven}>7</span>
+                Valley <span className={version}>7</span>
               </span>
             </Text>
           </div>
