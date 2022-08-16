@@ -6,7 +6,7 @@ module.exports = {
     siteUrl: process.env.URL || `http://localhost`,
     startDate: new Date(2022, 9, 14),
     endDate: new Date(2022, 9, 16),
-    title: `Hack the Valley 6`,
+    title: `Hack the Valley 7`,
     author: author.name,
     description,
     keywords,
