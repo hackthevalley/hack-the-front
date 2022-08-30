@@ -43,23 +43,23 @@ export const factions = [
     extinction, and many more.`,
   },
   {
-    name: `Technology`,
+    name: `Diversity`,
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-technology.png'
+        src='../../../images/faction-icons/factions-diversity.png'
         placeholder='TRACED_SVG'
-        alt='Technology Faction'
+        alt='Diversity Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `Participants in the technology tribe are all about finding
-    ways to bring us closer together and connect better with one another.
-    If this year has taught us anything, it’s the importance of working
-    together and finding ways to be there for one another, even against
-    the odds. Participants in the connection tribe aim to find a solution
-    using technology to advance that exact goal and challenge.`,
+    content: `Participants in the diversity tribe are all about finding
+     ways to make our community more diverse and inclusive.  They can touch 
+     on topics such as race, gender expression, disability and educational 
+     attainment. With the recent events in the world’s racial history, this 
+     tribe will be introspective around how their products can better 
+     reflect the change we want to see - and become a part of that change.`,
   },
   {
     name: `Discovery`,
