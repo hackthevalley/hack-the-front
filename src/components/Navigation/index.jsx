@@ -136,15 +136,15 @@ export default function Navigation({ noNav }) {
             </Button>
             {site.siteMetadata.featureFlags.mlh && (
               <a
-                href='https://mlh.io/seasons/2022/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2022-season&utm_content=white'
+                href='https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=white'
                 className={styles.bannerContainer}
                 rel='noreferrer noopenner'
                 target='_blank'
                 {...srProps}
               >
                 <img
-                  src='https://s3.amazonaws.com/logged-assets/trust-badge/2022/mlh-trust-badge-2022-white.svg'
-                  alt='Major League Hacking 2022 Hackathon Season'
+                  src='https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-white.svg'
+                  alt='Major League Hacking 2023 Hackathon Season'
                   className={styles.banner}
                 />
               </a>
