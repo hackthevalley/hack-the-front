@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Section from '@htv/ui-kit/components/Section';
 
 import {
+  root_container,
   container,
   section,
   section__before,
@@ -18,7 +19,11 @@ export default function NavigationBar({
   ...props
 }) {
   return (
-    <Section {...props} className={classNames(className, container)}>
+    <Section
+      {...props}
+      className={classNames(className, container)}
+      rootClassName={classNames(root_container)}
+    >
       {before && (
         <div className={classNames(section, section__before)}>{before}</div>
       )}
