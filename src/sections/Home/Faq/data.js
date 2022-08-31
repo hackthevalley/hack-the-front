@@ -90,7 +90,7 @@ export const Faqs = [
     ),
     content: (
       <p>
-        Hack the Valley 6 will be held at the University of Toronto Scarborough
+        Hack the Valley 7 will be held at the University of Toronto Scarborough
         campus in the IC building. All event activities will be hosted in the
         building, and participants will be able to stay in the building for the
         entire duration of the weekend (including overnight).
