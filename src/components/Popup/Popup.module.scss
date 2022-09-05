@@ -1,0 +1,47 @@
+@use '@htv/ui-kit/styles/mixins';
+@use '@htv/ui-kit/styles/units';
+
+.animated {
+}
+
+.backdrop {
+  @include mixins.transition(backdrop-filter opacity, slow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+
+  opacity: 0;
+  z-index: 100;
+  inset: 0;
+  margin: 0;
+
+  &.animated {
+    backdrop-filter: blur(0.75rem);
+    opacity: 1;
+  }
+}
+
+.box {
+  position: relative;
+  background-color: #272433;
+
+  max-width: 85%;
+  max-height: 85%;
+
+  padding: 2.5rem;
+  border-radius: 0.375rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+}
+
+.button {
+  padding: 0.6rem 1.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}

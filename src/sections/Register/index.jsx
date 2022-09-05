@@ -1,7 +1,7 @@
 import { IoChevronBack } from '@react-icons/all-files/io5/IoChevronBack';
 import classNames from 'classnames';
 import { Link } from 'gatsby';
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useMutate } from 'restful-react';
 
@@ -10,6 +10,7 @@ import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
 
 import Input from '../../components/Input';
+import Popup from '../../components/Popup';
 import {
   container,
   section,
@@ -58,6 +59,7 @@ export default function Register() {
       loading: 'Registering user...',
       success: () => {
         dispatch(null);
+        setShowPopup(true);
         return `Success! An email confirmation has been sent to ${input.email}`;
       },
       error: ({ data }) => {
@@ -105,6 +107,8 @@ export default function Register() {
     store.password,
     store.rePassword,
   ].every(Boolean);
+
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <div className={container}>
@@ -195,7 +199,14 @@ export default function Register() {
             </form>
           </div>
         </div>
+        <Button onClick={() => setShowPopup(true)}>Show Popup</Button>
       </Section>
+      <Popup
+        description='An email confirmation has been sent to your email. For any institutional email, do check your spam for the confirmation'
+        label='Success!'
+        show={showPopup}
+        onClose={() => setShowPopup(false)}
+      ></Popup>
     </div>
   );
 }
