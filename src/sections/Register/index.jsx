@@ -199,7 +199,6 @@ export default function Register() {
             </form>
           </div>
         </div>
-        <Button onClick={() => setShowPopup(true)}>Show Popup</Button>
       </Section>
       <Popup
         description='An email confirmation has been sent to your email. For any institutional email, do check your spam for the confirmation'
