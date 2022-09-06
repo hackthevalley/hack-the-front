@@ -8,14 +8,19 @@ export const factions = [
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/Diversity.png'
+        src='../../../images/faction-icons/factions-diversity.png'
         placeholder='TRACED_SVG'
         alt='Diversity Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `The diversity theme celebrates the power of inclusion and seeks to foster a more diverse and equitable society. Participants in this tribe focus on addressing issues related to race, gender, sexual orientation, disability, and other dimensions of diversity. Through their innovative projects, they aim to create technological solutions that promote equal opportunities, challenge biases, and cultivate a sense of belonging for all individuals.`,
+    content: `Participants in the diversity tribe are all about finding
+     ways to make our community more diverse and inclusive.  They can touch 
+     on topics such as race, gender expression, disability and educational 
+     attainment. With the recent events in the world’s racial history, this 
+     tribe will be introspective around how their products can better 
+     reflect the change we want to see - and become a part of that change.`,
   },
   {
     name: `Sustainability`,

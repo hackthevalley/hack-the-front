@@ -41,7 +41,7 @@ export default function Splash() {
             >
               <span>Hack The</span>
               <span>
-                Valley <span className={version}>8</span>
+                Valley <span className={version}>7</span>
               </span>
             </Text>
           </div>
