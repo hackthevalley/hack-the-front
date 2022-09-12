@@ -116,7 +116,7 @@ function Dashboard() {
                 height={60}
                 width={60}
                 alt='Technology'
-                src='../../images/faction-icons/factions-technology.png'
+                src='../../images/faction-icons/factions-diversity.png'
               />
               <StaticImage
                 height={60}
@@ -126,7 +126,7 @@ function Dashboard() {
               />
             </div>
             <Text type='heading2' font='secondary' as='h3'>
-              The Factions of <strong>HTV5</strong>
+              The Factions of <strong>HTV7</strong>
             </Text>
           </Card>
           <Card
