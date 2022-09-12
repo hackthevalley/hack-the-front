@@ -115,7 +115,7 @@ function Dashboard() {
               <StaticImage
                 height={60}
                 width={60}
-                alt='Technology'
+                alt='Diversity'
                 src='../../images/faction-icons/factions-diversity.png'
               />
               <StaticImage
