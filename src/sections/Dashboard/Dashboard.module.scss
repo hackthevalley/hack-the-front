@@ -83,6 +83,10 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.5rem 1.25rem;
   display: grid;
+
+  @include mixins.media(tablet) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
