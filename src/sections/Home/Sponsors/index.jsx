@@ -10,8 +10,9 @@ import { ReactComponent as SponsorBackground } from '../../../images/sponsor.svg
 import * as styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
-  // const { sponsors, site } = useStaticQuery(query);
-  const sponsorsEnabled = false; // site.siteMetadata.featureFlags.sponsors;
+  const { sponsors, site } = useStaticQuery(query);
+  site.siteMetadata.featureFlags.sponsors;
+  const sponsorsEnabled = true;
 
   return (
     <Section
@@ -50,11 +51,13 @@ export default function Sponsors() {
       {sponsorsEnabled && (
         <Card className={styles.sponsors} backgroundColor='white' type='flat'>
           {sponsors.nodes
-            .filter(tier => (tier.data.Sponsors ?? []).length)
+            .filter((tier) => (tier.data.Sponsors ?? []).length)
             .map((tier) => (
               <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}>
                 <Text transform='uppercase' type='meta1' as='h3'>
-                  {tier.data.Name} Sponsors
+                  {tier.data.Name === 'Support'
+                    ? 'With Support From'
+                    : tier.data.Name + ' Sponsors'}
                 </Text>
                 <ul className={styles.sponsors__list}>
                   {tier.data.Sponsors.map((sponsor) => (
@@ -69,7 +72,10 @@ export default function Sponsors() {
                           image={getImage(sponsor.data.Logo.localFiles[0])}
                           style={
                             sponsor.data.Scale !== null
-                              ? { '--scale': tier.data.Scale * sponsor.data.Scale }
+                              ? {
+                                  '--scale':
+                                    tier.data.Scale * sponsor.data.Scale,
+                                }
                               : undefined
                           }
                           alt={`${sponsor.data.Name}'s logo`}
@@ -82,8 +88,7 @@ export default function Sponsors() {
                   ))}
                 </ul>
               </div>
-            ))
-          }
+            ))}
         </Card>
       )}
     </Section>
