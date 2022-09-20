@@ -11,8 +11,7 @@ import * as styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
   const { sponsors, site } = useStaticQuery(query);
-  site.siteMetadata.featureFlags.sponsors;
-  const sponsorsEnabled = true;
+  const sponsorsEnabled = site.siteMetadata.featureFlags.sponsors;
 
   return (
     <Section
@@ -51,7 +50,7 @@ export default function Sponsors() {
       {sponsorsEnabled && (
         <Card className={styles.sponsors} backgroundColor='white' type='flat'>
           {sponsors.nodes
-            .filter((tier) => (tier.data.Sponsors ?? []).length)
+            .filter((tier) => tier?.data?.Sponsors)
             .map((tier) => (
               <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}>
                 <Text transform='uppercase' type='meta1' as='h3'>
