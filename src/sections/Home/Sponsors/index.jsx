@@ -10,8 +10,8 @@ import { ReactComponent as SponsorBackground } from '../../../images/sponsor.svg
 import * as styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
-  // const { sponsors, site } = useStaticQuery(query);
-  const sponsorsEnabled = false; // site.siteMetadata.featureFlags.sponsors;
+  const { sponsors, site } = useStaticQuery(query);
+  const sponsorsEnabled = site.siteMetadata.featureFlags.sponsors;
 
   return (
     <Section
@@ -53,6 +53,11 @@ export default function Sponsors() {
             .filter((tier) => tier?.data?.Sponsors)
             .map((tier) => (
               <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}>
+                <Text transform='uppercase' type='meta1' as='h3'>
+                  {tier.data.Name === 'Support'
+                    ? 'With Support From'
+                    : tier.data.Name + ' Sponsors'}
+                </Text>
                 <ul className={styles.sponsors__list}>
                   {tier.data.Sponsors.map((sponsor) => (
                     <li key={sponsor.recordId}>
