@@ -53,11 +53,6 @@ export default function Sponsors() {
             .filter((tier) => tier?.data?.Sponsors)
             .map((tier) => (
               <div key={tier.recordId} style={{ '--scale': tier.data.Scale }}>
-                <Text transform='uppercase' type='meta1' as='h3'>
-                  {tier.data.Name === 'Support'
-                    ? 'With Support From'
-                    : tier.data.Name + ' Sponsors'}
-                </Text>
                 <ul className={styles.sponsors__list}>
                   {tier.data.Sponsors.map((sponsor) => (
                     <li key={sponsor.recordId}>
