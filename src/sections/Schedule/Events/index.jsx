@@ -1,4 +1,4 @@
-import Card from "@htv/ui-kit/components/Card";
+import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
 
 import {
@@ -12,6 +12,7 @@ import {
   eventDetailsHead,
   eventDetailsMeta,
 } from './Events.module.scss';
+
 export default function Events({ items, metadata }) {
   if (!items?.length) return null;
 
