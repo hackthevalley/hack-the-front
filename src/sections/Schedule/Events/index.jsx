@@ -143,9 +143,7 @@ export default function Events({ items, metadata }) {
                   <span>
                     Host:{' '}
                     {item.hosts
-                      .map(({ name, position }) =>
-                        position ? `${name} @ ${position}` : name,
-                      )
+                      .map((host) => `${host.name} @ ${host.position}`)
                       .join(', ') || 'N/A'}
                   </span>
                 </Text>
