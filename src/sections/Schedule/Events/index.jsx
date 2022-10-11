@@ -1,5 +1,17 @@
-import Card from "@htv/ui-kit/components/Card";
+import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
+
+import {
+  list,
+  time,
+  event,
+  eventCard,
+  eventBar,
+  eventContent,
+  eventTime,
+  eventDetailsHead,
+  eventDetailsMeta,
+} from './Events.module.scss';
 
 import {
   list,

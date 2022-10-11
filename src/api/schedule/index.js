@@ -93,4 +93,4 @@ export default async function handler(req, res) {
     events,
     metadata,
   });
-};
+}
