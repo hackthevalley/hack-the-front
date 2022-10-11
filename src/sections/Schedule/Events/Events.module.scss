@@ -2,7 +2,7 @@
 @use '@htv/ui-kit/styles/colors';
 @use '@htv/ui-kit/styles/units';
 
-$light-grey: #3D3A4F;
+$light-grey: #3d3a4f;
 
 .list {
   grid-template-columns: 7rem repeat(var(--cols), minmax(1px, 1fr));
@@ -11,6 +11,10 @@ $light-grey: #3D3A4F;
   padding-left: 1.5rem;
   grid-gap: 0 1rem;
   display: grid;
+
+  @media (max-width: 600px) {
+    display: block;
+  }
 }
 
 .time {
@@ -25,12 +29,21 @@ $light-grey: #3D3A4F;
   &:first-of-type {
     border-top: 2px solid $light-grey;
   }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 .event {
   grid-row: var(--row) / span var(--row-span);
   grid-column: var(--col) / span var(--col-span);
+  grid-column: 1fr;
   padding: 0.75rem 0;
+  
+  @media (max-width: 600px) {
+    grid-row: 1fr;
+  }
 }
 
 .eventCard {
