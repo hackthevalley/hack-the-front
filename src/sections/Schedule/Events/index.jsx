@@ -13,6 +13,17 @@ import {
   eventDetailsMeta,
 } from './Events.module.scss';
 
+import {
+  list,
+  time,
+  event,
+  eventCard,
+  eventBar,
+  eventContent,
+  eventTime,
+  eventDetailsHead,
+  eventDetailsMeta,
+} from './Events.module.scss';
 export default function Events({ items, metadata }) {
   if (!items?.length) return null;
 
@@ -143,7 +154,7 @@ export default function Events({ items, metadata }) {
                   <span>
                     Host:{' '}
                     {item.hosts
-                      .map((host) => `${host.name} @ ${host.position}`)
+                      .map(({name, position}) => position ? `${name} @ ${position}` : name )
                       .join(', ') || 'N/A'}
                   </span>
                 </Text>
