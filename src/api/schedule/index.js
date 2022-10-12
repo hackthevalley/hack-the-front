@@ -1,10 +1,6 @@
 import Airtable from 'airtable';
 import Color from 'color';
 
-
-
-
-
 const base = new Airtable({
   apiKey: process.env.AIRTABLE_API_KEY,
 }).base(process.env.AIRTABLE_SCHEDULE_BASE_ID);
