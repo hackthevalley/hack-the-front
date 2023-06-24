@@ -55,7 +55,7 @@ function _FactionContent({ data, selected, onClick }, ref) {
       </div>
       <div>
         <Text type='heading2' weight='normal' as='h3' transform='uppercase'>
-          {data.name} Route
+          {data.name} Theme
         </Text>
         <Text
           as={typeof data.content === 'string' ? 'p' : 'div'}
@@ -118,7 +118,7 @@ export default function Factions() {
           transform='uppercase'
           weight='normal'
         >
-          The Routes
+          The Themes
         </Text>
         <Text type='heading2' color='lime' as='span'>
           //Click to view details
