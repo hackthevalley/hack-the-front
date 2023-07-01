@@ -156,8 +156,6 @@ export default function Navigation({ noNav }) {
   );
 }
 
-
-
 const query = graphql`
   {
     site {
