@@ -12,7 +12,7 @@ export default [
     to: `/#faq`,
   },
   {
-    text: `Theme`,
+    text: `The Themes`,
     to: `/#routes`,
   },
   {

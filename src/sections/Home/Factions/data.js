@@ -8,7 +8,7 @@ export const factions = [
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-health.png'
+        src='../../../images/faction-icons/Diversity.png'
         placeholder='TRACED_SVG'
         alt='Diversity Faction'
         loading='eager'
@@ -22,7 +22,7 @@ export const factions = [
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-nature.png'
+        src='../../../images/faction-icons/Sustainability.png'
         placeholder='TRACED_SVG'
         alt='Sustainability Faction'
         loading='eager'
@@ -36,7 +36,7 @@ export const factions = [
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-diversity.png'
+        src='../../../images/faction-icons/Finance.png'
         placeholder='TRACED_SVG'
         alt='Financial Faction'
         loading='eager'
@@ -50,7 +50,7 @@ export const factions = [
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-discovery.png'
+        src='../../../images/faction-icons/Artificial-Intelligence.png'
         placeholder='TRACED_SVG'
         alt='Artificial Intelligence Faction'
         loading='eager'
