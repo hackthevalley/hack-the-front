@@ -11,11 +11,11 @@ module.exports = {
     description,
     keywords,
     featureFlags: {
-      mlh: true,
+      mlh: false,
       open: true,
       discord: false,
       rsvp: true,
-      schedule: true,
+      schedule: false,
       sponsors: false,
     },
   },

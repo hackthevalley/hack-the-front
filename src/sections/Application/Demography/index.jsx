@@ -22,6 +22,8 @@ export default function Demography() {
           <FormField index='10' />
         </div>
         <FormField index='11' />
+        <FormField index='19' /> 
+        <FormField index='20' />
       </div>
     </fieldset>
   );
