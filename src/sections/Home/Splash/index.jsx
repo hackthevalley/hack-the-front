@@ -41,13 +41,13 @@ export default function Splash() {
             >
               <span>Hack The</span>
               <span>
-                Valley <span className={version}>7</span>
+                Valley <span className={version}>8</span>
               </span>
             </Text>
           </div>
           <div className={subheader}>
             <Text lineHeight='relaxed' type='heading2' as='span'>
-              &gt; Oct. 14-16, 2022
+              &gt; Oct. 13-15, 2023
             </Text>
             <Text
               lineHeight='normal'
