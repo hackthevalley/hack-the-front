@@ -75,7 +75,7 @@ export default function About() {
             color='lime'
             type='body2'
           >
-            STARTING Oct. 14-16, 2022
+            STARTING Oct. 13-15, 2023
           </Text>
         </div>
       </Card>
