@@ -103,30 +103,30 @@ function Dashboard() {
               <StaticImage
                 height={60}
                 width={60}
-                alt='Health'
-                src='../../images/faction-icons/factions-health.png'
-              />
-              <StaticImage
-                height={60}
-                width={60}
-                alt='Nature'
-                src='../../images/faction-icons/factions-nature.png'
-              />
-              <StaticImage
-                height={60}
-                width={60}
                 alt='Diversity'
-                src='../../images/faction-icons/factions-diversity.png'
+                src='../../images/faction-icons/Diversity.png'
               />
               <StaticImage
                 height={60}
                 width={60}
-                alt='Discovery'
-                src='../../images/faction-icons/factions-discovery.png'
+                alt='Sustainability'
+                src='../../images/faction-icons/Sustainability.png'
+              />
+              <StaticImage
+                height={60}
+                width={60}
+                alt='Financial'
+                src='../../images/faction-icons/Finance.png'
+              />
+              <StaticImage
+                height={60}
+                width={60}
+                alt='Artificial Intelligence'
+                src='../../images/faction-icons/Artificial-Intelligence.png'
               />
             </div>
             <Text type='heading2' font='secondary' as='h3'>
-              The Factions of <strong>HTV7</strong>
+              The Factions of <strong>HTV8</strong>
             </Text>
           </Card>
           <Card
