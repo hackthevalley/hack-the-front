@@ -104,25 +104,25 @@ function Dashboard() {
                 height={60}
                 width={60}
                 alt='Diversity'
-                src='../../images/faction-icons/factions-health.png'
+                src='../../images/faction-icons/Diversity.png'
               />
               <StaticImage
                 height={60}
                 width={60}
                 alt='Sustainability'
-                src='../../images/faction-icons/factions-nature.png'
+                src='../../images/faction-icons/Sustainability.png'
               />
               <StaticImage
                 height={60}
                 width={60}
                 alt='Financial'
-                src='../../images/faction-icons/factions-diversity.png'
+                src='../../images/faction-icons/Finance.png'
               />
               <StaticImage
                 height={60}
                 width={60}
                 alt='Artificial Intelligence'
-                src='../../images/faction-icons/factions-discovery.png'
+                src='../../images/faction-icons/Artificial-Intelligence.png'
               />
             </div>
             <Text type='heading2' font='secondary' as='h3'>
