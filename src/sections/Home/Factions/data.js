@@ -4,82 +4,60 @@ export const questions = [];
 
 export const factions = [
   {
-    name: `Health`,
-    image: (props) => (
-      <StaticImage
-        className={props.className}
-        src='../../../images/faction-icons/factions-health.png'
-        placeholder='TRACED_SVG'
-        alt='Health Faction'
-        loading='eager'
-        width={400}
-      />
-    ),
-    content: `Participants in the health tribe show affection
-    towards solutions within the problem space of both interpersonal
-    and intrapersonal health. Whether it be mental health, physical,
-    social, or some other more precise discipline, participants here
-    care about leveraging our technology to better serve our health
-    and our well-being as a people.`,
-  },
-  {
-    name: `Nature`,
-    image: (props) => (
-      <StaticImage
-        className={props.className}
-        src='../../../images/faction-icons/factions-nature.png'
-        placeholder='TRACED_SVG'
-        alt='Nature Faction'
-        loading='eager'
-        width={400}
-      />
-    ),
-    content: `The nature tribe is all about finding ways to bring
-    technology together to serve the ecosystem and environment. Unlike
-    the health tribe, nature tribe participants care about the health
-    of animals, plants, the Earth, and the ecosystem in general. Working
-    together, they aim to create a technological tool that will help
-    solve issues like global warming, greenhouse gas emissions, species
-    extinction, and many more.`,
-  },
-  {
     name: `Diversity`,
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-diversity.png'
+        src='../../../images/faction-icons/Diversity.png'
         placeholder='TRACED_SVG'
         alt='Diversity Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `Participants in the diversity tribe are all about finding
-     ways to make our community more diverse and inclusive.  They can touch 
-     on topics such as race, gender expression, disability and educational 
-     attainment. With the recent events in the world’s racial history, this 
-     tribe will be introspective around how their products can better 
-     reflect the change we want to see - and become a part of that change.`,
+    content: `The diversity theme celebrates the power of inclusion and seeks to foster a more diverse and equitable society. Participants in this tribe focus on addressing issues related to race, gender, sexual orientation, disability, and other dimensions of diversity. Through their innovative projects, they aim to create technological solutions that promote equal opportunities, challenge biases, and cultivate a sense of belonging for all individuals.`,
   },
   {
-    name: `Discovery`,
+    name: `Sustainability`,
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/factions-discovery.png'
+        src='../../../images/faction-icons/Sustainability.png'
         placeholder='TRACED_SVG'
-        alt='Discovery Faction'
+        alt='Sustainability Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `Participants in the discovery challenge aim to create
-    technological solutions that push the boundaries of what we’re
-    used to and what we can expect. Whether they want to dive deep
-    into the new worlds of VR and AR or leverage new ML and AI tools,
-    these participants want to create a solution that uses up-and-coming
-    technology or taking innovative approaches to create something
-    brand new.`,
+    content: `The sustainability theme encourages participants to develop software solutions that contribute to a more sustainable future. With a focus on leveraging technology for positive environmental impact, participants in this tribe delve into areas such as energy efficiency, waste reduction, and ecological conservation. Whether it's creating platforms for promoting eco-friendly behaviours, optimizing resource management systems, or fostering community engagement around sustainability, participants in this tribe seek to drive meaningful change through software innovation.`,
+  },
+  {
+    name: `Financial`,
+    image: (props) => (
+      <StaticImage
+        className={props.className}
+        src='../../../images/faction-icons/Finance.png'
+        placeholder='TRACED_SVG'
+        alt='Financial Faction'
+        loading='eager'
+        width={400}
+      />
+    ),
+    content: `The financial theme revolves around revolutionizing the way we manage and interact with money. Participants in this tribe focus on reimagining financial systems, exploring fintech innovations, and addressing economic disparities. From improving access to financial services for underserved communities to developing smart budgeting tools and blockchain-based solutions, they aim to empower individuals, businesses, and societies to achieve greater financial stability and prosperity.`,
+  },
+  {
+    name: `Artificial Intelligence`,
+    image: (props) => (
+      <StaticImage
+        className={props.className}
+        src='../../../images/faction-icons/Artificial-Intelligence.png'
+        placeholder='TRACED_SVG'
+        alt='Artificial Intelligence Faction'
+        loading='eager'
+        width={400}
+      />
+    ),
+    content: `The Artificial Intelligence (AI) theme delves into the realm of cutting-edge technology and its potential to transform various aspects of our lives. Participants in this tribe are fascinated by the possibilities of AI, machine learning, and deep learning algorithms. They aim to create innovative applications that harness the power of AI to unlock new insights across industries such as healthcare, education, finance, and beyond. Through their projects, they strive to push the boundaries of what is possible with AI and pave the way for a future powered by intelligent machines`,
   },
   // {
   //   name: `Battle of the Coding Clashers`,
