@@ -118,7 +118,7 @@ export default function Factions() {
           transform='uppercase'
           weight='normal'
         >
-          The Themes
+          Themes
         </Text>
         <Text type='heading2' color='lime' as='span'>
           //Click to view details
