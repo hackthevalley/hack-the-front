@@ -1,0 +1,12 @@
+.upload {
+  padding-top: 2rem;
+}
+
+.upload__layout {
+  & label {
+    font-size: 0.9rem;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+}
