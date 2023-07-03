@@ -204,7 +204,6 @@ export function FormProvider({ children }) {
       mlh_share: false,
       mlh_email: false,
       htv_consent: false,
-      htv_vaccination: false,
     },
   });
 
