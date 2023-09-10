@@ -8,7 +8,7 @@ export const factions = [
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/Diversity.png'
+        src='../../../images/faction-icons/Sustainability.png'
         placeholder='TRACED_SVG'
         alt='Diversity Faction'
         loading='eager'
@@ -18,11 +18,11 @@ export const factions = [
     content: `The diversity theme celebrates the power of inclusion and seeks to foster a more diverse and equitable society. Participants in this tribe focus on addressing issues related to race, gender, sexual orientation, disability, and other dimensions of diversity. Through their innovative projects, they aim to create technological solutions that promote equal opportunities, challenge biases, and cultivate a sense of belonging for all individuals.`,
   },
   {
-    name: `Sustainability`,
+    name: `Artificial Intelligence`,
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/Sustainability.png'
+        src='../../../images/faction-icons/Artificial-Intelligence.png'
         placeholder='TRACED_SVG'
         alt='Sustainability Faction'
         loading='eager'
@@ -30,34 +30,6 @@ export const factions = [
       />
     ),
     content: `The sustainability theme encourages participants to develop software solutions that contribute to a more sustainable future. With a focus on leveraging technology for positive environmental impact, participants in this tribe delve into areas such as energy efficiency, waste reduction, and ecological conservation. Whether it's creating platforms for promoting eco-friendly behaviours, optimizing resource management systems, or fostering community engagement around sustainability, participants in this tribe seek to drive meaningful change through software innovation.`,
-  },
-  {
-    name: `Financial`,
-    image: (props) => (
-      <StaticImage
-        className={props.className}
-        src='../../../images/faction-icons/Finance.png'
-        placeholder='TRACED_SVG'
-        alt='Financial Faction'
-        loading='eager'
-        width={400}
-      />
-    ),
-    content: `The financial theme revolves around revolutionizing the way we manage and interact with money. Participants in this tribe focus on reimagining financial systems, exploring fintech innovations, and addressing economic disparities. From improving access to financial services for underserved communities to developing smart budgeting tools and blockchain-based solutions, they aim to empower individuals, businesses, and societies to achieve greater financial stability and prosperity.`,
-  },
-  {
-    name: `Artificial Intelligence`,
-    image: (props) => (
-      <StaticImage
-        className={props.className}
-        src='../../../images/faction-icons/Artificial-Intelligence.png'
-        placeholder='TRACED_SVG'
-        alt='Artificial Intelligence Faction'
-        loading='eager'
-        width={400}
-      />
-    ),
-    content: `The Artificial Intelligence (AI) theme delves into the realm of cutting-edge technology and its potential to transform various aspects of our lives. Participants in this tribe are fascinated by the possibilities of AI, machine learning, and deep learning algorithms. They aim to create innovative applications that harness the power of AI to unlock new insights across industries such as healthcare, education, finance, and beyond. Through their projects, they strive to push the boundaries of what is possible with AI and pave the way for a future powered by intelligent machines`,
   },
   {
     name: `Financial`,
