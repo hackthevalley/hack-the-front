@@ -202,7 +202,6 @@ export function FormProvider({ children }) {
     local: {
       mlh_coc: false,
       mlh_share: false,
-      mlh_email: false,
       htv_consent: false,
     },
   });
