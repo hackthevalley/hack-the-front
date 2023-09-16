@@ -19,7 +19,7 @@ export default function Mlh() {
       });
     },
     value: formState.local[name],
-    required: true,
+    required: name === "mlh_email" ? false : true,
     name,
   });
 
@@ -68,7 +68,7 @@ export default function Mlh() {
         <Checkbox
           {...applyProps('mlh_email')}
           className={full_col}
-          label='I authorize Major League Hacking to send me occasional messages about hackathons including pre- and post-event informational emails.'
+          label='I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.'
         />
       </div>
     </fieldset>
