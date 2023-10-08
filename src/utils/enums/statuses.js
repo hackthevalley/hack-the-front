@@ -35,4 +35,8 @@ export default {
     value: 'REJECTED_INVITE',
     label: 'Declined.',
   },
+  SCANNED_IN: {
+    value: 'SCANNED_IN',
+    label: 'Scanned In.',
+  }
 };

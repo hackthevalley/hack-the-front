@@ -28,6 +28,10 @@
   &:global(.waitlisted) {
     color: colors.css-color(yellow);
   }
+
+  &:global(.scanned_in) {
+    color: colors.css-color(rgb(16, 138, 238));
+  }
 }
 
 .button {
