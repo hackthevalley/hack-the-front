@@ -14,7 +14,7 @@ export default function HomePage() {
       <Faq />
       <Factions />
       <EventPhotos />
-      {/* <Sponsors /> */}
+      <Sponsors />
     </Layout>
   );
 }

@@ -3,17 +3,21 @@
 
 :root {
     --bs-body-bg: rgb(25, 24, 32);
-  }
+}
 
-// .carousel {
-//     background-color: rgb(25, 24, 32);
-//     width: 100%;
-// }
+.carousel {
+    margin-top: 2rem;
+}
 
-// .container {
-//     background-color: rgb(25, 24, 32);
-//     width: 100%;
-// }
+.carousel_header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carousel_heading {
+    margin-left: 5.5rem;
+    padding: 1rem;
+}
 
 .header {
     display: flex;

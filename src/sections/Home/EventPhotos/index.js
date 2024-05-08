@@ -25,17 +25,17 @@ const EventPhotos = ({ data }) => (
 
 export default function EventPhotosWithQuery() {
     return (
-        <div>
-            {/* <div className={styles.header}>
+        <div className={styles.carousel} backgroundColor='charcoal'>
+            <div className={styles.carousel_header}>
                 <Text
-                className={styles.heading}
+                className={styles.carousel_heading}
                 type='heading2'
-                ransform='uppercase'
+                transform='uppercase'
                 weight='normal'
                 >
-                    A Look into Last Year...
+                    A look into <Text type='heading2' color='lime' as='span'>Last Year</Text>...
                 </Text>
-            </div> */}
+            </div>
             <StaticQuery
                 query={imageQuery}
                 render={data => <EventPhotos data={data} />}
@@ -55,7 +55,7 @@ const imageQuery = graphql `
                     id
                     base
                     childImageSharp {
-                        fluid( maxWidth: 1200, maxHeight: 800, fit: COVER, cropFocus: CENTER) {
+                        fluid( maxWidth: 800, maxHeight: 500, fit: COVER, cropFocus: CENTER) {
                             ...GatsbyImageSharpFluid
                         }
                     }
