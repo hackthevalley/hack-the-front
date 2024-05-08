@@ -1,0 +1,46 @@
+@use '@htv/ui-kit/styles/colors';
+@use '@htv/ui-kit/styles/mixins';
+
+:root {
+    --bs-body-bg: rgb(25, 24, 32);
+  }
+
+// .carousel {
+//     background-color: rgb(25, 24, 32);
+//     width: 100%;
+// }
+
+// .container {
+//     background-color: rgb(25, 24, 32);
+//     width: 100%;
+// }
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.heading {
+    margin-right: 1rem;
+}
+
+.transparentCarousel .carousel-inner {
+    color: rgb(33, 37, 41);
+}
+  
+.transparentCarousel .carousel-indicators li {
+    color: rgb(33, 37, 41);
+}
+  
+.transparentCarousel .carousel-control-prev,
+.transparentCarousel .carousel-control-next {
+    color: rgb(33, 37, 41);
+}
+
+.imageContainer {
+    margin-right: 15px; // Adjust as needed
+}
+  
+.image {
+    max-width: 100%;
+}

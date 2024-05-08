@@ -4,6 +4,7 @@ import Factions from '../sections/Home/Factions';
 import Faq from '../sections/Home/Faq';
 import Splash from '../sections/Home/Splash';
 import Sponsors from '../sections/Home/Sponsors';
+import EventPhotos from '../sections/Home/EventPhotos';
 
 export default function HomePage() {
   return (
@@ -12,7 +13,8 @@ export default function HomePage() {
       <About />
       <Faq />
       <Factions />
-      <Sponsors />
+      <EventPhotos />
+      {/* <Sponsors /> */}
     </Layout>
   );
 }
