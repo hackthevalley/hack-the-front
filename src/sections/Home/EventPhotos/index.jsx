@@ -10,11 +10,11 @@ import * as styles from './EventPhotos.module.scss';
 import Section from '@htv/ui-kit/components/Section';
 
 const EventPhotos = ({ data }) => (
-    <div className={styles.carousel}>
+    <div>
         <Container className={styles.container}>
             <Carousel className={styles.transparentCarousel}>
                 {data.eventPhotos.edges.map(image => (
-                    <Carousel.Item key={image.node.id} className={styles.imageContainer}>
+                    <Carousel.Item key={image.node.id}>
                         <Img
                             className={styles.image}
                             fluid={image.node.childImageSharp.fluid}

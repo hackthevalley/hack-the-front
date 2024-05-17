@@ -3,8 +3,7 @@
 @use "@htv/ui-kit/styles/units";
 
 .container {
-    margin-left: 5rem auto;
-    margin-right: 5rem auto;
+    margin: 3rem;
 }
 
 .carousel_header {
@@ -23,6 +22,7 @@
 }
   
 .heading {
+    margin-top: 2rem;
     margin-right: 1rem;
 }
 
