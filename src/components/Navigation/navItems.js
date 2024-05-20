@@ -16,6 +16,10 @@ export default [
     to: `/#routes`,
   },
   {
+    text: `Past Year`,
+    to: `/#pastImages`
+  },
+  {
     text: `Sponsors`,
     to: `/#sponsors`,
   },
