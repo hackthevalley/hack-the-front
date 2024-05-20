@@ -1,0 +1,37 @@
+@use "@htv/ui-kit/styles/mixins";
+@use "@htv/ui-kit/styles/colors";
+@use "@htv/ui-kit/styles/units";
+
+.container {
+    margin: 3rem;
+}
+
+.carousel_header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carousel_heading {
+    margin-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.heading {
+    margin-top: 2rem;
+    margin-right: 1rem;
+}
+
+.transparentCarousel {
+    width: 100%;
+    display: flex;
+}
+  
+.image {
+    margin: auto;
+    max-width: 68%;
+}
