@@ -33,7 +33,7 @@ export default function EventPhotosWithQuery() {
             backgroundColor='charcoal'
             className={styles.container}
             id='pastImages'>
-            <div className={styles.carousel} backgroundColor='charcoal'>
+            <div>
                 <div className={styles.carousel_header}>
                     <Text
                     className={styles.carousel_heading}
