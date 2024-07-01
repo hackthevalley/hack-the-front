@@ -4,9 +4,9 @@ require('dotenv').config();
 module.exports = {
   siteMetadata: {
     siteUrl: process.env.URL || `http://localhost`,
-    startDate: new Date(2023, 9, 13),
-    endDate: new Date(2023, 9, 15),
-    title: `Hack the Valley 8`,
+    startDate: new Date(2024, 9, 11),
+    endDate: new Date(2024, 9, 13),
+    title: `Hack the Valley 9`,
     author: author.name,
     description,
     keywords,
@@ -56,8 +56,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Hack The Valley 8`,
-        short_name: `htv8`,
+        name: `Hack The Valley 9`,
+        short_name: `htv9`,
         start_url: `/`,
         background_color: `#86cd74`,
         theme_color: `#86cd74`,
