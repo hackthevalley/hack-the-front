@@ -8,6 +8,10 @@ import './Personal.module.scss';
 export default function Personal({ userInfo }) {
   const { formInfo, setFormState } = useForm();
 
+  const validator = (value) => {
+    return /[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4}/.test(value)
+  }
+
   useEffect(() => {
     const [fn, sn, email] = formInfo.questions.slice(0, 3);
     setFormState(_ => ({
@@ -19,7 +23,7 @@ export default function Personal({ userInfo }) {
         [email.id]: userInfo.email,
       },
     }));
-  }, [ formInfo.questions, userInfo, setFormState ]);
+  }, [formInfo.questions, userInfo, setFormState]);
 
   return (
     <fieldset className={fieldset}>
@@ -50,6 +54,7 @@ export default function Personal({ userInfo }) {
           }}
         />
         <FormField
+          validator={validator}
           fieldProps={{
             placeholder: 'e.g. +1-4162878872',
           }}
