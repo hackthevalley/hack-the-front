@@ -8,9 +8,11 @@ import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Section from '@htv/ui-kit/components/Section';
 import Text from '@htv/ui-kit/components/Text';
-import placeholderImage from '../../images/monke.gif';
 
 import Loading from '../../components/Loading';
+import placeholderImage from '../../images/monke.gif';
+import { getJwt } from '../../utils/ApiProvider';
+import statuses from '../../utils/enums/statuses';
 import {
   container,
   content,
@@ -25,8 +27,6 @@ import {
   card,
 } from './Dashboard.module.scss';
 import Status from './Status';
-import statuses from '../../utils/enums/statuses';
-import { getJwt } from '../../utils/ApiProvider';
 
 function Dashboard() {
   const { site } = useStaticQuery(query);
@@ -36,7 +36,11 @@ function Dashboard() {
   const { loading: isLoadingUserInfo, data: userInfo } = useGet({
     path: '/account/users/me',
   });
-  const { loading: isLoadingResponse, data: responseInfo, refetch: refresh } = useGet({
+  const {
+    loading: isLoadingResponse,
+    data: responseInfo,
+    refetch: refresh,
+  } = useGet({
     path: `/forms/hacker_application/response`,
   });
   const { loading: isLoadingDiscord, data: discordInfo } = useGet({
@@ -45,7 +49,12 @@ function Dashboard() {
     base: '',
   });
 
-  if (isLoadingForm || isLoadingUserInfo || isLoadingResponse || isLoadingDiscord) {
+  if (
+    isLoadingForm ||
+    isLoadingUserInfo ||
+    isLoadingResponse ||
+    isLoadingDiscord
+  ) {
     return (
       <Loading
         description="You're page would be ready soon owo"
@@ -80,7 +89,11 @@ function Dashboard() {
             Log Out
           </Button>
         </div>
-        <Status responseInfo={responseInfo} formInfo={formInfo} refresh={refresh}/>
+        <Status
+          responseInfo={responseInfo}
+          formInfo={formInfo}
+          refresh={refresh}
+        />
         <Text
           className={explore}
           type='body1'
@@ -103,14 +116,14 @@ function Dashboard() {
               <StaticImage
                 height={60}
                 width={60}
-                alt='Artificial Intelligence'
-                src='../../images/faction-icons/Artificial-Intelligence.png'
+                alt='Sustainability'
+                src='../../images/faction-icons/Sustainability.png'
               />
               <StaticImage
                 height={60}
                 width={60}
-                alt='Financial'
-                src='../../images/faction-icons/Finance.png'
+                alt='Cybersecurity'
+                src='../../images/faction-icons/Cybersecurity.png'
               />
               <StaticImage
                 height={60}
@@ -121,12 +134,12 @@ function Dashboard() {
               <StaticImage
                 height={60}
                 width={60}
-                alt='Sustainability'
-                src='../../images/faction-icons/Sustainability.png'
+                alt='Artificial Intelligence'
+                src='../../images/faction-icons/Artificial_Intelligence.png'
               />
             </div>
             <Text type='heading2' font='secondary' as='h3'>
-              The Factions of <strong>HTV8</strong>
+              The Factions of <strong>HTV9</strong>
             </Text>
           </Card>
           <Card
@@ -144,56 +157,58 @@ function Dashboard() {
               FAQs
             </Text>
           </Card>
-          {site.siteMetadata.featureFlags.discord
-            && responseInfo?.applicant?.status === statuses.ACCEPTED_INVITE.value
-            && (
-            <>
-              <Card
-                as='a'
-                target='_blank'
-                rel='noreferrer noopenner'
-                href={process.env.GATSBY_DISCORD_INVITE_LINK}
-                backgroundColor='darkviolet'
-                className={classNames(card, factions)}
-              >
-                <StaticImage
-                  width={100}
-                  alt='Discord'
-                  src='../../images/discord.png'
-                />
-                <Text type='heading2' font='secondary' as='h3'>
-                  Join the discord!
-                </Text>
-              </Card>
-              <Card
-                as='a'
-                onClick={async e => {
-                  e.preventDefault();
-                  const { token } = await getJwt();
-                  window.location = `/api/discord/link?${ new URLSearchParams({ token })}`;
-                }}
-                href='/api/discord/link'
-                backgroundColor='darkviolet'
-                className={classNames(card, factions)}
-              >
-                <img
-                  src={discordInfo?.message?.avatar?.url ?? placeholderImage}
-                  alt="Discord user avatar"
-                  width='100'
-                />
-                <div>
+          {site.siteMetadata.featureFlags.discord &&
+            responseInfo?.applicant?.status ===
+              statuses.ACCEPTED_INVITE.value && (
+              <>
+                <Card
+                  as='a'
+                  target='_blank'
+                  rel='noreferrer noopenner'
+                  href={process.env.GATSBY_DISCORD_INVITE_LINK}
+                  backgroundColor='darkviolet'
+                  className={classNames(card, factions)}
+                >
+                  <StaticImage
+                    width={100}
+                    alt='Discord'
+                    src='../../images/discord.png'
+                  />
                   <Text type='heading2' font='secondary' as='h3'>
-                    {discordInfo?.message?.tag ?? 'Link your Discord'}
+                    Join the discord!
                   </Text>
-                  {discordInfo?.message?.tag && (
-                    <Text type='meta1' font='secondary' as='p'>
-                      Click here to re-link your discord
+                </Card>
+                <Card
+                  as='a'
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    const { token } = await getJwt();
+                    window.location = `/api/discord/link?${new URLSearchParams({
+                      token,
+                    })}`;
+                  }}
+                  href='/api/discord/link'
+                  backgroundColor='darkviolet'
+                  className={classNames(card, factions)}
+                >
+                  <img
+                    src={discordInfo?.message?.avatar?.url ?? placeholderImage}
+                    alt='Discord user avatar'
+                    width='100'
+                  />
+                  <div>
+                    <Text type='heading2' font='secondary' as='h3'>
+                      {discordInfo?.message?.tag ?? 'Link your Discord'}
                     </Text>
-                  )}
-                </div>
-              </Card>
-            </>
-          )}
+                    {discordInfo?.message?.tag && (
+                      <Text type='meta1' font='secondary' as='p'>
+                        Click here to re-link your discord
+                      </Text>
+                    )}
+                  </div>
+                </Card>
+              </>
+            )}
         </div>
       </Section>
     </div>

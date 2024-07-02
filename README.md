@@ -9,7 +9,7 @@
 
 ## Overview
 
-The landing site for Hack The Valley 8. Sign up today @ [https://hackthevalley.io](https://hackthevalley.io)
+The landing site for Hack The Valley 9. Sign up today @ [https://hackthevalley.io](https://hackthevalley.io)
 
 Want to be up to date with our development? Check out [https://next.hackthevalley.io](https://next.hackthevalley.io)
 

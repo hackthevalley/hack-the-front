@@ -4,60 +4,60 @@ export const questions = [];
 
 export const factions = [
   {
-    name: `Diversity`,
+    name: `Sustainability`,
     image: (props) => (
       <StaticImage
         className={props.className}
         src='../../../images/faction-icons/Sustainability.png'
-        placeholder='TRACED_SVG'
-        alt='Diversity Faction'
-        loading='eager'
-        width={400}
-      />
-    ),
-    content: `The diversity theme celebrates the power of inclusion and seeks to foster a more diverse and equitable society. Participants in this tribe focus on addressing issues related to race, gender, sexual orientation, disability, and other dimensions of diversity. Through their innovative projects, they aim to create technological solutions that promote equal opportunities, challenge biases, and cultivate a sense of belonging for all individuals.`,
-  },
-  {
-    name: `Artificial Intelligence`,
-    image: (props) => (
-      <StaticImage
-        className={props.className}
-        src='../../../images/faction-icons/Artificial-Intelligence.png'
         placeholder='TRACED_SVG'
         alt='Sustainability Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `The sustainability theme encourages participants to develop software solutions that contribute to a more sustainable future. With a focus on leveraging technology for positive environmental impact, participants in this tribe delve into areas such as energy efficiency, waste reduction, and ecological conservation. Whether it's creating platforms for promoting eco-friendly behaviours, optimizing resource management systems, or fostering community engagement around sustainability, participants in this tribe seek to drive meaningful change through software innovation.`,
+    content: `The Sustainability theme empowers you to become a tech innovator for a healthier planet. In this tribe, you'll tackle the environmental challenges of today with cutting-edge solutions. From optimizing resource management to fostering community engagement around sustainability, your mission is to leverage technology for positive environmental impact.`,
   },
   {
-    name: `Financial`,
+    name: `Cybersecurity`,
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/Finance.png'
+        src='../../../images/faction-icons/Cybersecurity.png'
         placeholder='TRACED_SVG'
-        alt='Financial Faction'
+        alt='Cybersecurity Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `The financial theme revolves around revolutionizing the way we manage and interact with money. Participants in this tribe focus on reimagining financial systems, exploring fintech innovations, and addressing economic disparities. From improving access to financial services for underserved communities to developing smart budgeting tools and blockchain-based solutions, they aim to empower individuals, businesses, and societies to achieve greater financial stability and prosperity.`,
+    content: `The Cybersecurity theme calls upon hackers to become the architects of a safer digital world. In this tribe, you'll confront the ever-evolving threats lurking in the online landscape. Whether it's crafting impenetrable defences against cyberattacks, developing proactive security solutions, or raising awareness about digital threats, your mission is to empower individuals, organizations, and societies to navigate the digital age with confidence.`,
+  },
+  {
+    name: `Diversity`,
+    image: (props) => (
+      <StaticImage
+        className={props.className}
+        src='../../../images/faction-icons/Diversity.png'
+        placeholder='TRACED_SVG'
+        alt='Diversity Faction'
+        loading='eager'
+        width={400}
+      />
+    ),
+    content: `The Diversity theme celebrates the power of a representative and inclusive tech industry. Join this tribe to be a changemaker, tackling issues related to race, gender, sexual orientation, disability, and other dimensions of diversity. Through innovative solutions, you'll leverage technology to create a more equitable future.`,
   },
   {
     name: `Artificial Intelligence`,
     image: (props) => (
       <StaticImage
         className={props.className}
-        src='../../../images/faction-icons/Artificial-Intelligence.png'
+        src='../../../images/faction-icons/Artificial_Intelligence.png'
         placeholder='TRACED_SVG'
         alt='Artificial Intelligence Faction'
         loading='eager'
         width={400}
       />
     ),
-    content: `The Artificial Intelligence (AI) theme delves into the realm of cutting-edge technology and its potential to transform various aspects of our lives. Participants in this tribe are fascinated by the possibilities of AI, machine learning, and deep learning algorithms. They aim to create innovative applications that harness the power of AI to unlock new insights across industries such as healthcare, education, finance, and beyond. Through their projects, they strive to push the boundaries of what is possible with AI and pave the way for a future powered by intelligent machines`,
+    content: `Step into the exciting world of Artificial Intelligence and Machine Learning, where enthusiasts like you are captivated by the incredible capabilities of these technologies. Driven by a relentless pursuit of groundbreaking solutions, you aim to unlock AI's full potential across fields like healthcare, education, and finance. With your pioneering spirit, you're reshaping innovation and envisioning a future where intelligent machines enhance every facet of human life`,
   },
   // {
   //   name: `Battle of the Coding Clashers`,
