@@ -32,11 +32,13 @@ export default function Forgot() {
   const [email, setEmail] = useState('');
 
   function sendInfo() {
-    toast.promise(mutate({ email }), {
-      error: 'Unable to process request. Please try again later.',
-      success: `Password reset has been sent to ${email}`,
-      loading: 'Creating password reset...',
-    });
+    mutate({ email })
+    .then((data) => {
+      toast.success(`Password reset has been sent to ${email}`);
+    })
+    .catch((err) => {
+      toast.error(`Unable to reset password: ${err?.data?.fallbackMessage}`);
+    })
   }
 
   return (
