@@ -40,7 +40,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   const now = new Date();
 
   let isSubmitted = ![statuses.NOT_SUBMITTED.value, statuses.APPLYING.value].includes(statusInfo.status);
-  let btnText = !isSubmitted ? 'View Application' : 'Make Changes (Unsubmit application)';
+  let btnText = !isSubmitted ? 'View Application' : 'Make Changes (Unsubmit Application)';
   let isClosed;
 
   if (start > now) {
