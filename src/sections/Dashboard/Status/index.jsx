@@ -10,6 +10,7 @@ import { fetchApi } from '../../../utils/ApiProvider';
 import { container, status, button, buttonGroup } from './Status.module.scss';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
+import { useMutate } from 'restful-react';
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat(`en-US`, {
@@ -30,12 +31,16 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   const [ isRsvping, setIsRsvping ] = useState(false);
   const statusInfo = getStatus(responseInfo);
   const { site } = useStaticQuery(query);
+  const { mutate: unsubmit } = useMutate({
+    path: '/forms/hacker_application/response/unsubmit',
+    verb: 'POST',
+  });
   const start = new Date(formInfo.startAt);
   const end = new Date(formInfo.endAt);
   const now = new Date();
 
-  let isDisabled = ![statuses.NOT_SUBMITTED.value, statuses.APPLYING.value].includes(statusInfo.status);
-  let btnText = 'View Application';
+  let isSubmitted = ![statuses.NOT_SUBMITTED.value, statuses.APPLYING.value].includes(statusInfo.status);
+  let btnText = !isSubmitted ? 'View Application' : 'Make Changes (Unsubmit Application)';
   let isClosed;
 
   if (start > now) {
@@ -44,6 +49,32 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   } else if (now > end || !site.siteMetadata.featureFlags.rsvp) {
     btnText = 'Closed';
     isClosed = true;
+  }
+
+  const handleApply = () => {
+    if (statusInfo.status == statuses.APPLYING.value) {
+      navigate('/application');
+    } else if (statusInfo.status == statuses.APPLIED.value) {
+      if (confirm(
+        "This action will unsubmit your application: " +
+        "in order for your application to be considered " + 
+        "you must submit again before the deadline"
+      )) {
+        const toastId = toast.loading("Unsubmitting application", {
+          duration: 5000,
+        });
+        unsubmit()
+          .then((data) => {
+            toast.dismiss(toastId);
+            toast.success("Successfully unsubmitted application");
+            window.location.reload();
+          })
+          .catch((error) => {
+            toast.dismiss(toastId);
+            toast.error(`Error while unsubmitting: ${error?.data?.fallbackMessage}`);
+          });
+      }
+    }
   }
 
   const rsvp = async (isAccept) => {
@@ -92,8 +123,9 @@ export default function Status({ formInfo, responseInfo, refresh }) {
       </div>
       {!site.siteMetadata.featureFlags.rsvp || statusInfo.status !== statuses.ACCEPTED.value ? (
         <Button
-          onClick={() => navigate('/application')}
-          disabled={isClosed || isDisabled}
+          onClick={handleApply}
+          disabled={isClosed}
+          color={isSubmitted ? 'red':'lime'}
           className={button}
         >
           {btnText}
