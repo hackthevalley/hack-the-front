@@ -52,7 +52,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   }
 
   const handleApply = () => {
-    if (statusInfo.status == statuses.APPLYING.value) {
+    if (!isSubmitted) {
       navigate('/application');
     } else if (statusInfo.status == statuses.APPLIED.value) {
       if (confirm(
