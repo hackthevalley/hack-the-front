@@ -9,7 +9,7 @@ export default {
   },
   APPLYING: {
     value: 'APPLYING',
-    label: 'Applying.'
+    label: 'Applying.',
   },
   APPLIED: {
     value: 'APPLIED',
@@ -38,5 +38,9 @@ export default {
   SCANNED_IN: {
     value: 'SCANNED_IN',
     label: 'Scanned In.',
-  }
+  },
+  WALK_IN: {
+    value: 'WALK_IN',
+    label: 'Walk in.',
+  },
 };

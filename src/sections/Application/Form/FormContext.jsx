@@ -80,11 +80,14 @@ export function FormField({
         });
       } catch (err) {
         if (err.name !== 'AbortError') {
+          const errorMessage =
+            err?.detail?.fieldErrors?.[0]?.message ||
+            'An unexpected error occurred.';
           setFormState((_state) => ({
             ..._state,
             errors: {
               ..._state.errors,
-              [fieldInfo.id]: err.detail.fieldErrors[0].message,
+              [fieldInfo.id]: errorMessage,
             },
           }));
         }
@@ -96,6 +99,7 @@ export function FormField({
     }, 1000);
 
     return () => {
+      console.log('we refresh here?');
       window.clearTimeout(timer);
       controller.abort();
     };
@@ -216,6 +220,7 @@ export function FormProvider({ children }) {
     (async () => {
       // If no response, create one for the user
       if (!responseInfo) {
+        console.log('we create new form');
         await fetchApi('/forms/hacker_application/response', {
           method: 'POST',
           body: JSON.stringify({
