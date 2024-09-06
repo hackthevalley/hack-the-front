@@ -64,7 +64,10 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   const handleApply = () => {
     if (!isSubmitted) {
       navigate('/application');
-    } else if (statusInfo.status == statuses.APPLIED.value) {
+    } else if (
+      statusInfo.status == statuses.APPLIED.value ||
+      statusInfo.status == statuses.WALK_IN_SUBMITTED.value
+    ) {
       if (
         confirm(
           'This action will unsubmit your application: ' +
