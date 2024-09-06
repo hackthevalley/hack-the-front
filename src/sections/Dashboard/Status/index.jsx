@@ -66,7 +66,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
       navigate('/application');
     } else if (
       statusInfo.status == statuses.APPLIED.value ||
-      statusInfo.status == statuses.WALK_IN_SUBMITTED.value
+      statusInfo.status == statuses.WALK_IN_SUBMIT.value
     ) {
       if (
         confirm(

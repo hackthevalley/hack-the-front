@@ -43,8 +43,8 @@ export default {
     value: 'WALK_IN',
     label: 'Walk in.',
   },
-  WALK_IN_SUBMITTED: {
-    value: 'WALK_IN_SUBMITTED',
+  WALK_IN_SUBMIT: {
+    value: 'WALK_IN_SUBMIT',
     label: 'Walk in (Submitted).',
   },
 };
