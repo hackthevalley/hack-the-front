@@ -1,16 +1,16 @@
 import classNames from 'classnames';
 import { graphql, useStaticQuery, navigate } from 'gatsby';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useMutate } from 'restful-react';
 
 import Button from '@htv/ui-kit/components/Button';
 import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
 
-import statuses from '../../../utils/enums/statuses';
 import { fetchApi } from '../../../utils/ApiProvider';
+import statuses from '../../../utils/enums/statuses';
 import { container, status, button, buttonGroup } from './Status.module.scss';
-import toast from 'react-hot-toast';
-import { useState } from 'react';
-import { useMutate } from 'restful-react';
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat(`en-US`, {
@@ -20,7 +20,8 @@ const formatDate = (date) =>
   }).format(date);
 
 const getStatus = (response) => {
-  const config = statuses[response?.applicant?.status ?? statuses.NOT_SUBMITTED.value];
+  const config =
+    statuses[response?.applicant?.status ?? statuses.NOT_SUBMITTED.value];
   return {
     text: config.label,
     status: config.value,
@@ -28,7 +29,7 @@ const getStatus = (response) => {
 };
 
 export default function Status({ formInfo, responseInfo, refresh }) {
-  const [ isRsvping, setIsRsvping ] = useState(false);
+  const [isRsvping, setIsRsvping] = useState(false);
   const statusInfo = getStatus(responseInfo);
   const { site } = useStaticQuery(query);
   const { mutate: unsubmit } = useMutate({
@@ -39,14 +40,23 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   const end = new Date(formInfo.endAt);
   const now = new Date();
 
-  let isSubmitted = ![statuses.NOT_SUBMITTED.value, statuses.APPLYING.value].includes(statusInfo.status);
-  let btnText = !isSubmitted ? 'View Application' : 'Make Changes (Unsubmit Application)';
+  let isSubmitted = ![
+    statuses.WALK_IN.value,
+    statuses.NOT_SUBMITTED.value,
+    statuses.APPLYING.value,
+  ].includes(statusInfo.status);
+  let btnText = !isSubmitted
+    ? 'View Application'
+    : 'Make Changes (Unsubmit Application)';
   let isClosed;
 
   if (start > now) {
     btnText = 'Coming soon';
     isClosed = true;
-  } else if (now > end || !site.siteMetadata.featureFlags.rsvp) {
+  } else if (
+    (now > end || !site.siteMetadata.featureFlags.rsvp) &&
+    statusInfo.status != statuses.WALK_IN.value
+  ) {
     btnText = 'Closed';
     isClosed = true;
   }
@@ -54,34 +64,43 @@ export default function Status({ formInfo, responseInfo, refresh }) {
   const handleApply = () => {
     if (!isSubmitted) {
       navigate('/application');
-    } else if (statusInfo.status == statuses.APPLIED.value) {
-      if (confirm(
-        "This action will unsubmit your application: " +
-        "in order for your application to be considered " + 
-        "you must submit again before the deadline"
-      )) {
-        const toastId = toast.loading("Unsubmitting application", {
+    } else if (
+      statusInfo.status == statuses.APPLIED.value ||
+      statusInfo.status == statuses.WALK_IN_SUBMIT.value
+    ) {
+      if (
+        confirm(
+          'This action will unsubmit your application: ' +
+            'in order for your application to be considered ' +
+            'you must submit again before the deadline',
+        )
+      ) {
+        const toastId = toast.loading('Unsubmitting application', {
           duration: 5000,
         });
         unsubmit()
           .then((data) => {
             toast.dismiss(toastId);
-            toast.success("Successfully unsubmitted application");
+            toast.success('Successfully unsubmitted application');
             window.location.reload();
           })
           .catch((error) => {
             toast.dismiss(toastId);
-            toast.error(`Error while unsubmitting: ${error?.data?.fallbackMessage}`);
+            toast.error(
+              `Error while unsubmitting: ${error?.data?.fallbackMessage}`,
+            );
           });
       }
     }
-  }
+  };
 
   const rsvp = async (isAccept) => {
     setIsRsvping(true);
     await toast.promise(
       fetchApi(
-        `/forms/hacker_application/response/${isAccept? 'accept' : 'reject'}_invite`,
+        `/forms/hacker_application/response/${
+          isAccept ? 'accept' : 'reject'
+        }_invite`,
         {
           method: 'POST',
         },
@@ -95,7 +114,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
 
     setIsRsvping(false);
     refresh();
-  }
+  };
 
   return (
     <Card backgroundColor='darkviolet' className={container}>
@@ -106,7 +125,7 @@ export default function Status({ formInfo, responseInfo, refresh }) {
         <Text
           className={classNames(
             status,
-            isClosed ? 'closed' : statusInfo.status.toLowerCase()
+            isClosed ? 'closed' : statusInfo.status.toLowerCase(),
           )}
           type='heading2'
           font='secondary'
@@ -121,29 +140,22 @@ export default function Status({ formInfo, responseInfo, refresh }) {
           </Text>
         </Text>
       </div>
-      {!site.siteMetadata.featureFlags.rsvp || statusInfo.status !== statuses.ACCEPTED.value ? (
+      {!site.siteMetadata.featureFlags.rsvp ||
+      statusInfo.status !== statuses.ACCEPTED.value ? (
         <Button
           onClick={handleApply}
           disabled={isClosed}
-          color={isSubmitted ? 'red':'lime'}
+          color={isSubmitted ? 'red' : 'lime'}
           className={button}
         >
           {btnText}
         </Button>
       ) : (
         <div className={buttonGroup}>
-          <Button
-            onClick={() => rsvp(true)}
-            disabled={isRsvping}
-            color="lime"
-          >
+          <Button onClick={() => rsvp(true)} disabled={isRsvping} color='lime'>
             Accept
           </Button>
-          <Button
-            onClick={() => rsvp(false)}
-            disabled={isRsvping}
-            color="red"
-          >
+          <Button onClick={() => rsvp(false)} disabled={isRsvping} color='red'>
             Decline
           </Button>
         </div>
