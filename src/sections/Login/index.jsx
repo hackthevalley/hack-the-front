@@ -49,7 +49,12 @@ export default function Login() {
       navigate('/dashboard');
     } catch (err) {
       toast.dismiss(loadingToast);
-      toast.error('Unable to login. Please try again');
+      if (err.data?.nonFieldErrors) {
+        toast.error(err.data.nonFieldErrors[0], { duration: 8000});
+      }
+      else {
+        toast.error(`Unable to login: server error`);
+      }
     }
   };
 
