@@ -15,7 +15,7 @@ module.exports = {
       open: true,
       discord: false,
       rsvp: true,
-      schedule: false,
+      schedule: true,
       sponsors: true,
     },
   },

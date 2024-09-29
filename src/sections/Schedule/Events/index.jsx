@@ -59,6 +59,8 @@ export default function Events({ items, metadata }) {
       colspan = maxElevation;
     }
 
+    if (item.meta.colspan) colspan = item.meta.colspan;
+
     return {
       ...item,
       meta: {
