@@ -280,7 +280,6 @@ export default function Schedule() {
   }, []);
 
   const dateParts = dateFormat(currentDate);
-  const loading = false;
 
   return (
     <div className={container}>
