@@ -99,7 +99,7 @@ export default function Schedule() {
             title: 'Breakfast',
             type: {color: RGB(255, 229, 153)},
             hosts: [{name: "HTV"}],
-            location: "EV Atrium",
+            location: "IC Atrium",
             meta: {start: 16, end: 20, span: 4},
           },
           {
@@ -123,7 +123,7 @@ export default function Schedule() {
             title: 'Lunch',
             type: {color: RGB(255, 229, 153)},
             hosts: [{name: "HTV"}],
-            location: "EV Atrium",
+            location: "IC Atrium",
             meta: {start: 24, end: 28, span: 4},
           },
           {
@@ -147,7 +147,7 @@ export default function Schedule() {
             title: 'Bead Making',
             type: {color: RGB(114, 197, 93)},
             hosts: [{name: "HTV"}],
-            location: "EV Atrium",
+            location: "IC Atrium",
             meta: {start: 26, end: 29, span: 3},
           },
           {
@@ -171,7 +171,7 @@ export default function Schedule() {
             title: 'Dinner',
             type: {color: RGB(255, 229, 153)},
             hosts: [{name: "HTV"}],
-            location: "EV Atrium",
+            location: "IC Atrium",
             meta: {start: 38, end: 42, span: 4},
           },
           {
@@ -229,7 +229,7 @@ export default function Schedule() {
             title: 'Breakfast',
             type: {color: RGB(255, 229, 153)},
             hosts: [{name: "HTV"}],
-            location: "EV Atrium",
+            location: "IC Atrium",
             meta: {start: 16, end: 20, span: 4},
           },
           {
@@ -245,7 +245,7 @@ export default function Schedule() {
             title: 'Lunch',
             type: {color: RGB(255, 229, 153)},
             hosts: [{name: "HTV"}],
-            location: "EV Atrium",
+            location: "IC Atrium",
             meta: {start: 24, end: 28, span: 4},
           },
           {
