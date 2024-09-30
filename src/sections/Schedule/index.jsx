@@ -175,6 +175,14 @@ export default function Schedule() {
             meta: {start: 38, end: 42, span: 4},
           },
           {
+            id: 'ICP',
+            title: 'ICP hub and QLL introduction and resources',
+            type: {color: RGB(100,100,100)},
+            hosts: [{name: "ICP Hub"}],
+            location: "IC Atrium",
+            meta: {start: 35, end: 36.5, span: 2},
+          },
+          {
             id: 'react',
             title: 'Intro to React',
             type: {color: RGB(164, 194, 244)},
