@@ -88,7 +88,7 @@ export default function Schedule() {
           type: { color: RGB(255, 229, 153) },
           hosts: [{ name: 'HTV' }],
           location: '1st Floor @ IC Vending Machines',
-          meta: { start: 36, end: 38, span: 2 },
+          meta: { start: 36, end: 38, span: 2, colspan: 2 },
         },
         {
           id: 'opening',
@@ -96,7 +96,15 @@ export default function Schedule() {
           type: { color: RGB(114, 197, 93) },
           hosts: [{ name: 'Adem Ozdemir' }, { name: 'Josephine Tjhia' }],
           location: '1st Floor @ IC130',
-          meta: { start: 38, end: 42, span: 4 },
+          meta: { start: 38, end: 42, span: 4, colspan: 2 },
+        },
+        {
+          id: 'ICP',
+          title: 'ICP hub and QLL introduction and resources',
+          type: { color: RGB(100, 100, 100) },
+          hosts: [{ name: 'ICP Hub' }],
+          location: 'IC Atrium',
+          meta: { start: 42, end: 43.5, span: 2, colspan: 2 },
         },
         {
           id: 'workshop-library',
@@ -104,7 +112,7 @@ export default function Schedule() {
           type: { color: RGB(164, 194, 244) },
           hosts: [{ name: 'HTV' }],
           location: '2nd Floor @ IC230',
-          meta: { start: 44, end: 46, span: 2 },
+          meta: { start: 44, end: 46, span: 2, colspan: 2 },
         },
         {
           id: 'react',
@@ -202,6 +210,14 @@ export default function Schedule() {
           meta: { start: 28, end: 34, span: 6, colspan: 2 },
         },
         {
+          id: 'ICP',
+          title: 'ICP hub and QLL introduction and resources',
+          type: { color: RGB(100, 100, 100) },
+          hosts: [{ name: 'ICP Hub' }],
+          location: 'IC Atrium',
+          meta: { start: 34, end: 36, span: 2, colspan: 3 },
+        },
+        {
           id: 'mlh work 2',
           title: 'MLH Workshop',
           type: { color: RGB(248, 185, 42) },
@@ -216,14 +232,6 @@ export default function Schedule() {
           hosts: [{ name: 'HTV' }],
           location: 'IC Atrium',
           meta: { start: 38, end: 42, span: 4 },
-        },
-        {
-          id: 'ICP',
-          title: 'ICP hub and QLL introduction and resources',
-          type: { color: RGB(100, 100, 100) },
-          hosts: [{ name: 'ICP Hub' }],
-          location: 'IC Atrium',
-          meta: { start: 35, end: 36.5, span: 2, colspan: 2 },
         },
         {
           id: 'ai',
