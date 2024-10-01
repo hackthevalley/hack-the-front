@@ -13,7 +13,7 @@ module.exports = {
     featureFlags: {
       mlh: true,
       open: true,
-      discord: false,
+      discord: true,
       rsvp: true,
       schedule: true,
       sponsors: true,
