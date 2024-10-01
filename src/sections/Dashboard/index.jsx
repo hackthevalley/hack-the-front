@@ -176,9 +176,11 @@ function Dashboard() {
             className={classNames(card, faq)}
             style={{
               gridColumn:
-                responseInfo?.applicant?.status ===
+                (responseInfo?.applicant?.status ===
                   statuses.ACCEPTED_INVITE.value ||
-                responseInfo?.applicant?.status === statuses.SCANNED_IN.value
+                  responseInfo?.applicant?.status ===
+                    statuses.SCANNED_IN.value) &&
+                site.siteMetadata.featureFlags.discord
                   ? 'span 2'
                   : ':',
             }}
