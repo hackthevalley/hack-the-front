@@ -103,7 +103,7 @@ export default function Schedule() {
           title: 'ICP hub and QLL introduction and resources',
           type: { color: RGB(100, 100, 100) },
           hosts: [{ name: 'ICP Hub' }],
-          location: 'IC Atrium',
+          location: '2nd Floor @ IC220',
           meta: { start: 42, end: 43.5, span: 2, colspan: 2 },
         },
         {
@@ -214,7 +214,7 @@ export default function Schedule() {
           title: 'ICP hub and QLL introduction and resources',
           type: { color: RGB(100, 100, 100) },
           hosts: [{ name: 'ICP Hub' }],
-          location: 'IC Atrium',
+          location: '2nd Floor @ IC220',
           meta: { start: 34, end: 36, span: 2, colspan: 3 },
         },
         {
