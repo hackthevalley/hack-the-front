@@ -182,7 +182,7 @@ export default function Schedule() {
           type: { color: RGB(200, 100, 0) },
           hosts: [{ name: 'Noah Kham PhD', position: 'UofT' }],
           location: '2nd Floor @ IC220',
-          meta: { start: 27, end: 29, span: 2 },
+          meta: { start: 27, end: 28, span: 1 },
         },
         {
           id: 'bead making',
@@ -198,7 +198,7 @@ export default function Schedule() {
           type: { color: RGB(100, 100, 100) },
           hosts: [],
           location: '1st Floor @ IC130',
-          meta: { start: 29, end: 35, span: 6 },
+          meta: { start: 28, end: 34, span: 6 },
         },
         {
           id: 'mlh work 2',
