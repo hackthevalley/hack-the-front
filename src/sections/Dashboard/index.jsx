@@ -142,24 +142,11 @@ function Dashboard() {
               The Factions of <strong>HTV9</strong>
             </Text>
           </Card>
-          <Card
-            as='a'
-            target='_blank'
-            rel='noreferrer noopenner'
-            href='/#faq'
-            backgroundColor='darkviolet'
-            className={classNames(card, faq)}
-          >
-            <Text type='heading1' as='span' color='gray'>
-              ???
-            </Text>
-            <Text type='heading2' font='secondary' as='h3'>
-              FAQs
-            </Text>
-          </Card>
           {site.siteMetadata.featureFlags.discord &&
-            responseInfo?.applicant?.status ===
-              statuses.ACCEPTED_INVITE.value && (
+            (responseInfo?.applicant?.status ===
+              statuses.ACCEPTED_INVITE.value ||
+              responseInfo?.applicant?.status ===
+                statuses.SCANNED_IN.value) && (
               <>
                 <Card
                   as='a'
@@ -178,37 +165,33 @@ function Dashboard() {
                     Join the discord!
                   </Text>
                 </Card>
-                <Card
-                  as='a'
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    const { token } = await getJwt();
-                    window.location = `/api/discord/link?${new URLSearchParams({
-                      token,
-                    })}`;
-                  }}
-                  href='/api/discord/link'
-                  backgroundColor='darkviolet'
-                  className={classNames(card, factions)}
-                >
-                  <img
-                    src={discordInfo?.message?.avatar?.url ?? placeholderImage}
-                    alt='Discord user avatar'
-                    width='100'
-                  />
-                  <div>
-                    <Text type='heading2' font='secondary' as='h3'>
-                      {discordInfo?.message?.tag ?? 'Link your Discord'}
-                    </Text>
-                    {discordInfo?.message?.tag && (
-                      <Text type='meta1' font='secondary' as='p'>
-                        Click here to re-link your discord
-                      </Text>
-                    )}
-                  </div>
-                </Card>
               </>
             )}
+          <Card
+            as='a'
+            target='_blank'
+            rel='noreferrer noopenner'
+            href='/#faq'
+            backgroundColor='darkviolet'
+            className={classNames(card, faq)}
+            style={{
+              gridColumn:
+                (responseInfo?.applicant?.status ===
+                  statuses.ACCEPTED_INVITE.value ||
+                  responseInfo?.applicant?.status ===
+                    statuses.SCANNED_IN.value) &&
+                site.siteMetadata.featureFlags.discord
+                  ? 'span 2'
+                  : ':',
+            }}
+          >
+            <Text type='heading1' as='span' color='gray'>
+              ???
+            </Text>
+            <Text type='heading2' font='secondary' as='h3'>
+              FAQs
+            </Text>
+          </Card>
         </div>
       </Section>
     </div>
