@@ -104,7 +104,7 @@ export default function Schedule() {
           type: { color: RGB(100, 100, 100) },
           hosts: [{ name: 'ICP Hub' }],
           location: '2nd Floor @ IC220',
-          meta: { start: 42, end: 43.5, span: 2, colspan: 2 },
+          meta: { start: 42, end: 44, span: 2, colspan: 2 },
         },
         {
           id: 'workshop-library',
