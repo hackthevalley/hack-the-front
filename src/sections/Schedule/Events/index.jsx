@@ -1,10 +1,17 @@
 import Card from '@htv/ui-kit/components/Card';
 import Text from '@htv/ui-kit/components/Text';
 
-
-
-import { list, time, event, eventCard, eventBar, eventContent, eventTime, eventDetailsHead, eventDetailsMeta } from './Events.module.scss';
-
+import {
+  list,
+  time,
+  event,
+  eventCard,
+  eventBar,
+  eventContent,
+  eventTime,
+  eventDetailsHead,
+  eventDetailsMeta,
+} from './Events.module.scss';
 
 export default function Events({ items, metadata }) {
   if (!items?.length) return null;
@@ -106,8 +113,18 @@ export default function Events({ items, metadata }) {
           >
             <Card className={eventCard}>
               <div className={eventBar} />
-              <div className={eventContent}>
-                <div className={eventDetailsHead}>
+              <div
+                className={eventContent}
+                style={{
+                  padding: item.meta.span === 1 ? '0.55rem' : '1.5rem',
+                }}
+              >
+                <div
+                  className={eventDetailsHead}
+                  style={{
+                    marginBottom: item.meta.span === 1 ? '0.25rem' : '1rem',
+                  }}
+                >
                   <Text type='meta1' className={eventTime}>
                     {cellToTime(item.meta.start)}
                   </Text>
