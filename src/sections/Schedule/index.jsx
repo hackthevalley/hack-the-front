@@ -177,8 +177,8 @@ export default function Schedule() {
           meta: { start: 24, end: 28, span: 4 },
         },
         {
-          id: 'suprise',
-          title: 'Mystery Workshop',
+          id: 'dell',
+          title: 'Ask Dell Technologies Session',
           type: { color: RGB(0, 100, 200) },
           hosts: [{ name: 'Dell' }],
           location: '2nd Floor @ IC220',
