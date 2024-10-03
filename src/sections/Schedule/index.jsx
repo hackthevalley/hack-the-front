@@ -115,20 +115,12 @@ export default function Schedule() {
           meta: { start: 44, end: 46, span: 2, colspan: 2 },
         },
         {
-          id: 'react',
-          title: 'Intro to React',
-          type: { color: RGB(164, 194, 244) },
-          hosts: [{ name: 'Conrad Mo' }],
-          location: '2nd Floor @ IC230',
-          meta: { start: 46, end: 48, span: 2 },
-        },
-        {
           id: 'ramen',
           title: 'Spicy Ramen',
           type: { color: RGB(246, 178, 107) },
           hosts: [{ name: 'HTV' }],
           location: '2nd Floor @ IC230',
-          meta: { start: 47, end: 49, span: 2 },
+          meta: { start: 46, end: 48, span: 2 },
         },
       ],
       '2024-10-05': [
@@ -149,6 +141,14 @@ export default function Schedule() {
           meta: { start: 16, end: 20, span: 4 },
         },
         {
+          id: 'react',
+          title: 'Intro to React',
+          type: { color: RGB(164, 194, 244) },
+          hosts: [{ name: 'Conrad Mo' }],
+          location: '2nd Floor @ IC230',
+          meta: { start: 19, end: 21, span: 2, colspan: 2 },
+        },
+        {
           id: 'mlh',
           title: 'MLH Workshop',
           type: { color: RGB(248, 185, 42) },
@@ -166,7 +166,7 @@ export default function Schedule() {
             { name: 'Khash Nazakardeh' },
           ],
           location: '2nd Floor @ IC220',
-          meta: { start: 21, end: 25, span: 4 },
+          meta: { start: 21, end: 25, span: 4, colspan: 2 },
         },
         {
           id: 'lunch day 2',
