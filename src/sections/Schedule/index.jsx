@@ -108,7 +108,7 @@ export default function Schedule() {
         },
         {
           id: 'workshop-library',
-          title: 'Library Workshop',
+          title: 'Library Workshop: Academic Research Resources',
           type: { color: RGB(164, 194, 244) },
           hosts: [{ name: 'HTV' }],
           location: '2nd Floor @ IC230',
@@ -119,7 +119,7 @@ export default function Schedule() {
           title: 'Spicy Ramen',
           type: { color: RGB(246, 178, 107) },
           hosts: [{ name: 'HTV' }],
-          location: '2nd Floor @ IC230',
+          location: '2nd Floor @ IC220',
           meta: { start: 46, end: 48, span: 2 },
         },
       ],
@@ -145,7 +145,7 @@ export default function Schedule() {
           title: 'Intro to React',
           type: { color: RGB(164, 194, 244) },
           hosts: [{ name: 'Conrad Mo' }],
-          location: '2nd Floor @ IC230',
+          location: '2nd Floor @ IC220',
           meta: { start: 19, end: 21, span: 2, colspan: 2 },
         },
         {
@@ -153,7 +153,7 @@ export default function Schedule() {
           title: 'MLH Workshop',
           type: { color: RGB(248, 185, 42) },
           hosts: [{ name: 'MLH' }],
-          location: 'IC',
+          location: '2nd Floor @ IC230',
           meta: { start: 20, end: 22, span: 2 },
         },
         {
@@ -206,7 +206,7 @@ export default function Schedule() {
           title: 'Women In Science Summit',
           type: { color: RGB(100, 100, 100) },
           hosts: [],
-          location: '1st Floor @ IC130',
+          location: '2nd Floor @ IC230',
           meta: { start: 28, end: 34, span: 6, colspan: 2 },
         },
         {
@@ -222,7 +222,7 @@ export default function Schedule() {
           title: 'MLH Workshop',
           type: { color: RGB(248, 185, 42) },
           hosts: [{ name: 'MLH' }],
-          location: '1st Floor @ IC130',
+          location: '2nd Floor @ IC230',
           meta: { start: 36, end: 38, span: 2 },
         },
         {
@@ -235,7 +235,7 @@ export default function Schedule() {
         },
         {
           id: 'ai',
-          title: 'AI Workshop',
+          title: 'UofT CARTE: Making AI Understandable',
           type: { color: RGB(164, 194, 244) },
           hosts: [{ name: 'Alex Olsen', position: 'UofT Research' }],
           location: '2nd Floor @ IC220',
@@ -296,7 +296,7 @@ export default function Schedule() {
           title: 'Lunch',
           type: { color: RGB(255, 229, 153) },
           hosts: [{ name: 'HTV' }],
-          location: 'IC Atrium',
+          location: '1st Floor @ IC130',
           meta: { start: 24, end: 28, span: 4 },
         },
         {
