@@ -146,7 +146,8 @@ function Dashboard() {
             (responseInfo?.applicant?.status ===
               statuses.ACCEPTED_INVITE.value ||
               responseInfo?.applicant?.status ===
-                statuses.SCANNED_IN.value) && (
+                statuses.SCANNED_IN.value || responseInfo?.applicant?.status ===
+                    statuses.WALK_IN_SUBMIT.value) && (
               <>
                 <Card
                   as='a'
