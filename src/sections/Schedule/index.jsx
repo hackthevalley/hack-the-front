@@ -150,7 +150,7 @@ export default function Schedule() {
         },
         {
           id: 'mlh',
-          title: 'MLH Workshop',
+          title: 'Making Better Hacks, Faster with GitHub CoPilot',
           type: { color: RGB(248, 185, 42) },
           hosts: [{ name: 'MLH' }],
           location: '2nd Floor @ IC230',
@@ -219,7 +219,7 @@ export default function Schedule() {
         },
         {
           id: 'mlh work 2',
-          title: 'MLH Workshop',
+          title: 'MLH Werewolf Social Game',
           type: { color: RGB(248, 185, 42) },
           hosts: [{ name: 'MLH' }],
           location: '2nd Floor @ IC230',
