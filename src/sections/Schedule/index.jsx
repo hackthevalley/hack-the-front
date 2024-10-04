@@ -100,7 +100,7 @@ export default function Schedule() {
         },
         {
           id: 'ICP',
-          title: 'ICP hub and QLL introduction and resources',
+          title: 'Internet Computer: The Third Blockchain Innovation',
           type: { color: RGB(100, 100, 100) },
           hosts: [{ name: 'ICP Hub' }],
           location: '2nd Floor @ IC220',
@@ -211,7 +211,7 @@ export default function Schedule() {
         },
         {
           id: 'ICP',
-          title: 'ICP hub and QLL introduction and resources',
+          title: 'Internet Computer: The Third Blockchain Innovation',
           type: { color: RGB(100, 100, 100) },
           hosts: [{ name: 'ICP Hub' }],
           location: '2nd Floor @ IC220',
