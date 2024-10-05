@@ -141,6 +141,14 @@ export default function Schedule() {
           meta: { start: 16, end: 20, span: 4 },
         },
         {
+          id: 'react',
+          title: 'Resume Roast',
+          type: { color: RGB(164, 194, 244) },
+          hosts: [{ name: 'Howard Yang' }],
+          location: '2nd Floor @ IC220',
+          meta: { start: 19, end: 21, span: 2, colspan: 2 },
+        },
+        {
           id: 'mlh',
           title: 'Making Better Hacks, Faster with GitHub CoPilot',
           type: { color: RGB(248, 185, 42) },
