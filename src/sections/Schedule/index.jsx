@@ -142,9 +142,9 @@ export default function Schedule() {
         },
         {
           id: 'react',
-          title: 'Intro to React',
+          title: 'Resume Roast',
           type: { color: RGB(164, 194, 244) },
-          hosts: [{ name: 'Conrad Mo' }],
+          hosts: [{ name: 'Howard Yang' }],
           location: '2nd Floor @ IC220',
           meta: { start: 19, end: 21, span: 2, colspan: 2 },
         },
