@@ -1,4 +1,8 @@
+"use client"
+
 import Image from "next/image";
+import Button from "@/components/Button";
+
 
 export default function Home() {
   return (
@@ -33,9 +37,8 @@ export default function Home() {
 
               {/* Apply Button */}
               <div className="flex justify-center">
-                <button className="rounded-xl p-4 text-[#F5F3E7] w-[16rem] bg-linear-to-b from-[#6EAC5E] to-[#6B8F9F]">
-                    <p className="font-bold text-lg">Apply Now</p>
-                </button>
+                <Button text="Apply Now" onClick={() => {console.log("Button hit");}}/>
+                
               </div>
 
               </div>
