@@ -46,7 +46,6 @@ export default function Home() {
           </div>
 
           <div className="relative w-1/2">
-          {/* max-w-[100%] h-auto */}
           {/* add absolute to the card */}
             <img className="max-w-none" src="/landing-page/date-card-2.svg" alt="Event Card" width="573"/>
             <img className="max-w-none absolute top-[-11rem] left-[-3rem]" src="/landing-page/event-card-2.svg" alt="Event Card" width="662"/>
