@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
 import localFont from "next/font/local";
-import "./globals.css";
-import Navbar from "@/components/Navbar"
+import "@/globals.css";
+import Navbar from "@/components/Navbar";
 
 const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
