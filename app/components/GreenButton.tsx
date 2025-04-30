@@ -7,7 +7,7 @@ interface ButtonProp {
 
 export default function Button(props: ButtonProp) {
     return(
-        <button onClick={props.onClick} className="rounded-xl shadow-md text-[#F5F3E7] w-fit h-fit px-8 py-2 bg-[#6EAC5E]">
+        <button onClick={props.onClick} className="rounded-xl shadow-md text-cream w-fit h-fit px-8 py-2 bg-darkgreen">
             <p className="font-bold text-lg">{props.text}</p>
         </button>
     );

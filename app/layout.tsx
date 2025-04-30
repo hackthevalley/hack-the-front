@@ -66,7 +66,7 @@ const euclidCircularB = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hack the Valley X",
+  title: "Hack the Valley",
   description:
     "Join 750 innovative and creative developers, designers, and creators for 36 hours of hacking. You'll get access to some of the best hardware and APIs on the market. Plus get to meet some experienced and awesome mentors! All this in just one weekend? I know, it's hard to believe.",
 };
@@ -81,10 +81,10 @@ export default function RootLayout({
       <body
         className={`${sourceCodePro.variable}
           ${euclidCircularB.variable}
-          antialiased`}
+          antialiased relative`}
       >
         <Navbar />
-        <main>{children}</main>
+        <main className="absolute w-full top-[4rem] z-[-10]">{children}</main>
       </body>
     </html>
   );
