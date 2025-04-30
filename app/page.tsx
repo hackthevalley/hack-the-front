@@ -46,7 +46,7 @@ export default function Home() {
 
           {/* Event cards and metallic flowers with animation */}
           <div className="relative w-1/2">
-            <img className="max-w-none" src="/landing-page/date-card-2.svg" alt="Event Card" width="573"/>
+            <img className="animate-fade-in-scale max-w-none" src="/landing-page/date-card-2.svg" alt="Event Card" width="573"/>
             <img className="max-w-none absolute top-[-10rem] left-[-3rem]" src="/landing-page/event-card-2.svg" alt="Event Card" width="662"/>
             <img className="absolute bottom-[21.2rem] left-[-2.5rem]" src="/metallics/clover.svg" alt="Metallic Clover" width="151"/>
             <img className="absolute top-[12.5rem] left-[24rem]" src="/metallics/flower.svg" alt="Metallic Flower" width="135"/>

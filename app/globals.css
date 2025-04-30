@@ -2,7 +2,7 @@
 
 :root {
     --background: #ffffff;
-    --foreground: #171717;
+    --foreground: #06101E;
 }
 
 @theme inline {
@@ -11,6 +11,7 @@
     --font-scp: var(--font-source-code-pro);
     --font-ecb: var(--font-euclid-circular-b);
 
+    /* Colours */
     --color-black: #06101E;
     --color-darkblue: #1C4582;
     --color-blue: #485B9B;
@@ -21,6 +22,19 @@
     --color-white: #FFF;
     --color-cream: #F5F3E7;
     --color-grey: #9B9EA1;
+
+    /* Animations */
+    --animate-fade-in-scale: fade-in-scale 4s ease-out;
+    @keyframes fade-in-scale {
+        0% {
+        opacity: 0;
+        transform: scale(0.25);
+        }
+        100% {
+        opacity: 1;
+        transform: scale(1);
+        }
+    }
 }
 
 body {
