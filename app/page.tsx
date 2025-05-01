@@ -51,12 +51,12 @@ export default function Home() {
 
           {/* Event cards and metallic flowers with animation */}
           <div className="relative w-1/2">
-            {/* <img className="terminal-card max-w-none z-10" src="/landing-page/date-card-2.svg" alt="Event Card" width="573"/> */}
             <motion.img
               className="terminal-card relative max-w-none cursor-pointer"
               src="/landing-page/date-card-2.svg"
               alt="Event Card"
               width="573"
+              // whileHover={clicked ? { scale: 1.05 } : {}}
               onClick={() => setClicked(!clicked)}
               animate={{
                 rotate: clicked ? 13.97 : 0,
@@ -65,14 +65,12 @@ export default function Home() {
               }}
               transition={{ type: "spring", stiffness: 100, duration: 0.8, ease: "easeInOut" }}
             />
-            
-            
-            
             <motion.img
               className="event-card max-w-none absolute top-[-10rem] left-[-3rem] cursor-pointer"
               src="/landing-page/event-card-2.svg"
               alt="Event Card"
               width="662"
+              // whileHover={!clicked ? { scale: 1.05 } : {}}
               onClick={() => setClicked(!clicked)}
               animate={{
                 rotate: clicked ? -13.97 : 0,
@@ -81,10 +79,36 @@ export default function Home() {
               }}
               transition={{ type: "spring", stiffness: 100, duration: 0.8, ease: "easeInOut" }}
             />
-            {/* <img className="event-card max-w-none absolute top-[-10rem] left-[-3rem]" src="/landing-page/event-card-2.svg" alt="Event Card" width="662"/> */}
 
-            <img className="absolute bottom-[21.2rem] left-[-2.5rem] z-20" src="/metallics/clover.svg" alt="Metallic Clover" width="151"/>
-            <img className="absolute top-[12.5rem] left-[24rem] z-20" src="/metallics/flower.svg" alt="Metallic Flower" width="135"/>
+              {/* Metallic Flowers */}
+            <motion.img
+              className="absolute bottom-[21.2rem] left-[-2.5rem] z-20"
+              src="/metallics/clover.svg"
+              alt="Metallic Clover"
+              width="151"
+              onClick={() => setClicked(!clicked)}
+              animate={{
+                rotate: clicked ? -25 : 0,
+                x: clicked ? [0, -50] : [-50, 0],
+                y: clicked ? [0, -20] : [-20, 0],
+              }}
+              transition={{ type: "spring", stiffness: 50, duration: 0.3, ease: "easeInOut" }}
+            />
+
+            <motion.img
+              className="absolute top-[12.5rem] left-[24rem] z-20"
+              src="/metallics/flower.svg"
+              alt="Metallic Flower"
+              width="135"
+              onClick={() => setClicked(!clicked)}
+              animate={{
+                rotate: clicked ? 20 : 0,
+                x: clicked ? [0, 50] : [50, 0],
+                y: clicked ? [0, 70] : [70, 0],
+              }}
+              transition={{ type: "spring", stiffness: 50, duration: 0.3, ease: "easeInOut" }}
+            />
+          
           </div>
 
         </div>
