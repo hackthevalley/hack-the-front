@@ -23,18 +23,6 @@
     --color-cream: #F5F3E7;
     --color-grey: #9B9EA1;
 
-    /* Animations */
-    --animate-fade-in-scale: fade-in-scale 4s ease-out;
-    @keyframes fade-in-scale {
-        0% {
-        opacity: 0;
-        transform: scale(0.25);
-        }
-        100% {
-        opacity: 1;
-        transform: scale(1);
-        }
-    }
 }
 
 body {
