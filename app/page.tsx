@@ -2,9 +2,14 @@
 
 import Image from "next/image";
 import Button from "@/components/Button";
+import {useState} from "react";
+
+import { motion } from "motion/react"
 
 
 export default function Home() {
+  const [clicked, setClicked] = useState(false);
+
   return (
     // Inside calc(100vh-4rem), the 4rem must be the same as the top-4rem in layout.tsx
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-4rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-euclid-circular-b)]">
@@ -46,10 +51,40 @@ export default function Home() {
 
           {/* Event cards and metallic flowers with animation */}
           <div className="relative w-1/2">
-            <img className="animate-fade-in-scale max-w-none" src="/landing-page/date-card-2.svg" alt="Event Card" width="573"/>
-            <img className="max-w-none absolute top-[-10rem] left-[-3rem]" src="/landing-page/event-card-2.svg" alt="Event Card" width="662"/>
-            <img className="absolute bottom-[21.2rem] left-[-2.5rem]" src="/metallics/clover.svg" alt="Metallic Clover" width="151"/>
-            <img className="absolute top-[12.5rem] left-[24rem]" src="/metallics/flower.svg" alt="Metallic Flower" width="135"/>
+            {/* <img className="terminal-card max-w-none z-10" src="/landing-page/date-card-2.svg" alt="Event Card" width="573"/> */}
+            <motion.img
+              className="terminal-card relative max-w-none cursor-pointer"
+              src="/landing-page/date-card-2.svg"
+              alt="Event Card"
+              width="573"
+              onClick={() => setClicked(!clicked)}
+              animate={{
+                rotate: clicked ? 13.97 : 0,
+                zIndex: clicked ? 10 : 5,
+                y: clicked ? [0, -60] : [-60, 0],
+              }}
+              transition={{ type: "spring", stiffness: 100, duration: 0.8, ease: "easeInOut" }}
+            />
+            
+            
+            
+            <motion.img
+              className="event-card max-w-none absolute top-[-10rem] left-[-3rem] cursor-pointer"
+              src="/landing-page/event-card-2.svg"
+              alt="Event Card"
+              width="662"
+              onClick={() => setClicked(!clicked)}
+              animate={{
+                rotate: clicked ? -13.97 : 0,
+                zIndex: clicked ? 5 : 10,
+                y: clicked ? [0, 60] : [60, 0],
+              }}
+              transition={{ type: "spring", stiffness: 100, duration: 0.8, ease: "easeInOut" }}
+            />
+            {/* <img className="event-card max-w-none absolute top-[-10rem] left-[-3rem]" src="/landing-page/event-card-2.svg" alt="Event Card" width="662"/> */}
+
+            <img className="absolute bottom-[21.2rem] left-[-2.5rem] z-20" src="/metallics/clover.svg" alt="Metallic Clover" width="151"/>
+            <img className="absolute top-[12.5rem] left-[24rem] z-20" src="/metallics/flower.svg" alt="Metallic Flower" width="135"/>
           </div>
 
         </div>
