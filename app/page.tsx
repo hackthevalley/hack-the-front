@@ -15,7 +15,8 @@ export default function Home() {
     <div>
       <Navbar />
     {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-euclid-circular-b)]">
+    {/* font-[family-name:var(--font-euclid-circular-b)] */}
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 sm:p-20">
       
       {/* Dotted flower art */}
       <img className="absolute object-cover bottom-[-6rem] left-[-7rem]" src="/pointillism/dot-grey-flower.svg" alt="pointilism flower" width="448"/>

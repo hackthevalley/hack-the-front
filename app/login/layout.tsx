@@ -77,7 +77,7 @@ export default function LoginLayout({
 }>) {
   return (
     <section className={`${sourceCodePro.variable}
-    ${euclidCircularB.variable}
+    font-[family-name:var(${euclidCircularB.variable})]
     antialiased relative`}>
       {children}
 

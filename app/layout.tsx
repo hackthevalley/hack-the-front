@@ -79,7 +79,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${sourceCodePro.variable}
-          ${euclidCircularB.variable}
+          font-[family-name:var(${euclidCircularB.variable})
           antialiased`}
       >
         <main>{children}</main>

@@ -3,7 +3,7 @@
 import GreenButton from "@/components/GreenButton"; 
 
 interface NavbarProp {
-    hide: boolean
+    hide?: boolean
 }
 
 export default function Navbar(props : NavbarProp) {
