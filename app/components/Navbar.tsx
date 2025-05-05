@@ -4,7 +4,7 @@ import GreenButton from "@/components/GreenButton";
 
 export default function Navbar() {
     return(
-        <div className="flex bg-linear-to-b from-darkblue to-black">
+        <div className="flex bg-linear-to-b from-darkblue to-black h-[10rem]">
             <div className="py-4 px-8 flex w-[70%] items-center">
                 <a href="/">
                     <img src="/icons/htv-logo.svg" width="100px" />

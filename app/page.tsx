@@ -5,14 +5,17 @@ import Button from "@/components/Button";
 import {useState} from "react";
 
 import { motion } from "motion/react"
+import Navbar from "@/components/Navbar";
 
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
 
   return (
-    // Inside calc(100vh-4rem), the 4rem must be the same as the top-4rem in layout.tsx
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-4rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-euclid-circular-b)]">
+    <div>
+      <Navbar />
+    {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-euclid-circular-b)]">
       
       {/* Dotted flower art */}
       <img className="absolute object-cover bottom-[-6rem] left-[-7rem]" src="/pointillism/dot-grey-flower.svg" alt="pointilism flower" width="448"/>
@@ -120,6 +123,7 @@ export default function Home() {
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
        
       </footer>
+    </div>
     </div>
   );
 }
