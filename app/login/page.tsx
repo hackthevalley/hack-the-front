@@ -4,8 +4,8 @@ import Navbar from "@/components/Navbar";
 
 export default function LoginPage() {
     return(
-        <div className="bg-black h-[100vh] font-[family-name:var(--font-euclid-circular-b)] relative">
-            <img className="absolute opacity-10 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]" src="/backgrounds/smaller-gradient.svg" />
+        <div className="bg-black h-[100vh] overflow-hidden font-[family-name:var(--font-euclid-circular-b)] relative">
+            <img className="absolute opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]" src="/backgrounds/smaller-gradient.svg" />
             <Navbar hide={true} />
 
             <div className="flex flex-col justify-start">
