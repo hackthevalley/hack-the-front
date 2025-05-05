@@ -1,19 +1,22 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
+
 export default function LoginPage() {
     return(
-        <div className="bg-black ">
+        <div className="bg-black h-[100vh]">
+            <Navbar hide={true} />
             {/* Back button */}
 
             <div>
-                <p className="text-black">$ npm start challenge</p>
+                <p className="text-white">$ npm start challenge</p>
 
-                <p className="text-black text-xl">{">"} Welcome Back Hacker,</p>
+                <p className="text-white text-xl">{">"} Welcome Back Hacker,</p>
                 
                 <div className="w-full">
                     <div className="flex justify-between align-items">
                         <hr />
-                        <p>Sign in to view dashboard</p>
+                        <p className="text-white">Sign in to view dashboard</p>
                         <hr />
                     </div>
 
