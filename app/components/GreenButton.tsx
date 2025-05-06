@@ -1,15 +1,25 @@
 "use client"
 
+import Link from "next/link";
+
 interface ButtonProp {
     text: string;
     onClick: (...args: any[]) => any; // any input or output datatype
+    route?: string;
 }
 
 export default function Button(props: ButtonProp) {
-    return(
-        <button onClick={props.onClick} className="rounded-xl shadow-md text-cream w-fit h-fit px-8 py-2 bg-darkgreen">
-            <p className="font-bold text-lg">{props.text}</p>
-        </button>
-    );
-
+    if(props.route != null) {
+        return(
+            <Link href={props.route} className="rounded-xl shadow-md text-cream w-fit h-fit px-8 py-2 bg-darkgreen">
+                <p className="font-bold text-lg">{props.text}</p>
+            </Link>
+        );
+    } else {
+        return(
+            <button onClick={props.onClick} className="rounded-xl shadow-md text-cream w-fit h-fit px-8 py-2 bg-darkgreen">
+                <p className="font-bold text-lg">{props.text}</p>
+            </button>
+        );
+    }
 }

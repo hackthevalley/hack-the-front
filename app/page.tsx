@@ -45,7 +45,7 @@ export default function Home() {
 
               {/* Apply Button */}
               <div className="flex justify-center">
-                <Button text="Apply Now" onClick={() => {console.log("Button hit");}}/>
+                <Button text="Apply Now" route="/login" />
                 
               </div>
 
