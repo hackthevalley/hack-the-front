@@ -1,6 +1,7 @@
 import React from "react";
 import "../globals.css";
 
+
 interface TextFieldProps {
   title: string;
   required?: boolean;
@@ -20,7 +21,8 @@ export default function TextField(props: TextFieldProps) {
     heightClasses = "min-h-15 sm:min-h-10",
   } = props;
 
-  const baseClasses = `font-[var(--font-ecb)] font-normal text-[20px] text-[color:var(--color-grey)] placeholder-[color:var(--color-grey)] ${
+  const baseClasses = `font-[Euclid Circular B] font-normal text-[20px] placeholder-grey text-grey ${
+
     multiline ? "h-full resize-none" : ""
   }`;
 
@@ -35,6 +37,7 @@ export default function TextField(props: TextFieldProps) {
       <label className="flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] text-[20px] mb-1">
         {title}
         {required && <span className="text-red-500 ml-1">*</span>}
+
       </label>
       {multiline ? (
         <textarea placeholder={placeholder} className={baseClasses} />
