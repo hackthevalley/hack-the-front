@@ -12,25 +12,23 @@ interface TextFieldProps {
 export default function TextField(props: TextFieldProps) {
   const {
     title,
-    required = true,
+    required = false,
     placeholder = "",
     multiline = false,
-    widthClasses = " w-[391px] sm:w-[391px]",
+    widthClasses = " w-full",
     heightClasses = "min-h-[103px] sm:min-h-[103px]",
   } = props;
 
-  const baseClasses = `font-[Euclid Circular B] font-normal text-[20px] placeholder-[#BABABA] text-[#BABABA] ${
+  const baseClasses = `font-[Euclid Circular B] font-normal text-[20px] placeholder-grey text-grey ${
     multiline ? "h-full resize-none" : ""
   }`;
 
   return (
     <div
-      className={`rounded-[20px] border-2 bg-[#0B1C34] border-[#1A427D] px-4 py-2 flex flex-col justify-start ${widthClasses} ${heightClasses}`}
-      style={{ color: "#0B1C34" }}
-    >
+      className={`rounded-[20px] border-2 bg-[#0B1C34] border-[#1A427D] px-8 py-2 flex flex-col justify-center ${widthClasses} ${heightClasses}`}>
       <label className="flex items-center font-[Euclid Circular B] text-white font-semibold text-[20px] mb-1">
         {title}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-red ml-1">*</span>}
       </label>
       {multiline ? (
         <textarea placeholder={placeholder} className={baseClasses} />
