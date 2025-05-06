@@ -4,7 +4,7 @@ import Link from "next/link";
 
 interface ButtonProp {
     text: string;
-    onClick: (...args: any[]) => any; // any input or output datatype
+    onClick?: (...args: any[]) => any; // any input or output datatype
     route?: string;
 }
 
