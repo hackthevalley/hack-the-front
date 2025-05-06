@@ -1,4 +1,5 @@
 import React from "react";
+import "../globals.css";
 
 interface TextFieldProps {
   title: string;
@@ -11,24 +12,27 @@ interface TextFieldProps {
 
 export default function TextField(props: TextFieldProps) {
   const {
-    title,
+    title = "",
     required = true,
     placeholder = "",
     multiline = false,
-    widthClasses = " w-[391px] sm:w-[391px]",
-    heightClasses = "min-h-[103px] sm:min-h-[103px]",
+    widthClasses = "mx-[auto]",
+    heightClasses = "min-h-15 sm:min-h-10",
   } = props;
 
-  const baseClasses = `font-[Euclid Circular B] font-normal text-[20px] placeholder-[#BABABA] text-[#BABABA] ${
+  const baseClasses = `font-[var(--font-ecb)] font-normal text-[20px] text-[color:var(--color-grey)] placeholder-[color:var(--color-grey)] ${
     multiline ? "h-full resize-none" : ""
   }`;
 
   return (
     <div
-      className={`rounded-[20px] border-2 bg-[#0B1C34] border-[#1A427D] px-4 py-2 flex flex-col justify-start ${widthClasses} ${heightClasses}`}
-      style={{ color: "#0B1C34" }}
+      className={`rounded-[20px] border-2 px-4 py-2 flex flex-col justify-start ${widthClasses} ${heightClasses}`}
+      style={{
+        borderColor: "var(--color-indigo)",
+        backgroundColor: "var(--color-bgblue)",
+      }}
     >
-      <label className="flex items-center font-[Euclid Circular B] text-white font-semibold text-[20px] mb-1">
+      <label className="flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] text-[20px] mb-1">
         {title}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
