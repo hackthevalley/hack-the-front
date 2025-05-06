@@ -37,7 +37,7 @@ export default function SignuPage() {
               <div className="flex justify-between items-center">
                 <hr className="bg-indigo border-none mr-4 w-full h-[2px]" />
                 <p className="text-white w-fit whitespace-nowrap font-semibold text-2xl">
-                  Sign in to view dashboard
+                  Create an account to register
                 </p>
                 <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
               </div>
