@@ -10,8 +10,8 @@ export default function Navbar(props : NavbarProp) {
     return(
         <div className="flex bg-linear-to-b from-darkblue to-black h-[10rem]">
             <div className="py-4 px-8 flex w-[70%] items-center">
-                <a href="/">
-                    <img src="/icons/htv-logo.svg" width="100px" />
+                <a href="/" className="shrink-0">
+                    <img src="/icons/htv-logo.svg" className="w-[100px] h-auto shrink-0" />
                 </a>
                 {!props.hide ? (
                     <ul className="flex w-full justify-evenly items-center font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white text-2xl">

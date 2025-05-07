@@ -4,11 +4,12 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import GreenButton from "@/components/GreenButton";
 import TextField from "@/components/TextField";
-
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
       <img
@@ -54,16 +55,16 @@ export default function LoginPage() {
             </div>
 
             {/* Need to add logic so Sign in turns grey */}
-            <GreenButton text="Sign In" />
+            <GreenButton text="Sign In" formFilled />
 
             <div className="flex my-[1rem]">
               <p className="text-grey text-lg mr-2">Don't have an account?</p>
-              <button
+              <Link
                 className="text-lightgreen text-lg font-semibold"
-                onClick={() => router.push("/sign-up")}
+                href="/sign-up"
               >
                 Sign up.
-              </button>
+              </Link>
             </div>
           </div>
         </div>

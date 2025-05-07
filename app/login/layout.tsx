@@ -76,9 +76,7 @@ export default function LoginLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className={`${sourceCodePro.variable}
-    font-[family-name:var(${euclidCircularB.variable})]
-    antialiased relative`}>
+    <section className={`${sourceCodePro.variable} ${euclidCircularB.variable} antialiased relative`}>
       {children}
 
     </section>

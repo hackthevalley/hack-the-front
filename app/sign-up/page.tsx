@@ -3,13 +3,17 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import GreenButton from "@/components/GreenButton";
-import Button from "@/components/Button";
 import TextField from "@/components/TextField";
 
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
-export default function SignuPage() {
-  const router = useRouter();
+export default function SignupPage() {
+  const [fname, setFname] = useState<string>("");
+  const [lname, setLname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
       <img
@@ -74,12 +78,12 @@ export default function SignuPage() {
                 <p className="text-grey text-lg mr-2">
                   Already have an account?
                 </p>
-                <button
+                <Link
                   className="text-lightgreen text-lg font-semibold"
-                  onClick={() => router.push("/login")}
+                  href="/login"
                 >
                   Sign in.
-                </button>
+                </Link>
               </div>
             </form>
           </div>
