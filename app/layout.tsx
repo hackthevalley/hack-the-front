@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
 import localFont from "next/font/local";
 import "@/globals.css";
-import Navbar from "@/components/Navbar";
 
 const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
@@ -79,12 +78,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceCodePro.variable}
-          ${euclidCircularB.variable}
-          antialiased relative`}
-      >
-        <Navbar />
-        <main className="absolute w-full top-[4rem] z-[-10]">{children}</main>
+  className={`${sourceCodePro.variable} ${euclidCircularB.variable} antialiased`}
+>
+        <main>{children}</main>
       </body>
     </html>
   );
