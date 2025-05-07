@@ -34,3 +34,8 @@ body {
     color: var(--foreground);
     font-family: var(--font-euclid-circular-b), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+/* For the Hack the Valley Title on Landing Page */
+.text-stroke {
+    -webkit-text-stroke: 1px white;
+  }

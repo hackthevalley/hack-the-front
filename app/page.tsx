@@ -35,14 +35,15 @@ export default function Home() {
             <div className="w-1/2 grid grid-cols-[10%_90%] gap-2">
               {/* Positioning the ">" */}
               <div className="flex justify-center mt-[2.3rem]">
-                <h1 className="text-white text-7xl font-medium">{">"}</h1>
+                <h1 className="text-grey text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">{">"}</h1>
               </div>
               <div className="flex flex-col gap-y-4 w-max">
                 <p className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
                   Up for the challenge?
                 </p>
-                <h1 className="text-white text-7xl font-medium">HACK THE</h1>
-                <h1 className="text-white text-7xl font-medium">VALLEY X</h1>
+                <h1 className="text-grey text-7xl font-medium text-stroke">HACK THE</h1>
+                <h1 className="text-grey text-7xl font-medium text-stroke">VALLEY X</h1>
+
                 {/* Date */}
                 <div className="flex-col">
                   <div className="flex items-center justify-center gap-x-4 mb-[4rem] text-green">

@@ -16,22 +16,22 @@ export default function Navbar(props : NavbarProp) {
                 {!props.hide ? (
                     <ul className="flex w-full justify-evenly items-center font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white text-2xl">
                     <li>
-                        <a href="#about"><p>ABOUT</p></a>
+                        <a href="#about"><p>About</p></a>
                     </li>
                     <li>
-                        <a href="#schedule"><p>SCHEDULE</p></a>
+                        <a href="#schedule"><p>Schedule</p></a>
                     </li>
                     <li>
                         <a href="#faq"><p>FAQ</p></a>
                     </li>
                     <li>
-                        <a href="#themes"><p>THEMES</p></a>
+                        <a href="#themes"><p>Themes</p></a>
                     </li>
                     <li>
-                        <a href="#pastyears"><p>PAST YEARS</p></a>
+                        <a href="#pastyears"><p>Past Years</p></a>
                     </li>
                     <li>
-                        <a href="#sponsors"><p>SPONSORS</p></a>
+                        <a href="#sponsors"><p>Sponsors</p></a>
                     </li>
                 </ul>
                 ) : null}
