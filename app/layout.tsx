@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
 import localFont from "next/font/local";
-import "./globals.css";
+import "@/globals.css";
 
 const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
@@ -65,7 +65,7 @@ const euclidCircularB = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hack the Valley X",
+  title: "Hack the Valley",
   description:
     "Join 750 innovative and creative developers, designers, and creators for 36 hours of hacking. You'll get access to some of the best hardware and APIs on the market. Plus get to meet some experienced and awesome mentors! All this in just one weekend? I know, it's hard to believe.",
 };
@@ -78,11 +78,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceCodePro.variable}
-          ${euclidCircularB.variable}
-          antialiased`}
-      >
-        {children}
+  className={`${sourceCodePro.variable} ${euclidCircularB.variable} antialiased`}
+>
+        <main>{children}</main>
       </body>
     </html>
   );
