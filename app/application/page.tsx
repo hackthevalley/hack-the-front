@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
@@ -65,22 +66,27 @@ export default function Application() {
         </div>
 
         <div className="flex flex-grow justify-center items-center relative overflow-hidden">
-          <Card className="w-9/12">
-            <div className="flex flex-row space-between">
-              <h1 className="text-6xl font-extrabold text-[#81C470] mb-10 pr-4 tracking-wide">
-                APPLICATION
-              </h1>
-              <div className={`bg-[#81C470] w-[0.7rem] scale-y-100`}></div>
-            </div>
-            <p className="text-white text-xl mb-10">
-              Hey hacker, welcome aboard 👋🏼 <br />
-              Your co-pilot <strong>(name)</strong> will track your journey
-              through this application. Buckle up!
-            </p>
-            <div className="flex flex-col items-center">
-              <Button text="Apply Now" onClick={() => console.log("Button clicked")} />
-            </div>
-          </Card>
+          <div className="w-9/12"
+          >
+            <Card> 
+              <div className="flex flex-row space-between item-center mb-10">
+                <h1 className="text-6xl font-extrabold text-[#81C470] pr-4 tracking-wide">
+                  APPLICATION
+                </h1>
+                <div className={`bg-[#81C470] w-[0.60rem] scale-y-135`}></div>
+              </div>
+              <p className="text-white text-xl mb-10">
+                Hey hacker, welcome aboard&#x1F44B;&#x1F3FC; <br />
+                Your co-pilot <strong>(name)</strong> will track your journey
+                through this application. Buckle up!
+              </p>
+              <div className="flex flex-col items-center">
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="flex">
+                  <Button text="Begin now" extraClass="py-3" route="/" onClick={() => console.log("Button clicked")} />
+                </motion.div>
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     </>

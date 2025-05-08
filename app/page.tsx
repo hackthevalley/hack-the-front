@@ -56,7 +56,7 @@ export default function Home() {
 
                   {/* Apply Button */}
                   <div className="flex justify-center">
-                    <Button text="Apply Now" route="/login" />
+                    <Button text="Apply Now" extraClass="py-2" route="/login" />
                   </div>
                 </div>
               </div>
