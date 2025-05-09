@@ -17,53 +17,62 @@ export default function Home() {
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 font-[family-name:var(--font-euclid-circular-b)] sm:p-20">
         {/* star art */}
-        <img
+        {/* Note we need to change z-index as it overlaps on phones */}
+        <Image
           className="absolute object-cover bottom-[-1rem] left-[-2rem]"
           src="/backgrounds/star-left.svg"
           alt="star"
           width="400"
+          height="390"
         />
-        <img
+        <Image
           className="absolute object-cover top-[-1rem] right-[0rem]"
           src="/backgrounds/star-right.svg"
           alt="star"
           width="340"
+          height="509"
         />
 
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
           <div className="flex justify-between w-full">
-            <div className="w-1/2 flex col relative">
-
-            {/* Old HTV Title components */}
-            {/* <div className="w-1/2 grid grid-cols-[10%_90%] gap-2"> */}
+            <div className="w-1/2 grid grid-cols-[10%_90%] gap-2">
               {/* Positioning the ">" */}
-              {/* <div className="flex justify-center mt-[2.3rem]">
-                <h1 className="text-grey text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">{">"}</h1>
-              </div> */}
-
-                <img src="/icons/htv-title.png" className="w-[31rem] absolute top-[3rem] right-[3.8rem] max-w-none" />
-
+              <div className="flex justify-center mt-[2.3rem]">
+                <h1 className="text-[#4C6581] text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">
+                  {">"}
+                </h1>
+              </div>
               <div className="flex flex-col gap-y-4 w-max">
                 <p className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
                   Up for the challenge?
                 </p>
-
-                <div className="w-[25rem] h-[10rem]">
-                  {/* The parking spot for the htv-title img cause absolute gives up its space */}
-                </div>
-                
-                {/* Old HTV title */}
-                {/* <h1 className="text-grey text-7xl font-medium text-stroke">HACK THE</h1>
-                <h1 className="text-grey text-7xl font-medium text-stroke">VALLEY X</h1> */}
+                <h1
+                  className="text-7xl font-bold text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(160deg, #4C6581, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
+                  }}
+                >
+                  HACK THE
+                </h1>
+                <h1
+                  className="text-7xl font-bold text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(100deg, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
+                  }}
+                >
+                  VALLEY X
+                </h1>
 
                 {/* Date */}
                 <div className="flex-col">
                   <div className="flex items-center justify-center gap-x-4 mb-[4rem] text-green">
-                    <hr className="w-full" />
-                    <p className="text-lg text-nowrap font-[family-name:var(--font-source-code-pro)]">
+                    <hr className="w-[20%]" />
+                    <p className="text-lg font-[family-name:var(--font-source-code-pro)]">
                       Oct. 3-5, 2025
                     </p>
-                    <hr className="w-full" />
+                    <hr className="w-[20%]" />
                   </div>
 
                   {/* Apply Button */}
@@ -72,13 +81,11 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              
             </div>
 
             {/* Event cards and metallic flowers with animation */}
             <div className="relative w-1/2">
-            {/* Terminal card */}
+              {/* Terminal card */}
               <motion.img
                 className="terminal-card relative max-w-none cursor-pointer"
                 src="/landing-page/date-card.svg"
