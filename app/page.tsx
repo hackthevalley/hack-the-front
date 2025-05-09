@@ -41,7 +41,7 @@ export default function Home() {
                 <h1 className="text-grey text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">{">"}</h1>
               </div> */}
 
-                <img src="/icons/htv-title.png" className="w-[31rem] absolute top-[2.5rem] right-[3.7rem] max-w-none" />
+                <img src="/icons/htv-title.png" className="w-[31rem] absolute top-[3rem] right-[3.8rem] max-w-none" />
 
               <div className="flex flex-col gap-y-4 w-max">
                 <p className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
