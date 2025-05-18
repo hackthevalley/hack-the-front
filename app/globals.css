@@ -5,7 +5,7 @@
     --background: #06101E;
 }
 
-@theme inline {
+@theme {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-scp: var(--font-source-code-pro);
@@ -25,7 +25,7 @@
     --color-cream: #F5F3E7;
     --color-grey: #9B9EA1;
     --color-darkgrey: #979797;
-    --color-bgblue: #0B1C34;        /* for textfield background*/
+    --color-bgblue: #0B1C34;        /* for textfield background */
 
 }
 
