@@ -13,6 +13,15 @@ export default function SignupPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [formFilled, setFormFilled] = useState<boolean>(false);
+
+  useEffect(() => {
+    if(fname !== "" && lname !== "" && email !== "" && password !== "" && confirmPassword !== "") {
+      setFormFilled(true);
+    } else {
+      setFormFilled(false);
+    }
+  }, [fname, lname, email, password, confirmPassword]);
 
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
@@ -54,25 +63,33 @@ export default function SignupPage() {
                   placeholder="first name"
                   required
                   widthClasses="w-full"
+                  fieldValue={fname}
+                  setFieldValue={setFname}
                 />
-                <TextField title="Last Name" placeholder="last name" required />
+                <TextField title="Last Name" placeholder="last name" required fieldValue={lname} setFieldValue={setLname} />
               </div>
               <TextField
                 title="Email Address"
                 placeholder="email address"
                 required
                 widthClasses="w-full"
+                type="email"
+                fieldValue={email}
+                setFieldValue={setEmail}
               />
               <div className="flex flex-col lg:flex-row gap-4">
-                <TextField title="Password" placeholder="password" required />
+                <TextField title="Password" placeholder="password" type="password" required fieldValue={password} setFieldValue={setPassword} />
                 <TextField
                   title="Confirm Password"
                   placeholder="confirm password"
                   required
+                  type="password"
+                  fieldValue={confirmPassword}
+                  setFieldValue={setConfirmPassword}
                 />
               </div>
 
-              <GreenButton text="Sign In" onClick={() => {}} />
+              <GreenButton text="Sign In" onClick={() => {}} formFilled={formFilled} />
 
               <div className="flex my-[1rem]">
                 <p className="text-grey text-lg mr-2">

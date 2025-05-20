@@ -8,6 +8,9 @@ interface TextFieldProps {
   multiline?: boolean;
   widthClasses?: string;
   heightClasses?: string;
+  type?: string;
+  fieldValue: string;
+  setFieldValue: (value: string) => void;
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -18,6 +21,9 @@ export default function TextField(props: TextFieldProps) {
     multiline = false,
     widthClasses = "mx-[auto] sm:w-full",
     heightClasses = "min-h-15 sm:min-h-10",
+    type = "text",
+    fieldValue,
+    setFieldValue,
   } = props;
 
   const baseClasses = `font-[Euclid Circular B] font-normal text-[20px] placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent ${
@@ -37,9 +43,9 @@ export default function TextField(props: TextFieldProps) {
         {required && <span className="text-red ml-1">*</span>}
       </label>
       {multiline ? (
-        <textarea placeholder={placeholder} className={baseClasses} />
+        <textarea placeholder={placeholder} className={baseClasses} value={fieldValue} onChange={(e) => setFieldValue(e.target.value)} />
       ) : (
-        <input type="text" placeholder={placeholder} className={baseClasses} />
+        <input type={type} placeholder={placeholder} className={baseClasses} value={fieldValue} onChange={(e) => setFieldValue(e.target.value)} />
       )}
     </div>
   );

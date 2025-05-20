@@ -9,6 +9,15 @@ import { useState, useEffect } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [formFilled, setFormFilled] = useState<boolean>(false);
+
+  useEffect(() => {
+    if(email !== "" && password !== "") {
+      setFormFilled(true);
+    } else {
+      setFormFilled(false);
+    }
+  }, [email, password]);
 
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
@@ -44,8 +53,8 @@ export default function LoginPage() {
             </div>
 
             <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
-              <TextField title="Email Address" placeholder="email address" />
-              <TextField title="Password" placeholder="password" />
+              <TextField title="Email Address" placeholder="email address" type="email" fieldValue={email} setFieldValue={setEmail} />
+              <TextField title="Password" placeholder="password" type="password" fieldValue={password} setFieldValue={setPassword} />
             </div>
 
             <div className="flex justify-end mb-[1rem]">
@@ -55,7 +64,7 @@ export default function LoginPage() {
             </div>
 
             {/* Need to add logic so Sign in turns grey */}
-            <GreenButton text="Sign In" formFilled />
+            <GreenButton text="Sign In" formFilled={formFilled} />
 
             <div className="flex my-[1rem]">
               <p className="text-grey text-lg mr-2">Don't have an account?</p>
