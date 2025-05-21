@@ -16,7 +16,13 @@ export default function SignupPage() {
   const [formFilled, setFormFilled] = useState<boolean>(false);
 
   useEffect(() => {
-    if(fname !== "" && lname !== "" && email !== "" && password !== "" && confirmPassword !== "") {
+    if (
+      fname !== "" &&
+      lname !== "" &&
+      email !== "" &&
+      password !== "" &&
+      confirmPassword !== ""
+    ) {
       setFormFilled(true);
     } else {
       setFormFilled(false);
@@ -66,7 +72,13 @@ export default function SignupPage() {
                   fieldValue={fname}
                   setFieldValue={setFname}
                 />
-                <TextField title="Last Name" placeholder="last name" required fieldValue={lname} setFieldValue={setLname} />
+                <TextField
+                  title="Last Name"
+                  placeholder="last name"
+                  required
+                  fieldValue={lname}
+                  setFieldValue={setLname}
+                />
               </div>
               <TextField
                 title="Email Address"
@@ -78,7 +90,14 @@ export default function SignupPage() {
                 setFieldValue={setEmail}
               />
               <div className="flex flex-col lg:flex-row gap-4">
-                <TextField title="Password" placeholder="password" type="password" required fieldValue={password} setFieldValue={setPassword} />
+                <TextField
+                  title="Password"
+                  placeholder="password"
+                  type="password"
+                  required
+                  fieldValue={password}
+                  setFieldValue={setPassword}
+                />
                 <TextField
                   title="Confirm Password"
                   placeholder="confirm password"
@@ -89,7 +108,11 @@ export default function SignupPage() {
                 />
               </div>
 
-              <GreenButton text="Sign In" onClick={() => {}} formFilled={formFilled} />
+              <GreenButton
+                text="Sign In"
+                onClick={() => {}}
+                formFilled={formFilled}
+              />
 
               <div className="flex my-[1rem]">
                 <p className="text-grey text-lg mr-2">

@@ -12,12 +12,17 @@ export default function LoginPage() {
   const [formFilled, setFormFilled] = useState<boolean>(false);
 
   useEffect(() => {
-    if(email !== "" && password !== "") {
+    if (email !== "" && password !== "") {
       setFormFilled(true);
     } else {
       setFormFilled(false);
     }
   }, [email, password]);
+
+  // Basic validation
+  const validateInput = () => {
+    return email !== "" && password !== "";
+  };
 
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
@@ -53,8 +58,20 @@ export default function LoginPage() {
             </div>
 
             <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
-              <TextField title="Email Address" placeholder="email address" type="email" fieldValue={email} setFieldValue={setEmail} />
-              <TextField title="Password" placeholder="password" type="password" fieldValue={password} setFieldValue={setPassword} />
+              <TextField
+                title="Email Address"
+                placeholder="email address"
+                type="email"
+                fieldValue={email}
+                setFieldValue={setEmail}
+              />
+              <TextField
+                title="Password"
+                placeholder="password"
+                type="password"
+                fieldValue={password}
+                setFieldValue={setPassword}
+              />
             </div>
 
             <div className="flex justify-end mb-[1rem]">
