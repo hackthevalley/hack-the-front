@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import GreenButton from "@/components/GreenButton";
 import TextField from "@/components/TextField";
+import toast, { Toaster } from "react-hot-toast";
 
 import { useState, useEffect } from "react";
 
@@ -29,6 +30,28 @@ export default function SignupPage() {
     }
   }, [fname, lname, email, password, confirmPassword]);
 
+  const validEmail = () => {
+    return (
+      email === "" ||
+      String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    );
+  };
+
+  const passwordMatch = () => {
+    return password === confirmPassword;
+  };
+
+  const validInput = () => {
+    if ((!validEmail() && email !== "") || !passwordMatch()) {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
       <img
@@ -36,6 +59,29 @@ export default function SignupPage() {
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 4000,
+          removeDelay: 1000,
+          style: {
+            background: "#0B1C34",
+            color: "white",
+          },
+          success: {
+            iconTheme: {
+              primary: "green",
+              secondary: "#0B1C34",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "red",
+              secondary: "#0B1C34",
+            },
+          },
+        }}
+      />
 
       <div className="flex flex-col relative z-[10]">
         <div className="w-3/4 mx-auto items-start mb-[1rem]">
@@ -81,13 +127,15 @@ export default function SignupPage() {
                 />
               </div>
               <TextField
-                title="Email Address"
-                placeholder="email address"
+                title="Email"
+                placeholder="email"
                 required
                 widthClasses="w-full"
                 type="email"
                 fieldValue={email}
                 setFieldValue={setEmail}
+                hasError={!validEmail()}
+                errorMessage="Invalid email format"
               />
               <div className="flex flex-col lg:flex-row gap-4">
                 <TextField
@@ -105,13 +153,15 @@ export default function SignupPage() {
                   type="password"
                   fieldValue={confirmPassword}
                   setFieldValue={setConfirmPassword}
+                  hasError={!passwordMatch()}
+                  errorMessage="Passwords do not match"
                 />
               </div>
 
               <GreenButton
                 text="Sign In"
                 onClick={() => {}}
-                formFilled={formFilled}
+                formFilled={formFilled && validInput()}
               />
 
               <div className="flex my-[1rem]">
