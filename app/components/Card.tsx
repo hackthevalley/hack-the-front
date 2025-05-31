@@ -2,14 +2,16 @@
 
 import React from 'react';
 import Image from 'next/image';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface CardProps {
   children?: React.ReactNode;
   className?: string;
+  internalClassName?: string;
+  isLeft?: boolean;
 }
 
-export default function Card({ children, className = '' }: CardProps) {
+export default function Card({ children, className = '', internalClassName = '', isLeft = false }: CardProps) {
   return (
     <div className={`relative ${className}`}>
       <div className="relative rounded-3xl p-[2px] bg-gradient-to-br from-[#ffffff] to-[#27272d]">
@@ -21,12 +23,12 @@ export default function Card({ children, className = '' }: CardProps) {
             className="absolute inset-[2px] rounded-3xl z-10 bg-gradient-to-br from-[#05294fd2] from-25% via-[#6f7883] via-55% to-[#05294fd2] to-85% pointer-events-none opacity-90"
             aria-hidden="true"
           />
-          <div className={`relative z-10 text-white p-16`}>
+          <div className={`relative z-20 text-white ${internalClassName === '' ? 'p-16' : internalClassName}`}>
             {children}
           </div>
       </div>
       <motion.div
-        className="absolute z-20 -bottom-10 -right-10"
+        className={`absolute z-10 -bottom-10 ${isLeft ? '-left-10' : '-right-10'}`}
         initial={{ rotate: 0, y: 0, filter: "drop-shadow(0 0 0px #fff)"}}
         animate={{ 
           rotate: [0, 10, -10, 0], 

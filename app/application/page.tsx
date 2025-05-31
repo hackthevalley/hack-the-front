@@ -1,93 +1,105 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import { FormSections } from "@/application/FormSections";
+import { JSX, useState } from "react";
+import { form } from "motion/react-client";
 
-const sideBarItems: { name: string; link: string; icon: string }[] = [
+
+// TODO: Need to update to pull questions from backend DB
+const formSections: { key: string; position: string, content: JSX.Element }[] = [
   {
-    name: "Dashboard",
-    link: "/dashboard",
-    icon: "/icons/dashboard-icon.svg",
+    key: "section1",
+    position: "justify-start",
+    content: <FormSections.ProfileInfo />,
   },
   {
-    name: "Application",
-    link: "/application",
-    icon: "/icons/file-icon.svg",
+    key: "section2",
+    position: "justify-end",
+    content: <FormSections.SchoolInfo />,
+  },
+  {
+    key: "section3",
+    position: "justify-start",
+    content: <FormSections.DemographyInfo />,
+  },
+  {
+    key: "section4",
+    position: "justify-end",
+    content: <FormSections.ExperienceInfo />,
+  },
+  {
+    key: "section5",
+    position: "justify-start",
+    content: <FormSections.SkillConfidence />,
+  },
+  {
+    key: "section7",
+    position: "justify-center",
+    content: <FormSections.MLH />,
+  },
+  {
+    key: "section8",
+    position: "justify-center",
+    content: <FormSections.ConsentInfo />,
   },
 ];
-
 export default function Application() {
-  const router = useRouter();
-  const current_path = usePathname();
+  const [isFormActive, setIsFormActive] = useState(false);
+  const appRef = useRef<HTMLDivElement>(null);
+
+  const handleStart = () => {
+    setIsFormActive(true);
+    appRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
       <Navbar hide={true} />
-      <div className="relative flex min-h-screen bg-black text-white">
-        {/* Sidebar */}
-        <div className="flex flex-col w-1/6 bg-[#0C203F] justify-between rounded-tr-4xl">
-          <div className="p-5 mb-4 text-3xl">
-            <h1>
-              Hello, <span className="text-[#81C470]">USER!</span>
-            </h1>
-          </div>
+      <div className="h-screen overflow-y-scroll snap-y snap-mandatory bg-black text-white">
+        <section className="h-screen snap-start flex flex-col items-center justify-center relative px-4 md:px-10">
+          <Card className="w-8/12 text-center relative">
+            <div className="mb-10">
+              <h1 className="text-6xl font-extrabold text-[#81C470] tracking-wide">
+                APPLICATION
+              </h1>
+            </div>
+            <p className="text-xl mb-10">
+              Hey hacker, welcome aboard&#x1F44B;&#x1F3FC; <br />
+              Your co-pilot <strong>(name)</strong> will track your journey through this application. Buckle up!
+            </p>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button text="Begin now" extraClass="py-3 cursor-pointer" onClick={handleStart} />
+            </motion.div>
+            <Image
+              src="/application-page/spaceship.png"
+              alt="spaceship"
+              width={350}
+              height={350}
+              className="absolute -bottom-30 -left-40"
+            />
+          </Card>
+        </section>
 
-          <div className="flex flex-col justify-center flex-grow">
-            {sideBarItems.map((item, idx) => (
-              <div
-                key={idx}
-                className={`group flex items-center gap-4 hover:bg-[#183766] hover:text-[#F5F3E7] text-[#A6A6A6] text-xl h-14 cursor-pointer ${
-                  current_path === item.link && "bg-[#183766] text-[#F5F3E7]"
-                }`}
-                onClick={() => router.push(item.link)}
-              >
-                <div
-                  className={`bg-white w-1 h-full scale-y-0 group-hover:scale-y-100 transition-transform origin-top ${
-                    current_path === item.link && "scale-y-100"
-                  }`}
-                ></div>
-                <Image
-                  src={item.icon}
-                  alt={item.name}
-                  width={20}
-                  height={20}
-                  className={`w-5 h-5 group-hover:filter group-hover:brightness-150 scale-125 transition ${
-                    current_path === item.link && "filter brightness-150"
-                  }`}
-                />
-                <span>{item.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-grow justify-center items-center relative overflow-hidden">
-          <div className="w-9/12"
-          >
-            <Card> 
-              <div className="flex flex-row space-between item-center mb-10">
-                <h1 className="text-6xl font-extrabold text-[#81C470] pr-4 tracking-wide">
-                  APPLICATION
-                </h1>
-                <div className={`bg-[#81C470] w-[0.60rem] scale-y-135`}></div>
-              </div>
-              <p className="text-white text-xl mb-10">
-                Hey hacker, welcome aboard&#x1F44B;&#x1F3FC; <br />
-                Your co-pilot <strong>(name)</strong> will track your journey
-                through this application. Buckle up!
-              </p>
-              <div className="flex flex-col items-center">
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="flex">
-                  <Button text="Begin now" extraClass="py-3" route="/" onClick={() => console.log("Button clicked")} />
-                </motion.div>
-              </div>
-            </Card>
-          </div>
-        </div>
+        {formSections.map((section, index) => (
+          <section
+            key={section.key}
+            ref={index === 0 ? appRef : undefined}
+            className={`h-screen snap-start items-center flex px-4 md:px-10 mx-20 ${section.position} ${index === formSections.length - 1 ? "flex-col" : ""} gap-10`}>
+            {section.content}
+            {index === formSections.length - 1 && (
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="mt-10">
+                <Button text="Submit Application" extraClass="py-3 cursor-pointer" onClick={() => alert("Form submitted!")} />
+              </motion.div>
+            )}
+          </section>
+        ))}
       </div>
     </>
   );
