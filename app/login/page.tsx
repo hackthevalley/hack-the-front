@@ -1,17 +1,30 @@
 "use client";
 
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import GreenButton from "@/components/GreenButton";
 import TextField from "@/components/TextField";
-import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+
+import fetchInstance from "@/utils/api";
+import { UserContext } from "@/utils/auth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [formFilled, setFormFilled] = useState<boolean>(false);
+  const { isAuthenticated, login } = useContext(UserContext) ?? {};
+  const router = useRouter();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/"); // change to /dashboard after merge
+    }
+  }, [isAuthenticated]);
+
+  // Controls formFilled flag which enables/disables the login button
   useEffect(() => {
     if (email !== "" && password !== "") {
       setFormFilled(true);
@@ -20,8 +33,8 @@ export default function LoginPage() {
     }
   }, [email, password]);
 
+  // Valid email checks if it matches the format of an email while in validInput, it checks if the email field is empty. This avoids having the error message appear for empty fields
   const validEmail = () => {
-    // Valid email checks if it matches the format of an email while in validInput, it checks if the email field is empty. This avoids having the error message appear for empty fields
     return (
       email === "" ||
       String(email)
@@ -39,10 +52,32 @@ export default function LoginPage() {
     return true;
   };
 
-  const signIn = () => {
-    // Submit and make API call to see if login exists
-    // if not exist, show Toast that login failed due to invalid email and/or password
-    // if exist, then log user in
+  const signIn = async (e: React.FormEvent) => {
+    const loadingToast = toast.loading("Logging in...");
+    e.preventDefault();
+    const urlEncodedData = new URLSearchParams();
+    urlEncodedData.append("username", email);
+    urlEncodedData.append("password", password);
+    try {
+      const response = await fetchInstance("account/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: urlEncodedData.toString(),
+      });
+      if (response.access_token && login) {
+        await login(response.access_token);
+        router.push("/"); // change to /dashboard after merge
+      }
+      toast.dismiss(loadingToast);
+      toast.success(`Sign in successful`);
+    } catch (err) {
+      toast.dismiss(loadingToast);
+      // TODO - specific error messages (wrong username, account does not exist, wrong password, etc.)
+      toast.error(`Unable to login`);
+      console.log(err);
+    }
   };
 
   return (

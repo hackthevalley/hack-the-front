@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import Navbar from "@/components/Navbar";
 import GreenButton from "@/components/GreenButton";
 import TextField from "@/components/TextField";
 import toast, { Toaster } from "react-hot-toast";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import fetchInstance from "@/utils/api";
+import { UserContext } from "@/utils/auth";
 
 export default function SignupPage() {
   const [fname, setFname] = useState<string>("");
@@ -15,6 +19,9 @@ export default function SignupPage() {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [formFilled, setFormFilled] = useState<boolean>(false);
+
+  const { login, isAuthenticated } = useContext(UserContext) ?? {};
+  const router = useRouter();
 
   useEffect(() => {
     if (
@@ -50,6 +57,38 @@ export default function SignupPage() {
       return false;
     }
     return true;
+  };
+
+  const submit = async (e: React.FormEvent) => {
+    const loadingToast = toast.loading("Signing up...");
+    e.preventDefault();
+    const data = {
+      first_name: fname,
+      last_name: lname,
+      password: password,
+      email: email,
+    };
+
+    try {
+      const response = await fetchInstance("account/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      // Assuming it follows same logic as login
+      if (response.access_token && login) {
+        await login(response.access_token);
+        router.push("/"); // change to /dashboard after merge
+      }
+      toast.dismiss(loadingToast);
+      toast.success(`Sign up successful`);
+    } catch (err) {
+      toast.dismiss(loadingToast);
+      toast.error(`Sign up failed`);
+    }
   };
 
   return (
@@ -159,8 +198,8 @@ export default function SignupPage() {
               </div>
 
               <GreenButton
-                text="Sign In"
-                onClick={() => {}}
+                text="Sign Up"
+                onClick={submit}
                 formFilled={formFilled && validInput()}
               />
 
