@@ -68,7 +68,8 @@ export default function TextField(props: TextFieldProps) {
           <div className="relative w-full">
             <select
               className={`${baseClasses} ${textClasses} pr-10 appearance-none bg-transparent`}
-              defaultValue=""
+              value={fieldValue}
+              onChange={(e) => setFieldValue(e.target.value)}
               style={{
                 border: "none",
                 WebkitAppearance: "none",
@@ -93,6 +94,7 @@ export default function TextField(props: TextFieldProps) {
                 );
               })}
             </select>
+
             <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-grey">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

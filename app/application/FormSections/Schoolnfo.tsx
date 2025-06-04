@@ -1,5 +1,5 @@
-import Card from '@/components/Card';
-import TextField from '@/components/TextField';
+import Card from "@/components/Card";
+import TextField from "@/components/TextField";
 
 const countries = [
   "United States",
@@ -63,7 +63,7 @@ const universities = [
   "Concordia University",
   "Carleton University",
   "Memorial University of Newfoundland",
-  "Toronto Metropolitan University"
+  "Toronto Metropolitan University",
 ];
 
 const majors = [
@@ -101,7 +101,20 @@ const majors = [
   "Other",
 ];
 
-export default function SchoolInfo() {
+interface SchoolInfoProps {
+  country: string;
+  setCountry: (val: string) => void;
+  schoolName: string;
+  setSchoolName: (val: string) => void;
+  currentLevelOfStudy: string;
+  setCurrentLevelOfStudy: (val: string) => void;
+  major: string;
+  setMajor: (val: string) => void;
+  expectedGraduationYear: string;
+  setExpectedGraduationYear: (val: string) => void;
+}
+
+export default function SchoolInfo(props: SchoolInfoProps) {
   return (
     <Card className="w-full max-w-3xl">
       <div className="mb-10">
@@ -118,6 +131,8 @@ export default function SchoolInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={countries}
+          fieldValue={props.country}
+          setFieldValue={props.setCountry}
         />
         <TextField
           title="School Name"
@@ -127,6 +142,19 @@ export default function SchoolInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={universities}
+          fieldValue={props.schoolName}
+          setFieldValue={props.setSchoolName}
+        />
+        <TextField
+          title="Current Level of Education"
+          required={true}
+          placeholder="Select your level of education"
+          widthClasses="mx-[auto] sm:w-full"
+          textClasses="text-md placeholder:text-base"
+          type="dropdown"
+          options={["High School", "Undergraduate", "Graduate", "PhD", "Other"]}
+          fieldValue={props.currentLevelOfStudy}
+          setFieldValue={props.setCurrentLevelOfStudy}
         />
         <TextField
           title="Major"
@@ -136,21 +164,8 @@ export default function SchoolInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={majors}
-        />
-        <TextField
-          title="Current Level of Education"
-          required={true}
-          placeholder="Select your level of education"
-          widthClasses="mx-[auto] sm:w-full"
-          textClasses="text-md placeholder:text-base"
-          type="dropdown"
-          options={[
-            "High School",
-            "Undergraduate",
-            "Graduate",
-            "PhD",
-            "Other",
-          ]}
+          fieldValue={props.major}
+          setFieldValue={props.setMajor}
         />
       </div>
       <div className="flex justify-center mt-6">
@@ -162,13 +177,9 @@ export default function SchoolInfo() {
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
             type="dropdown"
-            options={[
-              "2025",
-              "2026",
-              "2027",
-              "2028",
-              "2029",
-            ]}
+            options={["2025", "2026", "2027", "2028", "2029"]}
+            fieldValue={props.expectedGraduationYear}
+            setFieldValue={props.setExpectedGraduationYear}
           />
         </div>
       </div>

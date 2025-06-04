@@ -1,7 +1,16 @@
+"use client";
+
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
 
-export default function GeneralInfo() {
+interface GeneralInfoProps {
+  dietaryRestrictions: string;
+  setDietaryRestrictions: (val: string) => void;
+  shirtSize: string;
+  setShirtSize: (val: string) => void;
+}
+
+export default function GeneralInfo(props: GeneralInfoProps) {
   return (
     <Card className="w-full max-w-3xl">
       <div className="mb-10">
@@ -17,16 +26,28 @@ export default function GeneralInfo() {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={["N/A", "Vegetarian", "Vegan", "Halal", "Kosher", "Gluten-Free", "Other"]}
+          options={[
+            "N/A",
+            "Vegetarian",
+            "Vegan",
+            "Halal",
+            "Kosher",
+            "Gluten-Free",
+            "Other",
+          ]}
+          fieldValue={props.dietaryRestrictions}
+          setFieldValue={props.setDietaryRestrictions}
         />
         <TextField
-          title="T-Shirt Size "
+          title="T-Shirt Size"
           required={true}
           placeholder="Enter your t-shirt size"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["S", "M", "L", "XL"]}
+          fieldValue={props.shirtSize}
+          setFieldValue={props.setShirtSize}
         />
       </div>
     </Card>

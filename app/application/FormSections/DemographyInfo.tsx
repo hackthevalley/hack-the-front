@@ -1,7 +1,19 @@
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
 
-export default function DemographyInfo() {
+interface DemographyInfoProps {
+  age: string;
+  setAge: (val: string) => void;
+  gender: string;
+  setGender: (val: string) => void;
+  raceEthinicity: string;
+  setRaceEthinicity: (val: string) => void;
+  LGBTQI: string;
+  setLGBTGI: (val: string) => void;
+  disabilities: string;
+  setDisabilities: (val: string) => void;
+}
+export default function DemographyInfo(props: DemographyInfoProps) {
   return (
     <Card className="w-full max-w-[52rem]">
       <div className="mb-10">
@@ -18,6 +30,8 @@ export default function DemographyInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())}
+          fieldValue={props.age}
+          setFieldValue={props.setAge}
         />
         <TextField
           title="Gender"
@@ -27,6 +41,8 @@ export default function DemographyInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={[]}
+          fieldValue={props.gender}
+          setFieldValue={props.setGender}
         />
         <TextField
           title="Race/Ethinicity"
@@ -36,6 +52,8 @@ export default function DemographyInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={[]}
+          fieldValue={props.raceEthinicity}
+          setFieldValue={props.setRaceEthinicity}
         />
         <TextField
           title="Part of the 2SLGBTQI+ Community?"
@@ -45,6 +63,8 @@ export default function DemographyInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["Yes", "No", "Prefer not to say"]}
+          fieldValue={props.LGBTQI}
+          setFieldValue={props.setLGBTGI}
         />
       </div>
       <div className="flex justify-center mt-6">
@@ -52,14 +72,16 @@ export default function DemographyInfo() {
           <TextField
             title="Person with Disabilities?"
             required={true}
-            placeholder="Enter your expected year of graduation"
+            placeholder=""
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
             type="dropdown"
             options={["Yes", "No", "Prefer not to say"]}
+            fieldValue={props.disabilities}
+            setFieldValue={props.setDisabilities}
           />
         </div>
       </div>
     </Card>
-  );  
+  );
 }

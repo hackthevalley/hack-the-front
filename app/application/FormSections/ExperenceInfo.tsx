@@ -1,7 +1,22 @@
+"use client";
+
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
 
-export default function ExperienceInfo() {
+interface ExperienceInfoProps {
+  hackathonCount: string;
+  setHackathonCount: (val: string) => void;
+  github: string;
+  setGithub: (val: string) => void;
+  linkedin: string;
+  setLinkedin: (val: string) => void;
+  portfolio: string;
+  setPortfolio: (val: string) => void;
+  resumeFile: File | null;
+  setResumeFile: (file: File | null) => void;
+}
+
+export default function ExperienceInfo(props: ExperienceInfoProps) {
   return (
     <Card className="w-full max-w-3xl">
       <div className="mb-10">
@@ -18,6 +33,8 @@ export default function ExperienceInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["0", "1", "2–3", "4–5", "6+", "Prefer not to say"]}
+          fieldValue={props.hackathonCount}
+          setFieldValue={props.setHackathonCount}
         />
         <TextField
           title="Github"
@@ -25,6 +42,8 @@ export default function ExperienceInfo() {
           placeholder="GitHub"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue={props.github}
+          setFieldValue={props.setGithub}
         />
         <TextField
           title="LinkedIn"
@@ -32,6 +51,8 @@ export default function ExperienceInfo() {
           placeholder="LinkedIn"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue={props.linkedin}
+          setFieldValue={props.setLinkedin}
         />
         <TextField
           title="Portfolio"
@@ -39,6 +60,8 @@ export default function ExperienceInfo() {
           placeholder="Portfolio"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue={props.portfolio}
+          setFieldValue={props.setPortfolio}
         />
       </div>
       <div className="mt-5 px-8">
@@ -48,16 +71,18 @@ export default function ExperienceInfo() {
       </div>
       <div className="flex justify-center mt-3">
         <div className="grid grid-cols-1 gap-y-4 gap-x-7 w-11/12">
-          {/* TODO: Update TextField to support file upload */}
+          {/* TODO: Replace with an actual file input component */}
           <TextField
             title="Upload resume"
             required={true}
-            placeholder="Enter your expected year of graduation"
+            placeholder="Upload your resume"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
+            fieldValue={props.resumeFile ? props.resumeFile.name : ""}
+            setFieldValue={() => {}}
           />
         </div>
       </div>
     </Card>
   );
-};
+}
