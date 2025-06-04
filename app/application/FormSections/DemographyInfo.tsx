@@ -17,8 +17,10 @@ export default function DemographyInfo() {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())}
-        />
+          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())} fieldValue={""} setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          />
         <TextField
           title="Gender"
           required={true}
@@ -26,7 +28,11 @@ export default function DemographyInfo() {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={[]}
+          options={[]} 
+          fieldValue={""} 
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <TextField
           title="Race/Ethinicity"
@@ -36,6 +42,10 @@ export default function DemographyInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={[]}
+          fieldValue={""}
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <TextField
           title="Part of the 2SLGBTQI+ Community?"
@@ -45,6 +55,10 @@ export default function DemographyInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["Yes", "No", "Prefer not to say"]}
+          fieldValue={""}
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
       </div>
       <div className="flex justify-center mt-6">
@@ -57,6 +71,10 @@ export default function DemographyInfo() {
             textClasses="text-md placeholder:text-base"
             type="dropdown"
             options={["Yes", "No", "Prefer not to say"]}
+            fieldValue={""}
+            setFieldValue={function (value: string): void {
+              throw new Error("Function not implemented.");
+            }}
           />
         </div>
       </div>

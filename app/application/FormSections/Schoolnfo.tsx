@@ -117,7 +117,9 @@ export default function SchoolInfo() {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={countries}
+          options={countries} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
         />
         <TextField
           title="School Name"
@@ -126,7 +128,9 @@ export default function SchoolInfo() {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={universities}
+          options={universities} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
         />
         <TextField
           title="Major"
@@ -135,7 +139,9 @@ export default function SchoolInfo() {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={majors}
+          options={majors} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
         />
         <TextField
           title="Current Level of Education"
@@ -150,7 +156,9 @@ export default function SchoolInfo() {
             "Graduate",
             "PhD",
             "Other",
-          ]}
+          ]} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
         />
       </div>
       <div className="flex justify-center mt-6">
@@ -168,7 +176,9 @@ export default function SchoolInfo() {
               "2027",
               "2028",
               "2029",
-            ]}
+            ]} fieldValue={''} setFieldValue={function (value: string): void {
+              throw new Error('Function not implemented.');
+            }}
           />
         </div>
       </div>

@@ -13,11 +13,13 @@ export default function ExperienceInfo() {
         <TextField
           title="Hackathon Count?"
           required={true}
-          placeholder=""
+          placeholder="Hackathon Count"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["0", "1", "2–3", "4–5", "6+", "Prefer not to say"]}
+          fieldValue=""
+          setFieldValue={() => {}}
         />
         <TextField
           title="Github"
@@ -25,6 +27,8 @@ export default function ExperienceInfo() {
           placeholder="GitHub"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue=""
+          setFieldValue={() => {}}
         />
         <TextField
           title="LinkedIn"
@@ -32,6 +36,8 @@ export default function ExperienceInfo() {
           placeholder="LinkedIn"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue=""
+          setFieldValue={() => {}}
         />
         <TextField
           title="Portfolio"
@@ -39,6 +45,8 @@ export default function ExperienceInfo() {
           placeholder="Portfolio"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue=""
+          setFieldValue={() => {}}
         />
       </div>
       <div className="mt-5 px-8">
@@ -55,6 +63,10 @@ export default function ExperienceInfo() {
             placeholder="Enter your expected year of graduation"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
+            fieldValue=""
+            setFieldValue={() => {}}
+            hasError={false}
+            errorMessage=""
           />
         </div>
       </div>

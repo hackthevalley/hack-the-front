@@ -18,6 +18,10 @@ export default function GeneralInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["N/A", "Vegetarian", "Vegan", "Halal", "Kosher", "Gluten-Free", "Other"]}
+          fieldValue={""} 
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <TextField
           title="T-Shirt Size "
@@ -27,6 +31,10 @@ export default function GeneralInfo() {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["S", "M", "L", "XL"]}
+          fieldValue={""}
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
       </div>
     </Card>

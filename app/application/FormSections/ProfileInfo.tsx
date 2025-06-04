@@ -15,28 +15,47 @@ export default function ProfileInfo() {
           required={false}
           placeholder="Enter your first name"
           widthClasses="mx-[auto] sm:w-full"
-          textClasses="text-md placeholder:text-base"
-          />
+          textClasses="text-md placeholder:text-base" 
+          fieldValue={''}
+          setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
         <TextField
           title="Last Name"
           required={true}
           placeholder="Enter your last name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          />
+          fieldValue={''}
+          setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
+        {/* TODO: Can be autofilled using the users login email */}
         <TextField
           title="Email"
           required={true}
           placeholder="Enter your email address"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          />
+          type="email"
+          fieldValue={''}
+          setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
+        {/* TODO: Add phone number validation */}
         <TextField
           title="Phone Number"
           required={true}
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"
-          textClasses="text-md placeholder:text-base"
+          textClasses="text-md placeholder:text-base" 
+          fieldValue={''} 
+          setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
         />
       </div>
     </Card>
