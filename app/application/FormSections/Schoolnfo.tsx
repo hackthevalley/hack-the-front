@@ -130,9 +130,15 @@ export default function SchoolInfo(props: SchoolInfoProps) {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
+<<<<<<< HEAD
           options={countries}
           fieldValue={props.country}
           setFieldValue={props.setCountry}
+=======
+          options={countries} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+>>>>>>> 92b3ef4275824db97497c77147af66e3460e0d53
         />
         <TextField
           title="School Name"
@@ -141,6 +147,7 @@ export default function SchoolInfo(props: SchoolInfoProps) {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
+<<<<<<< HEAD
           options={universities}
           fieldValue={props.schoolName}
           setFieldValue={props.setSchoolName}
@@ -155,6 +162,11 @@ export default function SchoolInfo(props: SchoolInfoProps) {
           options={["High School", "Undergraduate", "Graduate", "PhD", "Other"]}
           fieldValue={props.currentLevelOfStudy}
           setFieldValue={props.setCurrentLevelOfStudy}
+=======
+          options={universities} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+>>>>>>> 92b3ef4275824db97497c77147af66e3460e0d53
         />
         <TextField
           title="Major"
@@ -163,9 +175,32 @@ export default function SchoolInfo(props: SchoolInfoProps) {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
+<<<<<<< HEAD
           options={majors}
           fieldValue={props.major}
           setFieldValue={props.setMajor}
+=======
+          options={majors} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
+        <TextField
+          title="Current Level of Education"
+          required={true}
+          placeholder="Select your level of education"
+          widthClasses="mx-[auto] sm:w-full"
+          textClasses="text-md placeholder:text-base"
+          type="dropdown"
+          options={[
+            "High School",
+            "Undergraduate",
+            "Graduate",
+            "PhD",
+            "Other",
+          ]} fieldValue={''} setFieldValue={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }}
+>>>>>>> 92b3ef4275824db97497c77147af66e3460e0d53
         />
       </div>
       <div className="flex justify-center mt-6">
@@ -177,9 +212,21 @@ export default function SchoolInfo(props: SchoolInfoProps) {
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
             type="dropdown"
+<<<<<<< HEAD
             options={["2025", "2026", "2027", "2028", "2029"]}
             fieldValue={props.expectedGraduationYear}
             setFieldValue={props.setExpectedGraduationYear}
+=======
+            options={[
+              "2025",
+              "2026",
+              "2027",
+              "2028",
+              "2029",
+            ]} fieldValue={''} setFieldValue={function (value: string): void {
+              throw new Error('Function not implemented.');
+            }}
+>>>>>>> 92b3ef4275824db97497c77147af66e3460e0d53
           />
         </div>
       </div>

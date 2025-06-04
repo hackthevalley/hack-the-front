@@ -35,8 +35,21 @@ export default function GeneralInfo(props: GeneralInfoProps) {
             "Gluten-Free",
             "Other",
           ]}
-          fieldValue={props.dietaryRestrictions}
-          setFieldValue={props.setDietaryRestrictions}
+          fieldValue={""}
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          // options={[
+          //   "N/A",
+          //   "Vegetarian",
+          //   "Vegan",
+          //   "Halal",
+          //   "Kosher",
+          //   "Gluten-Free",
+          //   "Other",
+          // ]}
+          // fieldValue={props.dietaryRestrictions}
+          // setFieldValue={props.setDietaryRestrictions}
         />
         <TextField
           title="T-Shirt Size"
@@ -46,8 +59,12 @@ export default function GeneralInfo(props: GeneralInfoProps) {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["S", "M", "L", "XL"]}
-          fieldValue={props.shirtSize}
-          setFieldValue={props.setShirtSize}
+          fieldValue={""}
+          setFieldValue={function (value: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          // fieldValue={props.shirtSize}
+          // setFieldValue={props.setShirtSize}
         />
       </div>
     </Card>

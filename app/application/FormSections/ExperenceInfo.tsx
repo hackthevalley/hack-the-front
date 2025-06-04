@@ -28,13 +28,15 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
         <TextField
           title="Hackathon Count?"
           required={true}
-          placeholder=""
+          placeholder="Hackathon Count"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["0", "1", "2–3", "4–5", "6+", "Prefer not to say"]}
-          fieldValue={props.hackathonCount}
-          setFieldValue={props.setHackathonCount}
+          fieldValue=""
+          setFieldValue={() => {}}
+          // fieldValue={props.hackathonCount}
+          // setFieldValue={props.setHackathonCount}
         />
         <TextField
           title="Github"
@@ -42,8 +44,10 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="GitHub"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={props.github}
-          setFieldValue={props.setGithub}
+          fieldValue=""
+          setFieldValue={() => {}}
+          // fieldValue={props.github}
+          // setFieldValue={props.setGithub}
         />
         <TextField
           title="LinkedIn"
@@ -51,8 +55,10 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="LinkedIn"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={props.linkedin}
-          setFieldValue={props.setLinkedin}
+          // fieldValue={props.linkedin}
+          // setFieldValue={props.setLinkedin}
+          fieldValue=""
+          setFieldValue={() => {}}
         />
         <TextField
           title="Portfolio"
@@ -60,8 +66,10 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="Portfolio"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={props.portfolio}
-          setFieldValue={props.setPortfolio}
+          // fieldValue={props.portfolio}
+          // setFieldValue={props.setPortfolio}
+          fieldValue=""
+          setFieldValue={() => {}}
         />
       </div>
       <div className="mt-5 px-8">
@@ -78,8 +86,10 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
             placeholder="Upload your resume"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
-            fieldValue={props.resumeFile ? props.resumeFile.name : ""}
+            fieldValue=""
             setFieldValue={() => {}}
+            hasError={false}
+            errorMessage=""
           />
         </div>
       </div>
