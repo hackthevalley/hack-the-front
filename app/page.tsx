@@ -7,6 +7,8 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 
+import Sponsors from "./landing/Sponsors";
+
 export default function Home() {
   const [clicked, setClicked] = useState(false);
 
@@ -15,7 +17,7 @@ export default function Home() {
       <Navbar />
       {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 font-[family-name:var(--font-euclid-circular-b)] sm:p-20">
+      <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 font-[family-name:var(--font-euclid-circular-b)] sm:p-20">
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
         <Image
@@ -33,7 +35,7 @@ export default function Home() {
           height="509"
         />
 
-        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <main className="flex flex-col gap-[48px] row-start-2 items-center sm:items-start">
           <div className="flex justify-between w-full">
             <div className="w-1/2 grid grid-cols-[10%_90%] gap-2">
               {/* Positioning the ">" */}
@@ -166,6 +168,7 @@ export default function Home() {
               />
             </div>
           </div>
+          <Sponsors />
         </main>
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
       </div>
