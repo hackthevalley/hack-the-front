@@ -1,5 +1,5 @@
 import "../globals.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,9 +11,8 @@ interface TextFieldProps {
   widthClasses?: string;
   heightClasses?: string;
   textClasses?: string;
-  type?: "text" | "textarea" | "dropdown" | "password";
+  type?: "text" | "textarea" | "dropdown" | "password" | "email";
   options?: string[] | { label: string; value: string }[];
-  type?: string;
   fieldValue: string;
   setFieldValue: (value: string) => void;
   hasError?: boolean;
@@ -27,6 +26,7 @@ export default function TextField(props: TextFieldProps) {
     placeholder = "",
     widthClasses = "mx-[auto] sm:w-full",
     heightClasses = "min-h-15 sm:min-h-10",
+    multiline = false,
     type = "text",
     textClasses = "text-[20px]",
     options = [],
@@ -35,6 +35,11 @@ export default function TextField(props: TextFieldProps) {
     hasError = false,
     errorMessage = "Invalid value",
   } = props;
+
+  useEffect(() => {
+    console.log(hasError);
+    console.log(fieldValue);
+  }, [hasError, fieldValue]);
 
   const borderColor = hasError ? "var(--color-red)" : "var(--color-indigo)";
   const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-transparent ${
@@ -52,8 +57,12 @@ export default function TextField(props: TextFieldProps) {
   const renderInput = () => {
     switch (type) {
       case "textarea":
-        return <textarea placeholder={placeholder} className={`${baseClasses} ${
-                                                             } h-full resize-none`} />;
+        return (
+          <textarea
+            placeholder={placeholder}
+            className={`${baseClasses} ${textClasses} h-full resize-none`}
+          />
+        );
       case "dropdown":
         return (
           <div className="relative w-full">
@@ -92,17 +101,23 @@ export default function TextField(props: TextFieldProps) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </div>
           </div>
         );
       case "password":
-        <>
+        return (
+          <>
             <input
               type={type === "password" ? localType : type}
               placeholder={placeholder}
-              className={baseClasses}
+              className={`${baseClasses} ${textClasses}`}
               value={fieldValue}
               onChange={(e) => setFieldValue(e.target.value)}
             />
@@ -120,7 +135,37 @@ export default function TextField(props: TextFieldProps) {
               </button>
             )}
           </>
+        );
       default:
-        return <input type="text" placeholder={placeholder} className={`${baseClasses} ${textClasses}`} />;
+        return (
+          <input
+            type={type === "email" ? "email" : "text"}
+            placeholder={placeholder}
+            className={`${baseClasses} ${textClasses}`}
+            value={fieldValue}
+            onChange={(e) => setFieldValue(e.target.value)}
+          />
+        );
     }
   };
+  return (
+    <div
+      className={`rounded-[20px] border-2 px-5 py-2 flex flex-col justify-start relative overflow-hidden ${widthClasses} ${heightClasses}`}
+      style={{
+        borderColor: borderColor,
+        backgroundColor: "var(--color-bgblue)",
+      }}
+    >
+      <label
+        className={`flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] mb-1`}
+      >
+        {title}
+        {required && <span className="text-red ml-1">*</span>}
+      </label>
+      {renderInput()}
+      {hasError && (
+        <span className="text-red text-sm mt-1">{errorMessage}</span>
+      )}
+    </div>
+  );
+}
