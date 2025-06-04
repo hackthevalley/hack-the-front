@@ -1,5 +1,7 @@
-import React from "react";
 import "../globals.css";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface TextFieldProps {
   title: string;
@@ -9,8 +11,13 @@ interface TextFieldProps {
   widthClasses?: string;
   heightClasses?: string;
   textClasses?: string;
-  type?: "text" | "textarea" | "dropdown";
+  type?: "text" | "textarea" | "dropdown" | "password";
   options?: string[] | { label: string; value: string }[];
+  type?: string;
+  fieldValue: string;
+  setFieldValue: (value: string) => void;
+  hasError?: boolean;
+  errorMessage?: string;
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -23,14 +30,30 @@ export default function TextField(props: TextFieldProps) {
     type = "text",
     textClasses = "text-[20px]",
     options = [],
+    fieldValue,
+    setFieldValue,
+    hasError = false,
+    errorMessage = "Invalid value",
   } = props;
 
-  const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-transparent`;
+  const borderColor = hasError ? "var(--color-red)" : "var(--color-indigo)";
+  const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-transparent ${
+    multiline ? "h-full resize-none" : ""
+  }`;
+  const [localType, setLocalType] = useState<string>(type);
 
+  const togglePassword = () => {
+    if (type === "password" && localType === "password") {
+      setLocalType("text");
+    } else if (type === "password" && localType === "text") {
+      setLocalType("password");
+    }
+  };
   const renderInput = () => {
     switch (type) {
       case "textarea":
-        return <textarea placeholder={placeholder} className={`${baseClasses} ${textClasses} h-full resize-none`} />;
+        return <textarea placeholder={placeholder} className={`${baseClasses} ${
+                                                             } h-full resize-none`} />;
       case "dropdown":
         return (
           <div className="relative w-full">
@@ -74,25 +97,30 @@ export default function TextField(props: TextFieldProps) {
             </div>
           </div>
         );
+      case "password":
+        <>
+            <input
+              type={type === "password" ? localType : type}
+              placeholder={placeholder}
+              className={baseClasses}
+              value={fieldValue}
+              onChange={(e) => setFieldValue(e.target.value)}
+            />
+            {type === "password" && (
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="absolute right-4 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              >
+                <FontAwesomeIcon
+                  icon={localType === "password" ? faEye : faEyeSlash}
+                  fixedWidth
+                  className="text-[1.4rem] text-white"
+                />
+              </button>
+            )}
+          </>
       default:
         return <input type="text" placeholder={placeholder} className={`${baseClasses} ${textClasses}`} />;
     }
   };
-
-  return (
-    <div
-      className={`rounded-[20px] border-2 px-5 py-2 flex flex-col justify-start overflow-hidden ${widthClasses} ${heightClasses}`}
-      style={{
-        borderColor: "var(--color-indigo)",
-        backgroundColor: "var(--color-bgblue)",
-      }}
-    >
-      <label className={`flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] mb-1`}>
-        {title}
-        {required && <span className="text-red ml-1">*</span>}
-      </label>
-      {renderInput()}
-    </div>
-  );
-}
-
