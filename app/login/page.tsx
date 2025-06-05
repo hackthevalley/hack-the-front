@@ -74,9 +74,7 @@ export default function LoginPage() {
       toast.success(`Sign in successful`);
     } catch (err) {
       toast.dismiss(loadingToast);
-      // TODO - specific error messages (wrong username, account does not exist, wrong password, etc.)
-      toast.error(`Unable to login`);
-      console.log(err);
+      toast.error((err as any).message);
     }
   };
 

@@ -48,12 +48,26 @@ export default function SignupPage() {
     );
   };
 
-  const passwordMatch = () => {
+  const matchPasswords = () => {
     return password === confirmPassword;
   };
 
+  const isStrongPassword = () => {
+    // Password should start with a capital letter, contain a number, and be at least 8 characters long
+    return (
+      password === "" ||
+      String(password)
+        .toLowerCase()
+        .match(/^(?=.*\d).{8,}$/)
+    );
+  };
+
   const validInput = () => {
-    if ((!validEmail() && email !== "") || !passwordMatch()) {
+    if (
+      (!validEmail() && email !== "") ||
+      !matchPasswords() ||
+      !isStrongPassword()
+    ) {
       return false;
     }
     return true;
@@ -80,6 +94,7 @@ export default function SignupPage() {
 
       // Assuming it follows same logic as login
       if (response.access_token && login) {
+        // Currently does not login after sign up
         await login(response.access_token);
         router.push("/"); // change to /dashboard after merge
       }
@@ -87,7 +102,7 @@ export default function SignupPage() {
       toast.success(`Sign up successful`);
     } catch (err) {
       toast.dismiss(loadingToast);
-      toast.error(`Sign up failed`);
+      toast.error((err as any).message);
     }
   };
 
@@ -184,6 +199,8 @@ export default function SignupPage() {
                   required
                   fieldValue={password}
                   setFieldValue={setPassword}
+                  hasError={!isStrongPassword()}
+                  errorMessage="Use at least 8 characters, including a number"
                 />
                 <TextField
                   title="Confirm Password"
@@ -192,7 +209,7 @@ export default function SignupPage() {
                   type="password"
                   fieldValue={confirmPassword}
                   setFieldValue={setConfirmPassword}
-                  hasError={!passwordMatch()}
+                  hasError={!matchPasswords()}
                   errorMessage="Passwords do not match"
                 />
               </div>
