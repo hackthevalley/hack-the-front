@@ -28,12 +28,8 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your first name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.firstName}
-          // setFieldValue={props.setFirstName}
+          fieldValue={props.firstName}
+          setFieldValue={props.setFirstName}
         />
         <TextField
           title="Last Name"
@@ -41,12 +37,8 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your last name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.lastName}
-          // setFieldValue={props.setLastName}
+          fieldValue={props.lastName}
+          setFieldValue={props.setLastName}
         />
         {/* TODO: Can be autofilled using the users login email */}
         <TextField
@@ -56,12 +48,8 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="email"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.email}
-          // setFieldValue={props.setEmail}
+          fieldValue={props.email}
+          setFieldValue={props.setEmail}
         />
         <TextField
           title="Phone Number"
@@ -69,12 +57,8 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.phoneNumber}
-          // setFieldValue={props.setPhoneNumber}
+          fieldValue={props.phoneNumber}
+          setFieldValue={props.setPhoneNumber}
         />
       </div>
     </Card>

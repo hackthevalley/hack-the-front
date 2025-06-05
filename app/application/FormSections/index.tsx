@@ -4,13 +4,13 @@ import ExperienceInfo from "./ExperenceInfo";
 import GeneralInfo from "./GeneralInfo";
 import MLH from "./MLH";
 import ProfileInfo from "./ProfileInfo";
-import SchoolInfo from "./Schoolnfo";
+import EducationInfo from "./EducationInfo";
 import SkillConfidence from "./SkillConfidence";
 
 export const FormSections = {
   ProfileInfo,
   GeneralInfo,
-  SchoolInfo,
+  EducationInfo,
   SkillConfidence,
   ExperienceInfo,
   DemographyInfo,

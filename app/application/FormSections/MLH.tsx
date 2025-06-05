@@ -2,11 +2,17 @@ import Card from "@/components/Card";
 import Checkbox from "@/components/CheckBox";
 import { useState } from "react";
 
-export default function MLH() {
-  const [mlhCodeOfConduct, setMlhCodeOfConduct] = useState(false);
-  const [mlhPrivacyPolicy, setMlhPrivacyPolicy] = useState(false);
-  const [mlhEmailConsent, setMlhEmailConsent] = useState(false);
+interface MLHProps {
+  mlhCodeOfConduct: boolean;
+  setMlhCodeOfConduct: (val: boolean) => void;
+  mlhPrivacyPolicy: boolean;
+  setMlhPrivacyPolicy: (val: boolean) => void;
+  mlhEmailConsent: boolean;
+  setMlhEmailConsent: (val: boolean) => void;
+}
 
+
+export default function MLH(props: MLHProps) {
   return (
     <Card className="w-full max-w-7xl" isLeft={true}>
       <div className="mb-10">
@@ -16,8 +22,8 @@ export default function MLH() {
       </div>
       <div className="flex flex-col gap-4">
         <Checkbox
-          checked={mlhCodeOfConduct}
-          onChange={setMlhCodeOfConduct}
+          checked={props.mlhCodeOfConduct}
+          onChange={props.setMlhCodeOfConduct}
           label={
             <>
               I have read and agree to the {" "}
@@ -33,8 +39,8 @@ export default function MLH() {
           required={true}
         />
         <Checkbox
-          checked={mlhPrivacyPolicy}
-          onChange={setMlhPrivacyPolicy}
+          checked={props.mlhPrivacyPolicy}
+          onChange={props.setMlhPrivacyPolicy}
           label={
             <span>
               I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, MLH administration in-line with the {" "}
@@ -63,8 +69,8 @@ export default function MLH() {
           required={true}
         />
         <Checkbox
-          checked={mlhEmailConsent}
-          onChange={setMlhEmailConsent}
+          checked={props.mlhEmailConsent}
+          onChange={props.setMlhEmailConsent}
           label={
             <span>
               I authorize to send me occasional emails about relevant events, career opportunities, and community announcements.

@@ -2,9 +2,12 @@ import Card from "@/components/Card";
 import Checkbox from "@/components/CheckBox";
 import { useState } from "react";
 
-export default function ConsentInfo() {
-  const [consentAgreed, setConsentAgreed] = useState(false);
+interface ConsentInfoProps {
+  consentAgreed: boolean;
+  setConsentAgreed: (val: boolean) => void;
+}
 
+export default function ConsentInfo(props: ConsentInfoProps) {
   return (
     <Card className="w-full max-w-7xl">
       <div className="mb-10">
@@ -17,8 +20,8 @@ export default function ConsentInfo() {
           I, hereby grant permission to Hack the Valley to use screenshots and/or video of me taken during Hack the Valley 10 in publications, news releases, online, and in other communication related to the mission of Hack the Valley. I further give my consent and submit my compliance to the use of a third party video conference service for the virtual participation of Hack the Valley 10.
         </p>
         <Checkbox
-          checked={consentAgreed}
-          onChange={setConsentAgreed}
+          checked={props.consentAgreed}
+          onChange={props.setConsentAgreed}
           label={
             <span>
               I have read and agree to the consent form.

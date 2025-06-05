@@ -101,7 +101,7 @@ const majors = [
   "Other",
 ];
 
-interface SchoolInfoProps {
+interface EducationInfoProps {
   country: string;
   setCountry: (val: string) => void;
   schoolName: string;
@@ -114,7 +114,7 @@ interface SchoolInfoProps {
   setExpectedGraduationYear: (val: string) => void;
 }
 
-export default function SchoolInfo(props: SchoolInfoProps) {
+export default function EducationInfo(props: EducationInfoProps) {
   return (
     <Card className="w-full max-w-3xl">
       <div className="mb-10">

@@ -21,12 +21,12 @@ export default function Application() {
 
   // get questions ids
   const { questions, loading, error } = useQuestions();
-  // useEffect(() => {
-  //   console.log("Questions:", questions);
-  //   console.log("Loading:", loading);
-  //   console.log("Error:", error);
-  // }
-  // , [questions, loading, error]);
+  useEffect(() => {
+    console.log("Questions:", questions);
+    console.log("Loading:", loading);
+    console.log("Error:", error);
+  }
+  , [questions, loading, error]);
     
 
 
@@ -71,6 +71,14 @@ export default function Application() {
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [shirtSize, setShirtSize] = useState("");
 
+  // MLH Info State
+  const [mlhCodeOfConduct, setMlhCodeOfConduct] = useState(false);
+  const [mlhPrivacyPolicy, setMlhPrivacyPolicy] = useState(false);
+  const [mlhEmailConsent, setMlhEmailConsent] = useState(false);
+
+  // Consent Info State
+  const [consentAgreed, setConsentAgreed] = useState(false);
+
   const formSections: {
     key: string;
     position: string;
@@ -96,7 +104,7 @@ export default function Application() {
       key: "section2",
       position: "justify-end",
       content: (
-        <FormSections.SchoolInfo
+        <FormSections.EducationInfo
           country={country}
           setCountry={setCountry}
           schoolName={schoolName}
@@ -185,12 +193,26 @@ export default function Application() {
     {
       key: "section7",
       position: "justify-center",
-      content: <FormSections.MLH />,
+      content: (
+        <FormSections.MLH 
+          mlhCodeOfConduct={mlhCodeOfConduct}
+          setMlhCodeOfConduct={setMlhCodeOfConduct}
+          mlhPrivacyPolicy={mlhPrivacyPolicy}
+          setMlhPrivacyPolicy={setMlhPrivacyPolicy}
+          mlhEmailConsent={mlhEmailConsent}
+          setMlhEmailConsent={setMlhEmailConsent}
+        />
+      ),
     },
     {
       key: "section8",
       position: "justify-center",
-      content: <FormSections.ConsentInfo />,
+      content: (
+        <FormSections.ConsentInfo 
+          consentAgreed={consentAgreed}
+          setConsentAgreed={setConsentAgreed}
+        />
+      ),
     },
   ];
 
@@ -251,10 +273,7 @@ export default function Application() {
         // Demography Info
         { question_id: getQuestionId("Age"), answer: age },
         { question_id: getQuestionId("Gender"), answer: gender },
-        {
-          question_id: getQuestionId("Race/Ethnicity"),
-          answer: raceEthinicity,
-        },
+        { question_id: getQuestionId("Race/Ethnicity"), answer: raceEthinicity },
         //{ question_id: getQuestionId("LGBTQI+"), answer: LGBTQI },
         //{ question_id: getQuestionId("Disabilities"), answer: disabilities },
 
@@ -269,10 +288,7 @@ export default function Application() {
         // { question_id: getQuestionId("Machine Learning"), answer: ml.toString() },
 
         // General Info
-        {
-          question_id: getQuestionId("Dietary Restrictions"),
-          answer: dietaryRestrictions,
-        },
+        { question_id: getQuestionId("Dietary Restrictions"), answer: dietaryRestrictions},
         { question_id: getQuestionId("Shirt Size"), answer: shirtSize },
       ];
 
@@ -282,7 +298,7 @@ export default function Application() {
 
       for (const payload of validPayloads) {
         console.log("fetching:", JSON.stringify(payload));
-        await fetchInstance("forms/save", {
+        await fetchInstance("forms/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
