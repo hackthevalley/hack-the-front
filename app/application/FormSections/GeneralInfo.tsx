@@ -25,31 +25,8 @@ export default function GeneralInfo(props: GeneralInfoProps) {
           placeholder="Enter your dietary restrictions"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
-          options={[
-            "N/A",
-            "Vegetarian",
-            "Vegan",
-            "Halal",
-            "Kosher",
-            "Gluten-Free",
-            "Other",
-          ]}
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // options={[
-          //   "N/A",
-          //   "Vegetarian",
-          //   "Vegan",
-          //   "Halal",
-          //   "Kosher",
-          //   "Gluten-Free",
-          //   "Other",
-          // ]}
-          // fieldValue={props.dietaryRestrictions}
-          // setFieldValue={props.setDietaryRestrictions}
+          fieldValue={props.dietaryRestrictions}
+          setFieldValue={props.setDietaryRestrictions}
         />
         <TextField
           title="T-Shirt Size"
@@ -59,12 +36,8 @@ export default function GeneralInfo(props: GeneralInfoProps) {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["S", "M", "L", "XL"]}
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.shirtSize}
-          // setFieldValue={props.setShirtSize}
+          fieldValue={props.shirtSize}
+          setFieldValue={props.setShirtSize}
         />
       </div>
     </Card>

@@ -1,5 +1,5 @@
 import "../globals.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -35,11 +35,6 @@ export default function TextField(props: TextFieldProps) {
     hasError = false,
     errorMessage = "Invalid value",
   } = props;
-
-  useEffect(() => {
-    console.log(hasError);
-    console.log(fieldValue);
-  }, [hasError, fieldValue]);
 
   const borderColor = hasError ? "var(--color-red)" : "var(--color-indigo)";
   const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-transparent ${

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
@@ -9,7 +9,6 @@ import Card from "@/components/Card";
 import Button from "@/components/Button";
 import { FormSections } from "@/application/FormSections";
 import { JSX, useState } from "react";
-import { form } from "motion/react-client";
 import { useQuestions } from "./context/QuestionContext";
 import fetchInstance from "@/utils/api";
 
@@ -22,6 +21,14 @@ export default function Application() {
 
   // get questions ids
   const { questions, loading, error } = useQuestions();
+  // useEffect(() => {
+  //   console.log("Questions:", questions);
+  //   console.log("Loading:", loading);
+  //   console.log("Error:", error);
+  // }
+  // , [questions, loading, error]);
+    
+
 
   // Profile Info State
   const [firstName, setFirstName] = useState("");
@@ -160,6 +167,18 @@ export default function Application() {
           setCyber={setCyber}
           ml={ml}
           setMl={setMl}
+        />
+      ),
+    },
+    {
+      key: "section6",
+      position: "justify-end",
+      content: (
+        <FormSections.GeneralInfo 
+          dietaryRestrictions={dietaryRestrictions}
+          setDietaryRestrictions={setDietaryRestrictions}
+          shirtSize={shirtSize}
+          setShirtSize={setShirtSize}
         />
       ),
     },

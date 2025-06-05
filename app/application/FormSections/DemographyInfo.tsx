@@ -13,6 +13,7 @@ interface DemographyInfoProps {
   disabilities: string;
   setDisabilities: (val: string) => void;
 }
+
 export default function DemographyInfo(props: DemographyInfoProps) {
   return (
     <Card className="w-full max-w-[52rem]">
@@ -25,53 +26,52 @@ export default function DemographyInfo(props: DemographyInfoProps) {
         <TextField
           title="Age"
           required={true}
-          placeholder=""
+          placeholder="Age"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          //   options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())}
-          //   fieldValue={props.age}
-          //   setFieldValue={props.setAge}
-          // />
-
-          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())}
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
+          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())} // TODO: May need to change this to a increatment field
+          fieldValue={props.age}
+          setFieldValue={props.setAge}
         />
         <TextField
           title="Gender"
           required={true}
-          placeholder=""
+          placeholder="Gender"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
-          // options={[]}
-          // fieldValue={props.gender}
-          // setFieldValue={props.setGender}
-
-          options={[]}
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
+          type="dropdown"  
+          options={[
+            "Male",
+            "Female",
+            "Non-binary",
+            "Other",
+            "Prefer not to say",
+          ]}
+          fieldValue={props.gender}
+          setFieldValue={props.setGender}
         />
         <TextField
           title="Race/Ethinicity"
           required={true}
-          placeholder=""
+          placeholder="Race/Ethinicity"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={[]}
-          // fieldValue={props.raceEthinicity}
-          // setFieldValue={props.setRaceEthinicity}
-
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
+          options={[
+            "Black/People of African Descent",
+            "Arab/Middle Eastern",
+            "East Asian (e.g. China, Japan, Korea)",
+            "South/Southeast Asian (e.g. India, Pakistan, Sri Lanka, Philippines, Thailand)",
+            "Indigeneous Person of Canada",
+            "Latinx",
+            "West Asian (e.g. Iran, Afghanistan)",
+            "White/People of European Descent",
+            "Other",
+            "Prefer not to say",
+          ]}
+          fieldValue={props.raceEthinicity}
+          setFieldValue={props.setRaceEthinicity}
         />
         <TextField
           title="Part of the 2SLGBTQI+ Community?"
@@ -80,14 +80,13 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           type="dropdown"
-          options={["Yes", "No", "Prefer not to say"]}
-          // fieldValue={props.LGBTQI}
-          // setFieldValue={props.setLGBTGI}
-
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
+          options={[
+            "Yes",
+            "No", 
+            "Prefer not to say"
+          ]}
+          fieldValue={props.LGBTQI}
+          setFieldValue={props.setLGBTGI}
         />
       </div>
       <div className="flex justify-center mt-6">
@@ -99,14 +98,13 @@ export default function DemographyInfo(props: DemographyInfoProps) {
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
             type="dropdown"
-            options={["Yes", "No", "Prefer not to say"]}
-            // fieldValue={props.disabilities}
-            // setFieldValue={props.setDisabilities}
-
-            fieldValue={""}
-            setFieldValue={function (value: string): void {
-              throw new Error("Function not implemented.");
-            }}
+            options={[
+              "Yes",
+              "No",
+              "Prefer not to say"
+            ]}
+            fieldValue={props.disabilities}
+            setFieldValue={props.setDisabilities}
           />
         </div>
       </div>
