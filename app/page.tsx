@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Button from "@/components/Button";
+import GreenButton from "@/components/GreenButton";
 import { useState } from "react";
 
 import { motion } from "motion/react";
@@ -16,18 +16,21 @@ export default function Home() {
       {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 font-[family-name:var(--font-euclid-circular-b)] sm:p-20">
-        {/* Dotted flower art */}
-        <img
-          className="absolute object-cover bottom-[-6rem] left-[-7rem]"
-          src="/pointillism/dot-grey-flower.svg"
-          alt="pointilism flower"
-          width="448"
+        {/* star art */}
+        {/* Note we need to change z-index as it overlaps on phones */}
+        <Image
+          className="absolute object-cover bottom-[-1rem] left-[-2rem]"
+          src="/backgrounds/star-left.svg"
+          alt="star"
+          width="400"
+          height="390"
         />
-        <img
-          className="absolute object-cover top-[16rem] right-[-8rem]"
-          src="/pointillism/dot-green-flower.svg"
-          alt="pointilism flower"
-          width="448"
+        <Image
+          className="absolute object-cover top-[-1rem] right-[0rem]"
+          src="/backgrounds/star-right.svg"
+          alt="star"
+          width="340"
+          height="509"
         />
 
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -35,14 +38,32 @@ export default function Home() {
             <div className="w-1/2 grid grid-cols-[10%_90%] gap-2">
               {/* Positioning the ">" */}
               <div className="flex justify-center mt-[2.3rem]">
-                <h1 className="text-grey text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">{">"}</h1>
+                <h1 className="text-[#4C6581] text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">
+                  {">"}
+                </h1>
               </div>
               <div className="flex flex-col gap-y-4 w-max">
                 <p className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
                   Up for the challenge?
                 </p>
-                <h1 className="text-grey text-7xl font-medium text-stroke">HACK THE</h1>
-                <h1 className="text-grey text-7xl font-medium text-stroke">VALLEY X</h1>
+                <h1
+                  className="text-7xl font-bold text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(160deg, #4C6581, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
+                  }}
+                >
+                  HACK THE
+                </h1>
+                <h1
+                  className="text-7xl font-bold text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(100deg, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
+                  }}
+                >
+                  VALLEY X
+                </h1>
 
                 {/* Date */}
                 <div className="flex-col">
@@ -56,7 +77,7 @@ export default function Home() {
 
                   {/* Apply Button */}
                   <div className="flex justify-center">
-                    <Button text="Apply Now" route="/login" />
+                    <GreenButton text="Apply Now" route="/login" />
                   </div>
                 </div>
               </div>
@@ -64,10 +85,11 @@ export default function Home() {
 
             {/* Event cards and metallic flowers with animation */}
             <div className="relative w-1/2">
+              {/* Terminal card */}
               <motion.img
                 className="terminal-card relative max-w-none cursor-pointer"
-                src="/landing-page/date-card-2.svg"
-                alt="Event Card"
+                src="/landing-page/date-card.svg"
+                alt="Date Card"
                 width="573"
                 // whileHover={clicked ? { scale: 1.05 } : {}}
                 onClick={() => setClicked(!clicked)}
@@ -83,6 +105,7 @@ export default function Home() {
                   ease: "easeInOut",
                 }}
               />
+              {/* Silver card */}
               <motion.img
                 className="event-card max-w-none absolute top-[-10rem] left-[-3rem] cursor-pointer"
                 src="/landing-page/event-card-2.svg"
