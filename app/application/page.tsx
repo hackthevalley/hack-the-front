@@ -12,7 +12,6 @@ import { JSX, useState } from "react";
 import { useQuestions } from "./context/QuestionContext";
 import fetchInstance from "@/utils/api";
 
-// TODO: Need to update to pull questions from backend DB
 const token = localStorage.getItem("auth-token");
 
 export default function Application() {
@@ -21,43 +20,42 @@ export default function Application() {
 
   // get questions ids
   const { questions, loading, error } = useQuestions();
-  useEffect(() => {
-    console.log("Questions:", questions);
-    console.log("Loading:", loading);
-    console.log("Error:", error);
-  }
-  , [questions, loading, error]);
-    
-
-
+  
+  
+  
   // Profile Info State
+  const section1Questions = questions.slice(0, 4);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
+  
   // School Info State
+  const section2Questions = questions.slice(4, 9);
   const [country, setCountry] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [currentLevelOfStudy, setCurrentLevelOfStudy] = useState("");
   const [major, setMajor] = useState("");
   const [expectedGraduationYear, setExpectedGraduationYear] = useState("");
-
+  
   // Demography Info State
+  const section3Questions = questions.slice(9, 14);
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [raceEthinicity, setRaceEthinicity] = useState("");
   const [LGBTQI, setLGBTGI] = useState("");
   const [disabilities, setDisabilities] = useState("");
-
+  
   // Experience Info State
+  const section4Questions = questions.slice(14, 19);
   const [hackathonCount, setHackathonCount] = useState("");
   const [github, setGithub] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [portfolio, setPortfolio] = useState("");
   const [resumeFile, setResumeFile] = useState<File | null>(null);
-
+  
   // Skill Confidence State
+  const section5Questons = questions.slice(19, 27);
   const [uiux, setUiux] = useState("");
   const [frontend, setFrontend] = useState("");
   const [backend, setBackend] = useState("");
@@ -66,19 +64,34 @@ export default function Application() {
   const [crypto, setCrypto] = useState("");
   const [cyber, setCyber] = useState("");
   const [ml, setMl] = useState("");
-
+  
   // General Info State
+  const section6Questions = questions.slice(27, 29);
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [shirtSize, setShirtSize] = useState("");
-
+  
   // MLH Info State
+  const section7Questions = questions.slice(29, 32);
   const [mlhCodeOfConduct, setMlhCodeOfConduct] = useState(false);
   const [mlhPrivacyPolicy, setMlhPrivacyPolicy] = useState(false);
   const [mlhEmailConsent, setMlhEmailConsent] = useState(false);
-
+  
   // Consent Info State
+  const section8Questions = questions.slice(32, 33);
   const [consentAgreed, setConsentAgreed] = useState(false);
 
+  // useEffect(() => {
+  //   console.log("Questions:", section1Questions);
+  //   console.log("Questions:", section2Questions);
+  //   console.log("Questions:", section3Questions);
+  //   console.log("Questions:", section4Questions);
+  //   console.log("Questions:", section5Questons);
+  //   console.log("Questions:", section6Questions);
+  //   console.log("Questions:", section7Questions);
+  //   console.log("Questions:", section8Questions);
+  // }
+  // , [section1Questions, section2Questions, section3Questions, section4Questions, section5Questons, section6Questions, section7Questions, section8Questions]);
+  
   const formSections: {
     key: string;
     position: string;
@@ -89,7 +102,8 @@ export default function Application() {
       position: "justify-start",
       content: (
         <FormSections.ProfileInfo
-          firstName={firstName}
+        questions={section1Questions}
+        firstName={firstName}
           setFirstName={setFirstName}
           lastName={lastName}
           setLastName={setLastName}
@@ -97,14 +111,15 @@ export default function Application() {
           setEmail={setEmail}
           phoneNumber={phoneNumber}
           setPhoneNumber={setPhoneNumber}
-        />
-      ),
-    },
-    {
+          />
+        ),
+      },
+      {
       key: "section2",
       position: "justify-end",
       content: (
         <FormSections.EducationInfo
+          questions={section2Questions}
           country={country}
           setCountry={setCountry}
           schoolName={schoolName}
@@ -123,6 +138,7 @@ export default function Application() {
       position: "justify-start",
       content: (
         <FormSections.DemographyInfo
+          questions={section3Questions}
           age={age}
           setAge={setAge}
           gender={gender}
@@ -141,6 +157,7 @@ export default function Application() {
       position: "justify-end",
       content: (
         <FormSections.ExperienceInfo
+          questions={section4Questions}
           hackathonCount={hackathonCount}
           setHackathonCount={setHackathonCount}
           github={github}
@@ -159,6 +176,7 @@ export default function Application() {
       position: "justify-start",
       content: (
         <FormSections.SkillConfidence
+          questions={section5Questons}
           uiux={uiux}
           setUiux={setUiux}
           frontend={frontend}
@@ -182,7 +200,8 @@ export default function Application() {
       key: "section6",
       position: "justify-end",
       content: (
-        <FormSections.GeneralInfo 
+        <FormSections.GeneralInfo
+          questions={section6Questions}
           dietaryRestrictions={dietaryRestrictions}
           setDietaryRestrictions={setDietaryRestrictions}
           shirtSize={shirtSize}
@@ -194,7 +213,7 @@ export default function Application() {
       key: "section7",
       position: "justify-center",
       content: (
-        <FormSections.MLH 
+        <FormSections.MLH
           mlhCodeOfConduct={mlhCodeOfConduct}
           setMlhCodeOfConduct={setMlhCodeOfConduct}
           mlhPrivacyPolicy={mlhPrivacyPolicy}
@@ -208,7 +227,7 @@ export default function Application() {
       key: "section8",
       position: "justify-center",
       content: (
-        <FormSections.ConsentInfo 
+        <FormSections.ConsentInfo
           consentAgreed={consentAgreed}
           setConsentAgreed={setConsentAgreed}
         />

@@ -1,7 +1,9 @@
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
+import { Question } from "../context/QuestionContext";
 
 interface DemographyInfoProps {
+  questions: Question[];
   age: string;
   setAge: (val: string) => void;
   gender: string;
@@ -24,7 +26,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
         <TextField
-          title="Age"
+          title={props.questions[0]?.label}
           required={true}
           placeholder="Age"
           widthClasses="mx-[auto] sm:w-full"
@@ -35,7 +37,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           setFieldValue={props.setAge}
         />
         <TextField
-          title="Gender"
+          title={props.questions[1]?.label}
           required={true}
           placeholder="Gender"
           widthClasses="mx-[auto] sm:w-full"
@@ -52,7 +54,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           setFieldValue={props.setGender}
         />
         <TextField
-          title="Race/Ethinicity"
+          title={props.questions[2]?.label}
           required={true}
           placeholder="Race/Ethinicity"
           widthClasses="mx-[auto] sm:w-full"
@@ -74,7 +76,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           setFieldValue={props.setRaceEthinicity}
         />
         <TextField
-          title="Part of the 2SLGBTQI+ Community?"
+          title={props.questions[3]?.label}
           required={true}
           placeholder=""
           widthClasses="mx-[auto] sm:w-full"
@@ -92,7 +94,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
       <div className="flex justify-center mt-6">
         <div className="grid grid-cols-1 gap-y-4 gap-x-7 w-2/3">
           <TextField
-            title="Person with Disabilities?"
+            title={props.questions[4]?.label}
             required={true}
             placeholder=""
             widthClasses="mx-[auto] sm:w-full"

@@ -2,7 +2,11 @@
 
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
+import { Question } from "../context/QuestionContext";
+import { useEffect } from "react";
+
 interface ProfileInfoProps {
+  questions: Question[];
   firstName: string;
   setFirstName: (val: string) => void;
   lastName: string;
@@ -23,7 +27,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-7">
         <TextField
-          title="First Name"
+          title={props.questions[0]?.label}
           required={false}
           placeholder="Enter your first name"
           widthClasses="mx-[auto] sm:w-full"
@@ -32,17 +36,17 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           setFieldValue={props.setFirstName}
         />
         <TextField
-          title="Last Name"
+          title={props.questions[1]?.label}
           required={true}
           placeholder="Enter your last name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.lastName}
           setFieldValue={props.setLastName}
-        />
+          />
         {/* TODO: Can be autofilled using the users login email */}
         <TextField
-          title="Email"
+          title={props.questions[2]?.label}
           required={true}
           placeholder="Enter your email address"
           widthClasses="mx-[auto] sm:w-full"
@@ -50,9 +54,9 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           type="email"
           fieldValue={props.email}
           setFieldValue={props.setEmail}
-        />
+          />
         <TextField
-          title="Phone Number"
+          title={props.questions[3]?.label}
           required={true}
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"

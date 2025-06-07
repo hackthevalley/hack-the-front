@@ -2,8 +2,10 @@
 
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
+import { Question } from "../context/QuestionContext";
 
 interface SkillConfidenceProps {
+  questions: Question[];
   uiux: string;
   setUiux: (val: string) => void;
   frontend: string;
@@ -34,7 +36,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
         <TextField
-          title="UI/UX Design"
+          title={props.questions[0]?.label}
           required={false}
           placeholder="UI/UX Design"
           type="dropdown"
@@ -45,7 +47,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setUiux}
         />
         <TextField
-          title="Frontend Development"
+          title={props.questions[1]?.label}
           required={false}
           placeholder="Frontend Development"
           type="dropdown"
@@ -56,7 +58,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setFrontend}
         />
         <TextField
-          title="Backend Development"
+          title={props.questions[2]?.label}
           required={false}
           placeholder="Backend Development"
           type="dropdown"
@@ -67,7 +69,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setBackend}
         />
         <TextField
-          title="Fullstack Development"
+          title={props.questions[3]?.label}
           required={false}
           placeholder="Fullstack Development"
           type="dropdown"
@@ -78,7 +80,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setFullstack}
         />
         <TextField
-          title="Project Management"
+          title={props.questions[4]?.label}
           required={false}
           placeholder="Project Management"
           type="dropdown"
@@ -89,7 +91,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setPm}
         />
         <TextField
-          title="Web, Crypto, Blockchain"
+          title={props.questions[5]?.label}
           required={false}
           placeholder="Web, Crypto, Blockchain"
           type="dropdown"
@@ -100,7 +102,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setCrypto}
         />
         <TextField
-          title="Cybersecurity"
+          title={props.questions[6]?.label}
           required={false}
           placeholder="Cybersecurity"
           type="dropdown"
@@ -111,7 +113,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
           setFieldValue={props.setCyber}
         />
         <TextField
-          title="Machine Learning"
+          title={props.questions[7]?.label}
           required={false}
           placeholder="Machine Learning"
           type="dropdown"

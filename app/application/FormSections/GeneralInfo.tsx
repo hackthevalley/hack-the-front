@@ -2,8 +2,9 @@
 
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
-
+import { Question } from "../context/QuestionContext";
 interface GeneralInfoProps {
+  questions: Question[];
   dietaryRestrictions: string;
   setDietaryRestrictions: (val: string) => void;
   shirtSize: string;
@@ -20,7 +21,7 @@ export default function GeneralInfo(props: GeneralInfoProps) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
         <TextField
-          title="Dietary Restrictions"
+          title={props.questions[0]?.label}
           required={true}
           placeholder="Enter your dietary restrictions"
           widthClasses="mx-[auto] sm:w-full"
@@ -29,7 +30,7 @@ export default function GeneralInfo(props: GeneralInfoProps) {
           setFieldValue={props.setDietaryRestrictions}
         />
         <TextField
-          title="T-Shirt Size"
+          title={props.questions[1]?.label}
           required={true}
           placeholder="Enter your t-shirt size"
           widthClasses="mx-[auto] sm:w-full"

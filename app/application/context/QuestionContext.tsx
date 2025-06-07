@@ -3,7 +3,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import fetchInstance from "@/utils/api";
 
-interface Question {
+export interface Question {
   question_id: string;
   label: string;
   required: boolean;

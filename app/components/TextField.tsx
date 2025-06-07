@@ -2,6 +2,7 @@ import "../globals.css";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import toast, { Toaster } from "react-hot-toast";
 
 interface TextFieldProps {
   title: string;
@@ -11,10 +12,12 @@ interface TextFieldProps {
   widthClasses?: string;
   heightClasses?: string;
   textClasses?: string;
-  type?: "text" | "textarea" | "dropdown" | "password" | "email";
+  type?: "text" | "textarea" | "dropdown" | "password" | "email" | "file";
   options?: string[] | { label: string; value: string }[];
   fieldValue: string;
+  fileValue?: File | null;
   setFieldValue: (value: string) => void;
+  setFile?: (value: string | File | null) => void;
   hasError?: boolean;
   errorMessage?: string;
 }
@@ -32,6 +35,8 @@ export default function TextField(props: TextFieldProps) {
     options = [],
     fieldValue,
     setFieldValue,
+    fileValue,
+    setFile,
     hasError = false,
     errorMessage = "Invalid value",
   } = props;
@@ -41,6 +46,26 @@ export default function TextField(props: TextFieldProps) {
     multiline ? "h-full resize-none" : ""
   }`;
   const [localType, setLocalType] = useState<string>(type);
+
+  const allowedFormats = [".pdf"];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadingFile = toast.loading("Uploading file...");
+    const file = e.target.files?.[0];
+    if (file) {
+      const fileExtension = file.name.split('.').pop()?.toLowerCase();
+      if (allowedFormats.includes(`.${fileExtension}`)) {
+        if (setFile) {
+          setFile(file);
+          toast.dismiss(uploadingFile);
+          toast.success("File uploaded successfully!");
+        }
+      } else {
+        toast.dismiss(uploadingFile);
+        toast.error(`Invalid file format.`);
+        ;
+      }
+    }
+  };
 
   const togglePassword = () => {
     if (type === "password" && localType === "password") {
@@ -133,6 +158,53 @@ export default function TextField(props: TextFieldProps) {
             )}
           </>
         );
+        case "file":
+          return (
+            <div className="w-full relative">
+              <label
+                htmlFor="file-upload"
+                className="cursor-pointer flex flex-col justify-center items-center w-full h-16 text-center"
+              >
+                <input
+                  id="file-upload"
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+        
+                {fileValue && fileValue?.name ? (
+                  <>
+                    <p className="font-bold text-white text-lg">{fileValue?.name}</p>
+                    <p className="text-grey text-sm mt-1">
+                      Your file has been uploaded. Click or drop another file to re-upload.
+                    </p>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center justify-center h-full space-y-1">
+                    <p className="text-white">{title}</p>
+                    <p className="text-grey text-sm text-center">
+                      {"Accepted file format: pdf"}
+                    </p>
+                  </div>
+                )}
+              </label>
+              {fileValue && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFile?.(null);
+                    const input = document.getElementById("file-upload") as HTMLInputElement;
+                    if (input) input.value = "";
+                    toast.success("File removed successfully!");
+                  }}
+                  className="absolute top-2 right-4 text-white hover:text-red-500 text-sm"
+                >
+                  &#10005;
+                </button>
+              )}
+            </div>
+          );
       default:
         return (
           <input
@@ -153,11 +225,34 @@ export default function TextField(props: TextFieldProps) {
         backgroundColor: "var(--color-bgblue)",
       }}
     >
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 6000,
+          removeDelay: 1000,
+          style: {
+            background: "#0B1C34",
+            color: "white",
+          },
+          success: {
+            iconTheme: {
+              primary: "green",
+              secondary: "#0B1C34",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "red",
+              secondary: "#0B1C34",
+            },
+          },
+        }}
+      />
       <label
         className={`flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] mb-1`}
       >
-        {title}
-        {required && <span className="text-red ml-1">*</span>}
+        {type !== "file" && title}
+        {required && title !== "" && type !== "file" && <span className="text-red ml-1">*</span>}
       </label>
       {renderInput()}
       {hasError && (
