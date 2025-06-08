@@ -13,7 +13,6 @@ import { UserContext } from "@/utils/auth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [formFilled, setFormFilled] = useState<boolean>(false);
   const { isAuthenticated, login } = useContext(UserContext) ?? {};
   const router = useRouter();
@@ -26,12 +25,12 @@ export default function LoginPage() {
 
   // Controls formFilled flag which enables/disables the login button
   useEffect(() => {
-    if (email !== "" && password !== "") {
+    if (email !== "") {
       setFormFilled(true);
     } else {
       setFormFilled(false);
     }
-  }, [email, password]);
+  }, [email]);
 
   // Valid email checks if it matches the format of an email while in validInput, it checks if the email field is empty. This avoids having the error message appear for empty fields
   const validEmail = () => {
@@ -52,22 +51,18 @@ export default function LoginPage() {
     return true;
   };
 
-  const signIn = async (e: React.FormEvent) => {
+  const resetPassword = async (e: React.FormEvent) => {
     const loadingToast = toast.loading("Logging in...");
     e.preventDefault();
-    const urlEncodedData = new URLSearchParams();
-    urlEncodedData.append("username", email);
-    urlEncodedData.append("password", password);
+    const data = {
+      email: email,
+    };
     try {
-      const response = await fetchInstance("account/login", {
+      const response = await fetchInstance("account/send_reset_password", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: urlEncodedData.toString(),
+        body: JSON.stringify(data),
       });
-      if (response.access_token && login) {
-        await login(response.access_token);
+      if (response) {
         router.push("/"); // change to /dashboard after merge
       }
       toast.dismiss(loadingToast);
@@ -121,14 +116,14 @@ export default function LoginPage() {
             <p className="text-grey text-xl">$ npm start challenge</p>
 
             <p className="text-white font-bold text-5xl mt-[1rem] mb-[2rem]">
-              {">"} Welcome Back Hacker,
+              {">"} Forgot Password?
             </p>
 
             <div className="w-full my-[2rem]">
               <div className="flex justify-between items-center">
                 <hr className="bg-indigo border-none mr-4 w-full h-[2px]" />
                 <p className="text-white w-fit whitespace-nowrap font-semibold text-2xl">
-                  Sign in to view dashboard
+                  Reset your password here
                 </p>
                 <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
               </div>
@@ -144,37 +139,22 @@ export default function LoginPage() {
                 hasError={!validEmail()}
                 errorMessage={"Invalid email format"}
               />
-              <TextField
-                title="Password"
-                placeholder="password"
-                type="password"
-                fieldValue={password}
-                setFieldValue={setPassword}
-              />
-            </div>
-
-            <div className="flex justify-end mb-[1rem]">
-              <Link className="text-white text-lg font-semibold" href="/forgot">
-                Forgot Password?
-              </Link>
             </div>
 
             {/* Need to add logic so Sign in turns grey */}
             <GreenButton
-              text="Sign In"
-              onClick={signIn}
+              text="Send Email"
+              onClick={resetPassword}
               formFilled={formFilled && validInput()}
             />
 
             <div className="flex my-[1rem]">
-              <p className="text-grey text-lg mr-2">
-                Don&apos;t have an account?
-              </p>
+              <p className="text-grey text-lg mr-2">Remember your password?</p>
               <Link
                 className="text-lightgreen text-lg font-semibold"
-                href="/sign-up"
+                href="/login"
               >
-                Sign up.
+                Sign in.
               </Link>
             </div>
           </div>
