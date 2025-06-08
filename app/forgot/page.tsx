@@ -11,7 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
 
-export default function LoginPage() {
+export default function ForgotPage() {
   const [email, setEmail] = useState<string>("");
   const [formFilled, setFormFilled] = useState<boolean>(false);
   const userContext = useContext(UserContext);
