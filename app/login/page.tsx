@@ -16,13 +16,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState<string>("");
   const [formFilled, setFormFilled] = useState<boolean>(false);
   const { isAuthenticated, login } = useContext(UserContext) ?? {};
+
   const router = useRouter();
 
   useEffect(() => {
     if (isAuthenticated) {
       router.push("/"); // change to /dashboard after merge
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   // Controls formFilled flag which enables/disables the login button
   useEffect(() => {
@@ -74,7 +75,11 @@ export default function LoginPage() {
       toast.success(`Sign in successful`);
     } catch (err) {
       toast.dismiss(loadingToast);
-      toast.error((err as any).message);
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
   };
 

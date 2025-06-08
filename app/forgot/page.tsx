@@ -14,14 +14,15 @@ import { UserContext } from "@/utils/auth";
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [formFilled, setFormFilled] = useState<boolean>(false);
-  const { isAuthenticated, login } = useContext(UserContext) ?? {};
+  const userContext = useContext(UserContext);
+  const isAuthenticated = userContext?.isAuthenticated ?? false;
   const router = useRouter();
 
   useEffect(() => {
     if (isAuthenticated) {
       router.push("/"); // change to /dashboard after merge
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   // Controls formFilled flag which enables/disables the login button
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function LoginPage() {
   };
 
   const resetPassword = async (e: React.FormEvent) => {
-    const loadingToast = toast.loading("Logging in...");
+    const loadingToast = toast.loading("Sending email...");
     e.preventDefault();
     const data = {
       email: email,
@@ -63,13 +64,16 @@ export default function LoginPage() {
         body: JSON.stringify(data),
       });
       if (response) {
-        router.push("/"); // change to /dashboard after merge
+        toast.dismiss(loadingToast);
+        toast.success(`Email Sent`);
       }
-      toast.dismiss(loadingToast);
-      toast.success(`Sign in successful`);
     } catch (err) {
       toast.dismiss(loadingToast);
-      toast.error((err as any).message);
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
   };
 
