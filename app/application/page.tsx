@@ -1,19 +1,21 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { motion, useInView } from "motion/react";
-import Navbar from "@/components/Navbar";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import { FormSections } from "@/application/FormSections";
-import { JSX, useState } from "react";
-import { useQuestions } from "./context/QuestionContext";
-import fetchInstance from "@/utils/api";
+import { motion, useInView } from 'motion/react';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
+import { JSX, useState } from 'react';
+
+import { FormSections } from '@/application/FormSections';
+import Button from '@/components/Button';
+import Card from '@/components/Card';
+import Navbar from '@/components/Navbar';
+import fetchInstance from '@/utils/api';
+
+import { useQuestions } from './context/QuestionContext';
 
 // TODO: Need to update to pull questions from backend DB
-const token = localStorage.getItem("auth-token");
+const token = localStorage.getItem('auth-token');
 
 export default function Application() {
   const [isFormActive, setIsFormActive] = useState(false);
@@ -29,92 +31,92 @@ export default function Application() {
   // , [questions, loading, error]);
 
   // Profile Info State
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   // School Info State
-  const [country, setCountry] = useState("");
-  const [schoolName, setSchoolName] = useState("");
-  const [currentLevelOfStudy, setCurrentLevelOfStudy] = useState("");
-  const [major, setMajor] = useState("");
-  const [expectedGraduationYear, setExpectedGraduationYear] = useState("");
+  const [country, setCountry] = useState('');
+  const [schoolName, setSchoolName] = useState('');
+  const [currentLevelOfStudy, setCurrentLevelOfStudy] = useState('');
+  const [major, setMajor] = useState('');
+  const [expectedGraduationYear, setExpectedGraduationYear] = useState('');
 
   // Demography Info State
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [raceEthinicity, setRaceEthinicity] = useState("");
-  const [LGBTQI, setLGBTGI] = useState("");
-  const [disabilities, setDisabilities] = useState("");
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [raceEthinicity, setRaceEthinicity] = useState('');
+  const [LGBTQI, setLGBTGI] = useState('');
+  const [disabilities, setDisabilities] = useState('');
 
   // Experience Info State
-  const [hackathonCount, setHackathonCount] = useState("");
-  const [github, setGithub] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [portfolio, setPortfolio] = useState("");
+  const [hackathonCount, setHackathonCount] = useState('');
+  const [github, setGithub] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [portfolio, setPortfolio] = useState('');
   const [resumeFile, setResumeFile] = useState<File | null>(null);
 
   // Skill Confidence State
-  const [uiux, setUiux] = useState("");
-  const [frontend, setFrontend] = useState("");
-  const [backend, setBackend] = useState("");
-  const [fullstack, setFullstack] = useState("");
-  const [pm, setPm] = useState("");
-  const [crypto, setCrypto] = useState("");
-  const [cyber, setCyber] = useState("");
-  const [ml, setMl] = useState("");
+  const [uiux, setUiux] = useState('');
+  const [frontend, setFrontend] = useState('');
+  const [backend, setBackend] = useState('');
+  const [fullstack, setFullstack] = useState('');
+  const [pm, setPm] = useState('');
+  const [crypto, setCrypto] = useState('');
+  const [cyber, setCyber] = useState('');
+  const [ml, setMl] = useState('');
 
   // General Info State
-  const [dietaryRestrictions, setDietaryRestrictions] = useState("");
-  const [shirtSize, setShirtSize] = useState("");
+  const [dietaryRestrictions, setDietaryRestrictions] = useState('');
+  const [shirtSize, setShirtSize] = useState('');
 
   const handleSave = async () => {
     if (loading) {
-      console.log("Questions are still loading. Please wait.");
+      console.log('Questions are still loading. Please wait.');
       return;
     }
 
     if (error) {
-      console.log("Error loading questions. Please refresh the page.");
+      console.log('Error loading questions. Please refresh the page.');
       return;
     }
     try {
       const payloads = [
         // Profile Info
-        { question_id: getQuestionId("First Name"), answer: firstName },
-        { question_id: getQuestionId("Last Name"), answer: lastName },
-        { question_id: getQuestionId("Email"), answer: email },
-        { question_id: getQuestionId("Phone Number"), answer: phoneNumber },
+        { question_id: getQuestionId('First Name'), answer: firstName },
+        { question_id: getQuestionId('Last Name'), answer: lastName },
+        { question_id: getQuestionId('Email'), answer: email },
+        { question_id: getQuestionId('Phone Number'), answer: phoneNumber },
 
         // School Info
-        { question_id: getQuestionId("Country"), answer: country },
-        { question_id: getQuestionId("School Name"), answer: schoolName },
+        { question_id: getQuestionId('Country'), answer: country },
+        { question_id: getQuestionId('School Name'), answer: schoolName },
         {
-          question_id: getQuestionId("Current Level of Study"),
+          question_id: getQuestionId('Current Level of Study'),
           answer: currentLevelOfStudy,
         },
-        { question_id: getQuestionId("Major"), answer: major },
+        { question_id: getQuestionId('Major'), answer: major },
         {
-          question_id: getQuestionId("Expected Graduation Year"),
+          question_id: getQuestionId('Expected Graduation Year'),
           answer: expectedGraduationYear,
         },
 
         // Experience Info
         {
-          question_id: getQuestionId("Number of Hackathons Attended"),
+          question_id: getQuestionId('Number of Hackathons Attended'),
           answer: hackathonCount,
         },
-        { question_id: getQuestionId("GitHub"), answer: github },
-        { question_id: getQuestionId("LinkedIn"), answer: linkedin },
-        { question_id: getQuestionId("Portfolio"), answer: portfolio },
+        { question_id: getQuestionId('GitHub'), answer: github },
+        { question_id: getQuestionId('LinkedIn'), answer: linkedin },
+        { question_id: getQuestionId('Portfolio'), answer: portfolio },
         // Note: Resume file handling may need special treatment
 
         // Demography Info
-        { question_id: getQuestionId("Age"), answer: age },
-        { question_id: getQuestionId("Gender"), answer: gender },
+        { question_id: getQuestionId('Age'), answer: age },
+        { question_id: getQuestionId('Gender'), answer: gender },
         {
-          question_id: getQuestionId("Race/Ethnicity"),
+          question_id: getQuestionId('Race/Ethnicity'),
           answer: raceEthinicity,
         },
         //{ question_id: getQuestionId("LGBTQI+"), answer: LGBTQI },
@@ -132,32 +134,32 @@ export default function Application() {
 
         // General Info
         {
-          question_id: getQuestionId("Dietary Restrictions"),
+          question_id: getQuestionId('Dietary Restrictions'),
           answer: dietaryRestrictions,
         },
-        { question_id: getQuestionId("Shirt Size"), answer: shirtSize },
+        { question_id: getQuestionId('Shirt Size'), answer: shirtSize },
       ];
 
       const validPayloads = payloads.filter(
-        (payload) => payload.question_id && payload.answer !== ""
+        (payload) => payload.question_id && payload.answer !== '',
       );
 
       for (const payload of validPayloads) {
-        console.log("fetching:", JSON.stringify(payload));
-        await fetchInstance("forms/save", {
-          method: "POST",
+        console.log('fetching:', JSON.stringify(payload));
+        await fetchInstance('forms/save', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(payload),
         });
       }
 
-      alert("Application submitted successfully!");
+      alert('Application submitted successfully!');
     } catch (err) {
-      console.error("Submission error:", err);
-      alert("Failed to submit application. Please try again.");
+      console.error('Submission error:', err);
+      alert('Failed to submit application. Please try again.');
     }
   };
 
@@ -168,12 +170,12 @@ export default function Application() {
   const spaceshipRef4 = useRef<HTMLImageElement>(null);
   const spaceshipRef5 = useRef<HTMLImageElement>(null);
 
-  const inView0 = useInView(spaceshipRef0, { once: false, margin: "-20% 0px" });
-  const inView1 = useInView(spaceshipRef1, { once: false, margin: "-20% 0px" });
-  const inView2 = useInView(spaceshipRef2, { once: false, margin: "-20% 0px" });
-  const inView3 = useInView(spaceshipRef3, { once: false, margin: "-20% 0px" });
-  const inView4 = useInView(spaceshipRef4, { once: false, margin: "-20% 0px" });
-  const inView5 = useInView(spaceshipRef5, { once: false, margin: "-20% 0px" });
+  const inView0 = useInView(spaceshipRef0, { once: false, margin: '-20% 0px' });
+  const inView1 = useInView(spaceshipRef1, { once: false, margin: '-20% 0px' });
+  const inView2 = useInView(spaceshipRef2, { once: false, margin: '-20% 0px' });
+  const inView3 = useInView(spaceshipRef3, { once: false, margin: '-20% 0px' });
+  const inView4 = useInView(spaceshipRef4, { once: false, margin: '-20% 0px' });
+  const inView5 = useInView(spaceshipRef5, { once: false, margin: '-20% 0px' });
 
   // const sectionClassName = "flex items-center mx-20 relative";
   const sectionClassName = `h-[calc(100vh-10rem)] min-height-fit snap-end scroll-smooth overflow-hidden relative items-center flex md:px-10`;
@@ -182,7 +184,7 @@ export default function Application() {
     content: JSX.Element;
   }[] = [
     {
-      key: "section1",
+      key: 'section1',
       content: (
         <section className={`${sectionClassName} justify-start`}>
           <FormSections.ProfileInfo
@@ -199,27 +201,25 @@ export default function Application() {
             ref={spaceshipRef0}
             initial={{ opacity: 0, x: 0 }}
             animate={inView0 ? { opacity: 1, x: 600 } : { opacity: 0, x: 0 }}
-            transition={
-              inView0 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }
-            }
-            src="/application-page/spaceship.png"
-            alt="spaceship"
+            transition={inView0 ? { duration: 2, ease: 'easeInOut' } : { duration: 0 }}
+            src='/application-page/spaceship.png'
+            alt='spaceship'
             width={336}
             height={336}
-            className="absolute top-10 sm:right-20 md:right-10 lg:right-0 xl:-right-30 translate-x-1/2 translate-y-1/2 rotate-[-6.52deg] -scale-x-100"
+            className='absolute top-10 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[-6.52deg] sm:right-20 md:right-10 lg:right-0 xl:-right-30'
           />
           <Image
-            src="/application-page/star.svg"
-            alt="star"
+            src='/application-page/star.svg'
+            alt='star'
             width={485}
             height={447}
-            className="absolute object-cover -left-20 -bottom-10"
+            className='absolute -bottom-10 -left-20 object-cover'
           />
         </section>
       ),
     },
     {
-      key: "section2",
+      key: 'section2',
       content: (
         <section className={`${sectionClassName} justify-end`}>
           <FormSections.SchoolInfo
@@ -237,25 +237,19 @@ export default function Application() {
           <motion.img
             ref={spaceshipRef1}
             initial={{ opacity: 0, x: 0, y: -200 }}
-            animate={
-              inView1
-                ? { opacity: 1, x: 600, y: 0 }
-                : { opacity: 0, x: 0, y: -200 }
-            }
-            transition={
-              inView1 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }
-            }
-            src="/application-page/spaceship.png"
-            alt="spaceship"
+            animate={inView1 ? { opacity: 1, x: 600, y: 0 } : { opacity: 0, x: 0, y: -200 }}
+            transition={inView1 ? { duration: 2, ease: 'easeInOut' } : { duration: 0 }}
+            src='/application-page/spaceship.png'
+            alt='spaceship'
             width={336}
             height={336}
-            className="absolute -left-120 -top-10 translate-x-1/2 translate-y-1/2 rotate-[9.75deg]"
+            className='absolute -top-10 -left-120 translate-x-1/2 translate-y-1/2 rotate-[9.75deg]'
           />
         </section>
       ),
     },
     {
-      key: "section3",
+      key: 'section3',
       content: (
         <section className={`${sectionClassName} justify-start`}>
           <FormSections.DemographyInfo
@@ -278,20 +272,18 @@ export default function Application() {
                 ? { opacity: 1, x: 750, y: 0, rotate: 35 }
                 : { opacity: 0, x: 0, y: 70, rotate: 0 }
             }
-            transition={
-              inView2 ? { duration: 2.2, ease: "easeInOut" } : { duration: 0 }
-            }
-            src="/application-page/spaceship.png"
-            alt="spaceship"
+            transition={inView2 ? { duration: 2.2, ease: 'easeInOut' } : { duration: 0 }}
+            src='/application-page/spaceship.png'
+            alt='spaceship'
             width={336}
             height={336}
-            className="absolute -right-40 top-80 translate-x-1/2 translate-y-1/2 rotate-[38deg] -scale-x-100"
+            className='absolute top-80 -right-40 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[38deg]'
           />
         </section>
       ),
     },
     {
-      key: "section4",
+      key: 'section4',
       content: (
         <section className={`${sectionClassName} justify-end`}>
           <FormSections.ExperienceInfo
@@ -309,32 +301,26 @@ export default function Application() {
           <motion.img
             ref={spaceshipRef3}
             initial={{ opacity: 0, x: 0, y: -200 }}
-            animate={
-              inView3
-                ? { opacity: 1, x: 600, y: 0 }
-                : { opacity: 0, x: 0, y: -200 }
-            }
-            transition={
-              inView3 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }
-            }
-            src="/application-page/spaceship.png"
-            alt="spaceship"
+            animate={inView3 ? { opacity: 1, x: 600, y: 0 } : { opacity: 0, x: 0, y: -200 }}
+            transition={inView3 ? { duration: 2, ease: 'easeInOut' } : { duration: 0 }}
+            src='/application-page/spaceship.png'
+            alt='spaceship'
             width={336}
             height={336}
-            className="absolute -left-120 -top-10 translate-x-1/2 translate-y-1/2 rotate-[4.75deg]"
+            className='absolute -top-10 -left-120 translate-x-1/2 translate-y-1/2 rotate-[4.75deg]'
           />
           <Image
-            src="/application-page/star.svg"
-            alt="star"
+            src='/application-page/star.svg'
+            alt='star'
             width={485}
             height={447}
-            className="absolute object-cover left-50 bottom-0"
+            className='absolute bottom-0 left-50 object-cover'
           />
         </section>
       ),
     },
     {
-      key: "section5",
+      key: 'section5',
       content: (
         <section className={`${sectionClassName} justify-start`}>
           <FormSections.SkillConfidence
@@ -363,20 +349,18 @@ export default function Application() {
                 ? { opacity: 1, x: 550, y: 300, rotate: 18 }
                 : { opacity: 0, x: 0, y: -100, rotate: 0 }
             }
-            transition={
-              inView4 ? { duration: 1.8, ease: "easeInOut" } : { duration: 0 }
-            }
-            src="/application-page/spaceship.png"
-            alt="spaceship"
+            transition={inView4 ? { duration: 1.8, ease: 'easeInOut' } : { duration: 0 }}
+            src='/application-page/spaceship.png'
+            alt='spaceship'
             width={336}
             height={336}
-            className="absolute -right-40 top-10 translate-x-1/2 translate-y-1/2 rotate-[18deg] -scale-x-100"
+            className='absolute top-10 -right-40 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[18deg]'
           />
         </section>
       ),
     },
     {
-      key: "section6",
+      key: 'section6',
       content: (
         <section className={`${sectionClassName} justify-end`}>
           <FormSections.GeneralInfo
@@ -389,31 +373,27 @@ export default function Application() {
             ref={spaceshipRef5}
             initial={{ opacity: 0, x: 0, y: -300 }}
             animate={
-              inView5
-                ? { opacity: 1, x: 600, y: 0, rotate: -40 }
-                : { opacity: 0, x: 0, y: -300 }
+              inView5 ? { opacity: 1, x: 600, y: 0, rotate: -40 } : { opacity: 0, x: 0, y: -300 }
             }
-            transition={
-              inView5 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }
-            }
-            src="/application-page/spaceship.png"
-            alt="spaceship"
+            transition={inView5 ? { duration: 2, ease: 'easeInOut' } : { duration: 0 }}
+            src='/application-page/spaceship.png'
+            alt='spaceship'
             width={336}
             height={336}
-            className="absolute -left-120 -top-60 translate-x-1/2 translate-y-1/2 rotate-[30deg]"
+            className='absolute -top-60 -left-120 translate-x-1/2 translate-y-1/2 rotate-[30deg]'
           />
           <Image
-            src="/application-page/star.svg"
-            alt="star"
+            src='/application-page/star.svg'
+            alt='star'
             width={485}
             height={447}
-            className="absolute object-cover -left-310 -top-60"
+            className='absolute -top-60 -left-310 object-cover'
           />
         </section>
       ),
     },
     {
-      key: "section7",
+      key: 'section7',
       content: (
         <section className={`${sectionClassName} justify-center`}>
           <FormSections.MLH />
@@ -421,32 +401,28 @@ export default function Application() {
       ),
     },
     {
-      key: "section8",
+      key: 'section8',
       content: (
-        <section className={`${sectionClassName} justify-center flex-col`}>
+        <section className={`${sectionClassName} flex-col justify-center`}>
           <FormSections.ConsentInfo />
           <Image
-            src="/application-page/star.svg"
-            alt="star"
+            src='/application-page/star.svg'
+            alt='star'
             width={485}
             height={447}
-            className="absolute object-cover -right-45 -top-10"
+            className='absolute -top-10 -right-45 object-cover'
           />
           <Image
-            src="/application-page/star.svg"
-            alt="star"
+            src='/application-page/star.svg'
+            alt='star'
             width={485}
             height={447}
-            className="absolute object-cover -left-310 -top-60"
+            className='absolute -top-60 -left-310 object-cover'
           />
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-10"
-          >
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className='mt-10'>
             <Button
-              text="Submit Application"
-              extraClass="py-3 cursor-pointer"
+              text='Submit Application'
+              extraClass='py-3 cursor-pointer'
               onClick={handleSave}
             />
           </motion.div>
@@ -457,59 +433,51 @@ export default function Application() {
 
   const handleStart = () => {
     setIsFormActive(true);
-    appRef.current?.scrollIntoView({ behavior: "smooth" });
+    appRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   // find question_id by label
   const getQuestionId = (label: string) => {
-    const question = questions.find(
-      (q) => q.label.toLowerCase() === label.toLowerCase()
-    );
+    const question = questions.find((q) => q.label.toLowerCase() === label.toLowerCase());
     return question?.question_id;
   };
 
   return (
-    <div className="h-screen">
+    <div className='h-screen'>
       <Navbar hide={true} />
-      <div className="h-[calc(100vh-10rem)] no-scrollbar overflow-y-scroll snap-y snap-mandatory bg-black text-white relative">
+      <div className='no-scrollbar relative h-[calc(100vh-10rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white'>
         {/* <Parallax speed={30}> */}
-        <section className="h-[calc(100vh-10rem)] snap-end scroll-smooth overflow-x-hidden overflow-y-visible flex flex-col items-center justify-center relative px-4 md:px-10">
-          <Card className="w-8/12 text-center relative">
-            <div className="mb-10">
-              <h1 className="text-6xl font-extrabold text-[#81C470] tracking-wide">
-                APPLICATION
-              </h1>
+        <section className='relative flex h-[calc(100vh-10rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-visible scroll-smooth px-4 md:px-10'>
+          <Card className='relative w-8/12 text-center'>
+            <div className='mb-10'>
+              <h1 className='text-6xl font-extrabold tracking-wide text-[#81C470]'>APPLICATION</h1>
             </div>
-            <p className="text-xl mb-10">
+            <p className='mb-10 text-xl'>
               Hey hacker, welcome aboard&#x1F44B;&#x1F3FC; <br />
-              Your co-pilot <strong>(name)</strong> will track your journey
-              through this application. Buckle up!
+              Your co-pilot <strong>(name)</strong> will track your journey through this
+              application. Buckle up!
             </p>
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="w-fit mx-auto"
+              className='mx-auto w-fit'
             >
-              <Button
-                text="Begin now"
-                extraClass="py-3 cursor-pointer"
-                onClick={handleStart}
-              />
+              <Button text='Begin now' extraClass='py-3 cursor-pointer' onClick={handleStart} />
             </motion.div>
             <Image
-              src="/application-page/spaceship.png"
-              alt="spaceship"
+              src='/application-page/spaceship.png'
+              alt='spaceship'
               width={350}
               height={350}
-              className="absolute -bottom-30 -left-40"
+              className='absolute -bottom-30 -left-40'
             />
           </Card>
           <Image
-            src="/application-page/star.svg"
-            alt="star"
+            src='/application-page/star.svg'
+            alt='star'
             width={485}
             height={447}
-            className="absolute object-cover -right-40 -top-5"
+            className='absolute -top-5 -right-40 object-cover'
           />
         </section>
 
