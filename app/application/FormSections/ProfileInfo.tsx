@@ -16,7 +16,7 @@ interface ProfileInfoProps {
 
 export default function ProfileInfo(props: ProfileInfoProps) {
   return (
-    <Card className="w-full max-w-3xl" internalClassName="p-12">
+    <Card className="mx-10 w-full max-w-3xl" internalClassName="p-12">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 1: Profile Info

@@ -238,7 +238,7 @@ export default function Application() {
             ref={spaceshipRef1}
             initial={{ opacity: 0, x: 0, y: -200 }}
             animate={inView1 ? { opacity: 1, x: 600, y: 0 } : { opacity: 0, x: 0, y: -200 }}
-            transition={inView1 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }}
+            transition={inView1 ? { duration: 1.4, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
             width={336}
@@ -301,13 +301,13 @@ export default function Application() {
           <motion.img
             ref={spaceshipRef3}
             initial={{ opacity: 0, x: 0, y: -200 }}
-            animate={inView3 ? { opacity: 1, x: 600, y: 0 } : { opacity: 0, x: 0, y: -200 }}
-            transition={inView3 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }}
+            animate={inView3 ? { opacity: 1, x: 500, y: 50 } : { opacity: 0, x: 0, y: -200 }}
+            transition={inView3 ? { duration: 1.5, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-10 -left-120 translate-x-1/2 translate-y-1/2 rotate-[4.75deg]"
+            className="absolute -top-10 -left-120 translate-x-1/2 translate-y-1/2 rotate-[-3.75deg]"
           />
           <Image
             src="/application-page/star.svg"
@@ -349,7 +349,7 @@ export default function Application() {
                 ? { opacity: 1, x: 550, y: 300, rotate: 18 }
                 : { opacity: 0, x: 0, y: -100, rotate: 0 }
             }
-            transition={inView4 ? { duration: 1.8, ease: "easeInOut" } : { duration: 0 }}
+            transition={inView4 ? { duration: 1.2, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
             width={336}
@@ -447,7 +447,7 @@ export default function Application() {
       <Navbar hide={true} />
       <div className="no-scrollbar relative h-[calc(100vh-10rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white">
         {/* <Parallax speed={30}> */}
-        <section className="relative flex h-[calc(100vh-10rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-visible scroll-smooth px-4 md:px-10">
+        <section className="relative mx-10 flex h-[calc(100vh-10rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-visible scroll-smooth px-4 md:px-10">
           <Card className="relative w-8/12 text-center">
             <div className="mb-10">
               <h1 className="text-6xl font-extrabold tracking-wide text-[#81C470]">APPLICATION</h1>

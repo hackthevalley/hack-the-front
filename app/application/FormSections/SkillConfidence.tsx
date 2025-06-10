@@ -27,7 +27,7 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
   const levels = ["Beginner", "Intermediate", "Advanced", "Expert"];
 
   return (
-    <Card className="w-full max-w-3xl">
+    <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 5: Tell Us How Comfy You Feel With...
