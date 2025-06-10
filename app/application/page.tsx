@@ -484,61 +484,8 @@ export default function Application() {
         {formSections.map((section, index) => (
           <div key={section.key} ref={index === 0 ? appRef : undefined}>
             {section.content}
-            {/* {index === formSections.length - 1 && (
-              <section
-                className={`h-screen snap-start items-center flex px-4 md:px-10 mx-20 justify-center ${
-                  index === formSections.length - 1 ? "flex-col" : ""
-                } gap-10`}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-10"
-                >
-                  <Button
-                    text="Submit Application"
-                    extraClass="py-3 cursor-pointer"
-                    onClick={handleSave}
-                  />
-                </motion.div>
-              </section>
-            )} */}
           </div>
         ))}
-
-        {/* {formSections.map((section, index) => (
-          <section
-            key={section.key}
-            ref={index === 0 ? appRef : undefined}
-            className={`h-[calc(100vh-10rem)] min-height-fit snap-end scroll-smooth overflow-x-hidden overflow-y-visible items-center flex md:px-10 ${
-              section.position
-            } ${index === formSections.length - 1 ? "flex-col" : ""} gap-10`}
-          >
-            {section.content}
-            {index === formSections.length - 1 && (
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-10"
-              >
-                <Button
-                  text="Submit Application"
-                  extraClass="py-3 cursor-pointer"
-                  onClick={handleSave}
-                />
-              </motion.div>
-            )}
-          </section>
-        ))} */}
-        {/* <div className="relative">
-            <Image
-              src="/application-page/dotted-line-path.svg"
-              alt="dotted line"
-              width={1600}
-              height={1000}
-              className="absolute top-0 -left-15"
-            />
-          </div> */}
       </div>
     </div>
   );

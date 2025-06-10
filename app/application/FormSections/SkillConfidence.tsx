@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/components/Card";
+import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 
 interface SkillConfidenceProps {
@@ -28,93 +29,85 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
   return (
     <Card className="w-full max-w-3xl">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 5: Tell Us How Comfy You Feel With...
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
-        <TextField
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
+        <Dropdown
           title="UI/UX Design"
           required={false}
           placeholder="UI/UX Design"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.uiux}
           setFieldValue={props.setUiux}
         />
-        <TextField
+        <Dropdown
           title="Frontend Development"
           required={false}
           placeholder="Frontend Development"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.frontend}
           setFieldValue={props.setFrontend}
         />
-        <TextField
+        <Dropdown
           title="Backend Development"
           required={false}
           placeholder="Backend Development"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.backend}
           setFieldValue={props.setBackend}
         />
-        <TextField
+        <Dropdown
           title="Fullstack Development"
           required={false}
           placeholder="Fullstack Development"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.fullstack}
           setFieldValue={props.setFullstack}
         />
-        <TextField
+        <Dropdown
           title="Project Management"
           required={false}
           placeholder="Project Management"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.pm}
           setFieldValue={props.setPm}
         />
-        <TextField
+        <Dropdown
           title="Web, Crypto, Blockchain"
           required={false}
           placeholder="Web, Crypto, Blockchain"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.crypto}
           setFieldValue={props.setCrypto}
         />
-        <TextField
+        <Dropdown
           title="Cybersecurity"
           required={false}
           placeholder="Cybersecurity"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           fieldValue={props.cyber}
           setFieldValue={props.setCyber}
         />
-        <TextField
+        <Dropdown
           title="Machine Learning"
           required={false}
           placeholder="Machine Learning"
-          type="dropdown"
           options={levels}
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"

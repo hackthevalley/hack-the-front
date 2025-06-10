@@ -31,6 +31,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           textClasses="text-md placeholder:text-base"
           fieldValue={props.firstName}
           setFieldValue={props.setFirstName}
+          disabled={true}
         />
         <TextField
           title="Last Name"
@@ -40,6 +41,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           textClasses="text-md placeholder:text-base"
           fieldValue={props.lastName}
           setFieldValue={props.setLastName}
+          disabled={true}
         />
         {/* TODO: Can be autofilled using the users login email */}
         <TextField
@@ -50,6 +52,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           textClasses="text-md placeholder:text-base"
           fieldValue={props.email}
           setFieldValue={props.setEmail}
+          disabled={true}
         />
         <TextField
           title="Phone Number"

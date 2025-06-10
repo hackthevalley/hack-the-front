@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/components/Card";
+import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 
 interface ExperienceInfoProps {
@@ -25,13 +26,12 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
         </h1>
       </div>
       <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
-        <TextField
+        <Dropdown
           title="Hackathon Count?"
           required={true}
           placeholder="Hackathon Count"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           options={["0", "1", "2–3", "4–5", "6+", "Prefer not to say"]}
           fieldValue={props.hackathonCount}
           setFieldValue={props.setHackathonCount}
