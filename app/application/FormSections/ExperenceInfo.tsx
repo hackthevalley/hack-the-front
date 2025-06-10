@@ -20,11 +20,11 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
   return (
     <Card className="w-full max-w-3xl">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 4: Experience Info
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
         <TextField
           title="Hackathon Count?"
           required={true}
@@ -33,10 +33,8 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           textClasses="text-md placeholder:text-base"
           type="dropdown"
           options={["0", "1", "2–3", "4–5", "6+", "Prefer not to say"]}
-          fieldValue=""
-          setFieldValue={() => {}}
-          // fieldValue={props.hackathonCount}
-          // setFieldValue={props.setHackathonCount}
+          fieldValue={props.hackathonCount}
+          setFieldValue={props.setHackathonCount}
         />
         <TextField
           title="Github"
@@ -44,10 +42,8 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="GitHub"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue=""
-          setFieldValue={() => {}}
-          // fieldValue={props.github}
-          // setFieldValue={props.setGithub}
+          fieldValue={props.github}
+          setFieldValue={props.setGithub}
         />
         <TextField
           title="LinkedIn"
@@ -55,10 +51,8 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="LinkedIn"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          // fieldValue={props.linkedin}
-          // setFieldValue={props.setLinkedin}
-          fieldValue=""
-          setFieldValue={() => {}}
+          fieldValue={props.linkedin}
+          setFieldValue={props.setLinkedin}
         />
         <TextField
           title="Portfolio"
@@ -66,19 +60,17 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="Portfolio"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          // fieldValue={props.portfolio}
-          // setFieldValue={props.setPortfolio}
-          fieldValue=""
-          setFieldValue={() => {}}
+          fieldValue={props.portfolio}
+          setFieldValue={props.setPortfolio}
         />
       </div>
       <div className="mt-5 px-8">
-        <h1 className="text-lg text-[#81C470] tracking-wide">
+        <h1 className="text-lg tracking-wide text-[#81C470]">
           Attach Your Resume <span className="text-red">*</span>
         </h1>
       </div>
-      <div className="flex justify-center mt-3">
-        <div className="grid grid-cols-1 gap-y-4 gap-x-7 w-11/12">
+      <div className="mt-3 flex justify-center">
+        <div className="grid w-11/12 grid-cols-1 gap-x-7 gap-y-4">
           {/* TODO: Replace with an actual file input component */}
           <TextField
             title="Upload resume"
