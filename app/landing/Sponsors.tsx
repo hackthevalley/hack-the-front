@@ -119,7 +119,7 @@ export default function Sponsors() {
         <div className="absolute left-[33%] top-[97%] -translate-y-1/2">
           <img src="/sponsor-page/roadmap-4.png" alt="Roadmap" />
         </div>
-        <div className="relative w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-10 auto-rows-auto">
+        <div className="relative w-full auto-rows-auto">
           {/* Gold */}
           <div className="absolute -left-14 top-[1%] -translate-y-1/2">
             <Image
@@ -129,14 +129,12 @@ export default function Sponsors() {
               height={160}
             />
           </div>
-          <SponsorField className="col-span-full md:col-span-4 lg:col-span-6 row-span-2 h-56" />
-          <SponsorField className="col-span-full md:col-span-4 lg:col-span-6 row-span-2 h-56" />
-          <SponsorField className="col-span-full md:col-span-4 lg:col-span-6 row-span-2 h-56" />
+          <div className="grid grid-cols-1 gap-10">
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+          </div>
           {/* Silver*/}
-          <SponsorField className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 h-56" />
-          <SponsorField className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 h-56" />
-          <SponsorField className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 h-56" />
-          <SponsorField className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 h-56" />
           <div className="absolute -right-18 top-[40%] -translate-y-1/2">
             <Image
               src="/sponsor-page/star.png"
@@ -145,15 +143,16 @@ export default function Sponsors() {
               height={160}
             />
           </div>
-          <SponsorField className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 h-56" />
-          <SponsorField className="col-span-2 md:col-span-2 lg:col-span-3 row-span-2 h-56" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10">
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+            <SponsorField className="h-56" />
+          </div>
+
           {/* Bronze */}
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
           <div className="absolute -left-18 top-[90.5%] -translate-y-1/2">
             <Image
               src="/sponsor-page/star.png"
@@ -162,9 +161,17 @@ export default function Sponsors() {
               height={160}
             />
           </div>
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
-          <SponsorField className="col-span-1 md:col-span-1 lg:col-span-2 row-span-2 h-36" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+            <SponsorField className="h-36" />
+          </div>
         </div>
       </div>
     </section>
