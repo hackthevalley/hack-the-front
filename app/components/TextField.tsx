@@ -1,10 +1,11 @@
 import "../globals.css";
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useMemo, useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import fetchInstance from "@/utils/api";
+
 
 interface TextFieldProps {
   title: string;
@@ -22,6 +23,7 @@ interface TextFieldProps {
   setFile?: (value: string | File | null) => void;
   hasError?: boolean;
   errorMessage?: string;
+  disabled?: boolean;
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -41,13 +43,14 @@ export default function TextField(props: TextFieldProps) {
     setFile,
     hasError = false,
     errorMessage = "Invalid value",
+    disabled = false,
   } = props;
 
-  const borderColor = hasError ? "var(--color-red)" : "var(--color-indigo)";
   const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-transparent ${
     multiline ? "h-full resize-none" : ""
   }`;
   const [localType, setLocalType] = useState<string>(type);
+  const [touched, setTouched] = useState<boolean>(false);
 
   const allowedFormats = [".pdf"];
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,12 +95,26 @@ export default function TextField(props: TextFieldProps) {
       setLocalType("password");
     }
   };
+
+  const borderColor = useMemo(() => {
+    return touched
+      ? hasError
+        ? "var(--color-red)"
+        : "var(--color-white)"
+      : hasError
+        ? "var(--color-red)"
+        : "var(--color-indigo)";
+  }, [touched, hasError]);
+
   const renderInput = () => {
     switch (type) {
       case "textarea":
         return (
           <textarea
             placeholder={placeholder}
+            onFocus={() => setTouched(true)}
+            onBlur={() => setTouched(false)}
+            disabled={disabled}
             className={`${baseClasses} ${textClasses} h-full resize-none`}
           />
         );
@@ -105,9 +122,12 @@ export default function TextField(props: TextFieldProps) {
         return (
           <div className="relative w-full">
             <select
-              className={`${baseClasses} ${textClasses} pr-10 appearance-none bg-transparent`}
+              className={`${baseClasses} ${textClasses} appearance-none bg-transparent pr-10`}
               value={fieldValue}
+              onFocus={() => setTouched(true)}
+              onBlur={() => setTouched(false)}
               onChange={(e) => setFieldValue(e.target.value)}
+              disabled={disabled}
               style={{
                 border: "none",
                 WebkitAppearance: "none",
@@ -133,7 +153,9 @@ export default function TextField(props: TextFieldProps) {
               })}
             </select>
 
-            <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-grey">
+            <div
+              className={`text-grey pointer-events-none absolute top-1/2 right-2 -translate-y-1/2 transform ${touched ? "text-white" : "text-grey"}`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -158,6 +180,9 @@ export default function TextField(props: TextFieldProps) {
               type={type === "password" ? localType : type}
               placeholder={placeholder}
               className={`${baseClasses} ${textClasses}`}
+              onFocus={() => setTouched(true)}
+              onBlur={() => setTouched(false)}
+              disabled={disabled}
               value={fieldValue}
               onChange={(e) => setFieldValue(e.target.value)}
             />
@@ -165,7 +190,7 @@ export default function TextField(props: TextFieldProps) {
               <button
                 type="button"
                 onClick={togglePassword}
-                className="absolute right-4 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="absolute top-1/2 right-4 -translate-x-1/2 -translate-y-1/2"
               >
                 <FontAwesomeIcon
                   icon={localType === "password" ? faEye : faEyeSlash}
@@ -229,6 +254,9 @@ export default function TextField(props: TextFieldProps) {
             type={type === "email" ? "email" : "text"}
             placeholder={placeholder}
             className={`${baseClasses} ${textClasses}`}
+            onFocus={() => setTouched(true)}
+            onBlur={() => setTouched(false)}
+            disabled={disabled}
             value={fieldValue}
             onChange={(e) => setFieldValue(e.target.value)}
           />
@@ -237,7 +265,7 @@ export default function TextField(props: TextFieldProps) {
   };
   return (
     <div
-      className={`rounded-[20px] border-2 px-5 py-2 flex flex-col justify-start relative overflow-hidden ${widthClasses} ${heightClasses}`}
+      className={`relative flex flex-col justify-start overflow-hidden rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${widthClasses} ${heightClasses}`}
       style={{
         borderColor: borderColor,
         backgroundColor: "var(--color-bgblue)",
@@ -268,15 +296,13 @@ export default function TextField(props: TextFieldProps) {
         }}
       />}
       <label
-        className={`flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] mb-1`}
+        className={`mb-1 flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)]`}
       >
         {type !== "file" && title}
         {required && title !== "" && type !== "file" && <span className="text-red ml-1">*</span>}
       </label>
       {renderInput()}
-      {hasError && (
-        <span className="text-red text-sm mt-1">{errorMessage}</span>
-      )}
+      {hasError && <span className="text-red mt-1 text-sm">{errorMessage}</span>}
     </div>
   );
 }

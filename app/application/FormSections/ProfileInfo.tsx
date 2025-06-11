@@ -19,13 +19,13 @@ interface ProfileInfoProps {
 
 export default function ProfileInfo(props: ProfileInfoProps) {
   return (
-    <Card className="w-full max-w-3xl" internalClassName="p-12">
+    <Card className="mx-10 w-full max-w-3xl" internalClassName="p-12">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 1: Profile Info
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-7">
+      <div className="grid grid-cols-1 gap-x-7 gap-y-4 md:grid-cols-2">
         <TextField
           title={props.questions[0]?.label}
           required={false}
@@ -61,6 +61,8 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          fieldValue={props.phoneNumber}
+          setFieldValue={props.setPhoneNumber}
           fieldValue={props.phoneNumber}
           setFieldValue={props.setPhoneNumber}
         />

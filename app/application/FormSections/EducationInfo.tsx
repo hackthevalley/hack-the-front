@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 import { Question } from "../context/QuestionContext";
 
@@ -118,54 +119,50 @@ interface EducationInfoProps {
 
 export default function EducationInfo(props: EducationInfoProps) {
   return (
-    <Card className="w-full max-w-3xl">
+    <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 2: School Info
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-7">
-        <TextField
+        <Dropdown
           title={props.questions[0]?.label}
           required={false}
           placeholder="Select your country"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           options={countries}
           fieldValue={props.country}
           setFieldValue={props.setCountry}
         />
-        <TextField
+        <Dropdown
           title={props.questions[1]?.label}
           required={true}
           placeholder="Select your school"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           options={universities}
           fieldValue={props.schoolName}
           setFieldValue={props.setSchoolName}
         />
-        <TextField
+        <Dropdown
           title={props.questions[2]?.label}
           required={true}
           placeholder="Select your level of education"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           // options={["High School", "Undergraduate", "Graduate", "PhD", "Other"]}
           options={["High School", "Sophomore - Undergraduate", "Junior - Undergraduate", "Senior - Undergraduate", "Graduate", "PhD"]}
           fieldValue={props.currentLevelOfStudy}
           setFieldValue={props.setCurrentLevelOfStudy}
         />
-        <TextField
+        <Dropdown
           title={props.questions[3]?.label}
           required={true}
           placeholder="Select your major"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           options={majors}
           fieldValue={props.major}
           setFieldValue={props.setMajor}
@@ -173,22 +170,15 @@ export default function EducationInfo(props: EducationInfoProps) {
       </div>
       <div className="flex justify-center mt-6">
         <div className="grid grid-cols-1 gap-y-4 gap-x-7 w-2/3">
-          <TextField
+          <Dropdown
             title={props.questions[4]?.label}
             required={true}
             placeholder="Enter your expected year of graduation"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
-            type="dropdown"
             fieldValue={props.expectedGraduationYear}
             setFieldValue={props.setExpectedGraduationYear}
-            options={[
-              "2025",
-              "2026",
-              "2027",
-              "2028",
-              "2029",
-            ]}
+            options={["2025", "2026", "2027", "2028", "2029", "2030", "2031", "Other"]}
           />
         </div>
       </div>

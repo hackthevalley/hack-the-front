@@ -37,13 +37,28 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .scroll-animate {
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-euclid-circular-b), -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    var(--font-euclid-circular-b),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  overflow: auto;
+  height: auto;
 }
 
 /* For the Hack the Valley Title on Landing Page */

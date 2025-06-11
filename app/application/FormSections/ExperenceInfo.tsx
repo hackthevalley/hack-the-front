@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/components/Card";
+import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 import { Question } from "../context/QuestionContext";
 
@@ -20,20 +21,19 @@ interface ExperienceInfoProps {
 
 export default function ExperienceInfo(props: ExperienceInfoProps) {
   return (
-    <Card className="w-full max-w-3xl">
+    <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 4: Experience Info
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
-        <TextField
+        <Dropdown
           title={props.questions[0]?.label}
           required={true}
           placeholder="Hackathon Count"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           options={["0", "1", "2–3", "4–5", "6+", "Prefer not to say"]}
           fieldValue={props.hackathonCount}
           setFieldValue={props.setHackathonCount}
@@ -71,8 +71,8 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           {props.questions[4]?.label} <span className="text-red">*</span>
         </h1>
       </div>
-      <div className="flex justify-center mt-3">
-        <div className="grid grid-cols-1 gap-y-4 gap-x-7 w-11/12">
+      <div className="mt-3 flex justify-center">
+        <div className="grid w-11/12 grid-cols-1 gap-x-7 gap-y-4">
           {/* TODO: Replace with an actual file input component */}
           <TextField
             title="Upload or Drag & Drop Your Resume"
