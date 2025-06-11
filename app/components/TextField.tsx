@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
+import { usePathname } from "next/navigation";
+import fetchInstance from "@/utils/api";
 
 interface TextFieldProps {
   title: string;
@@ -54,11 +56,27 @@ export default function TextField(props: TextFieldProps) {
     if (file) {
       const fileExtension = file.name.split('.').pop()?.toLowerCase();
       if (allowedFormats.includes(`.${fileExtension}`)) {
-        if (setFile) {
-          setFile(file);
-          toast.dismiss(uploadingFile);
-          toast.success("File uploaded successfully!");
-        }
+        setFile?.(file);
+        const uploadFile = async () => {
+          try {
+            const res = await fetchInstance("forms/uploadresume", {
+              method: "POST",
+              body: (() => {
+                const formData = new FormData();
+                formData.append("file", file);
+                return formData;
+              })(),
+            });
+            console.log("File upload response:", res);
+            toast.dismiss(uploadingFile);
+            toast.success("File uploaded successfully!");
+          } catch (error) {
+            console.error("File upload failed:", error);
+            toast.dismiss(uploadingFile);
+            toast.error("File upload failed.");
+          }
+        };
+        uploadFile();
       } else {
         toast.dismiss(uploadingFile);
         toast.error(`Invalid file format.`);
@@ -225,6 +243,7 @@ export default function TextField(props: TextFieldProps) {
         backgroundColor: "var(--color-bgblue)",
       }}
     >
+    {usePathname() === "/application" &&     
       <Toaster
         position="top-right"
         toastOptions={{
@@ -247,7 +266,7 @@ export default function TextField(props: TextFieldProps) {
             },
           },
         }}
-      />
+      />}
       <label
         className={`flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] mb-1`}
       >
