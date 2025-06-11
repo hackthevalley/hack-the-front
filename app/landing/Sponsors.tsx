@@ -1,5 +1,7 @@
 import GreenButton from "@/components/GreenButton";
 import SponsorField from "@/components/SponsorField";
+import Image from "next/image";
+import badge from "@/assets/images/badge.png";
 
 export default function Sponsors() {
   return (
@@ -27,41 +29,44 @@ export default function Sponsors() {
             <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
           </div>
         </div>
-        <div className="w-full my-[2rem]">
-          <div className="flex flex-col justify-center items-center border-indigo border-[2px] bg-bgblue rounded-[20px] h-28">
+        <div className="relative w-full my-8 flex justify-center">
+          <div className="relative flex flex-col w-full justify-center items-center border-2 border-indigo bg-bgblue rounded-[20px] h-24 pr-12 py-4 text-center">
             <div className="flex flex-row gap-x-1">
-              <p className="text-white w-fit whitespace-nowrap font-semibold text-[20px] text-center">
+              <p className="text-white w-fit whitespace-nowrap font-semibold text-xl text-center">
                 Interested in supporting
               </p>
 
-              <p className="text-green w-fit whitespace-nowrap font-semibold text-[20px] text-center">
+              <p className="text-green w-fit whitespace-nowrap font-semibold text-xl text-center">
                 Hack the Valley?
               </p>
             </div>
             <div className="flex flex-row gap-x-1">
-              <p className="text-white w-fit whitespace-nowrap font-semibold text-[20px] text-center">
+              <p className="text-white w-fit whitespace-nowrap font-semibold text-xl text-center">
                 Send us an inquiry
               </p>
-              <p className="text-green w-fit whitespace-nowrap font-semibold text-[20px] text-center">
+              <p className="text-green w-fit whitespace-nowrap font-semibold text-xl text-center">
                 @
               </p>
               <a
                 href="mailto:sponsorships@hackthevalley.io"
-                className="text-green underline text-[20px]"
+                className="text-green underline text-xl"
               >
                 sponsorships@hackthevalley.io
               </a>
+            </div>
+            <div className="absolute -right-20 top-1/2 -translate-y-1/2">
+              <Image src={badge} alt="badge" width={150} height={150} />
             </div>
           </div>
         </div>
         <GreenButton text="Become a sponsor" />
         <div className="self-end mt-10 mb-3">
           <div className="flex flex-row gap-x-1">
-            <p className="text-white w-fit whitespace-nowrap font-semibold text-[20px] text-center">
+            <p className="text-white w-fit whitespace-nowrap font-semibold text-xl text-center">
               {">"} check out our
             </p>
 
-            <p className="text-green w-fit whitespace-nowrap font-semibold text-[20px] text-center">
+            <p className="text-green w-fit whitespace-nowrap font-semibold text-xl text-center">
               amazing sponsors !
             </p>
           </div>

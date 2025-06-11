@@ -14,6 +14,7 @@
     /* Colours */
     --color-black: #06101E;
     --color-darkblue: #1C4582;
+    --color-midnight: #060F1C;
     --color-blue: #485B9B;
     --color-indigo: #1A427D;
     --color-green: #A5D6A7;
@@ -27,6 +28,7 @@
     --color-darkgrey: #979797;
     --color-bgblue: #0B1C34;        /* for textfield background */
     --color-yellow: #EDCE6880;
+    --color-gray: #BABABA;
 
 }
 

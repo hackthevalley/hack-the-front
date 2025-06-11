@@ -8,6 +8,7 @@ import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 
 import Sponsors from "./landing/Sponsors";
+import Footer from "./landing/Footer";
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
@@ -17,7 +18,7 @@ export default function Home() {
       <Navbar />
       {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative overflow-hidden p-8 pb-20 gap-16 font-[family-name:var(--font-euclid-circular-b)] sm:p-20">
+      <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-[calc(100vh-10rem)] bg-black relative p-8 pb-20 gap-16 font-[family-name:var(--font-euclid-circular-b)] sm:p-20">
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
         <Image
@@ -170,8 +171,8 @@ export default function Home() {
           </div>
           <Sponsors />
         </main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
       </div>
+      <Footer />
     </div>
   );
 }
