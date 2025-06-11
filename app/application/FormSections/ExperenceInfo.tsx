@@ -73,7 +73,6 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
       </div>
       <div className="mt-3 flex justify-center">
         <div className="grid w-11/12 grid-cols-1 gap-x-7 gap-y-4">
-          {/* TODO: Replace with an actual file input component */}
           <TextField
             title="Upload or Drag & Drop Your Resume"
             required={true}

@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { JSX, useState } from "react";
 
@@ -26,7 +25,7 @@ const findUserAppAnswer = (questionBank: any, question_id: string) => {
   const answer = questionBank.find(
     (item: any) => item.question_id === question_id
   );
-  console.log("findUserAppAnswer for question_id:", answer.answer);
+  // console.log("findUserAppAnswer for question_id:", answer.answer);
   return answer && answer.answer !== null ? answer.answer : "";
 }
 
@@ -179,149 +178,6 @@ export default function Application() {
   // }
   // , [questions, section1Questions, section2Questions, section3Questions, section4Questions, section5Questons, section6Questions, section7Questions, section8Questions]);
 
-  const formSections: {
-    key: string;
-    position: string;
-    content: JSX.Element;
-  }[] = [
-    {
-      key: "section1",
-      position: "justify-start",
-      content: (
-        <FormSections.ProfileInfo
-          questions={section1Questions}
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          email={email}
-          setEmail={setEmail}
-          phoneNumber={phoneNumber}
-          setPhoneNumber={setPhoneNumber}
-          />
-        ),
-      },
-      {
-      key: "section2",
-      position: "justify-end",
-      content: (
-        <FormSections.EducationInfo
-          questions={section2Questions}
-          country={country}
-          setCountry={setCountry}
-          schoolName={schoolName}
-          setSchoolName={setSchoolName}
-          currentLevelOfStudy={currentLevelOfStudy}
-          setCurrentLevelOfStudy={setCurrentLevelOfStudy}
-          major={major}
-          setMajor={setMajor}
-          expectedGraduationYear={expectedGraduationYear}
-          setExpectedGraduationYear={setExpectedGraduationYear}
-        />
-      ),
-    },
-    {
-      key: "section3",
-      position: "justify-start",
-      content: (
-        <FormSections.DemographyInfo
-          questions={section3Questions}
-          age={age}
-          setAge={setAge}
-          gender={gender}
-          setGender={setGender}
-          raceEthinicity={raceEthinicity}
-          setRaceEthinicity={setRaceEthinicity}
-          LGBTQI={LGBTQI}
-          setLGBTGI={setLGBTGI}
-          disabilities={disabilities}
-          setDisabilities={setDisabilities}
-        />
-      ),
-    },
-    {
-      key: "section4",
-      position: "justify-end",
-      content: (
-        <FormSections.ExperienceInfo
-          questions={section4Questions}
-          hackathonCount={hackathonCount}
-          setHackathonCount={setHackathonCount}
-          github={github}
-          setGithub={setGithub}
-          linkedin={linkedin}
-          setLinkedin={setLinkedin}
-          portfolio={portfolio}
-          setPortfolio={setPortfolio}
-          resumeFile={resumeFile}
-          setResumeFile={setResumeFile}
-        />
-      ),
-    },
-    {
-      key: "section5",
-      position: "justify-start",
-      content: (
-        <FormSections.SkillConfidence
-          questions={section5Questons}
-          uiux={uiux}
-          setUiux={setUiux}
-          frontend={frontend}
-          setFrontend={setFrontend}
-          backend={backend}
-          setBackend={setBackend}
-          fullstack={fullstack}
-          setFullstack={setFullstack}
-          pm={pm}
-          setPm={setPm}
-          crypto={crypto}
-          setCrypto={setCrypto}
-          cyber={cyber}
-          setCyber={setCyber}
-          ml={ml}
-          setMl={setMl}
-        />
-      ),
-    },
-    {
-      key: "section6",
-      position: "justify-end",
-      content: (
-        <FormSections.GeneralInfo
-          questions={section6Questions}
-          dietaryRestrictions={dietaryRestrictions}
-          setDietaryRestrictions={setDietaryRestrictions}
-          shirtSize={shirtSize}
-          setShirtSize={setShirtSize}
-        />
-      ),
-    },
-    {
-      key: "section7",
-      position: "justify-center",
-      content: (
-        <FormSections.MLH
-          mlhCodeOfConduct={mlhCodeOfConduct}
-          setMlhCodeOfConduct={setMlhCodeOfConduct}
-          mlhPrivacyPolicy={mlhPrivacyPolicy}
-          setMlhPrivacyPolicy={setMlhPrivacyPolicy}
-          mlhEmailConsent={mlhEmailConsent}
-          setMlhEmailConsent={setMlhEmailConsent}
-        />
-      ),
-    },
-    {
-      key: "section8",
-      position: "justify-center",
-      content: (
-        <FormSections.ConsentInfo
-          consentAgreed={consentAgreed}
-          setConsentAgreed={setConsentAgreed}
-        />
-      ),
-    },
-  ];
-
   const handleStart = () => {
     setIsFormActive(true);
     appRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -434,6 +290,7 @@ export default function Application() {
       content: (
         <section className={`${sectionClassName} justify-start`}>
           <FormSections.ProfileInfo
+            questions={section1Questions}
             firstName={firstName}
             setFirstName={setFirstName}
             lastName={lastName}
@@ -468,7 +325,8 @@ export default function Application() {
       key: "section2",
       content: (
         <section className={`${sectionClassName} justify-end`}>
-          <FormSections.SchoolInfo
+          <FormSections.EducationInfo
+            questions={section2Questions}
             country={country}
             setCountry={setCountry}
             schoolName={schoolName}
@@ -499,6 +357,7 @@ export default function Application() {
       content: (
         <section className={`${sectionClassName} justify-start`}>
           <FormSections.DemographyInfo
+            questions={section3Questions}
             age={age}
             setAge={setAge}
             gender={gender}
@@ -533,6 +392,7 @@ export default function Application() {
       content: (
         <section className={`${sectionClassName} justify-end`}>
           <FormSections.ExperienceInfo
+            questions={section4Questions}
             hackathonCount={hackathonCount}
             setHackathonCount={setHackathonCount}
             github={github}
@@ -570,6 +430,7 @@ export default function Application() {
       content: (
         <section className={`${sectionClassName} justify-start`}>
           <FormSections.SkillConfidence
+            questions={section5Questons}
             uiux={uiux}
             setUiux={setUiux}
             frontend={frontend}
@@ -610,6 +471,7 @@ export default function Application() {
       content: (
         <section className={`${sectionClassName} justify-end`}>
           <FormSections.GeneralInfo
+            questions={section6Questions}
             dietaryRestrictions={dietaryRestrictions}
             setDietaryRestrictions={setDietaryRestrictions}
             shirtSize={shirtSize}
@@ -642,7 +504,14 @@ export default function Application() {
       key: "section7",
       content: (
         <section className={`${sectionClassName} justify-center`}>
-          <FormSections.MLH />
+          <FormSections.MLH
+            mlhCodeOfConduct={mlhCodeOfConduct}
+            setMlhCodeOfConduct={setMlhCodeOfConduct}
+            mlhPrivacyPolicy={mlhPrivacyPolicy}
+            setMlhPrivacyPolicy={setMlhPrivacyPolicy}
+            mlhEmailConsent={mlhEmailConsent}
+            setMlhEmailConsent={setMlhEmailConsent}
+          />
         </section>
       ),
     },
@@ -650,7 +519,10 @@ export default function Application() {
       key: "section8",
       content: (
         <section className={`${sectionClassName} flex-col justify-center`}>
-          <FormSections.ConsentInfo />
+          <FormSections.ConsentInfo
+            consentAgreed={consentAgreed}
+            setConsentAgreed={setConsentAgreed}
+          />
           <Image
             src="/application-page/star.svg"
             alt="star"
@@ -669,24 +541,13 @@ export default function Application() {
             <Button
               text="Submit Application"
               extraClass="py-3 cursor-pointer"
-              onClick={handleSave}
+              onClick={handleSubmit}
             />
           </motion.div>
         </section>
       ),
     },
   ];
-
-  const handleStart = () => {
-    setIsFormActive(true);
-    appRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // find question_id by label
-  const getQuestionId = (label: string) => {
-    const question = questions.find((q) => q.label.toLowerCase() === label.toLowerCase());
-    return question?.question_id;
-  };
 
   return (
     <div className="h-screen">
@@ -730,20 +591,7 @@ export default function Application() {
         {formSections.map((section, index) => (
           <div key={section.key} ref={index === 0 ? appRef : undefined}>
             {section.content}
-            {index === formSections.length - 1 && (
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-10"
-              >
-                <Button
-                  text="Submit Application"
-                  extraClass="py-3 cursor-pointer"
-                  onClick={handleSubmit}
-                />
-              </motion.div>
-            )}
-          </section>
+          </div>
         ))}
       </div>
     </div>

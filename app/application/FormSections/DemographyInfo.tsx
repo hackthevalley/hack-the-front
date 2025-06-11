@@ -1,6 +1,5 @@
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
-import TextField from "@/components/TextField";
 import { Question } from "../context/QuestionContext";
 
 interface DemographyInfoProps {
@@ -32,7 +31,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           placeholder="Age"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())} // TODO: May need to change this to a increatment field
+          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())} // TODO: May need to change this to a increment field
           fieldValue={props.age}
           setFieldValue={props.setAge}
         />
@@ -42,7 +41,13 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           placeholder="Gender"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          options={["Male", "Female", "Non-binary", "Other", "Prefer not to say"]}
+          options={[
+            "Male",
+            "Female",
+            "Non-binary",
+            "Other",
+            "Prefer not to say"
+          ]}
           fieldValue={props.gender}
           setFieldValue={props.setGender}
         />
@@ -73,7 +78,11 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           placeholder=""
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          options={["Yes", "No", "Prefer not to say"]}
+          options={[
+            "Yes", 
+            "No", 
+            "Prefer not to say"
+          ]}
           fieldValue={props.LGBTQI}
           setFieldValue={props.setLGBTGI}
         />
@@ -86,7 +95,11 @@ export default function DemographyInfo(props: DemographyInfoProps) {
             placeholder=""
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
-            options={["Yes", "No", "Prefer not to say"]}
+            options={[
+              "Yes",
+              "No",
+              "Prefer not to say"
+            ]}
             fieldValue={props.disabilities}
             setFieldValue={props.setDisabilities}
           />

@@ -3,7 +3,6 @@
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
 import { Question } from "../context/QuestionContext";
-import { useEffect } from "react";
 
 interface ProfileInfoProps {
   questions: Question[];
@@ -34,6 +33,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           textClasses="text-md placeholder:text-base"
           fieldValue={props.firstName}
           setFieldValue={props.setFirstName}
+          disabled={true}
         />
         <TextField
           title={props.questions[1]?.label}
@@ -43,8 +43,8 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           textClasses="text-md placeholder:text-base"
           fieldValue={props.lastName}
           setFieldValue={props.setLastName}
+          disabled={true}
           />
-        {/* TODO: Can be autofilled using the users login email */}
         <TextField
           title={props.questions[2]?.label}
           required={true}
@@ -54,6 +54,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           type="email"
           fieldValue={props.email}
           setFieldValue={props.setEmail}
+          disabled={true}
           />
         <TextField
           title={props.questions[3]?.label}
@@ -61,8 +62,6 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={props.phoneNumber}
-          setFieldValue={props.setPhoneNumber}
           fieldValue={props.phoneNumber}
           setFieldValue={props.setPhoneNumber}
         />

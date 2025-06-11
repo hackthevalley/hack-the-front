@@ -2,7 +2,6 @@
 
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
-import TextField from "@/components/TextField";
 import { Question } from "../context/QuestionContext";
 
 interface SkillConfidenceProps {

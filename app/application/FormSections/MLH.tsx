@@ -13,7 +13,6 @@ interface MLHProps {
   setMlhEmailConsent: (val: boolean) => void;
 }
 
-
 export default function MLH(props: MLHProps) {  const spaceshipRef6 = useRef<HTMLImageElement>(null);
   const inView6 = useInView(spaceshipRef6, { once: false, margin: "-20% 0px" });
 
