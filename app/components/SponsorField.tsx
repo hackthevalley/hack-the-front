@@ -21,7 +21,13 @@ export default function SponsorField({
     >
       <div className="w-full h-full flex flex-col items-center justify-center text-center">
         {logo && (
-          <div className="relative w-36 h-36">
+          <div
+            className="relative 
+                          w-24 h-24 
+                          sm:w-28 sm:h-28 
+                          md:w-32 md:h-32 
+                          lg:w-36 lg:h-36"
+          >
             <Image
               src={logo}
               alt={logoAlt}
