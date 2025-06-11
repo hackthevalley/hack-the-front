@@ -10,7 +10,9 @@ interface TextFieldProps {
   multiline?: boolean;
   widthClasses?: string;
   heightClasses?: string;
-  type?: string;
+  textClasses?: string;
+  type?: "text" | "textarea" | "dropdown" | "password" | "email";
+  options?: string[] | { label: string; value: string }[];
   fieldValue: string;
   setFieldValue: (value: string) => void;
   hasError?: boolean;
@@ -22,16 +24,22 @@ export default function TextField(props: TextFieldProps) {
     title = "",
     required = false,
     placeholder = "",
-    multiline = false,
     widthClasses = "mx-[auto] sm:w-full",
     heightClasses = "min-h-15 sm:min-h-10",
+    multiline = false,
     type = "text",
+    textClasses = "text-[20px]",
+    options = [],
     fieldValue,
     setFieldValue,
     hasError = false,
     errorMessage = "Invalid value",
   } = props;
 
+  const borderColor = hasError ? "var(--color-red)" : "var(--color-indigo)";
+  const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-transparent ${
+    multiline ? "h-full resize-none" : ""
+  }`;
   const [localType, setLocalType] = useState<string>(type);
 
   const togglePassword = () => {
@@ -41,40 +49,72 @@ export default function TextField(props: TextFieldProps) {
       setLocalType("password");
     }
   };
-
-  const baseClasses = `font-[Euclid Circular B] font-normal text-[20px] placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent ${
-    multiline ? "h-full resize-none" : ""
-  }`;
-
-  const borderColor = hasError ? "var(--color-red)" : "var(--color-indigo)";
-
-  return (
-    <div className={`flex flex-col ${widthClasses}`}>
-      <div
-        className={`rounded-[20px] border-2 px-5 py-2 flex flex-col justify-start relative ${heightClasses}`}
-        style={{
-          borderColor,
-          backgroundColor: "var(--color-bgblue)",
-        }}
-      >
-        <label className="flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] text-[20px] mb-1">
-          {title}
-          {required && <span className="text-red ml-1">*</span>}
-        </label>
-
-        {multiline ? (
+  const renderInput = () => {
+    switch (type) {
+      case "textarea":
+        return (
           <textarea
             placeholder={placeholder}
-            className={baseClasses}
-            value={fieldValue}
-            onChange={(e) => setFieldValue(e.target.value)}
+            className={`${baseClasses} ${textClasses} h-full resize-none`}
           />
-        ) : (
+        );
+      case "dropdown":
+        return (
+          <div className="relative w-full">
+            <select
+              className={`${baseClasses} ${textClasses} pr-10 appearance-none bg-transparent`}
+              value={fieldValue}
+              onChange={(e) => setFieldValue(e.target.value)}
+              style={{
+                border: "none",
+                WebkitAppearance: "none",
+                MozAppearance: "none",
+              }}
+            >
+              <option value="" disabled hidden>
+                {placeholder}
+              </option>
+              {(options as any[]).map((opt, idx) => {
+                if (typeof opt === "string") {
+                  return (
+                    <option key={idx} value={opt} className="text-black">
+                      {opt}
+                    </option>
+                  );
+                }
+                return (
+                  <option key={idx} value={opt.value} className="text-black">
+                    {opt.label}
+                  </option>
+                );
+              })}
+            </select>
+
+            <div className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-grey">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
+        );
+      case "password":
+        return (
           <>
             <input
               type={type === "password" ? localType : type}
               placeholder={placeholder}
-              className={baseClasses}
+              className={`${baseClasses} ${textClasses}`}
               value={fieldValue}
               onChange={(e) => setFieldValue(e.target.value)}
             />
@@ -92,11 +132,36 @@ export default function TextField(props: TextFieldProps) {
               </button>
             )}
           </>
-        )}
-      </div>
-
+        );
+      default:
+        return (
+          <input
+            type={type === "email" ? "email" : "text"}
+            placeholder={placeholder}
+            className={`${baseClasses} ${textClasses}`}
+            value={fieldValue}
+            onChange={(e) => setFieldValue(e.target.value)}
+          />
+        );
+    }
+  };
+  return (
+    <div
+      className={`rounded-[20px] border-2 px-5 py-2 flex flex-col justify-start relative overflow-hidden ${widthClasses} ${heightClasses}`}
+      style={{
+        borderColor: borderColor,
+        backgroundColor: "var(--color-bgblue)",
+      }}
+    >
+      <label
+        className={`flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)] mb-1`}
+      >
+        {title}
+        {required && <span className="text-red ml-1">*</span>}
+      </label>
+      {renderInput()}
       {hasError && (
-        <span className="text-red text-sm mt-1 ml-2">{errorMessage}</span>
+        <span className="text-red text-sm mt-1">{errorMessage}</span>
       )}
     </div>
   );
