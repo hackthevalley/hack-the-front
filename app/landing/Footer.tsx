@@ -1,35 +1,30 @@
 import Image from "next/image";
-import facebookIcon from "@/assets/icons/facebook.png";
-import githubIcon from "@/assets/icons/github.png";
-import xIcon from "@/assets/icons/x.png";
-import instagramIcon from "@/assets/icons/instagram.png";
-import linkedinIcon from "@/assets/icons/linkedin.png";
 import { label } from "motion/react-client";
 
 const socialLinks = [
   {
     label: "facebook",
-    icon: facebookIcon,
+    icon: "/icons/facebook.png",
     href: "https://www.facebook.com/hackthevalley",
   },
   {
     label: "github",
-    icon: githubIcon,
+    icon: "/icons/github.png",
     href: "https://github.com/hackthevalley",
   },
   {
     label: "x",
-    icon: xIcon,
+    icon: "/icons/x.png",
     href: "https://x.com/hackthevalley6",
   },
   {
     label: "instagram",
-    icon: instagramIcon,
+    icon: "/icons/instagram.png",
     href: "https://www.instagram.com/hackthevalley/",
   },
   {
     label: "linkedin",
-    icon: linkedinIcon,
+    icon: "/icons/linkedin.png",
     href: "https://www.linkedin.com/company/hack-the-valley",
   },
 ];
