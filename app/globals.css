@@ -1,42 +1,52 @@
 @import "tailwindcss";
 
 :root {
-    --background: #ffffff;
-    --foreground: #06101E;
+  --foreground: #ffffff;
+  --background: #06101e;
 }
 
 @theme {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-scp: var(--font-source-code-pro);
-    --font-ecb: var(--font-euclid-circular-b);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-scp: var(--font-source-code-pro);
+  --font-ecb: var(--font-euclid-circular-b);
 
-    /* Colours */
-    --color-black: #06101E;
-    --color-darkblue: #1C4582;
-    --color-blue: #485B9B;
-    --color-indigo: #1A427D;
-    --color-green: #A5D6A7;
-    --color-lightgreen: #81C470;
-    --color-darkgreen: #6EAC5E;
-    --color-red: #FF5552;
-    --color-aquamarine: #6B8F9F;
-    --color-white: #FFF;
-    --color-cream: #F5F3E7;
-    --color-grey: #9B9EA1;
-    --color-darkgrey: #979797;
-    --color-bgblue: #0B1C34;        /* for textfield background */
+  /* Colours */
+  --color-black: #06101e;
+  --color-darkblue: #1c4582;
+  --color-blue: #485b9b;
+  --color-indigo: #1a427d;
+  --color-green: #a5d6a7;
+  --color-lightgreen: #81c470;
+  --color-darkgreen: #6eac5e;
+  --color-red: #ff5552;
+  --color-aquamarine: #6b8f9f;
+  --color-white: #fff;
+  --color-cream: #f5f3e7;
+  --color-grey: #9b9ea1;
+  --color-darkgrey: #979797;
+  --color-bgblue: #0b1c34; /* for textfield background */
+}
 
+/* Hide scrollbar using no-scrollbar class */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-euclid-circular-b), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    overflow: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-euclid-circular-b), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* For the Hack the Valley Title on Landing Page */
 .text-stroke {
-    -webkit-text-stroke: 1px white;
-  }
+  -webkit-text-stroke: 1px white;
+}

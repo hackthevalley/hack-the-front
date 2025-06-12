@@ -25,7 +25,7 @@ const fetchInstance = async (endpoint: string, options: FetchOptions = {}) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Something went wrong");
+      throw new Error(errorData.detail || "Something went wrong");
     }
 
     return await response.json();
