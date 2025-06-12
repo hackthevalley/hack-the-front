@@ -15,7 +15,7 @@ export default function SponsorField({
   return (
     <div
       className={`
-        flex flex-col justify-center items-center border-yellow border-[2px] bg-bgblue rounded-xl min-w-54
+        flex flex-col justify-center items-center border-yellow border-[2px] bg-bgblue rounded-xl
         ${className}
       `}
     >

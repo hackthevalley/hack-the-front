@@ -11,7 +11,7 @@ export default function Sponsors() {
     >
       <div className="relative flex flex-col justify-center items-center h-full">
         <h1
-          className="md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text"
+          className="text-6xl lg:text-7xl sm:text-5xl font-bold text-transparent bg-clip-text"
           style={{
             backgroundImage:
               "linear-gradient(160deg, #4C6581, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
@@ -143,7 +143,7 @@ export default function Sponsors() {
               height={160}
             />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10">
+          <div className="grid grid-cols-2 gap-10 mt-10">
             <SponsorField className="h-56" />
             <SponsorField className="h-56" />
             <SponsorField className="h-56" />
@@ -161,7 +161,7 @@ export default function Sponsors() {
               height={160}
             />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <div className="grid grid-cols-3 gap-6 mt-10">
             <SponsorField className="h-36" />
             <SponsorField className="h-36" />
             <SponsorField className="h-36" />
