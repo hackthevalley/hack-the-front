@@ -13,11 +13,6 @@ const socialLinks = [
     href: "https://github.com/hackthevalley",
   },
   {
-    label: "x",
-    icon: "/icons/x.png",
-    href: "https://x.com/hackthevalley6",
-  },
-  {
     label: "instagram",
     icon: "/icons/instagram.png",
     href: "https://www.instagram.com/hackthevalley/",
