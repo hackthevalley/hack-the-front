@@ -3,7 +3,9 @@
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
+
 import { Question } from "../context/QuestionContext";
+
 interface GeneralInfoProps {
   questions: Question[];
   dietaryRestrictions: string;
@@ -24,16 +26,17 @@ export default function GeneralInfo(props: GeneralInfoProps) {
         <TextField
           title={props.questions[0]?.label}
           required={true}
-          placeholder="Enter your dietary restrictions"
+          placeholder="Enter dietary restrictions"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.dietaryRestrictions}
           setFieldValue={props.setDietaryRestrictions}
         />
         <Dropdown
           title={props.questions[1]?.label}
           required={true}
-          placeholder="Enter your t-shirt size"
+          placeholder="Enter T-shirt size"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           options={["S", "M", "L", "XL"]}

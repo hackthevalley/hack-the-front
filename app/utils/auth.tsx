@@ -1,7 +1,9 @@
 "use client";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useCallback, useState, createContext } from "react";
 import * as jose from "jose";
+import { createContext, useCallback, useEffect, useState } from "react";
+
 import fetchInstance from "./api";
 
 interface UserContextType {
@@ -32,8 +34,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       localStorage.setItem("auth-token", token);
       const payload: any = jose.decodeJwt(token);
-      if (!payload.scopes.includes("admin"))
-        throw new Error("You do not have access");
+      // if (!payload.scopes.includes("admin"))
+      //   throw new Error("You do not have access");
       // const response = await fetchInstance("account/login", {
       //   method: "GET",
       // });
@@ -56,8 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           method: "POST",
         });
         const payload: any = jose.decodeJwt(response.access_token);
-        if (!payload.scopes.includes("admin"))
-          throw new Error("You do not have access");
+        // if (!payload.scopes.includes("admin")) throw new Error("You do not have access");
         localStorage.setItem("auth-token", response.access_token);
         setLoading(false);
         setIsAuthenticated(true);

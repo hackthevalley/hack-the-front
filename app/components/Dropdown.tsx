@@ -12,6 +12,7 @@ interface DropdownProps {
   multiline?: boolean;
   widthClasses?: string;
   heightClasses?: string;
+  backgroundClasses?: string;
   textClasses?: string;
   options?: string[] | { label: string; value: string }[];
   fieldValue: string;
@@ -33,6 +34,7 @@ export default function Dropdown(props: DropdownProps) {
     placeholder = "",
     widthClasses = "w-full",
     heightClasses = "min-h-15 sm:min-h-10",
+    backgroundClasses = "bg-gradient-to-b from-[#183766] to-[#0B1C34]",
     multiline = false,
     textClasses = "text-[20px]",
     options = [],
@@ -73,27 +75,34 @@ export default function Dropdown(props: DropdownProps) {
     return (
       <div className="relative w-full">
         <Select<OptionType, false>
-          className={`${baseClasses} ${textClasses} ${heightClasses} ${widthClasses} bg-transparent ${borderColor}`}
+          className={`${baseClasses} ${textClasses} ${heightClasses} ${widthClasses} bg-transparent`}
+          placeholder={placeholder}
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
-              backgroundColor: "var(--color-bgblue)",
-              borderColor: "transparent",
-              borderWidth: "0px",
+              backgroundColor: "transparent",
+              border: "none",
               boxShadow: "none",
+              padding: 0,
+              margin: 0,
             }),
             singleValue: (baseStyles) => ({
               ...baseStyles,
-              color: "var(--color-grey)",
+              color: "var(--color-lightgrey)",
+            }),
+            placeholder: (baseStyles) => ({
+              ...baseStyles,
+              color: "var(--color-lightgrey)",
             }),
             input: (baseStyles) => ({
               ...baseStyles,
-              color: "var(--color-grey)", // Text typed into the input
+              color: "var(--color-lightgrey)", // Text typed into the input
             }),
             option: (baseStyles, state) => ({
               ...baseStyles,
               color: "var(--color-black)",
-              backgroundColor: "var(--color-white)",
+              backgroundColor: state.isFocused ? "rgba(0, 0, 0, 0.05)" : "var(--color-white)",
+              cursor: "pointer",
             }),
             indicatorSeparator: () => ({
               display: "none",
@@ -106,10 +115,23 @@ export default function Dropdown(props: DropdownProps) {
               ...baseStyles,
               color: "white",
             }),
+            valueContainer: (baseStyles) => ({
+              ...baseStyles,
+              padding: 0,
+              margin: 0,
+            }),
           }}
-          value={{ label: fieldValue, value: fieldValue }}
-          onFocus={() => setTouched(true)}
-          onBlur={() => setTouched(false)}
+          value={fieldValue ? { label: fieldValue, value: fieldValue } : null}
+          onFocus={() => {
+            console.log("Focused!");
+            setTouched(true);
+          }}
+          onBlur={() => {
+            console.log("Blurred!");
+            setTouched(false);
+          }}
+          onMenuOpen={() => console.log("Menu opened")}
+          onMenuClose={() => console.log("Menu closed")}
           options={formattedOptions}
           onChange={(selectedOption) => setFieldValue(selectedOption ? selectedOption.value : "")}
           isDisabled={disabled}
@@ -119,10 +141,9 @@ export default function Dropdown(props: DropdownProps) {
   };
   return (
     <div
-      className={`relative flex flex-col justify-start rounded-[20px] px-5 py-2 transition-colors duration-400 ${widthClasses} ${heightClasses}`}
+      className={`relative flex flex-col justify-start rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${backgroundClasses} ${widthClasses} ${heightClasses}`}
       style={{
         borderColor: borderColor,
-        backgroundColor: "var(--color-bgblue)",
       }}
     >
       <label

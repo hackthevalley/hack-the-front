@@ -1,11 +1,12 @@
-import "../globals.css";
-import React, { useMemo, useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import toast, { Toaster } from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
+import React, { useMemo, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
 import fetchInstance from "@/utils/api";
 
+import "../globals.css";
 
 interface TextFieldProps {
   title: string;
@@ -14,6 +15,7 @@ interface TextFieldProps {
   multiline?: boolean;
   widthClasses?: string;
   heightClasses?: string;
+  backgroundClasses?: string;
   textClasses?: string;
   type?: "text" | "textarea" | "dropdown" | "password" | "email" | "file";
   options?: string[] | { label: string; value: string }[];
@@ -33,6 +35,7 @@ export default function TextField(props: TextFieldProps) {
     placeholder = "",
     widthClasses = "mx-[auto] sm:w-full",
     heightClasses = "min-h-15 sm:min-h-10",
+    backgroundClasses = "bg-bgblue",
     multiline = false,
     type = "text",
     textClasses = "text-[20px]",
@@ -57,7 +60,7 @@ export default function TextField(props: TextFieldProps) {
     const uploadingFile = toast.loading("Uploading file...");
     const file = e.target.files?.[0];
     if (file) {
-      const fileExtension = file.name.split('.').pop()?.toLowerCase();
+      const fileExtension = file.name.split(".").pop()?.toLowerCase();
       if (allowedFormats.includes(`.${fileExtension}`)) {
         setFile?.(file);
         const uploadFile = async () => {
@@ -83,7 +86,6 @@ export default function TextField(props: TextFieldProps) {
       } else {
         toast.dismiss(uploadingFile);
         toast.error(`Invalid file format.`);
-        ;
       }
     }
   };
@@ -201,53 +203,51 @@ export default function TextField(props: TextFieldProps) {
             )}
           </>
         );
-        case "file":
-          return (
-            <div className="w-full relative">
-              <label
-                htmlFor="file-upload"
-                className="cursor-pointer flex flex-col justify-center items-center w-full h-16 text-center"
-              >
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-        
-                {fileValue && fileValue?.name ? (
-                  <>
-                    <p className="font-bold text-white text-lg">{fileValue?.name}</p>
-                    <p className="text-grey text-sm mt-1">
-                      Your file has been uploaded. Click or drop another file to re-upload.
-                    </p>
-                  </>
-                ) : (
-                  <div className="flex flex-col items-center justify-center h-full space-y-1">
-                    <p className="text-white">{title}</p>
-                    <p className="text-grey text-sm text-center">
-                      {"Accepted file format: pdf"}
-                    </p>
-                  </div>
-                )}
-              </label>
-              {fileValue && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFile?.(null);
-                    const input = document.getElementById("file-upload") as HTMLInputElement;
-                    if (input) input.value = "";
-                    toast.success("File removed successfully!");
-                  }}
-                  className="absolute top-2 right-4 text-white hover:text-red-500 text-sm"
-                >
-                  &#10005;
-                </button>
+      case "file":
+        return (
+          <div className="relative w-full">
+            <label
+              htmlFor="file-upload"
+              className="flex h-16 w-full cursor-pointer flex-col items-center justify-center text-center"
+            >
+              <input
+                id="file-upload"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+
+              {fileValue && fileValue?.name ? (
+                <>
+                  <p className="text-lg font-bold text-white">{fileValue?.name}</p>
+                  <p className="text-grey mt-1 text-sm">
+                    Your file has been uploaded. Click or drop another file to re-upload.
+                  </p>
+                </>
+              ) : (
+                <div className="flex h-full flex-col items-center justify-center space-y-1">
+                  <p className="text-white">{title}</p>
+                  <p className="text-grey text-center text-sm">{"Accepted file format: pdf"}</p>
+                </div>
               )}
-            </div>
-          );
+            </label>
+            {fileValue && (
+              <button
+                type="button"
+                onClick={() => {
+                  setFile?.(null);
+                  const input = document.getElementById("file-upload") as HTMLInputElement;
+                  if (input) input.value = "";
+                  toast.success("File removed successfully!");
+                }}
+                className="absolute top-2 right-4 text-sm text-white hover:text-red-500"
+              >
+                &#10005;
+              </button>
+            )}
+          </div>
+        );
       default:
         return (
           <input
@@ -265,36 +265,36 @@ export default function TextField(props: TextFieldProps) {
   };
   return (
     <div
-      className={`relative flex flex-col justify-start overflow-hidden rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${widthClasses} ${heightClasses}`}
+      className={`relative flex flex-col justify-center overflow-hidden rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${backgroundClasses} ${widthClasses} ${heightClasses}`}
       style={{
         borderColor: borderColor,
-        backgroundColor: "var(--color-bgblue)",
       }}
     >
-    {usePathname() === "/application" &&     
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 6000,
-          removeDelay: 1000,
-          style: {
-            background: "#0B1C34",
-            color: "white",
-          },
-          success: {
-            iconTheme: {
-              primary: "green",
-              secondary: "#0B1C34",
+      {usePathname() === "/application" && (
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 6000,
+            removeDelay: 1000,
+            style: {
+              background: "#0B1C34",
+              color: "white",
             },
-          },
-          error: {
-            iconTheme: {
-              primary: "red",
-              secondary: "#0B1C34",
+            success: {
+              iconTheme: {
+                primary: "green",
+                secondary: "#0B1C34",
+              },
             },
-          },
-        }}
-      />}
+            error: {
+              iconTheme: {
+                primary: "red",
+                secondary: "#0B1C34",
+              },
+            },
+          }}
+        />
+      )}
       <label
         className={`mb-1 flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)]`}
       >

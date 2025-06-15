@@ -2,6 +2,7 @@
 
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
+
 import { Question } from "../context/QuestionContext";
 
 interface ProfileInfoProps {
@@ -31,6 +32,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your first name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.firstName}
           setFieldValue={props.setFirstName}
           disabled={true}
@@ -41,27 +43,30 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           placeholder="Enter your last name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.lastName}
           setFieldValue={props.setLastName}
           disabled={true}
-          />
+        />
         <TextField
           title={props.questions[2]?.label}
           required={true}
           placeholder="Enter your email address"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           type="email"
           fieldValue={props.email}
           setFieldValue={props.setEmail}
           disabled={true}
-          />
+        />
         <TextField
           title={props.questions[3]?.label}
           required={true}
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.phoneNumber}
           setFieldValue={props.setPhoneNumber}
         />

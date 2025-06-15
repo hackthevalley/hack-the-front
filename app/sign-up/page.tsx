@@ -96,7 +96,7 @@ export default function SignupPage() {
       if (response.access_token && login) {
         // Currently does not login after sign up
         await login(response.access_token);
-        router.push("/"); // change to /dashboard after merge
+        router.push("/application"); // change to /dashboard after merge
       }
       toast.dismiss(loadingToast);
       toast.success(`Sign up successful`);

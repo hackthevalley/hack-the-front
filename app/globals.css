@@ -15,6 +15,8 @@
   --color-black: #06101e;
   --color-darkblue: #1c4582;
   --color-blue: #485b9b;
+  --color-dropdownblue: #183766;
+  --color-dropdownblack: #0b1c34;
   --color-indigo: #1a427d;
   --color-green: #a5d6a7;
   --color-lightgreen: #81c470;
@@ -25,6 +27,7 @@
   --color-cream: #f5f3e7;
   --color-grey: #9b9ea1;
   --color-darkgrey: #979797;
+  --color-lightgrey: #bababa;
   --color-bgblue: #0b1c34; /* for textfield background */
 }
 

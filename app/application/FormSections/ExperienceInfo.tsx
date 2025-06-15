@@ -3,6 +3,7 @@
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
+
 import { Question } from "../context/QuestionContext";
 
 interface ExperienceInfoProps {
@@ -27,7 +28,7 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           &gt; Step 4: Experience Info
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
         <Dropdown
           title={props.questions[0]?.label}
           required={true}
@@ -44,6 +45,7 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="GitHub"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.github}
           setFieldValue={props.setGithub}
         />
@@ -53,6 +55,7 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="LinkedIn"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.linkedin}
           setFieldValue={props.setLinkedin}
         />
@@ -62,12 +65,13 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
           placeholder="Portfolio"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.portfolio}
           setFieldValue={props.setPortfolio}
         />
       </div>
       <div className="mt-5 px-8">
-        <h1 className="text-lg text-[#81C470] tracking-wide">
+        <h1 className="text-lg tracking-wide text-[#81C470]">
           {props.questions[4]?.label} <span className="text-red">*</span>
         </h1>
       </div>
@@ -80,6 +84,7 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
             placeholder="Upload your resume"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
+            backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
             fileValue={props.resumeFile}
             setFile={(value) => props.setResumeFile(value instanceof File ? value : null)}
             fieldValue=""

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import GreenButton from "@/components/GreenButton";
-import TextField from "@/components/TextField";
+import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import GreenButton from "@/components/GreenButton";
+import Navbar from "@/components/Navbar";
+import TextField from "@/components/TextField";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
 
@@ -20,7 +20,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/"); // change to /dashboard after merge
+      router.push("/application"); // change to /dashboard after merge
     }
   }, [isAuthenticated]);
 
@@ -40,7 +40,7 @@ export default function LoginPage() {
       String(email)
         .toLowerCase()
         .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         )
     );
   };
@@ -68,7 +68,7 @@ export default function LoginPage() {
       });
       if (response.access_token && login) {
         await login(response.access_token);
-        router.push("/"); // change to /dashboard after merge
+        router.push("/application"); // change to /dashboard after merge
       }
       toast.dismiss(loadingToast);
       toast.success(`Sign in successful`);
@@ -79,9 +79,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
+    <div className="relative h-[100vh] overflow-y-auto bg-black font-[family-name:var(--font-euclid-circular-b)]">
       <img
-        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]"
+        className="absolute top-6/10 left-1/2 z-0 w-[50%] -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -109,9 +109,9 @@ export default function LoginPage() {
         }}
       />
 
-      <div className="flex flex-col relative z-[10]">
-        <div className="w-3/4 mx-auto items-start mb-[1rem]">
-          <Link className="text-white font-semibold text-2xl" href="/">
+      <div className="relative z-[10] flex flex-col">
+        <div className="mx-auto mb-[1rem] w-3/4 items-start">
+          <Link className="text-2xl font-semibold text-white" href="/">
             {"<"} Back
           </Link>
         </div>
@@ -120,21 +120,21 @@ export default function LoginPage() {
           <div className="w-1/2">
             <p className="text-grey text-xl">$ npm start challenge</p>
 
-            <p className="text-white font-bold text-5xl mt-[1rem] mb-[2rem]">
+            <p className="mt-[1rem] mb-[2rem] text-5xl font-bold text-white">
               {">"} Welcome Back Hacker,
             </p>
 
-            <div className="w-full my-[2rem]">
-              <div className="flex justify-between items-center">
-                <hr className="bg-indigo border-none mr-4 w-full h-[2px]" />
-                <p className="text-white w-fit whitespace-nowrap font-semibold text-2xl">
+            <div className="my-[2rem] w-full">
+              <div className="flex items-center justify-between">
+                <hr className="bg-indigo mr-4 h-[2px] w-full border-none" />
+                <p className="w-fit text-2xl font-semibold whitespace-nowrap text-white">
                   Sign in to view dashboard
                 </p>
-                <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
+                <hr className="bg-indigo ml-4 h-[2px] w-full border-none" />
               </div>
             </div>
 
-            <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
+            <div className="mb-[1rem] flex flex-col gap-y-[2rem]">
               <TextField
                 title="Email"
                 placeholder="email"
@@ -153,25 +153,16 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="flex justify-end mb-[1rem]">
-              <button className="text-white text-lg font-semibold">
-                Forgot Password?
-              </button>
+            <div className="mb-[1rem] flex justify-end">
+              <button className="text-lg font-semibold text-white">Forgot Password?</button>
             </div>
 
             {/* Need to add logic so Sign in turns grey */}
-            <GreenButton
-              text="Sign In"
-              onClick={signIn}
-              formFilled={formFilled && validInput()}
-            />
+            <GreenButton text="Sign In" onClick={signIn} formFilled={formFilled && validInput()} />
 
-            <div className="flex my-[1rem]">
-              <p className="text-grey text-lg mr-2">Don't have an account?</p>
-              <Link
-                className="text-lightgreen text-lg font-semibold"
-                href="/sign-up"
-              >
+            <div className="my-[1rem] flex">
+              <p className="text-grey mr-2 text-lg">Don't have an account?</p>
+              <Link className="text-lightgreen text-lg font-semibold" href="/sign-up">
                 Sign up.
               </Link>
             </div>
