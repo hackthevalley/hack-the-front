@@ -8,7 +8,8 @@ import TextField from "@/components/TextField";
 import fetchInstance from "@/utils/api";
 
 export default function ResetPasswordPage() {
-  const [password, setPassword] = useState<string>("");
+  const [newpassword, setNewPassword] = useState<string>("");
+  const [confirmpassword, setConfirmPassword] = useState<string>("");
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
@@ -80,15 +81,29 @@ export default function ResetPasswordPage() {
             </div>
             <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
               <TextField
-                title="Email"
-                placeholder="email"
-                type="email"
-                fieldValue={password}
-                setFieldValue={setPassword}
+                title="New Password"
+                placeholder="new password"
+                type="password"
+                fieldValue={newpassword}
+                setFieldValue={setNewPassword}
                 errorMessage={"Invalid email format"}
               />
             </div>
-            <GreenButton text="Send Email" onClick={resetPassword} />
+            <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
+              <TextField
+                title="Confirm Password"
+                placeholder="confirm password"
+                type="password"
+                fieldValue={confirmpassword}
+                setFieldValue={setConfirmPassword}
+                errorMessage={"Invalid email format"}
+              />
+            </div>
+            <GreenButton
+              text="Send Email"
+              onClick={resetPassword}
+              formFilled={!!newpassword && !!confirmpassword}
+            />
           </div>
         </div>
       </div>

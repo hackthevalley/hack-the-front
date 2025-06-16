@@ -15,7 +15,6 @@ import Image from "next/image";
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [formFilled, setFormFilled] = useState<boolean>(false);
   const { isAuthenticated, login } = useContext(UserContext) ?? {};
 
   const router = useRouter();
@@ -25,15 +24,6 @@ export default function LoginPage() {
       router.push("/"); // change to /dashboard after merge
     }
   }, [isAuthenticated, router]);
-
-  // Controls formFilled flag which enables/disables the login button
-  useEffect(() => {
-    if (email !== "" && password !== "") {
-      setFormFilled(true);
-    } else {
-      setFormFilled(false);
-    }
-  }, [email, password]);
 
   // Valid email checks if it matches the format of an email while in validInput, it checks if the email field is empty. This avoids having the error message appear for empty fields
   const validEmail = () => {
@@ -172,7 +162,7 @@ export default function LoginPage() {
             <GreenButton
               text="Sign In"
               onClick={signIn}
-              formFilled={formFilled && validInput()}
+              formFilled={!!email && !!password && validInput()}
             />
 
             <div className="flex my-[1rem]">
