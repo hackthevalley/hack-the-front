@@ -1,9 +1,11 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useSearchParams } from "next/navigation";
 import GreenButton from "@/components/GreenButton";
 import TextField from "@/components/TextField";
+import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 
 import fetchInstance from "@/utils/api";
 
@@ -17,20 +19,28 @@ export default function ResetPasswordPage() {
     return <p>Missing or invalid token.</p>;
   }
 
+  const matchPassword = () => {
+    if (newpassword == confirmpassword) {
+      return true;
+    }
+    return false;
+  };
+
   const resetPassword = async (e: React.FormEvent) => {
-    const loadingToast = toast.loading("Sending email...");
+    const loadingToast = toast.loading("Resetting password...");
     e.preventDefault();
     const data = {
-      email: email,
+      token: token,
+      password: newpassword,
     };
     try {
-      const response = await fetchInstance("account/send_reset_password", {
+      const response = await fetchInstance("account/reset_password", {
         method: "POST",
         body: JSON.stringify(data),
       });
       if (response) {
         toast.dismiss(loadingToast);
-        toast.success(`Email Sent`);
+        toast.success(`Password Successfully Resetted`);
       }
     } catch (err) {
       toast.dismiss(loadingToast);
@@ -43,17 +53,38 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    // <div className="p-6">
-    //   <h1 className="text-2xl font-bold">Reset Your Password</h1>
-    //   <p>Token: {token}</p>
-    //   {/* Password reset form goes here */}
-    // </div>
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
-      <img
+      <Image
+        width={0}
+        height={0}
+        alt="Background Gradient"
         className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 4000,
+          removeDelay: 1000,
+          style: {
+            background: "#0B1C34",
+            color: "white",
+          },
+          success: {
+            iconTheme: {
+              primary: "green",
+              secondary: "#0B1C34",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "red",
+              secondary: "#0B1C34",
+            },
+          },
+        }}
+      />
 
       <div className="flex flex-col relative z-[10]">
         <div className="w-3/4 mx-auto items-start mb-[1rem]">
@@ -79,30 +110,28 @@ export default function ResetPasswordPage() {
                 <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
               </div>
             </div>
-            <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
+            <div className="flex flex-col gap-y-[2rem] mb-[2rem]">
               <TextField
                 title="New Password"
                 placeholder="new password"
                 type="password"
                 fieldValue={newpassword}
                 setFieldValue={setNewPassword}
-                errorMessage={"Invalid email format"}
               />
-            </div>
-            <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
               <TextField
                 title="Confirm Password"
                 placeholder="confirm password"
                 type="password"
                 fieldValue={confirmpassword}
                 setFieldValue={setConfirmPassword}
-                errorMessage={"Invalid email format"}
+                hasError={!matchPassword()}
+                errorMessage={"Passwords do not match"}
               />
             </div>
             <GreenButton
-              text="Send Email"
+              text="Reset Password"
               onClick={resetPassword}
-              formFilled={!!newpassword && !!confirmpassword}
+              formFilled={!!newpassword && !!confirmpassword && matchPassword()}
             />
           </div>
         </div>
