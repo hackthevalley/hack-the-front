@@ -121,19 +121,17 @@ export default function Dropdown(props: DropdownProps) {
               margin: 0,
             }),
           }}
-          value={fieldValue ? { label: fieldValue, value: fieldValue } : null}
           onFocus={() => {
-            console.log("Focused!");
             setTouched(true);
           }}
           onBlur={() => {
-            console.log("Blurred!");
             setTouched(false);
           }}
-          onMenuOpen={() => console.log("Menu opened")}
-          onMenuClose={() => console.log("Menu closed")}
           options={formattedOptions}
-          onChange={(selectedOption) => setFieldValue(selectedOption ? selectedOption.value : "")}
+          value={formattedOptions.find((opt) => opt.value === fieldValue) || null}
+          onChange={(selectedOption) => {
+            setFieldValue(selectedOption?.value || "");
+          }}
           isDisabled={disabled}
         ></Select>
       </div>

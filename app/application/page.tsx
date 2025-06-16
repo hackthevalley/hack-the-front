@@ -10,6 +10,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
+
 import { useQuestions } from "./context/QuestionContext";
 
 const token = localStorage.getItem("auth-token");
@@ -22,12 +23,10 @@ interface ApplicationProps {
 
 const findUserAppAnswer = (questionBank: any, question_id: string) => {
   if (question_id === "") return "";
-  const answer = questionBank.find(
-    (item: any) => item.question_id === question_id
-  );
+  const answer = questionBank.find((item: any) => item.question_id === question_id);
   // console.log("findUserAppAnswer for question_id:", answer.answer);
   return answer && answer.answer !== null ? answer.answer : "";
-}
+};
 
 export default function Application() {
   // Get application questions
@@ -39,12 +38,11 @@ export default function Application() {
     form_answersfile: "",
   });
   const appRef = useRef<HTMLDivElement>(null);
-  
+  const [hasLoadedAppData, setHasLoadedAppData] = useState(false);
+
   // find question_id by label
   const getQuestionId = (label: string) => {
-    const question = questions.find(
-      (q) => q.label.toLowerCase() === label.toLowerCase()
-    );
+    const question = questions.find((q) => q.label.toLowerCase() === label.toLowerCase());
     // console.log("getQuestionId:", question);
     return question?.question_id || "";
   };
@@ -55,7 +53,7 @@ export default function Application() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  
+
   // School Info State
   const section2Questions = questions.slice(4, 9);
   const [country, setCountry] = useState("");
@@ -63,7 +61,7 @@ export default function Application() {
   const [currentLevelOfStudy, setCurrentLevelOfStudy] = useState("");
   const [major, setMajor] = useState("");
   const [expectedGraduationYear, setExpectedGraduationYear] = useState("");
-  
+
   // Demography Info State
   const section3Questions = questions.slice(9, 14);
   const [age, setAge] = useState("");
@@ -71,7 +69,7 @@ export default function Application() {
   const [raceEthinicity, setRaceEthinicity] = useState("");
   const [LGBTQI, setLGBTGI] = useState("");
   const [disabilities, setDisabilities] = useState("");
-  
+
   // Experience Info State
   const section4Questions = questions.slice(14, 19);
   const [hackathonCount, setHackathonCount] = useState("");
@@ -79,7 +77,7 @@ export default function Application() {
   const [linkedin, setLinkedin] = useState("");
   const [portfolio, setPortfolio] = useState("");
   const [resumeFile, setResumeFile] = useState<File | null>(null);
-  
+
   // Skill Confidence State
   const section5Questons = questions.slice(19, 27);
   const [uiux, setUiux] = useState("");
@@ -90,18 +88,18 @@ export default function Application() {
   const [crypto, setCrypto] = useState("");
   const [cyber, setCyber] = useState("");
   const [ml, setMl] = useState("");
-  
+
   // General Info State
   const section6Questions = questions.slice(27, 29);
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [shirtSize, setShirtSize] = useState("");
-  
+
   // MLH Info State
   const section7Questions = questions.slice(29, 32);
   const [mlhCodeOfConduct, setMlhCodeOfConduct] = useState(false);
   const [mlhPrivacyPolicy, setMlhPrivacyPolicy] = useState(false);
   const [mlhEmailConsent, setMlhEmailConsent] = useState(false);
-  
+
   // Consent Info State
   const section8Questions = questions.slice(32, 33);
   const [consentAgreed, setConsentAgreed] = useState(false);
@@ -114,7 +112,7 @@ export default function Application() {
           method: "GET",
         });
         setApp(res);
-        console.log("[RES] Application data fetched:", app);
+        // console.log("[RES] Application data fetched:", app);
 
         setFirstName(findUserAppAnswer(res.form_answers, getQuestionId("First Name")));
         setLastName(findUserAppAnswer(res.form_answers, getQuestionId("Last Name")));
@@ -124,16 +122,24 @@ export default function Application() {
         setCountry(findUserAppAnswer(res.form_answers, getQuestionId("Country")));
         setSchoolName(findUserAppAnswer(res.form_answers, getQuestionId("School Name")));
         setMajor(findUserAppAnswer(res.form_answers, getQuestionId("Major")));
-        setCurrentLevelOfStudy(findUserAppAnswer(res.form_answers, getQuestionId("Current Level of Study")));
-        setExpectedGraduationYear(findUserAppAnswer(res.form_answers, getQuestionId("Expected Graduation Year")));
+        setCurrentLevelOfStudy(
+          findUserAppAnswer(res.form_answers, getQuestionId("Current Level of Study")),
+        );
+        setExpectedGraduationYear(
+          findUserAppAnswer(res.form_answers, getQuestionId("Expected Graduation Year")),
+        );
 
         setAge(findUserAppAnswer(res.form_answers, getQuestionId("Age")));
         setGender(findUserAppAnswer(res.form_answers, getQuestionId("Gender")));
         setRaceEthinicity(findUserAppAnswer(res.form_answers, getQuestionId("Race/Ethnicity")));
-        setLGBTGI(findUserAppAnswer(res.form_answers, getQuestionId("Part of the LGBTQ+ Community")));
-        setDisabilities(findUserAppAnswer(res.form_answers, getQuestionId("Person with Disabilities?")));
+        setLGBTGI(
+          findUserAppAnswer(res.form_answers, getQuestionId("Part of the LGBTQ+ Community")),
+        );
+        setDisabilities(
+          findUserAppAnswer(res.form_answers, getQuestionId("Person with Disabilities?")),
+        );
 
-        setHackathonCount(findUserAppAnswer(res.form_answers, getQuestionId("Hackathon Count?")) );
+        setHackathonCount(findUserAppAnswer(res.form_answers, getQuestionId("Hackathon Count?")));
         setGithub(findUserAppAnswer(res.form_answers, getQuestionId("GitHub")));
         setLinkedin(findUserAppAnswer(res.form_answers, getQuestionId("LinkedIn")));
         setPortfolio(findUserAppAnswer(res.form_answers, getQuestionId("Portfolio")));
@@ -148,14 +154,30 @@ export default function Application() {
         setCyber(findUserAppAnswer(res.form_answers, getQuestionId("Cybersecurity")));
         setMl(findUserAppAnswer(res.form_answers, getQuestionId("Machine Learning")));
 
-        setDietaryRestrictions(findUserAppAnswer(res.form_answers, getQuestionId("Dietary Restrictions")));
+        setDietaryRestrictions(
+          findUserAppAnswer(res.form_answers, getQuestionId("Dietary Restrictions")),
+        );
         setShirtSize(findUserAppAnswer(res.form_answers, getQuestionId("T-Shirt Size")));
 
-        setMlhCodeOfConduct(findUserAppAnswer(res.form_answers, getQuestionId("MLH Code of Conduct")) === "true");
-        setMlhPrivacyPolicy(findUserAppAnswer(res.form_answers, getQuestionId("MLH Privacy Policy, MLH Contest Terms and Conditions")) === "true");
-        setMlhEmailConsent(findUserAppAnswer(res.form_answers, getQuestionId("MLH Event Communication")) === "true");
-        setConsentAgreed(findUserAppAnswer(res.form_answers, getQuestionId("Hack the Valley Consent Form Agreement")) === "true");
-
+        setMlhCodeOfConduct(
+          findUserAppAnswer(res.form_answers, getQuestionId("MLH Code of Conduct")) === "true",
+        );
+        setMlhPrivacyPolicy(
+          findUserAppAnswer(
+            res.form_answers,
+            getQuestionId("MLH Privacy Policy, MLH Contest Terms and Conditions"),
+          ) === "true",
+        );
+        setMlhEmailConsent(
+          findUserAppAnswer(res.form_answers, getQuestionId("MLH Event Communication")) === "true",
+        );
+        setConsentAgreed(
+          findUserAppAnswer(
+            res.form_answers,
+            getQuestionId("Hack the Valley Consent Form Agreement"),
+          ) === "true",
+        );
+        setHasLoadedAppData(true);
       } catch (err) {
         console.error("Error fetching applcation data:", err);
       } finally {
@@ -165,18 +187,137 @@ export default function Application() {
     fetchQuestions();
   }, [questions]);
 
-  // useEffect(() => {
-  //   console.log("mlh", mlhCodeOfConduct, mlhPrivacyPolicy, mlhEmailConsent);
-  //   console.log("Questions:", section1Questions);
-  //   console.log("Questions:", section2Questions);
-  //   console.log("Questions:", section3Questions);
-  //   console.log("Questions:", section4Questions);
-  //   console.log("Questions:", section5Questons);
-  //   console.log("Questions:", section6Questions);
-  //   console.log("Questions:", section7Questions);
-  //   console.log("Questions:", section8Questions);
-  // }
-  // , [questions, section1Questions, section2Questions, section3Questions, section4Questions, section5Questons, section6Questions, section7Questions, section8Questions]);
+  // Save user application progress every 5 seconds
+  useEffect(() => {
+    if (!isFormActive || !token) return;
+
+    const interval = setInterval(() => {
+      const saveProgress = async () => {
+        const token = localStorage.getItem("auth-token");
+        if (!token) {
+          return;
+        }
+
+        if (!questions || questions.length === 0) return;
+        const payloads = getPayloads();
+
+        try {
+          await fetchInstance("forms/saveAnswers", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(payloads),
+          });
+        } catch (err) {
+          console.error("Error saving application progress:", err);
+        }
+      };
+
+      saveProgress();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [
+    isFormActive,
+    hasLoadedAppData,
+    token,
+    questions,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    country,
+    schoolName,
+    currentLevelOfStudy,
+    major,
+    expectedGraduationYear,
+    age,
+    gender,
+    raceEthinicity,
+    LGBTQI,
+    disabilities,
+    hackathonCount,
+    github,
+    linkedin,
+    portfolio,
+    uiux,
+    frontend,
+    backend,
+    fullstack,
+    pm,
+    crypto,
+    cyber,
+    ml,
+    dietaryRestrictions,
+    shirtSize,
+    mlhCodeOfConduct,
+    mlhPrivacyPolicy,
+    mlhEmailConsent,
+  ]);
+
+  const getPayloads = () => {
+    const tempPayload = [
+      // Profile Info
+      { question_id: getQuestionId("First Name"), answer: firstName },
+      { question_id: getQuestionId("Last Name"), answer: lastName },
+      { question_id: getQuestionId("Email"), answer: email },
+      { question_id: getQuestionId("Phone Number"), answer: phoneNumber },
+
+      // School Info
+      { question_id: getQuestionId("Country"), answer: country },
+      { question_id: getQuestionId("School Name"), answer: schoolName },
+      { question_id: getQuestionId("Major"), answer: major },
+      { question_id: getQuestionId("Current Level of Study"), answer: currentLevelOfStudy },
+      { question_id: getQuestionId("Expected Graduation Year"), answer: expectedGraduationYear },
+
+      // Demography Info
+      { question_id: getQuestionId("Age"), answer: age },
+      { question_id: getQuestionId("Gender"), answer: gender },
+      { question_id: getQuestionId("Race/Ethnicity"), answer: raceEthinicity },
+      { question_id: getQuestionId("Part of the LGBTQ+ Community"), answer: LGBTQI },
+      { question_id: getQuestionId("Person with Disabilities?"), answer: disabilities },
+
+      // Experience Info
+      { question_id: getQuestionId("Hackathon Count?"), answer: hackathonCount },
+      { question_id: getQuestionId("GitHub"), answer: github },
+      { question_id: getQuestionId("LinkedIn"), answer: linkedin },
+      { question_id: getQuestionId("Portfolio"), answer: portfolio },
+
+      // Skill Confidence
+      { question_id: getQuestionId("UI/UX"), answer: uiux.toString() },
+      { question_id: getQuestionId("Frontend Development"), answer: frontend.toString() },
+      { question_id: getQuestionId("Backend Development"), answer: backend.toString() },
+      { question_id: getQuestionId("Fullstack Development"), answer: fullstack.toString() },
+      { question_id: getQuestionId("Product Management"), answer: pm.toString() },
+      { question_id: getQuestionId("Web, Crypto, Blockchain"), answer: crypto.toString() },
+      { question_id: getQuestionId("Cybersecurity"), answer: cyber.toString() },
+      { question_id: getQuestionId("Machine Learning"), answer: ml.toString() },
+
+      // General Info
+      { question_id: getQuestionId("Dietary Restrictions"), answer: dietaryRestrictions },
+      { question_id: getQuestionId("T-Shirt Size"), answer: shirtSize },
+
+      // MLH Info
+      {
+        question_id: getQuestionId("MLH Code of Conduct"),
+        answer: mlhCodeOfConduct.toString(),
+      },
+      {
+        question_id: getQuestionId("MLH Privacy Policy, MLH Contest Terms and Conditions"),
+        answer: mlhPrivacyPolicy.toString(),
+      },
+      {
+        question_id: getQuestionId("MLH Event Communication"),
+        answer: mlhEmailConsent.toString(),
+      },
+    ];
+
+    return tempPayload.filter(
+      (p) => typeof p.question_id === "string" && p.question_id.trim() !== "",
+    );
+  };
 
   const handleStart = () => {
     setIsFormActive(true);
@@ -194,54 +335,8 @@ export default function Application() {
       return;
     }
     try {
-      const payloads = [
-        // Profile Info
-        { question_id: getQuestionId("First Name"), answer: firstName },
-        { question_id: getQuestionId("Last Name"), answer: lastName },
-        { question_id: getQuestionId("Email"), answer: email },
-        { question_id: getQuestionId("Phone Number"), answer: phoneNumber },
-
-        // School Info
-        { question_id: getQuestionId("Country"), answer: country },
-        { question_id: getQuestionId("School Name"), answer: schoolName },
-        { question_id: getQuestionId("Major"), answer: major },
-        { question_id: getQuestionId("Current Level of Study"), answer: currentLevelOfStudy },
-        { question_id: getQuestionId("Expected Graduation Year"), answer: expectedGraduationYear},
-
-        // Demography Info
-        { question_id: getQuestionId("Age"), answer: age },
-        { question_id: getQuestionId("Gender"), answer: gender },
-        { question_id: getQuestionId("Race/Ethnicity"), answer: raceEthinicity },
-        { question_id: getQuestionId("Part of the LGBTQ+ Community"), answer: LGBTQI },
-        { question_id: getQuestionId("Person with Disabilities?"), answer: disabilities },
-
-        // Experience Info
-        { question_id: getQuestionId("Hackathon Count?"), answer: hackathonCount},
-        { question_id: getQuestionId("GitHub"), answer: github },
-        { question_id: getQuestionId("LinkedIn"), answer: linkedin },
-        { question_id: getQuestionId("Portfolio"), answer: portfolio },
-        // Note: Resume file handling may need special treatment - DONE
-
-        // Skill Confidence (converting boolean to string)
-        { question_id: getQuestionId("UI/UX"), answer: uiux.toString() },
-        { question_id: getQuestionId("Frontend Development"), answer: frontend.toString() },
-        { question_id: getQuestionId("Backend Development"), answer: backend.toString() },
-        { question_id: getQuestionId("Fullstack Development"), answer: fullstack.toString() },
-        { question_id: getQuestionId("Product Management"), answer: pm.toString() },
-        { question_id: getQuestionId("Web, Crypto, Blockchain"), answer: crypto.toString() },
-        { question_id: getQuestionId("Cybersecurity"), answer: cyber.toString() },
-        { question_id: getQuestionId("Machine Learning"), answer: ml.toString() },
-
-        // General Info
-        { question_id: getQuestionId("Dietary Restrictions"), answer: dietaryRestrictions},
-        { question_id: getQuestionId("T-Shirt Size"), answer: shirtSize },
-
-        // MLH Info
-        { question_id: getQuestionId("MLH Code of Conduct"), answer: mlhCodeOfConduct.toString() },
-        { question_id: getQuestionId("MLH Privacy Policy, MLH Contest Terms and Conditions"), answer: mlhPrivacyPolicy.toString() },
-        { question_id: getQuestionId("MLH Event Communication"), answer: mlhEmailConsent.toString() },
-      ];
-
+      if (!questions || questions.length === 0) return;
+      const payloads = getPayloads();
       const validPayloads = payloads.filter(
         (payload) => payload.question_id && payload.answer !== "",
       );
@@ -259,6 +354,7 @@ export default function Application() {
       }
 
       alert("Application submitted successfully!");
+      setIsFormActive(false);
     } catch (err) {
       console.error("Submission error:", err);
       alert("Failed to submit application. Please try again.");
