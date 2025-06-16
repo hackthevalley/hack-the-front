@@ -137,7 +137,7 @@ export default function ForgotPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-y-[2rem] mb-[1rem]">
+            <div className="flex flex-col gap-y-[2rem] mb-[2rem]">
               <TextField
                 title="Email"
                 placeholder="email"

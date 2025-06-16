@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import GreenButton from "@/components/GreenButton";
 import TextField from "@/components/TextField";
 import Image from "next/image";
@@ -14,6 +14,7 @@ export default function ResetPasswordPage() {
   const [confirmpassword, setConfirmPassword] = useState<string>("");
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const router = useRouter();
 
   if (!token || Array.isArray(token)) {
     return <p>Missing or invalid token.</p>;
@@ -41,6 +42,7 @@ export default function ResetPasswordPage() {
       if (response) {
         toast.dismiss(loadingToast);
         toast.success(`Password Successfully Resetted`);
+        router.push("/login");
       }
     } catch (err) {
       toast.dismiss(loadingToast);
