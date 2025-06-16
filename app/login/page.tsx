@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
@@ -85,7 +86,10 @@ export default function LoginPage() {
 
   return (
     <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
-      <img
+      <Image
+        width={0}
+        height={0}
+        alt="Background Gradient"
         className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]"
         src="/backgrounds/smaller-gradient.svg"
       />
