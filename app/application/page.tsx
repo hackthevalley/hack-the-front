@@ -149,7 +149,7 @@ export default function Application() {
         setFrontend(findUserAppAnswer(res.form_answers, getQuestionId("Frontend Development")));
         setBackend(findUserAppAnswer(res.form_answers, getQuestionId("Backend Development")));
         setFullstack(findUserAppAnswer(res.form_answers, getQuestionId("Fullstack Development")));
-        setPm(findUserAppAnswer(res.form_answers, getQuestionId("Product Management")));
+        setPm(findUserAppAnswer(res.form_answers, getQuestionId("Project Management")));
         setCrypto(findUserAppAnswer(res.form_answers, getQuestionId("Web, Crypto, Blockchain")));
         setCyber(findUserAppAnswer(res.form_answers, getQuestionId("Cybersecurity")));
         setMl(findUserAppAnswer(res.form_answers, getQuestionId("Machine Learning")));
@@ -347,17 +347,16 @@ export default function Application() {
         (payload) => payload.question_id && payload.answer !== "",
       );
 
-      for (const payload of validPayloads) {
-        console.log("fetching:", JSON.stringify(payload));
-        await fetchInstance("forms/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
-        });
-      }
+      const resFinalSave = await fetchInstance("forms/saveAnswers", {
+        method: "POST",
+        body: JSON.stringify(payloads),
+      });
+      console.log("[FINAL SAVED] ");
+      
+      const resSubmit = await fetchInstance("forms/submit", {
+        method: "POST",
+      });
+      console.log("[FINAL SUBMIT]");
 
       alert("Application submitted successfully!");
       setIsFormActive(false);
