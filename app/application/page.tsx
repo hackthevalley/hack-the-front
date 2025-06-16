@@ -12,6 +12,7 @@ import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
 
 import { useQuestions } from "./context/QuestionContext";
+import { useRouter } from "next/navigation";
 
 const token = localStorage.getItem("auth-token");
 
@@ -39,6 +40,7 @@ export default function Application() {
   });
   const appRef = useRef<HTMLDivElement>(null);
   const [hasLoadedAppData, setHasLoadedAppData] = useState(false);
+  const router = useRouter();
 
   // find question_id by label
   const getQuestionId = (label: string) => {
@@ -358,8 +360,8 @@ export default function Application() {
       });
       console.log("[FINAL SUBMIT]");
 
-      alert("Application submitted successfully!");
       setIsFormActive(false);
+      router.push("/"); // TODO: Redirect to dashboard after submission
     } catch (err) {
       console.error("Submission error:", err);
       alert("Failed to submit application. Please try again.");
