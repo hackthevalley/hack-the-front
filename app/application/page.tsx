@@ -286,11 +286,11 @@ export default function Application() {
       { question_id: getQuestionId("Portfolio"), answer: portfolio },
 
       // Skill Confidence
-      { question_id: getQuestionId("UI/UX"), answer: uiux.toString() },
+      { question_id: getQuestionId("UI/UX Design"), answer: uiux.toString() },
       { question_id: getQuestionId("Frontend Development"), answer: frontend.toString() },
       { question_id: getQuestionId("Backend Development"), answer: backend.toString() },
       { question_id: getQuestionId("Fullstack Development"), answer: fullstack.toString() },
-      { question_id: getQuestionId("Product Management"), answer: pm.toString() },
+      { question_id: getQuestionId("Project Management"), answer: pm.toString() },
       { question_id: getQuestionId("Web, Crypto, Blockchain"), answer: crypto.toString() },
       { question_id: getQuestionId("Cybersecurity"), answer: cyber.toString() },
       { question_id: getQuestionId("Machine Learning"), answer: ml.toString() },
@@ -312,6 +312,10 @@ export default function Application() {
         question_id: getQuestionId("MLH Event Communication"),
         answer: mlhEmailConsent.toString(),
       },
+      {
+        question_id: getQuestionId("Hack the Valley Consent Form Agreement"),
+        answer: consentAgreed.toString(),
+      }
     ];
 
     return tempPayload.filter(
