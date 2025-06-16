@@ -312,6 +312,8 @@ export default function Application() {
         question_id: getQuestionId("MLH Event Communication"),
         answer: mlhEmailConsent.toString(),
       },
+
+      // Consent Info State
       {
         question_id: getQuestionId("Hack the Valley Consent Form Agreement"),
         answer: consentAgreed.toString(),
@@ -654,7 +656,7 @@ export default function Application() {
       <Navbar hide={true} />
       <div className="no-scrollbar relative h-[calc(100vh-10rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white">
         {/* <Parallax speed={30}> */}
-        <section className="relative mx-10 flex h-[calc(100vh-10rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-visible scroll-smooth px-4 md:px-10">
+        <section className="relative flex h-[calc(100vh-10rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-hidden scroll-smooth px-4 md:px-10">
           <Card className="relative w-8/12 text-center">
             <div className="mb-10">
               <h1 className="text-6xl font-extrabold tracking-wide text-[#81C470]">APPLICATION</h1>

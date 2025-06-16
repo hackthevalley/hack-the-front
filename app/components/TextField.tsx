@@ -90,6 +90,45 @@ export default function TextField(props: TextFieldProps) {
     }
   };
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const uploadingFile = toast.loading("Uploading file...");
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      const fileExtension = file.name.split(".").pop()?.toLowerCase();
+      if (allowedFormats.includes(`.${fileExtension}`)) {
+        setFile?.(file);
+        const uploadFile = async () => {
+          try {
+            const res = await fetchInstance("forms/uploadresume", {
+              method: "POST",
+              body: (() => {
+                const formData = new FormData();
+                formData.append("file", file);
+                return formData;
+              })(),
+            });
+            console.log("File upload response:", res);
+            toast.dismiss(uploadingFile);
+            toast.success("File uploaded successfully!");
+          } catch (error) {
+            console.error("File upload failed:", error);
+            toast.dismiss(uploadingFile);
+            toast.error("File upload failed.");
+          }
+        };
+        uploadFile();
+      } else {
+        toast.dismiss(uploadingFile);
+        toast.error(`Invalid file format.`);
+      }
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  }
+
   const togglePassword = () => {
     if (type === "password" && localType === "password") {
       setLocalType("text");
@@ -205,7 +244,7 @@ export default function TextField(props: TextFieldProps) {
         );
       case "file":
         return (
-          <div className="relative w-full">
+          <div className="relative w-full" onDrop={handleDrop} onDragOver={handleDragOver}>
             <label
               htmlFor="file-upload"
               className="flex h-16 w-full cursor-pointer flex-col items-center justify-center text-center"
@@ -213,14 +252,14 @@ export default function TextField(props: TextFieldProps) {
               <input
                 id="file-upload"
                 type="file"
-                accept=".pdf,.doc,.docx"
+                accept=".pdf"
                 className="hidden"
                 onChange={handleFileChange}
               />
 
-              {fileValue && fileValue?.name ? (
+              {fileValue ? (
                 <>
-                  <p className="text-lg font-bold text-white">{fileValue?.name}</p>
+                  <p className="text-lg font-bold text-white">{fileValue instanceof File ? fileValue.name : fileValue}</p>
                   <p className="text-grey mt-1 text-sm">
                     Your file has been uploaded. Click or drop another file to re-upload.
                   </p>
