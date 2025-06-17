@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
+import dayjs from "dayjs";
 
 interface User {
   first_name: string;
@@ -51,11 +52,18 @@ const getApplicationStatus = (status: string) => {
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null);
+  const [timeRange, setTimeRange] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const ctx = useContext(UserContext);
 
   const getCurrentUser = async (): Promise<User> => {
     return await fetchInstance("account/me", {
+      method: "GET",
+    });
+  };
+
+  const getRegTimeRange = async (): Promise<User> => {
+    return await fetchInstance("admin/forms/getregtimerange", {
       method: "GET",
     });
   };
@@ -66,10 +74,17 @@ export default function DashboardPage() {
     getCurrentUser()
       .then(setUser)
       .catch((err) => setError(err.message));
+
+    getRegTimeRange()
+      .then(setTimeRange)
+      .catch((err) => setError(err.message));
   }, [ctx?.isAuthenticated]);
 
   console.log(user);
+  console.log(timeRange);
+
   const status = getApplicationStatus(user?.application_status || "");
+  const isOpen = timeRange && new Date() < new Date(timeRange.end_at);
 
   return (
     <div>
@@ -134,13 +149,19 @@ export default function DashboardPage() {
                 <p className="text-grey text-base">
                   Application due on{" "}
                   <span className="font-semibold text-white">
-                    September 20, 2025
+                    {timeRange?.end_at
+                      ? dayjs(timeRange.end_at).format("MMMM D, YYYY")
+                      : "TBD"}
                   </span>
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <span className="bg-gray-400 text-white px-6 py-3 rounded-lg text-lg font-semibold">
-                  Closed
+                <span
+                  className={`${
+                    isOpen ? "bg-green-600" : "bg-gray-400"
+                  } text-white px-6 py-3 rounded-lg text-lg font-semibold w-52 text-center `}
+                >
+                  {isOpen ? "Open" : "Closed"}
                 </span>
               </div>
             </div>
