@@ -1,9 +1,76 @@
-import React from "react";
+"use client";
+import React, { useState, useContext, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
+import fetchInstance from "@/utils/api";
+import { UserContext } from "@/utils/auth";
+
+interface User {
+  first_name: string;
+  last_name: string;
+  email: string;
+  uid: string;
+  role: string;
+  is_active: boolean;
+  application_status: string;
+}
+
+const getApplicationStatus = (status: string) => {
+  switch (status.toLowerCase()) {
+    case "accepted":
+      return {
+        color: "text-green-400",
+        label: "Accepted",
+        icon: "/dashboard/accepted.svg",
+        badge: "bg-green-600",
+      };
+    case "declined":
+      return {
+        color: "text-red-400",
+        label: "Declined",
+        icon: "/dashboard/declined.svg",
+        badge: "bg-gray-400",
+      };
+    case "pending":
+      return {
+        color: "text-gray-300",
+        label: "Pending",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-gray-500",
+      };
+    default:
+      return {
+        color: "text-gray-300",
+        label: "Not Submitted",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-gray-500",
+      };
+  }
+};
 
 export default function DashboardPage() {
+  const [user, setUser] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const ctx = useContext(UserContext);
+
+  const getCurrentUser = async (): Promise<User> => {
+    return await fetchInstance("account/me", {
+      method: "GET",
+    });
+  };
+
+  useEffect(() => {
+    if (!ctx?.isAuthenticated) return;
+
+    getCurrentUser()
+      .then(setUser)
+      .catch((err) => setError(err.message));
+  }, [ctx?.isAuthenticated]);
+
+  console.log(user);
+  const status = getApplicationStatus(user?.application_status || "");
+
   return (
     <div>
       <Navbar hide={true} />
@@ -44,9 +111,9 @@ export default function DashboardPage() {
               </Link>
             </div>
             <h1 className="text-white font-bold text-5xl mb-6 mt-2">
-              Welcome Back, John
+              Welcome Back, {user?.first_name || "Hacker"}
             </h1>
-            {/* Application Status Card */}x
+            {/* Application Status Card */}
             <div className="bg-[#0B1627] border border-blue-900 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center md:items-center gap-6">
               <div className="flex-1">
                 <p className="text-white text-lg mb-2">
@@ -56,12 +123,12 @@ export default function DashboardPage() {
                   <Image
                     width={0}
                     height={0}
-                    src="/dashboard/square-xmark-solid 1.svg"
-                    alt="Declined"
+                    src={status.icon}
+                    alt={status.label}
                     className="w-10 h-10"
                   />
-                  <span className="text-red-400 text-3xl font-bold">
-                    Declined
+                  <span className={`${status.color} text-3xl font-bold`}>
+                    {status.label}
                   </span>
                 </div>
                 <p className="text-grey text-base">

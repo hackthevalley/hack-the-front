@@ -20,7 +20,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/"); // change to /dashboard after merge
+      router.push("/dashboard");
     }
   }, [isAuthenticated]);
 
