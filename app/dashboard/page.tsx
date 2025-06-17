@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
 import dayjs from "dayjs";
@@ -55,6 +56,7 @@ export default function DashboardPage() {
   const [timeRange, setTimeRange] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const ctx = useContext(UserContext);
+  const router = useRouter();
 
   const getCurrentUser = async (): Promise<User> => {
     return await fetchInstance("account/me", {
@@ -66,6 +68,11 @@ export default function DashboardPage() {
     return await fetchInstance("admin/forms/getregtimerange", {
       method: "GET",
     });
+  };
+
+  const handleLogout = () => {
+    ctx?.logout();
+    router.push("/login");
   };
 
   useEffect(() => {
@@ -118,12 +125,12 @@ export default function DashboardPage() {
               <span className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
                 $ npm start challenge
               </span>
-              <Link
-                href="/login"
+              <button
+                onClick={handleLogout}
                 className="text-red-400 text-lg font-semibold"
               >
                 {"< Log Out"}
-              </Link>
+              </button>
             </div>
             <h1 className="text-white font-bold text-5xl mb-6 mt-2">
               Welcome Back, {user?.first_name || "Hacker"}
@@ -158,7 +165,7 @@ export default function DashboardPage() {
               <div className="flex-shrink-0">
                 <span
                   className={`${
-                    isOpen ? "bg-green-600" : "bg-gray-400"
+                    isOpen ? "bg-lightgreen" : "bg-gray-400"
                   } text-white px-6 py-3 rounded-lg text-lg font-semibold w-52 text-center `}
                 >
                   {isOpen ? "Open" : "Closed"}
