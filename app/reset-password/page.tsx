@@ -112,7 +112,7 @@ export default function ResetPasswordPage() {
                 <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
               </div>
             </div>
-            <div className="flex flex-col gap-y-8 mb-8">
+            <div className="flex flex-col gap-y-8 mb-4">
               <TextField
                 title="New Password"
                 placeholder="new password"

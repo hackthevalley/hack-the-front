@@ -133,7 +133,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-y-8 mb-8">
+            <div className="flex flex-col gap-y-8 mb-4">
               <TextField
                 title="Email"
                 placeholder="email"
