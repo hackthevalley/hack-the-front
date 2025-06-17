@@ -55,7 +55,7 @@ export default function ResetPasswordPage() {
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]"
+        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -83,10 +83,8 @@ export default function ResetPasswordPage() {
         }}
       />
 
-      <div className="flex flex-col grow relative z-[10] justify-center items-center animate-pulse">
-        <p className="text-white font-bold text-5xl mt-[1rem] mb-[2rem]">
-          Loading...
-        </p>
+      <div className="flex flex-col grow relative z-10 justify-center items-center animate-pulse">
+        <p className="text-white font-bold text-5xl mt-4] mb-8">Loading...</p>
         <p className="text-grey text-xl">
           Please wait as we activate your account
         </p>
