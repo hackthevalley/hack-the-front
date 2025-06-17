@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -10,6 +10,40 @@ import fetchInstance from "@/utils/api";
 export default function ResetPasswordPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!token || Array.isArray(token)) return;
+
+    const activateAccount = async () => {
+      const loadingToast = toast.loading("Activating Account...");
+      const data = {
+        token: token,
+      };
+
+      try {
+        const response = await fetchInstance("account/activate", {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+
+        if (response) {
+          toast.dismiss(loadingToast);
+          toast.success("Password Successfully Activated");
+          router.push("/login");
+        }
+      } catch (err) {
+        toast.dismiss(loadingToast);
+        if (err instanceof Error) {
+          toast.error(err.message);
+        } else {
+          toast.error("An unexpected error occurred");
+        }
+      }
+    };
+
+    activateAccount();
+  }, [token, router]);
 
   if (!token || Array.isArray(token)) {
     return <p>Missing or invalid token.</p>;
