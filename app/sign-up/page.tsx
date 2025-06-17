@@ -19,24 +19,15 @@ export default function SignupPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [formFilled, setFormFilled] = useState<boolean>(false);
 
   const { login, isAuthenticated } = useContext(UserContext) ?? {};
   const router = useRouter();
 
   useEffect(() => {
-    if (
-      fname !== "" &&
-      lname !== "" &&
-      email !== "" &&
-      password !== "" &&
-      confirmPassword !== ""
-    ) {
-      setFormFilled(true);
-    } else {
-      setFormFilled(false);
+    if (isAuthenticated) {
+      router.push("/"); // change to /dashboard after merge
     }
-  }, [fname, lname, email, password, confirmPassword]);
+  }, [isAuthenticated, router]);
 
   const validEmail = () => {
     return (
@@ -103,7 +94,11 @@ export default function SignupPage() {
       toast.success(`Sign up successful`);
     } catch (err) {
       toast.dismiss(loadingToast);
-      toast.error((err as any).message);
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
   };
 
@@ -217,13 +212,14 @@ export default function SignupPage() {
                   errorMessage="Passwords do not match"
                 />
               </div>
-
               <GreenButton
                 text="Sign Up"
                 onClick={submit}
-                formFilled={formFilled && validInput()}
+                formFilled={
+                  !!email && !!password && !!fname && !!lname && validInput()
+                }
               />
-
+              fname, lname, email, password
               <div className="flex my-[1rem]">
                 <p className="text-grey text-lg mr-2">
                   Already have an account?
