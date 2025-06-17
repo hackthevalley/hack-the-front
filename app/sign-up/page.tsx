@@ -108,7 +108,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
+    <div className="bg-black h-screen overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
       <Image
         width={0}
         height={0}
