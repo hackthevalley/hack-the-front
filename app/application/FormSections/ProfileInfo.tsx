@@ -67,6 +67,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
+          type="phone"
           fieldValue={props.phoneNumber}
           setFieldValue={props.setPhoneNumber}
         />

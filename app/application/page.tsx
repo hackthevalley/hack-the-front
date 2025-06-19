@@ -25,7 +25,6 @@ interface ApplicationProps {
 const findUserAppAnswer = (questionBank: any, question_id: string) => {
   if (question_id === "") return "";
   const answer = questionBank.find((item: any) => item.question_id === question_id);
-  // console.log("findUserAppAnswer for question_id:", answer.answer);
   return answer && answer.answer !== null ? answer.answer : "";
 };
 
@@ -321,6 +320,8 @@ export default function Application() {
         answer: consentAgreed.toString(),
       }
     ];
+
+    console.log("[PAYLOADS] ", tempPayload);
 
     return tempPayload.filter(
       (p) => typeof p.question_id === "string" && p.question_id.trim() !== "",

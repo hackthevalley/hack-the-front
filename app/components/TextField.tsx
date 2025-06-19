@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { isValidPhoneNumber, AsYouType } from "libphonenumber-js";
+
 
 import fetchInstance from "@/utils/api";
 
@@ -17,7 +19,7 @@ interface TextFieldProps {
   heightClasses?: string;
   backgroundClasses?: string;
   textClasses?: string;
-  type?: "text" | "textarea" | "dropdown" | "password" | "email" | "file";
+  type?: "text" | "textarea" | "dropdown" | "password" | "email" | "file" | "phone";
   options?: string[] | { label: string; value: string }[];
   fieldValue: string;
   fileValue?: File | null;
@@ -54,6 +56,7 @@ export default function TextField(props: TextFieldProps) {
   }`;
   const [localType, setLocalType] = useState<string>(type);
   const [touched, setTouched] = useState<boolean>(false);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   const allowedFormats = [".pdf"];
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -240,6 +243,41 @@ export default function TextField(props: TextFieldProps) {
                 />
               </button>
             )}
+          </>
+        );
+      case "phone":
+        return (
+          <>
+            <input
+              type="tel"
+              placeholder={placeholder}
+              className={`${baseClasses} ${textClasses}`}
+              onFocus={() => setTouched(true)}
+              onBlur={() => {
+                setTouched(false);
+                if (fieldValue.trim() === "") {
+                  setPhoneError(required ? "Phone number is required" : null);
+                  return;
+                }
+
+                const valid = isValidPhoneNumber(fieldValue, "CA");
+                if (!valid) {
+                  setPhoneError("Invalid phone number format");
+                } else {
+                  setPhoneError(null);
+                }
+              }}
+              disabled={disabled}
+              value={fieldValue}
+              onChange={(e) => {
+                const raw = e.target.value;
+                const formatter = new AsYouType("CA");
+                const formatted = formatter.input(raw);
+                setFieldValue(formatted);
+                setPhoneError(null);
+              }}
+            />
+            {phoneError && <span className="text-red mt-1 text-sm">{phoneError}</span>}
           </>
         );
       case "file":
