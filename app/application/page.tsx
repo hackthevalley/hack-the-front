@@ -321,7 +321,7 @@ export default function Application() {
       }
     ];
 
-    console.log("[PAYLOADS] ", tempPayload);
+    // console.log("[PAYLOADS] ", tempPayload);
 
     return tempPayload.filter(
       (p) => typeof p.question_id === "string" && p.question_id.trim() !== "",
