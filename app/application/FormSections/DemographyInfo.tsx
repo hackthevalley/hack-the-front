@@ -31,7 +31,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           placeholder="Age"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          options={Array.from({ length: 8 }, (_, i) => (18 + i).toString())} // TODO: May need to change this to a increment field
+          options={Array.from({ length: 8 }, (_, i) => (16 + i).toString())} // TODO: May need to change this to a increment field
           fieldValue={props.age}
           setFieldValue={props.setAge}
         />
@@ -75,7 +75,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
         <Dropdown
           title={props.questions[3]?.label}
           required={true}
-          placeholder=""
+          placeholder="Part of the LGBTQI+ community?"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           options={[
@@ -92,7 +92,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           <Dropdown
             title={props.questions[4]?.label}
             required={true}
-            placeholder=""
+            placeholder="Person with Disabilities?"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
             options={[
