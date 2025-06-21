@@ -128,7 +128,7 @@ export default function EducationInfo(props: EducationInfoProps) {
       <div className="grid grid-cols-1 gap-x-7 gap-y-4 md:grid-cols-2">
         <Dropdown
           title={props.questions[0]?.label}
-          required={false}
+          required={true}
           placeholder="Select country"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"

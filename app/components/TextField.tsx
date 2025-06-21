@@ -1,10 +1,9 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AsYouType, isValidPhoneNumber } from "libphonenumber-js";
 import { usePathname } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { isValidPhoneNumber, AsYouType } from "libphonenumber-js";
-
 
 import fetchInstance from "@/utils/api";
 
@@ -130,7 +129,7 @@ export default function TextField(props: TextFieldProps) {
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-  }
+  };
 
   const togglePassword = () => {
     if (type === "password" && localType === "password") {
@@ -297,7 +296,9 @@ export default function TextField(props: TextFieldProps) {
 
               {fileValue ? (
                 <>
-                  <p className="text-lg font-bold text-white">{fileValue instanceof File ? fileValue.name : fileValue}</p>
+                  <p className="text-lg font-bold text-white">
+                    {fileValue instanceof File ? fileValue.name : fileValue}
+                  </p>
                   <p className="text-grey mt-1 text-sm">
                     Your file has been uploaded. Click or drop another file to re-upload.
                   </p>

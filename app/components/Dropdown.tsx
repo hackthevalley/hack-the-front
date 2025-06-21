@@ -100,16 +100,23 @@ export default function Dropdown(props: DropdownProps) {
             }),
             option: (baseStyles, state) => ({
               ...baseStyles,
-              color: "var(--color-black)",
-              backgroundColor: state.isFocused ? "rgba(0, 0, 0, 0.05)" : "var(--color-white)",
+              color: "var(--color-white)",
+              backgroundColor: state.isFocused ? "rgba(34, 80, 150)" : "var(--color-darkblue)",
               cursor: "pointer",
             }),
             indicatorSeparator: () => ({
               display: "none",
             }),
+            menu: (baseStyles) => ({
+              ...baseStyles,
+              backgroundColor: "transparent",
+              borderRadius: "12px",
+            }),
             menuList: (baseStyles) => ({
               ...baseStyles,
               borderRadius: "12px",
+              scrollbarWidth: "thin",
+              scrollbarColor: "var(--color-white) rgba(28, 69, 130, 0.95)",
             }),
             dropdownIndicator: (baseStyles) => ({
               ...baseStyles,

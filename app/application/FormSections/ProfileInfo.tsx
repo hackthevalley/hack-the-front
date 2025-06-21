@@ -39,7 +39,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
         />
         <TextField
           title={props.questions[1]?.label}
-          required={true}
+          required={false}
           placeholder="Enter your last name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
@@ -50,7 +50,7 @@ export default function ProfileInfo(props: ProfileInfoProps) {
         />
         <TextField
           title={props.questions[2]?.label}
-          required={true}
+          required={false}
           placeholder="Enter your email address"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
