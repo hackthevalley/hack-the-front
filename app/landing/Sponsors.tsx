@@ -2,11 +2,69 @@ import GreenButton from "@/components/GreenButton";
 import SponsorField from "@/components/SponsorField";
 import Image from "next/image";
 
+interface SponsorData {
+  [sponsorName: string]: string;
+}
+
 export default function Sponsors() {
+  const sponsorData = {
+    gold: {
+      A: "/icons/htv-logo.svg",
+      B: "/icons/htv-logo.svg",
+      C: "/icons/htv-logo.svg",
+    },
+    silver: {
+      A: "/icons/htv-logo.svg",
+      B: "/icons/htv-logo.svg",
+    },
+    bronze: {
+      A: "/icons/htv-logo.svg",
+      B: "/icons/htv-logo.svg",
+      C: "/icons/htv-logo.svg",
+    },
+  };
+
+  const renderSponsorGrid = (
+    sponsors: SponsorData,
+    tier: "gold" | "silver" | "bronze"
+  ) => {
+    const entries = Object.entries(sponsors);
+    if (entries.length === 0) return null;
+
+    const gridConfig = {
+      gold: {
+        gridClass: "grid grid-cols-1 gap-6 sm:gap-8 md:gap-10",
+        itemClass: "h-40 sm:h-48 md:h-56",
+      },
+      silver: {
+        gridClass: "grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 ",
+        itemClass: "h-36 sm:h-44 md:h-56",
+      },
+      bronze: {
+        gridClass: "grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6",
+        itemClass: "h-28 sm:h-32 md:h-36",
+      },
+    };
+
+    const config = gridConfig[tier];
+    return (
+      <div className={config.gridClass}>
+        {entries.map(([sponsorName, logoSrc]) => (
+          <SponsorField
+            key={sponsorName}
+            sponsorName={sponsorName}
+            logoSrc={logoSrc}
+            tier={tier}
+            className={config.itemClass}
+          />
+        ))}
+      </div>
+    );
+  };
   return (
     <section
       id="sponsors"
-      className="min-h-screen scroll-mt-20 sm:px-8 md:px-16 lg:px-32 w-full"
+      className="scroll-mt-25 sm:px-8 md:px-16 lg:px-32 w-full"
       style={{ scrollMarginTop: "10rem" }}
     >
       <div className="relative flex flex-col justify-center items-center h-full">
@@ -94,6 +152,7 @@ export default function Sponsors() {
             </p>
           </div>
         </div>
+        {/* Decorative Elements */}
         <div className="absolute -left-1/8 top-1/2 -translate-y-1/2">
           <img src="/sponsor-page/roadmap-2.png" alt="Roadmap2" />
         </div>
@@ -119,59 +178,78 @@ export default function Sponsors() {
         <div className="absolute left-[33%] top-[97%] -translate-y-1/2">
           <img src="/sponsor-page/roadmap-4.png" alt="Roadmap" />
         </div>
-        <div className="relative w-full auto-rows-auto">
-          {/* Gold */}
-          <div className="absolute -left-14 top-[1%] -translate-y-1/2">
-            <Image
-              src="/sponsor-page/star.png"
-              alt="star-1"
-              width={140}
-              height={160}
-            />
-          </div>
-          <div className="grid grid-cols-1 gap-10">
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-          </div>
-          {/* Silver*/}
-          <div className="absolute -right-18 top-[40%] -translate-y-1/2">
-            <Image
-              src="/sponsor-page/star.png"
-              alt="star-2"
-              width={140}
-              height={160}
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-10 mt-10">
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-            <SponsorField className="h-56" />
-          </div>
+        <div className="absolute -left-14 top-[1%] -translate-y-1/2">
+          <Image
+            src="/sponsor-page/star.png"
+            alt="star-1"
+            width={140}
+            height={160}
+          />
+        </div>
+        <div className="absolute -right-18 top-[40%] -translate-y-1/2">
+          <Image
+            src="/sponsor-page/star.png"
+            alt="star-2"
+            width={140}
+            height={160}
+          />
+        </div>
+        <div className="absolute -left-18 top-[90.5%] -translate-y-1/2">
+          <Image
+            src="/sponsor-page/star.png"
+            alt="star-3"
+            width={140}
+            height={160}
+          />
+        </div>
+        <div className="relative w-full auto-rows-auto space-y-8 sm:space-y-12">
+          {/* Gold Sponsors */}
+          {Object.keys(sponsorData.gold).length > 0 && (
+            <div className="relative">
+              <div className="absolute -left-8 sm:-left-14 -top-4 sm:top-[1%] -translate-y-1/2 hidden md:block">
+                <Image
+                  src="/sponsor-page/star.png"
+                  alt="star-1"
+                  width={100}
+                  height={120}
+                  className="sm:w-[140px] sm:h-[160px]"
+                />
+              </div>
+              {renderSponsorGrid(sponsorData.gold, "gold")}
+            </div>
+          )}
 
-          {/* Bronze */}
-          <div className="absolute -left-18 top-[90.5%] -translate-y-1/2">
-            <Image
-              src="/sponsor-page/star.png"
-              alt="star-3"
-              width={140}
-              height={160}
-            />
-          </div>
-          <div className="grid grid-cols-3 gap-6 mt-10">
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-            <SponsorField className="h-36" />
-          </div>
+          {/* Silver Sponsors */}
+          {Object.keys(sponsorData.silver).length > 0 && (
+            <div className="relative">
+              <div className="absolute -right-8 sm:-right-18 top-[40%] -translate-y-1/2 hidden md:block">
+                <Image
+                  src="/sponsor-page/star.png"
+                  alt="star-2"
+                  width={100}
+                  height={120}
+                  className="sm:w-[140px] sm:h-[160px]"
+                />
+              </div>
+              {renderSponsorGrid(sponsorData.silver, "silver")}
+            </div>
+          )}
+
+          {/* Bronze Sponsors */}
+          {Object.keys(sponsorData.bronze).length > 0 && (
+            <div className="relative">
+              <div className="absolute -left-8 sm:-left-18 top-[90.5%] -translate-y-1/2 hidden md:block">
+                <Image
+                  src="/sponsor-page/star.png"
+                  alt="star-3"
+                  width={100}
+                  height={120}
+                  className="sm:w-[140px] sm:h-[160px]"
+                />
+              </div>
+              {renderSponsorGrid(sponsorData.bronze, "bronze")}
+            </div>
+          )}
         </div>
       </div>
     </section>
