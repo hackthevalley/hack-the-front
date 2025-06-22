@@ -2,8 +2,10 @@
 
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { JSX, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import { FormSections } from "@/application/FormSections";
 import Button from "@/components/Button";
@@ -12,7 +14,6 @@ import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
 
 import { useQuestions } from "./context/QuestionContext";
-import { useRouter } from "next/navigation";
 
 const token = localStorage.getItem("auth-token");
 
@@ -104,6 +105,24 @@ export default function Application() {
   // Consent Info State
   const section8Questions = questions.slice(32, 33);
   const [consentAgreed, setConsentAgreed] = useState(false);
+
+  // Responsiveness
+  const isNotDesktop = useMediaQuery({ maxWidth: 1050 });
+  const isTinyDesktop = useMediaQuery({ minWidth: 1050, maxWidth: 1200 });
+  const isSmallDesktop = useMediaQuery({ minWidth: 1200, maxWidth: 1375 });
+  const isMediumDesktop = useMediaQuery({ minWidth: 1375, maxWidth: 1470 });
+  const isLargeDesktop = useMediaQuery({ minWidth: 1470 });
+
+  const responsiveX = isTinyDesktop
+    ? 60
+    : isSmallDesktop
+      ? 200
+      : isMediumDesktop
+        ? 350
+        : isLargeDesktop
+          ? 450
+          : 500;
+  const showCat = isNotDesktop ? false : true;
 
   // Fetch user application progress
   useEffect(() => {
@@ -318,7 +337,7 @@ export default function Application() {
       {
         question_id: getQuestionId("Hack the Valley Consent Form Agreement"),
         answer: consentAgreed.toString(),
-      }
+      },
     ];
 
     // console.log("[PAYLOADS] ", tempPayload);
@@ -355,7 +374,7 @@ export default function Application() {
         body: JSON.stringify(payloads),
       });
       console.log("[FINAL SAVED] ");
-      
+
       const resSubmit = await fetchInstance("forms/submit", {
         method: "POST",
       });
@@ -405,9 +424,10 @@ export default function Application() {
             setPhoneNumber={setPhoneNumber}
           />
           <motion.img
+            key={showCat ? "visible" : "hidden"}
             ref={spaceshipRef0}
             initial={{ opacity: 0, x: 0 }}
-            animate={inView0 ? { opacity: 1, x: 600 } : { opacity: 0, x: 0 }}
+            animate={showCat && inView0 ? { opacity: 1, x: responsiveX } : { opacity: 0, x: 0 }}
             transition={inView0 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
@@ -445,13 +465,17 @@ export default function Application() {
           <motion.img
             ref={spaceshipRef1}
             initial={{ opacity: 0, x: 0, y: -200 }}
-            animate={inView1 ? { opacity: 1, x: 600, y: 0 } : { opacity: 0, x: 0, y: -200 }}
+            animate={
+              showCat && inView1
+                ? { opacity: 1, x: responsiveX * 1.2, y: 0 }
+                : { opacity: 0, x: 0, y: -200 }
+            }
             transition={inView1 ? { duration: 1.4, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-10 -left-120 translate-x-1/2 translate-y-1/2 rotate-[9.75deg]"
+            className="absolute -top-10 -left-100 translate-x-1/2 translate-y-1/2 rotate-[9.75deg]"
           />
         </section>
       ),
@@ -477,8 +501,8 @@ export default function Application() {
             ref={spaceshipRef2}
             initial={{ opacity: 0, x: 0, y: 70, rotate: 0 }}
             animate={
-              inView2
-                ? { opacity: 1, x: 750, y: 0, rotate: 35 }
+              showCat && inView2
+                ? { opacity: 1, x: responsiveX * 1.3, y: 0, rotate: 35 }
                 : { opacity: 0, x: 0, y: 70, rotate: 0 }
             }
             transition={inView2 ? { duration: 2.2, ease: "easeInOut" } : { duration: 0 }}
@@ -486,7 +510,7 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute top-80 -right-40 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[38deg]"
+            className="absolute top-80 -right-20 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[38deg]"
           />
         </section>
       ),
@@ -511,19 +535,23 @@ export default function Application() {
           <motion.img
             ref={spaceshipRef3}
             initial={{ opacity: 0, x: 0, y: -200 }}
-            animate={inView3 ? { opacity: 1, x: 500, y: 50 } : { opacity: 0, x: 0, y: -200 }}
+            animate={
+              showCat && inView3
+                ? { opacity: 1, x: responsiveX * 0.8, y: 50 }
+                : { opacity: 0, x: 0, y: -200 }
+            }
             transition={inView3 ? { duration: 1.5, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-10 -left-120 translate-x-1/2 translate-y-1/2 rotate-[-3.75deg]"
+            className="absolute -top-10 -left-90 z-10 translate-x-1/2 translate-y-1/2 rotate-[-3.75deg]"
           />
           <Image
             src="/application-page/star.svg"
             alt="star"
-            width={485}
-            height={447}
+            width={388}
+            height={358}
             className="absolute bottom-0 left-50 object-cover"
           />
         </section>
@@ -556,8 +584,8 @@ export default function Application() {
             ref={spaceshipRef4}
             initial={{ opacity: 0, x: 0, y: -100, rotate: 0 }}
             animate={
-              inView4
-                ? { opacity: 1, x: 550, y: 300, rotate: 18 }
+              showCat && inView4
+                ? { opacity: 1, x: responsiveX * 0.95, y: 200, rotate: 18 }
                 : { opacity: 0, x: 0, y: -100, rotate: 0 }
             }
             transition={inView4 ? { duration: 1.2, ease: "easeInOut" } : { duration: 0 }}
@@ -565,7 +593,7 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute top-10 -right-40 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[18deg]"
+            className="absolute top-10 -right-20 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[18deg]"
           />
         </section>
       ),
@@ -585,14 +613,16 @@ export default function Application() {
             ref={spaceshipRef5}
             initial={{ opacity: 0, x: 0, y: -300 }}
             animate={
-              inView5 ? { opacity: 1, x: 600, y: 0, rotate: -40 } : { opacity: 0, x: 0, y: -300 }
+              showCat && inView5
+                ? { opacity: 1, x: responsiveX + 70, y: 0, rotate: -40 }
+                : { opacity: 0, x: 0, y: -300 }
             }
             transition={inView5 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }}
             src="/application-page/spaceship.png"
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-60 -left-120 translate-x-1/2 translate-y-1/2 rotate-[30deg]"
+            className="absolute -top-60 -left-100 translate-x-1/2 translate-y-1/2 rotate-[30deg]"
           />
           <Image
             src="/application-page/star.svg"
@@ -665,7 +695,7 @@ export default function Application() {
             </div>
             <p className="mb-10 text-xl">
               Hey hacker, welcome aboard&#x1F44B;&#x1F3FC; <br />
-              Your co-pilot <strong>(name)</strong> will track your journey through this
+              Your co-pilot <strong>Valerie</strong> will track your journey through this
               application. Buckle up!
             </p>
             <motion.div

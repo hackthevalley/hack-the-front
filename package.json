@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "framer-motion": "^12.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "framer-motion": "^12.11.0",
     "jose": "^6.0.11",
     "libphonenumber-js": "^1.12.9",
     "motion": "^12.9.2",
@@ -20,6 +20,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
+    "react-responsive": "^10.0.1",
     "react-select": "^5.10.1"
   },
   "devDependencies": {
