@@ -124,6 +124,21 @@ export default function Application() {
           : 500;
   const showCat = isNotDesktop ? false : true;
 
+  // Cat spaceship animation
+  const spaceshipRef0 = useRef<HTMLImageElement>(null);
+  const spaceshipRef1 = useRef<HTMLImageElement>(null);
+  const spaceshipRef2 = useRef<HTMLImageElement>(null);
+  const spaceshipRef3 = useRef<HTMLImageElement>(null);
+  const spaceshipRef4 = useRef<HTMLImageElement>(null);
+  const spaceshipRef5 = useRef<HTMLImageElement>(null);
+
+  const inView0 = useInView(spaceshipRef0, { once: false, margin: "-20% 0px" });
+  const inView1 = useInView(spaceshipRef1, { once: false, margin: "-20% 0px" });
+  const inView2 = useInView(spaceshipRef2, { once: false, margin: "-20% 0px" });
+  const inView3 = useInView(spaceshipRef3, { once: false, margin: "-20% 0px" });
+  const inView4 = useInView(spaceshipRef4, { once: false, margin: "-20% 0px" });
+  const inView5 = useInView(spaceshipRef5, { once: false, margin: "-20% 0px" });
+
   // Fetch user application progress
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -388,20 +403,6 @@ export default function Application() {
     }
   };
 
-  const spaceshipRef0 = useRef<HTMLImageElement>(null);
-  const spaceshipRef1 = useRef<HTMLImageElement>(null);
-  const spaceshipRef2 = useRef<HTMLImageElement>(null);
-  const spaceshipRef3 = useRef<HTMLImageElement>(null);
-  const spaceshipRef4 = useRef<HTMLImageElement>(null);
-  const spaceshipRef5 = useRef<HTMLImageElement>(null);
-
-  const inView0 = useInView(spaceshipRef0, { once: false, margin: "-20% 0px" });
-  const inView1 = useInView(spaceshipRef1, { once: false, margin: "-20% 0px" });
-  const inView2 = useInView(spaceshipRef2, { once: false, margin: "-20% 0px" });
-  const inView3 = useInView(spaceshipRef3, { once: false, margin: "-20% 0px" });
-  const inView4 = useInView(spaceshipRef4, { once: false, margin: "-20% 0px" });
-  const inView5 = useInView(spaceshipRef5, { once: false, margin: "-20% 0px" });
-
   // const sectionClassName = "flex items-center mx-20 relative";
   const sectionClassName = `h-[calc(100vh-10rem)] min-height-fit snap-end scroll-smooth overflow-hidden relative items-center flex md:px-10`;
   const formSections: {
@@ -424,8 +425,8 @@ export default function Application() {
             setPhoneNumber={setPhoneNumber}
           />
           <motion.img
-            key={showCat ? "visible" : "hidden"}
             ref={spaceshipRef0}
+            style={{ willChange: "transform", pointerEvents: "none" }}
             initial={{ opacity: 0, x: 0 }}
             animate={showCat && inView0 ? { opacity: 1, x: responsiveX } : { opacity: 0, x: 0 }}
             transition={inView0 ? { duration: 2, ease: "easeInOut" } : { duration: 0 }}
@@ -464,6 +465,7 @@ export default function Application() {
           />
           <motion.img
             ref={spaceshipRef1}
+            style={{ willChange: "transform", pointerEvents: "none" }}
             initial={{ opacity: 0, x: 0, y: -200 }}
             animate={
               showCat && inView1
@@ -499,6 +501,7 @@ export default function Application() {
           />
           <motion.img
             ref={spaceshipRef2}
+            style={{ willChange: "transform", pointerEvents: "none" }}
             initial={{ opacity: 0, x: 0, y: 70, rotate: 0 }}
             animate={
               showCat && inView2
@@ -534,6 +537,7 @@ export default function Application() {
           />
           <motion.img
             ref={spaceshipRef3}
+            style={{ willChange: "transform", pointerEvents: "none" }}
             initial={{ opacity: 0, x: 0, y: -200 }}
             animate={
               showCat && inView3
@@ -582,6 +586,7 @@ export default function Application() {
           />
           <motion.img
             ref={spaceshipRef4}
+            style={{ willChange: "transform", pointerEvents: "none" }}
             initial={{ opacity: 0, x: 0, y: -100, rotate: 0 }}
             animate={
               showCat && inView4
@@ -611,6 +616,7 @@ export default function Application() {
           />
           <motion.img
             ref={spaceshipRef5}
+            style={{ willChange: "transform", pointerEvents: "none" }}
             initial={{ opacity: 0, x: 0, y: -300 }}
             animate={
               showCat && inView5
