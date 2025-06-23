@@ -46,26 +46,29 @@ const countries = [
 ];
 
 const universities = [
-  "University of Toronto",
-  "University of British Columbia",
+  "Carleton University",
+  "Concordia University",
+  "Dalhousie University",
+  "Laval University",
   "McGill University",
-  "University of Alberta",
-  "University of Waterloo",
-  "Western University",
+  "Memorial University of Newfoundland",
   "Queen's University",
   "Simon Fraser University",
-  "University of Calgary",
-  "Dalhousie University",
-  "University of Ottawa",
-  "York University",
-  "University of Victoria",
-  "Laval University",
-  "University of Manitoba",
-  "University of Saskatchewan",
-  "Concordia University",
-  "Carleton University",
-  "Memorial University of Newfoundland",
   "Toronto Metropolitan University",
+  "University of Alberta",
+  "University of British Columbia",
+  "University of Calgary",
+  "University of Manitoba",
+  "University of Ottawa",
+  "University of Saskatchewan",
+  "University of Toronto (St. George)",
+  "University of Toronto (Scarborough)",
+  "University of Toronto (Mississauga)",
+  "University of Victoria",
+  "University of Waterloo",
+  "Western University",
+  "York University",
+  "Other",
 ];
 
 const majors = [
@@ -152,7 +155,6 @@ export default function EducationInfo(props: EducationInfoProps) {
           placeholder="Select level of education"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          // options={["High School", "Undergraduate", "Graduate", "PhD", "Other"]}
           options={[
             "High School",
             "Sophomore - Undergraduate",
@@ -160,6 +162,7 @@ export default function EducationInfo(props: EducationInfoProps) {
             "Senior - Undergraduate",
             "Graduate",
             "PhD",
+            "Other",
           ]}
           fieldValue={props.currentLevelOfStudy}
           setFieldValue={props.setCurrentLevelOfStudy}

@@ -9,7 +9,6 @@ interface DropdownProps {
   title: string;
   required?: boolean;
   placeholder: string;
-  multiline?: boolean;
   widthClasses?: string;
   heightClasses?: string;
   backgroundClasses?: string;
@@ -35,7 +34,6 @@ export default function Dropdown(props: DropdownProps) {
     widthClasses = "w-full",
     heightClasses = "min-h-15 sm:min-h-10",
     backgroundClasses = "bg-gradient-to-b from-[#183766] to-[#0B1C34]",
-    multiline = false,
     textClasses = "text-[20px]",
     options = [],
     fieldValue,
@@ -44,6 +42,21 @@ export default function Dropdown(props: DropdownProps) {
     errorMessage = "Invalid value",
     disabled = false,
   } = props;
+
+  const [otherSelected, setOtherSelected] = useState<boolean>(false);
+  const [localFieldValue, setLocalFieldValue] = useState<string>(fieldValue);
+  const [otherFieldValue, setOtherFieldValue] = useState<string>("");
+
+  useEffect(() => {
+    if (localFieldValue === "Other") {
+      setOtherSelected(true);
+      setFieldValue(otherFieldValue);
+    } else {
+      setOtherSelected(false);
+      setFieldValue(localFieldValue);
+      setOtherFieldValue("");
+    }
+  }, [localFieldValue, otherFieldValue]);
 
   const formattedOptions = useMemo(() => {
     if (Array.isArray(options) && typeof options[0] === "string") {
@@ -56,9 +69,7 @@ export default function Dropdown(props: DropdownProps) {
     return options as { label: string; value: string }[];
   }, [options]);
 
-  const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-bgblue ${
-    multiline ? "h-full resize-none" : ""
-  }`;
+  const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-bgblue`;
   const [touched, setTouched] = useState<boolean>(false);
 
   const borderColor = useMemo(() => {
@@ -135,12 +146,26 @@ export default function Dropdown(props: DropdownProps) {
             setTouched(false);
           }}
           options={formattedOptions}
-          value={formattedOptions.find((opt) => opt.value === fieldValue) || null}
+          value={formattedOptions.find((opt) => opt.value === localFieldValue) || null}
           onChange={(selectedOption) => {
-            setFieldValue(selectedOption?.value || "");
+            setLocalFieldValue(selectedOption?.value || "");
           }}
           isDisabled={disabled}
         ></Select>
+        {otherSelected && (
+          <div>
+            <label>Please specify below:</label>
+            <input
+              type="text"
+              className={` ${baseClasses} ${textClasses} ${heightClasses} ${widthClasses} mt-2 bg-transparent`}
+              placeholder="Please specify other"
+              value={otherFieldValue}
+              onChange={(e) => setOtherFieldValue(e.target.value)}
+              onFocus={() => setTouched(true)}
+              onBlur={() => setTouched(false)}
+            />
+          </div>
+        )}
       </div>
     );
   };
