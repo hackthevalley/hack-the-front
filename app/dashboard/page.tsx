@@ -13,7 +13,7 @@ export default function DashboardPage() {
           height={0}
           src="/backgrounds/smaller-gradient.svg"
           alt="Background Gradient"
-          className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]"
+          className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
         />
         {/* Mini Browser Border Start */}
         <div className="relative z-10 w-full max-w-5xl mx-auto mb-8 rounded-2xl bg-[#12213A] shadow-lg border border-blue-900">
