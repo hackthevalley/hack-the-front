@@ -18,7 +18,8 @@ export default function Home() {
       <Navbar />
       {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen sm:min-h-[calc(100vh-10rem)] bg-black relative p-8 pb-20 font-[family-name:var(--font-euclid-circular-b)] overflow-x-hidden sm:p-20 sm:pt-27">
+      {/* min-h-screen sm:min-h-[calc(100vh-10rem)] */}
+      <div className="grid grid-rows-[auto_1fr_auto]  h-[calc(100vh-10rem)] items-center justify-items-center bg-black relative p-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] overflow-x-hidden sm:px-20  sm:pt-27">
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
         <Image
@@ -37,7 +38,7 @@ export default function Home() {
         />
 
         <main className="flex flex-col gap-[32px] md:gap-[48px] row-start-2 items-center sm:items-start">
-          <div className="flex flex-col sm:flex-row w-full gap-4 ">
+          <div className="flex flex-col sm:flex-row w-full gap-4 mt-25 mb-40 ">
             <div className="w-full sm:w-1/2 flex flex-col items-center">
               <div className="flex flex-col items-center md:items-start md:grid md:grid-cols-[auto_1fr] md:gap-2 w-full z-10">
                 {/* Positioning the ">" */}
@@ -184,9 +185,11 @@ export default function Home() {
             </div>
           </div>
           <Sponsors />
+          <div className="justify-center items-center w-full mt-20">
+            <Footer />
+          </div>
         </main>
       </div>
-      <Footer />
     </div>
   );
 }
