@@ -15,13 +15,9 @@ import fetchInstance from "@/utils/api";
 
 import { useQuestions } from "./context/QuestionContext";
 
-const token = localStorage.getItem("auth-token");
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-interface ApplicationProps {
-  application: Object | null;
-  form_answers: Object[];
-  form_answersfile: string;
-}
+const token = localStorage.getItem("auth-token");
 
 const findUserAppAnswer = (questionBank: any, question_id: string) => {
   if (question_id === "") return "";
@@ -33,11 +29,6 @@ export default function Application() {
   // Get application questions
   const { questions, loading, error } = useQuestions();
   const [isFormActive, setIsFormActive] = useState(false);
-  const [app, setApp] = useState<ApplicationProps>({
-    application: null,
-    form_answers: [],
-    form_answersfile: "",
-  });
   const appRef = useRef<HTMLDivElement>(null);
   const [hasLoadedAppData, setHasLoadedAppData] = useState(false);
   const router = useRouter();
@@ -97,13 +88,11 @@ export default function Application() {
   const [shirtSize, setShirtSize] = useState("");
 
   // MLH Info State
-  const section7Questions = questions.slice(29, 32);
   const [mlhCodeOfConduct, setMlhCodeOfConduct] = useState(false);
   const [mlhPrivacyPolicy, setMlhPrivacyPolicy] = useState(false);
   const [mlhEmailConsent, setMlhEmailConsent] = useState(false);
 
   // Consent Info State
-  const section8Questions = questions.slice(32, 33);
   const [consentAgreed, setConsentAgreed] = useState(false);
 
   // Responsiveness
@@ -146,8 +135,6 @@ export default function Application() {
         const res = await fetchInstance("forms/getapplication", {
           method: "GET",
         });
-        setApp(res);
-        // console.log("[RES] Application data fetched:", app);
 
         setFirstName(findUserAppAnswer(res.form_answers, getQuestionId("First Name")));
         setLastName(findUserAppAnswer(res.form_answers, getQuestionId("Last Name")));
@@ -380,20 +367,15 @@ export default function Application() {
     try {
       if (!questions || questions.length === 0) return;
       const payloads = getPayloads();
-      const validPayloads = payloads.filter(
-        (payload) => payload.question_id && payload.answer !== "",
-      );
-
-      const resFinalSave = await fetchInstance("forms/saveAnswers", {
+      payloads.filter((payload) => payload.question_id && payload.answer !== "");
+      await fetchInstance("forms/saveAnswers", {
         method: "POST",
         body: JSON.stringify(payloads),
       });
-      console.log("[FINAL SAVED] ");
 
-      const resSubmit = await fetchInstance("forms/submit", {
+      await fetchInstance("forms/submit", {
         method: "POST",
       });
-      console.log("[FINAL SUBMIT]");
 
       setIsFormActive(false);
       router.push("/"); // TODO: Redirect to dashboard after submission
