@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -8,10 +9,6 @@ import toast, { Toaster } from "react-hot-toast";
 import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 import TextField from "@/components/TextField";
-import toast, { Toaster } from "react-hot-toast";
-import Image from "next/image";
-
-import { useState, useEffect, useContext } from "react";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
 
@@ -35,7 +32,7 @@ export default function SignupPage() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
         event.preventDefault();
-        if (formFilled && validInput()) {
+        if (!!email && !!password && !!fname && !!lname && validInput()) {
           submit(event as unknown as React.FormEvent);
         }
       }
@@ -117,12 +114,12 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="bg-black h-screen overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
+    <div className="relative h-screen overflow-y-auto bg-black font-[family-name:var(--font-euclid-circular-b)]">
       <Image
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+        className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -150,9 +147,9 @@ export default function SignupPage() {
         }}
       />
 
-      <div className="flex flex-col relative z-10">
-        <div className="w-3/4 mx-auto items-start mb-4">
-          <Link className="text-white font-semibold text-2xl" href="/">
+      <div className="relative z-10 flex flex-col">
+        <div className="mx-auto mb-4 w-3/4 items-start">
+          <Link className="text-2xl font-semibold text-white" href="/">
             {"<"} Back
           </Link>
         </div>
@@ -161,14 +158,12 @@ export default function SignupPage() {
           <div className="w-1/2">
             <p className="text-grey text-xl">$ npm start challenge</p>
 
-            <p className="text-white font-bold text-5xl mt-4 mb-8">
-              {">"} Welcome Back Hacker,
-            </p>
+            <p className="mt-4 mb-8 text-5xl font-bold text-white">{">"} Welcome Back Hacker,</p>
 
-            <div className="w-full my-8">
-              <div className="flex justify-between items-center">
-                <hr className="bg-indigo border-none mr-4 w-full h-[2px]" />
-                <p className="text-white w-fit whitespace-nowrap font-semibold text-2xl">
+            <div className="my-8 w-full">
+              <div className="flex items-center justify-between">
+                <hr className="bg-indigo mr-4 h-[2px] w-full border-none" />
+                <p className="w-fit text-2xl font-semibold whitespace-nowrap text-white">
                   Create an account to register
                 </p>
                 <hr className="bg-indigo ml-4 h-[2px] w-full border-none" />
@@ -229,18 +224,11 @@ export default function SignupPage() {
               <GreenButton
                 text="Sign Up"
                 onClick={submit}
-                formFilled={
-                  !!email && !!password && !!fname && !!lname && validInput()
-                }
+                formFilled={!!email && !!password && !!fname && !!lname && validInput()}
               />
-              <div className="flex my-4">
-                <p className="text-grey text-lg mr-2">
-                  Already have an account?
-                </p>
-                <Link
-                  className="text-lightgreen text-lg font-semibold"
-                  href="/login"
-                >
+              <div className="my-4 flex">
+                <p className="text-grey mr-2 text-lg">Already have an account?</p>
+                <Link className="text-lightgreen text-lg font-semibold" href="/login">
                   Sign in.
                 </Link>
               </div>
