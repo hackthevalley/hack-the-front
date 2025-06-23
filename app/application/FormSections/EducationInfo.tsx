@@ -157,6 +157,7 @@ export default function EducationInfo(props: EducationInfoProps) {
           textClasses="text-md placeholder:text-base"
           options={[
             "High School",
+            "Freshman - Undergraduate",
             "Sophomore - Undergraduate",
             "Junior - Undergraduate",
             "Senior - Undergraduate",

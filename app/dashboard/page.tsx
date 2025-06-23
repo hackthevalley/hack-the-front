@@ -1,12 +1,14 @@
 "use client";
-import React, { useState, useContext, useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Link from "next/link";
+
+import dayjs from "dayjs";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
+
+import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
-import dayjs from "dayjs";
 
 interface User {
   first_name: string;
@@ -97,69 +99,60 @@ export default function DashboardPage() {
   return (
     <div>
       <Navbar hide={true} />
-      <div className="min-h-[calc(110vh-10rem)] bg-black relative overflow-hidden font-[family-name:var(--font-euclid-circular-b)] flex flex-col items-center justify-start pt-10">
+      <div className="relative flex min-h-[calc(110vh-10rem)] flex-col items-center justify-start overflow-hidden bg-black pt-10 font-[family-name:var(--font-euclid-circular-b)]">
         <Image
           width={0}
           height={0}
           src="/backgrounds/smaller-gradient.svg"
           alt="Background Gradient"
-          className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+          className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         />
         {/* Mini Browser Border Start */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto mb-8 rounded-2xl bg-[#12213A] shadow-lg border border-blue-900">
+        <div className="relative z-10 mx-auto mb-8 w-full max-w-5xl rounded-2xl border border-blue-900 bg-[#12213A] shadow-lg">
           {/* Browser Top Bar */}
-          <div className="flex items-center px-4 py-2 bg-[#192642] rounded-t-2xl border-b border-blue-900">
+          <div className="flex items-center rounded-t-2xl border-b border-blue-900 bg-[#192642] px-4 py-2">
             {/* Circles */}
-            <div className="flex items-center gap-2 mr-4">
-              <span className="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+            <div className="mr-4 flex items-center gap-2">
+              <span className="inline-block h-3 w-3 rounded-full bg-red-500"></span>
+              <span className="inline-block h-3 w-3 rounded-full bg-yellow-400"></span>
+              <span className="inline-block h-3 w-3 rounded-full bg-green-500"></span>
             </div>
             {/* URL Bar */}
-            <div className="flex-1 bg-[#22345a] rounded-md px-4 py-1 text-sm text-gray-300 font-mono truncate">
+            <div className="flex-1 truncate rounded-md bg-[#22345a] px-4 py-1 font-mono text-sm text-gray-300">
               hackthevalley - bash - 80x24
             </div>
           </div>
           {/* Main Content Inside Browser */}
           <div className="p-0 md:p-8">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-grey font-[family-name:var(--font-source-code-pro)] text-xl">
                 $ npm start challenge
               </span>
-              <button
-                onClick={handleLogout}
-                className="text-red-400 text-lg font-semibold"
-              >
+              <button onClick={handleLogout} className="text-lg font-semibold text-red-400">
                 {"< Log Out"}
               </button>
             </div>
-            <h1 className="text-white font-bold text-5xl mb-6 mt-2">
+            <h1 className="mt-2 mb-6 text-5xl font-bold text-white">
               Welcome Back, {user?.first_name || "Hacker"}
             </h1>
             {/* Application Status Card */}
-            <div className="bg-[#0B1627] border border-blue-900 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center md:items-center gap-6">
+            <div className="mb-8 flex flex-col items-center gap-6 rounded-xl border border-blue-900 bg-[#0B1627] p-6 md:flex-row md:items-center">
               <div className="flex-1">
-                <p className="text-white text-lg mb-2">
-                  Current Application Status
-                </p>
-                <div className="flex items-center gap-3 mb-2">
+                <p className="mb-2 text-lg text-white">Current Application Status</p>
+                <div className="mb-2 flex items-center gap-3">
                   <Image
                     width={0}
                     height={0}
                     src={status.icon}
                     alt={status.label}
-                    className="w-10 h-10"
+                    className="h-10 w-10"
                   />
-                  <span className={`${status.color} text-3xl font-bold`}>
-                    {status.label}
-                  </span>
+                  <span className={`${status.color} text-3xl font-bold`}>{status.label}</span>
                 </div>
                 <p className="text-grey text-base">
                   Application due on{" "}
                   <span className="font-semibold text-white">
-                    {timeRange?.end_at
-                      ? dayjs(timeRange.end_at).format("MMMM D, YYYY")
-                      : "TBD"}
+                    {timeRange?.end_at ? dayjs(timeRange.end_at).format("MMMM D, YYYY") : "TBD"}
                   </span>
                 </p>
               </div>
@@ -167,7 +160,7 @@ export default function DashboardPage() {
                 <span
                   className={`${
                     isOpen ? "bg-lightgreen" : "bg-gray-400"
-                  } text-white px-6 py-3 rounded-lg text-lg font-semibold w-52 text-center `}
+                  } w-52 rounded-lg px-6 py-3 text-center text-lg font-semibold text-white`}
                 >
                   {isOpen ? "Open" : "Closed"}
                 </span>
@@ -175,33 +168,31 @@ export default function DashboardPage() {
             </div>
             {/* Explore Section */}
             <div>
-              <h2 className="text-white text-xl font-semibold mb-4">Explore</h2>
-              <div className="flex flex-col md:flex-row gap-6">
+              <h2 className="mb-4 text-xl font-semibold text-white">Explore</h2>
+              <div className="flex flex-col gap-6 md:flex-row">
                 {/* Discover Themes Card */}
                 <Link
                   href="#themes"
-                  className="flex-1 bg-[#0B1627] rounded-xl p-6 flex items-center gap-6 hover:bg-[#1a2c4d] transition-colors"
+                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
                 >
-                  <div className="flex gap-2 min-w-[64px]">
+                  <div className="flex min-w-[64px] gap-2">
                     <Image
                       width={0}
                       height={0}
                       src="/dashboard/Themes.svg"
                       alt="Themes"
-                      className="w-full h-auto max-h-24 object-contain"
+                      className="h-auto max-h-24 w-full object-contain"
                     />
                   </div>
                   <div>
-                    <div className="text-white text-2xl font-semibold">
-                      Discover Themes
-                    </div>
+                    <div className="text-2xl font-semibold text-white">Discover Themes</div>
                     <div className="text-grey text-lg">Factions of HTVX</div>
                   </div>
                 </Link>
                 {/* FAQ Card */}
                 <Link
                   href="#faq"
-                  className="flex-1 bg-[#0B1627] rounded-xl p-6 flex items-center gap-6 hover:bg-[#1a2c4d] transition-colors"
+                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
                 >
                   <div className="min-w-[64px]">
                     <Image
@@ -209,16 +200,12 @@ export default function DashboardPage() {
                       height={0}
                       src="/dashboard/FAQ Icon.svg"
                       alt="FAQ"
-                      className="w-14 h-14"
+                      className="h-14 w-14"
                     />
                   </div>
                   <div>
-                    <div className="text-white text-2xl font-semibold">
-                      How Can we Help?
-                    </div>
-                    <div className="text-grey text-lg">
-                      Frequently Asked Questions
-                    </div>
+                    <div className="text-2xl font-semibold text-white">How Can we Help?</div>
+                    <div className="text-grey text-lg">Frequently Asked Questions</div>
                   </div>
                 </Link>
               </div>

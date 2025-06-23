@@ -19,7 +19,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  const { login, isAuthenticated } = useContext(UserContext) ?? {};
+  const { isAuthenticated } = useContext(UserContext) ?? {};
   const router = useRouter();
 
   useEffect(() => {
@@ -87,20 +87,14 @@ export default function SignupPage() {
     };
 
     try {
-      const response = await fetchInstance("account/signup", {
+      await fetchInstance("account/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-
-      // Assuming it follows same logic as login
-      if (response.access_token && login) {
-        // Currently does not login after sign up
-        await login(response.access_token);
-        router.push("/application"); // change to /dashboard after merge
-      }
+      router.push("/login");
       toast.dismiss(loadingToast);
       toast.success(`Sign up successful`);
     } catch (err) {
