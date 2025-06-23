@@ -35,7 +35,7 @@ export default function SignupPage() {
       String(email)
         .toLowerCase()
         .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )
     );
   };
@@ -219,7 +219,6 @@ export default function SignupPage() {
                   !!email && !!password && !!fname && !!lname && validInput()
                 }
               />
-              fname, lname, email, password
               <div className="flex my-4">
                 <p className="text-grey text-lg mr-2">
                   Already have an account?
