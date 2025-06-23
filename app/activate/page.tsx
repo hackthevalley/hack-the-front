@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import fetchInstance from "@/utils/api";
 
-export default function ResetPasswordPage() {
+export default function ActivatePage() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const router = useRouter();
