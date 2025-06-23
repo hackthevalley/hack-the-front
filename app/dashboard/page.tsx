@@ -1,9 +1,99 @@
-import React from "react";
+"use client";
+import React, { useState, useContext, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import fetchInstance from "@/utils/api";
+import { UserContext } from "@/utils/auth";
+import dayjs from "dayjs";
+
+interface User {
+  first_name: string;
+  last_name: string;
+  email: string;
+  uid: string;
+  role: string;
+  is_active: boolean;
+  application_status: string;
+}
+
+const getApplicationStatus = (status: string) => {
+  switch (status.toLowerCase()) {
+    case "accepted":
+      return {
+        color: "text-green-400",
+        label: "Accepted",
+        icon: "/dashboard/accepted.svg",
+        badge: "bg-green-600",
+      };
+    case "declined":
+      return {
+        color: "text-red-400",
+        label: "Declined",
+        icon: "/dashboard/declined.svg",
+        badge: "bg-gray-400",
+      };
+    case "pending":
+      return {
+        color: "text-gray-300",
+        label: "Pending",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-gray-500",
+      };
+    default:
+      return {
+        color: "text-gray-300",
+        label: "Not Submitted",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-gray-500",
+      };
+  }
+};
+
+interface TimeRange {
+  start_at: string;
+  end_at: string;
+}
 
 export default function DashboardPage() {
+  const [user, setUser] = useState<User | null>(null);
+  const [timeRange, setTimeRange] = useState<TimeRange | null>(null);
+  const ctx = useContext(UserContext);
+  const router = useRouter();
+
+  const getCurrentUser = async (): Promise<User> => {
+    return await fetchInstance("account/me", {
+      method: "GET",
+    });
+  };
+
+  const getRegTimeRange = async (): Promise<TimeRange> => {
+    return await fetchInstance("forms/getregtimerange", {
+      method: "GET",
+    });
+  };
+
+  const handleLogout = () => {
+    ctx?.logout();
+    router.push("/login");
+  };
+
+  useEffect(() => {
+    if (!ctx?.isAuthenticated) return;
+
+    getCurrentUser()
+      .then(setUser)
+      .catch((err) => console.log(err.message));
+
+    getRegTimeRange()
+      .then(setTimeRange)
+      .catch((err) => console.log(err.message));
+  }, [ctx?.isAuthenticated]);
+
+  const status = getApplicationStatus(user?.application_status || "");
+  const isOpen = timeRange && new Date() < new Date(timeRange.end_at);
+
   return (
     <div>
       <Navbar hide={true} />
@@ -13,7 +103,7 @@ export default function DashboardPage() {
           height={0}
           src="/backgrounds/smaller-gradient.svg"
           alt="Background Gradient"
-          className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%]"
+          className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
         />
         {/* Mini Browser Border Start */}
         <div className="relative z-10 w-full max-w-5xl mx-auto mb-8 rounded-2xl bg-[#12213A] shadow-lg border border-blue-900">
@@ -36,17 +126,17 @@ export default function DashboardPage() {
               <span className="text-grey text-xl font-[family-name:var(--font-source-code-pro)]">
                 $ npm start challenge
               </span>
-              <Link
-                href="/login"
+              <button
+                onClick={handleLogout}
                 className="text-red-400 text-lg font-semibold"
               >
                 {"< Log Out"}
-              </Link>
+              </button>
             </div>
             <h1 className="text-white font-bold text-5xl mb-6 mt-2">
-              Welcome Back, John
+              Welcome Back, {user?.first_name || "Hacker"}
             </h1>
-            {/* Application Status Card */}x
+            {/* Application Status Card */}
             <div className="bg-[#0B1627] border border-blue-900 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center md:items-center gap-6">
               <div className="flex-1">
                 <p className="text-white text-lg mb-2">
@@ -56,24 +146,30 @@ export default function DashboardPage() {
                   <Image
                     width={0}
                     height={0}
-                    src="/dashboard/square-xmark-solid 1.svg"
-                    alt="Declined"
+                    src={status.icon}
+                    alt={status.label}
                     className="w-10 h-10"
                   />
-                  <span className="text-red-400 text-3xl font-bold">
-                    Declined
+                  <span className={`${status.color} text-3xl font-bold`}>
+                    {status.label}
                   </span>
                 </div>
                 <p className="text-grey text-base">
                   Application due on{" "}
                   <span className="font-semibold text-white">
-                    September 20, 2025
+                    {timeRange?.end_at
+                      ? dayjs(timeRange.end_at).format("MMMM D, YYYY")
+                      : "TBD"}
                   </span>
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <span className="bg-gray-400 text-white px-6 py-3 rounded-lg text-lg font-semibold">
-                  Closed
+                <span
+                  className={`${
+                    isOpen ? "bg-lightgreen" : "bg-gray-400"
+                  } text-white px-6 py-3 rounded-lg text-lg font-semibold w-52 text-center `}
+                >
+                  {isOpen ? "Open" : "Closed"}
                 </span>
               </div>
             </div>
