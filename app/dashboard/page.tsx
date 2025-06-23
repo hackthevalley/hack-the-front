@@ -51,10 +51,14 @@ const getApplicationStatus = (status: string) => {
   }
 };
 
+interface TimeRange {
+  start_at: string;
+  end_at: string;
+}
+
 export default function DashboardPage() {
-  const [user, setUser] = useState<any>(null);
-  const [timeRange, setTimeRange] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [timeRange, setTimeRange] = useState<TimeRange | null>(null);
   const ctx = useContext(UserContext);
   const router = useRouter();
 
@@ -64,8 +68,8 @@ export default function DashboardPage() {
     });
   };
 
-  const getRegTimeRange = async (): Promise<User> => {
-    return await fetchInstance("admin/forms/getregtimerange", {
+  const getRegTimeRange = async (): Promise<TimeRange> => {
+    return await fetchInstance("forms/getregtimerange", {
       method: "GET",
     });
   };
@@ -80,15 +84,12 @@ export default function DashboardPage() {
 
     getCurrentUser()
       .then(setUser)
-      .catch((err) => setError(err.message));
+      .catch((err) => console.log(err.message));
 
     getRegTimeRange()
       .then(setTimeRange)
-      .catch((err) => setError(err.message));
+      .catch((err) => console.log(err.message));
   }, [ctx?.isAuthenticated]);
-
-  console.log(user);
-  console.log(timeRange);
 
   const status = getApplicationStatus(user?.application_status || "");
   const isOpen = timeRange && new Date() < new Date(timeRange.end_at);
