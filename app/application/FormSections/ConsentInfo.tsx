@@ -1,5 +1,5 @@
 import { motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import Card from "@/components/Card";
 import Checkbox from "@/components/CheckBox";
@@ -9,7 +9,8 @@ interface ConsentInfoProps {
   setConsentAgreed: (val: boolean) => void;
 }
 
-export default function ConsentInfo(props: ConsentInfoProps) {  const spaceshipRef7 = useRef<HTMLImageElement>(null);
+export default function ConsentInfo(props: ConsentInfoProps) {
+  const spaceshipRef7 = useRef<HTMLImageElement>(null);
   const inView7 = useInView(spaceshipRef7, { once: false, margin: "-20% 0px" });
 
   return (

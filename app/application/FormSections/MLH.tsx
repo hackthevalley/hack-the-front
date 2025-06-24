@@ -1,5 +1,5 @@
 import { motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import Card from "@/components/Card";
 import Checkbox from "@/components/CheckBox";
@@ -13,7 +13,8 @@ interface MLHProps {
   setMlhEmailConsent: (val: boolean) => void;
 }
 
-export default function MLH(props: MLHProps) {  const spaceshipRef6 = useRef<HTMLImageElement>(null);
+export default function MLH(props: MLHProps) {
+  const spaceshipRef6 = useRef<HTMLImageElement>(null);
   const inView6 = useInView(spaceshipRef6, { once: false, margin: "-20% 0px" });
 
   return (

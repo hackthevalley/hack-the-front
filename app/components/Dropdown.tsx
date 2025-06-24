@@ -1,7 +1,5 @@
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useMemo, useState } from "react";
-import Select, { SingleValue } from "react-select";
+import Select from "react-select";
 
 import "../globals.css";
 

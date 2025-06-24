@@ -378,7 +378,7 @@ export default function Application() {
       });
 
       setIsFormActive(false);
-      router.push("/"); // TODO: Redirect to dashboard after submission
+      router.push("/dashboard");
     } catch (err) {
       console.error("Submission error:", err);
       alert("Failed to submit application. Please try again.");
