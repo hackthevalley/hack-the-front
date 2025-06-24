@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 interface ButtonProp {
   text: string;
   onClick?: (...args: any[]) => any; // any input or output datatype
@@ -16,9 +18,9 @@ export default function Button(props: ButtonProp) {
     return (
       <Link
         href={props.route}
-        className="rounded-xl shadow-md text-cream w-fit h-fit text-center px-8 py-2 bg-lightgreen"
+        className="text-cream bg-lightgreen h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md"
       >
-        <p className="font-bold text-lg">{props.text}</p>
+        <p className="text-lg font-bold">{props.text}</p>
       </Link>
     );
   } else {
@@ -26,12 +28,12 @@ export default function Button(props: ButtonProp) {
     return (
       <button
         onClick={props.onClick}
-        className={`rounded-xl shadow-md text-cream w-fit h-fit text-center px-8 py-2 ${
+        className={`text-cream h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md ${
           formFilled ? "bg-lightgreen" : "bg-darkgrey"
         }`}
         disabled={!formFilled}
       >
-        <p className="font-bold text-lg">{props.text}</p>
+        <p className="text-lg font-bold">{props.text}</p>
       </button>
     );
   }

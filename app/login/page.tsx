@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import GreenButton from "@/components/GreenButton";
-import TextField from "@/components/TextField";
+import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import GreenButton from "@/components/GreenButton";
+import Navbar from "@/components/Navbar";
+import TextField from "@/components/TextField";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
-import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
@@ -24,6 +24,22 @@ export default function LoginPage() {
       router.push("/dashboard");
     }
   }, [isAuthenticated, router]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (!!email && !!password && validInput()) {
+          signIn(event as unknown as React.FormEvent);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   // Valid email checks if it matches the format of an email while in validInput, it checks if the email field is empty. This avoids having the error message appear for empty fields
   const validEmail = () => {
@@ -60,7 +76,7 @@ export default function LoginPage() {
       });
       if (response.access_token && login) {
         await login(response.access_token);
-        router.push("/"); // change to /dashboard after merge
+        router.push("/application");
       }
       toast.dismiss(loadingToast);
       toast.success(`Sign in successful`);
@@ -75,12 +91,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-black h-[100vh] overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
+    <div className="relative h-[100vh] overflow-y-auto bg-black font-[family-name:var(--font-euclid-circular-b)]">
       <Image
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+        className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -108,9 +124,9 @@ export default function LoginPage() {
         }}
       />
 
-      <div className="flex flex-col relative z-10">
-        <div className="w-3/4 mx-auto items-start mb-4">
-          <Link className="text-white font-semibold text-2xl" href="/">
+      <div className="relative z-10 flex flex-col">
+        <div className="mx-auto mb-4 w-3/4 items-start">
+          <Link className="text-2xl font-semibold text-white" href="/">
             {"<"} Back
           </Link>
         </div>
@@ -119,21 +135,19 @@ export default function LoginPage() {
           <div className="w-1/2">
             <p className="text-grey text-xl">$ npm start challenge</p>
 
-            <p className="text-white font-bold text-5xl mt-4 mb-8">
-              {">"} Welcome Back Hacker,
-            </p>
+            <p className="mt-4 mb-8 text-5xl font-bold text-white">{">"} Welcome Back Hacker,</p>
 
-            <div className="w-full my-8">
-              <div className="flex justify-between items-center">
-                <hr className="bg-indigo border-none mr-4 w-full h-[2px]" />
-                <p className="text-white w-fit whitespace-nowrap font-semibold text-2xl">
+            <div className="my-8 w-full">
+              <div className="flex items-center justify-between">
+                <hr className="bg-indigo mr-4 h-[2px] w-full border-none" />
+                <p className="w-fit text-2xl font-semibold whitespace-nowrap text-white">
                   Sign in to view dashboard
                 </p>
-                <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
+                <hr className="bg-indigo ml-4 h-[2px] w-full border-none" />
               </div>
             </div>
 
-            <div className="flex flex-col gap-y-8 mb-4">
+            <div className="mb-4 flex flex-col gap-y-8">
               <TextField
                 title="Email"
                 placeholder="email"
@@ -152,8 +166,8 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="flex justify-end mb-4">
-              <Link className="text-white text-lg font-semibold" href="/forgot">
+            <div className="mb-4 flex justify-end">
+              <Link className="text-lg font-semibold text-white" href="/forgot">
                 Forgot Password?
               </Link>
             </div>
@@ -165,14 +179,9 @@ export default function LoginPage() {
               formFilled={!!email && !!password && validInput()}
             />
 
-            <div className="flex my-4">
-              <p className="text-grey text-lg mr-2">
-                Don&apos;t have an account?
-              </p>
-              <Link
-                className="text-lightgreen text-lg font-semibold"
-                href="/sign-up"
-              >
+            <div className="my-4 flex">
+              <p className="text-grey mr-2 text-lg">Don&apos;t have an account?</p>
+              <Link className="text-lightgreen text-lg font-semibold" href="/sign-up">
                 Sign up.
               </Link>
             </div>

@@ -1,9 +1,13 @@
 "use client";
 
 import Card from "@/components/Card";
+import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 
+import { Question } from "../context/QuestionContext";
+
 interface GeneralInfoProps {
+  questions: Question[];
   dietaryRestrictions: string;
   setDietaryRestrictions: (val: string) => void;
   shirtSize: string;
@@ -12,29 +16,29 @@ interface GeneralInfoProps {
 
 export default function GeneralInfo(props: GeneralInfoProps) {
   return (
-    <Card className="w-full max-w-3xl">
+    <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 6: General Info
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
         <TextField
-          title="Dietary Restrictions"
+          title={props.questions[0]?.label}
           required={true}
-          placeholder="Enter your dietary restrictions"
+          placeholder="Enter dietary restrictions"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           fieldValue={props.dietaryRestrictions}
           setFieldValue={props.setDietaryRestrictions}
         />
-        <TextField
-          title="T-Shirt Size"
+        <Dropdown
+          title={props.questions[1]?.label}
           required={true}
-          placeholder="Enter your t-shirt size"
+          placeholder="Enter T-shirt size"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          type="dropdown"
           options={["S", "M", "L", "XL"]}
           fieldValue={props.shirtSize}
           setFieldValue={props.setShirtSize}

@@ -1,9 +1,10 @@
 "use client";
 
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+
 import fetchInstance from "@/utils/api";
 
-interface Question {
+export interface Question {
   question_id: string;
   label: string;
   required: boolean;
@@ -16,15 +17,9 @@ interface QuestionsContextType {
   error: Error | null;
 }
 
-const QuestionsContext = createContext<QuestionsContextType | undefined>(
-  undefined
-);
+const QuestionsContext = createContext<QuestionsContextType | undefined>(undefined);
 
-export const QuestionsProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const QuestionsProvider = ({ children }: { children: React.ReactNode }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
