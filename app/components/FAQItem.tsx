@@ -15,24 +15,24 @@ export default function FAQItem({ question, answer, bgColor }: FAQItemProps) {
   return (
     <div
       onClick={() => setOpen(!open)}
-      className={`rounded-md p-4 cursor-pointer transition-all duration-300  ${bgColor}`}
+      className={`rounded-md p-4 cursor-pointer transition-all duration-300 border-2 border-indigo ${bgColor}`}
     >
       <div className="flex justify-between items-center group">
-        <p className="text-white font-semibold text-lg">{question}</p>
-        <Image
-          src="/faq-page/ufo.png"
-          alt="UFO Icon"
-          width={37}
-          height={37}
-          className="opacity-70 group-hover:opacity-100"
-        />
+      <p className="text-white font-semibold text-lg">{question}</p>
+      <Image
+        src="/faq-page/ufo.png"
+        alt="UFO Icon"
+        width={37}
+        height={37}
+        className="opacity-70 group-hover:opacity-100"
+      />
       </div>
       <div
-        className={`overflow-hidden transition-all duration-300 ${
-          open ? "max-h-[500px] mt-2" : "max-h-0"
-        }`}
+      className={`overflow-hidden transition-all duration-300 ${
+        open ? "max-h-[500px] mt-2" : "max-h-0"
+      }`}
       >
-        <p className="text-white text-md opacity-75">{answer}</p>
+      <p className="text-white text-md opacity-75">{answer}</p>
       </div>
     </div>
   );
