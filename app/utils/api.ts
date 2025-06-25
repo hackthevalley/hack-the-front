@@ -3,16 +3,18 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface FetchOptions {
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   headers?: Record<string, string>;
-  body?: string;
+  body?: string | FormData;
   signal?: AbortSignal;
 }
 
 const fetchInstance = async (endpoint: string, options: FetchOptions = {}) => {
   const token = localStorage.getItem("auth-token");
+  const isForm = options.body instanceof FormData;
+
   const headers = {
     Accept: "application/json",
-    "Content-Type": "application/json",
     ...(token && { Authorization: `Bearer ${token}` }),
+    ...(isForm ? {} : {"Content-Type": "application/json"})
   };
 
   const config = {

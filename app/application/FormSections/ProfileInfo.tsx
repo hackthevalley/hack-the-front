@@ -2,7 +2,11 @@
 
 import Card from "@/components/Card";
 import TextField from "@/components/TextField";
+
+import { Question } from "../context/QuestionContext";
+
 interface ProfileInfoProps {
+  questions: Question[];
   firstName: string;
   setFirstName: (val: string) => void;
   lastName: string;
@@ -15,66 +19,57 @@ interface ProfileInfoProps {
 
 export default function ProfileInfo(props: ProfileInfoProps) {
   return (
-    <Card className="w-full max-w-3xl" internalClassName="p-12">
+    <Card className="mx-10 w-full max-w-3xl" internalClassName="p-12">
       <div className="mb-10">
-        <h1 className="text-2xl font-extrabold text-[#81C470] tracking-wide">
+        <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 1: Profile Info
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-7">
+      <div className="grid grid-cols-1 gap-x-7 gap-y-4 md:grid-cols-2">
         <TextField
-          title="First Name"
+          title={props.questions[0]?.label}
           required={false}
           placeholder="Enter your first name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.firstName}
-          // setFieldValue={props.setFirstName}
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
+          fieldValue={props.firstName}
+          setFieldValue={props.setFirstName}
+          disabled={true}
         />
         <TextField
-          title="Last Name"
-          required={true}
+          title={props.questions[1]?.label}
+          required={false}
           placeholder="Enter your last name"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.lastName}
-          // setFieldValue={props.setLastName}
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
+          fieldValue={props.lastName}
+          setFieldValue={props.setLastName}
+          disabled={true}
         />
-        {/* TODO: Can be autofilled using the users login email */}
         <TextField
-          title="Email"
-          required={true}
+          title={props.questions[2]?.label}
+          required={false}
           placeholder="Enter your email address"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
           type="email"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.email}
-          // setFieldValue={props.setEmail}
+          fieldValue={props.email}
+          setFieldValue={props.setEmail}
+          disabled={true}
         />
         <TextField
-          title="Phone Number"
+          title={props.questions[3]?.label}
           required={true}
           placeholder="Enter your phone number"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          fieldValue={""}
-          setFieldValue={function (value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          // fieldValue={props.phoneNumber}
-          // setFieldValue={props.setPhoneNumber}
+          backgroundClasses="bg-gradient-to-b from-dropdownblue to-dropdownblack"
+          type="phone"
+          fieldValue={props.phoneNumber}
+          setFieldValue={props.setPhoneNumber}
         />
       </div>
     </Card>
