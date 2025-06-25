@@ -2,7 +2,7 @@
 
 import GreenButton from "@/components/GreenButton";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 interface NavbarProp {
@@ -23,6 +23,17 @@ export default function Navbar(props: NavbarProp) {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     closeMobileMenu();
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 640) {
+        setMenuVisible(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="sticky top-0 z-50 flex bg-linear-to-b from-darkblue to-black h-40 sm:h-[10rem]">
@@ -50,7 +61,7 @@ export default function Navbar(props: NavbarProp) {
         {!props.hide && (
           <>
             {/* Desktop */}
-            <ul className="hidden sm:flex flex-1 justify-evenly items-center font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white text-xl md:text-2xl">
+            <ul className="hidden sm:flex flex-1 justify-evenly items-center font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white tex-md sm:text-xl lg:text-2xl">
               {[
                 { label: "About", id: "about" },
                 { label: "Schedule", id: "schedule" },
@@ -88,7 +99,7 @@ export default function Navbar(props: NavbarProp) {
       </div>
       {/* Mobile menu*/}
       {!props.hide && menuVisible && (
-        <div className="justimd:hidden bg-indigo py-6 shadow-lg z-40 absolute w-full left-0 top-[10rem]">
+        <div className="justimd:hidden bg-midnight py-6 shadow-lg z-40 absolute w-full left-0 top-[10rem]">
           <ul className="flex flex-col items-center gap-6 font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white text-xl">
             {[
               { label: "About", id: "about" },
