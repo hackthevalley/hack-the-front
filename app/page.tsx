@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 
 import Sponsors from "./landing/Sponsors";
 import Footer from "./landing/Footer";
-import FAQSection from "./landing/FAQ";
+import FAQ from "./landing/FAQ";
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
@@ -181,7 +181,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <FAQSection />
+          <FAQ />
           <Sponsors />
           <div className="justify-center items-center w-full mt-20">
             <Footer />

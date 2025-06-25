@@ -6,30 +6,34 @@ import Image from "next/image";
 type FAQItemProps = {
   question: string;
   answer: string;
+  bgColor?: string;
 };
 
-export default function FAQItem({ question, answer }: FAQItemProps) {
+export default function FAQItem({ question, answer, bgColor }: FAQItemProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <div
       onClick={() => setOpen(!open)}
-      // className={`rounded-md p-4 cursor-pointer transition-all duration-300 bg-bgblue ${
-      //   open ? "bg-blue-900/60" : "bg-gradient-to-r from-blue-900/40 to-blue-800/40"
-      // }`}
-      className={`rounded-md p-4 cursor-pointer transition-all duration-300 bg-bgblue`}
+      className={`rounded-md p-4 cursor-pointer transition-all duration-300  ${bgColor}`}
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center group">
         <p className="text-white font-semibold text-lg">{question}</p>
         <Image
-            src="/faq-page/ufo.png"
-            alt="UFO Icon"
-            width={37}
-            height={37}
-            className="text-white opacity-70"
+          src="/faq-page/ufo.png"
+          alt="UFO Icon"
+          width={37}
+          height={37}
+          className="opacity-70 group-hover:opacity-100"
         />
       </div>
-      {open && <p className="text-white mt-2 text-sm opacity-90">{answer}</p>}
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          open ? "max-h-[500px] mt-2" : "max-h-0"
+        }`}
+      >
+        <p className="text-white text-md opacity-75">{answer}</p>
+      </div>
     </div>
   );
 }
