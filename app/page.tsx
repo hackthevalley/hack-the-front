@@ -38,7 +38,7 @@ export default function Home() {
         />
 
         <main className="flex flex-col gap-4 md:gap-6 row-start-2 items-center sm:items-start">
-          <div className="flex flex-col lg:flex-row w-full gap-4 mt-25 mb-40 ">
+          <div className="flex flex-col lg:flex-row items-center w-full gap-4 mt-25 mb-40 ">
             <div className="w-full sm:w-1/2 flex flex-col items-center">
               <div className="flex flex-col items-center md:items-start md:grid md:grid-cols-[auto_1fr] md:gap-2 w-full z-10">
                 {/* Positioning the ">" */}
@@ -52,7 +52,7 @@ export default function Home() {
                     Up for the challenge?
                   </p>
                   <h1
-                    className="text-6xl sm:text-7xl  font-bold text-transparent bg-clip-text"
+                    className="text-6xl text-nowrap sm:text-7xl font-bold text-transparent bg-clip-text"
                     style={{
                       backgroundImage:
                         "linear-gradient(160deg, #4C6581, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
@@ -61,7 +61,7 @@ export default function Home() {
                     HACK THE
                   </h1>
                   <h1
-                    className="text-6xl sm:text-7xl  font-bold text-transparent bg-clip-text"
+                    className="text-6xl text-nowrap sm:text-7xl  font-bold text-transparent bg-clip-text"
                     style={{
                       backgroundImage:
                         "linear-gradient(100deg, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
@@ -116,7 +116,7 @@ export default function Home() {
                 <motion.img
                   className="event-card max-w-none absolute top-[-3rem] left-[-1rem] cursor-pointer w-[120%] h-auto
                  sm:top-[-4rem] sm:left-[-1.5rem] sm:w-[100%]
-                 md:top-[-5rem] md:left-[-2rem] md:w-[100%]
+                 md:top-[-5rem] md:left-[-2rem] md:w-[120%]
                  lg:top-[-10rem] lg:left-[-3rem] lg:w-[135%] lg:max-w-[750px]"
                   src="/landing-page/event-card-2.svg"
                   alt="Event Card"
