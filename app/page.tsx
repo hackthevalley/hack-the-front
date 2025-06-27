@@ -8,6 +8,7 @@ import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 
 import Sponsors from "./landing/Sponsors";
+import Themes from "./landing/Themes";
 import Footer from "./landing/Footer";
 
 export default function Home() {
@@ -22,19 +23,38 @@ export default function Home() {
       <div className="grid grid-rows-[auto_1fr_auto]  h-[calc(100vh-10rem)] items-center justify-items-center bg-black relative px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] overflow-x-hidden sm:px-20 sm:pt-27">
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
+
         <Image
-          className="absolute object-cover bottom-[-1rem] left-[-2rem]"
-          src="/backgrounds/star-left.svg"
+          className="absolute object-cover bottom-[-7rem] left-[-10rem] hidden sm:block"
+          src="/backgrounds/star.svg"
           alt="star"
-          width="400"
-          height="390"
+          width="530"
+          height="530"
         />
+
         <Image
-          className="absolute object-cover top-[-1rem] right-[0rem]"
-          src="/backgrounds/star-right.svg"
+          className="absolute object-cover top-[-1rem] right-[-12rem] hidden sm:block"
+          src="/backgrounds/star.svg"
           alt="star"
-          width="340"
-          height="509"
+          width="530"
+          height="530"
+        />
+
+        {/* Themes stars */}
+        <Image
+          className="absolute object-cover bottom-[-49rem] left-[-10rem] hidden sm:block"
+          src="/backgrounds/star.svg"
+          alt="star"
+          width="530"
+          height="530"
+        />
+
+        <Image
+          className="absolute object-cover top-[48rem] right-[-12rem] hidden sm:block"
+          src="/backgrounds/star.svg"
+          alt="star"
+          width="530"
+          height="530"
         />
 
         <main className="flex flex-col gap-4 md:gap-6 row-start-2 items-center sm:items-start">
@@ -47,7 +67,7 @@ export default function Home() {
                     {">"}
                   </h1>
                 </div>
-                <div className="flex flex-col gap-y-4">
+                <div className="flex flex-col gap-y-4 w-fit">
                   <p className="text-grey text-xl font-[family-name:var(--font-source-code-pro)] ">
                     Up for the challenge?
                   </p>
@@ -180,6 +200,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <Themes />
           <Sponsors />
           <div className="justify-center items-center w-full mt-20">
             <Footer />

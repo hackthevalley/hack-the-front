@@ -27,8 +27,6 @@ export default function Application() {
   //   console.log("Error:", error);
   // }
   // , [questions, loading, error]);
-    
-
 
   // Profile Info State
   const [firstName, setFirstName] = useState("");
@@ -174,7 +172,7 @@ export default function Application() {
       key: "section6",
       position: "justify-end",
       content: (
-        <FormSections.GeneralInfo 
+        <FormSections.GeneralInfo
           dietaryRestrictions={dietaryRestrictions}
           setDietaryRestrictions={setDietaryRestrictions}
           shirtSize={shirtSize}
