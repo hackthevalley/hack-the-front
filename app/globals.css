@@ -29,7 +29,11 @@
   --color-darkgrey: #979797;
   --color-lightgrey: #bababa;
   --color-bgblue: #0b1c34; /* for textfield background */
+  --color-midnight: #060F1C;
+  --color-gold: #EDCE6880;
+  --color-gray: #BABABA;
 }
+
 
 /* Hide scrollbar using no-scrollbar class */
 @layer utilities {
