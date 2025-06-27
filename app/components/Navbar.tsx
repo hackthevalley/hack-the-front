@@ -47,12 +47,15 @@ export default function Navbar(props: NavbarProp) {
     <div className="sticky top-0 z-50 flex bg-linear-to-b from-darkblue to-black sm:h-[10rem]">
       <div className="py-4 p-2 sm:px-8 flex items-center w-full justify-between">
         <div className="flex items-center gap-4">
-          <button onClick={() => scrollToSection("home")}>
+          {/* <button onClick={() => scrollToSection("home")}> */}
+          <Link href="/">
             <img
               src="/icons/htv-logo.svg"
-              className="w-[100px] h-auto shrink-0"
+              className="w-[100px] h-auto shrink-0 cursor-pointer"
+              alt="HTV Logo"
             />
-          </button>
+          </Link>
+          {/* </button> */}
         </div>
 
         {!props.hide && (
@@ -69,7 +72,12 @@ export default function Navbar(props: NavbarProp) {
                   { label: "Sponsors", id: "sponsors" },
                 ].map(({ label, id }) => (
                   <li key={id}>
-                    <button onClick={() => scrollToSection(id)}>{label}</button>
+                    <button
+                      className="text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+                      onClick={() => scrollToSection(id)}
+                    >
+                      {label}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -124,9 +132,19 @@ export default function Navbar(props: NavbarProp) {
             ].map(({ label, id }) => (
               <li key={id}>
                 {id === "login" ? (
-                  <Link href={"/login"}>{label}</Link>
+                  <Link
+                    className="text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+                    href={"/login"}
+                  >
+                    {label}
+                  </Link>
                 ) : (
-                  <button onClick={() => scrollToSection(id)}>{label}</button>
+                  <button
+                    className="text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+                    onClick={() => scrollToSection(id)}
+                  >
+                    {label}
+                  </button>
                 )}
               </li>
             ))}

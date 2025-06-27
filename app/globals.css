@@ -18,19 +18,21 @@
   --color-indigo: #1a427d;
   --color-green: #a5d6a7;
   --color-lightgreen: #81c470;
+  --color-lightgreenhover: #62a66f;
+  --color-lightgreenactive: #599464;
   --color-darkgreen: #6eac5e;
   --color-red: #ff5552;
   --color-aquamarine: #6b8f9f;
   --color-white: #fff;
   --color-cream: #f5f3e7;
+  --color-mayo: #e3e1d5;
   --color-grey: #9b9ea1;
   --color-darkgrey: #979797;
   --color-bgblue: #0b1c34; /* for textfield background */
-  --color-midnight: #060F1C;
-  --color-gold: #EDCE6880;
-  --color-gray: #BABABA;
+  --color-midnight: #060f1c;
+  --color-gold: #edce6880;
+  --color-gray: #bababa;
 }
-
 
 /* Hide scrollbar using no-scrollbar class */
 @layer utilities {
@@ -46,8 +48,15 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-euclid-circular-b), -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    var(--font-euclid-circular-b),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
 }
 
 /* For the Hack the Valley Title on Landing Page */

@@ -111,7 +111,10 @@ export default function LoginPage() {
 
       <div className="flex flex-col relative z-[10]">
         <div className="w-3/4 mx-auto items-start mb-[1rem]">
-          <Link className="text-white font-semibold text-2xl" href="/">
+          <Link
+            className="text-white font-semibold text-2xl cursor-pointer transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+            href="/"
+          >
             {"<"} Back
           </Link>
         </div>
@@ -154,7 +157,7 @@ export default function LoginPage() {
             </div>
 
             <div className="flex justify-end mb-[1rem]">
-              <button className="text-white text-lg font-semibold">
+              <button className="text-white text-lg font-semibold cursor-pointer transition-colors duration-400 hover:text-neutral-400 active:text-white/70">
                 Forgot Password?
               </button>
             </div>
@@ -169,7 +172,7 @@ export default function LoginPage() {
             <div className="flex my-[1rem]">
               <p className="text-grey text-lg mr-2">Don't have an account?</p>
               <Link
-                className="text-lightgreen text-lg font-semibold"
+                className="text-lightgreen text-lg font-semibold transition-colors duration-400 hover:text-lightgreenhover active:text-lightgreenactive"
                 href="/sign-up"
               >
                 Sign up.

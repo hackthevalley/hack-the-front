@@ -17,13 +17,7 @@ export default function Home() {
   return (
     <div id="home">
       <Navbar />
-      {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
-      {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      {/* min-h-screen sm:min-h-[calc(100vh-10rem)] */}
       <div className="grid grid-rows-[auto_1fr_auto]  h-[calc(100vh-10rem)] items-center justify-items-center bg-black relative px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] overflow-x-hidden sm:px-20 sm:pt-27">
-        {/* star art */}
-        {/* Note we need to change z-index as it overlaps on phones */}
-
         <Image
           className="absolute object-cover bottom-[-7rem] left-[-10rem] hidden sm:block"
           src="/backgrounds/star.svg"

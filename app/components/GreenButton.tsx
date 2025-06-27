@@ -16,7 +16,7 @@ export default function Button(props: ButtonProp) {
     return (
       <Link
         href={props.route}
-        className="rounded-xl shadow-md text-cream w-fit h-fit text-center px-8 py-2 bg-lightgreen"
+        className="rounded-xl shadow-md text-cream w-fit h-fit text-center px-8 py-2 bg-lightgreen transition-colors duration-400 hover:bg-lightgreenhover hover:text-charcoal active:bg-lightgreenactive"
       >
         <p className="font-bold text-lg">{props.text}</p>
       </Link>
@@ -26,8 +26,10 @@ export default function Button(props: ButtonProp) {
     return (
       <button
         onClick={props.onClick}
-        className={`rounded-xl shadow-md text-cream w-fit h-fit text-center px-8 py-2 ${
-          formFilled ? "bg-lightgreen" : "bg-darkgrey"
+        className={`rounded-xl shadow-md text-cream w-fit h-fit text-center px-8 py-2 cursor-pointer transition-colors duration-400 ${
+          formFilled
+            ? "bg-lightgreen hover:bg-lightgreenhover hover:text-mayo active:bg-lightgreenactive"
+            : "bg-darkgrey"
         }`}
         disabled={!formFilled}
       >
