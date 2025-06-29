@@ -21,7 +21,7 @@ const questions = [
   {
     question: "How is Hack the Valley run?",
     answer:
-      "Hack The Valley almost entirely by (sleep-deprived) University of Toronto students, with some advice and assistance from our friends at Department of Student Life (DSL) and Association of Mathematical and Computer Science Students (AMACSS). One hundred percent of the funding for Hack the Valley comes from corporate sponsor donations.",
+      "Hack The Valley is ran almost entirely by (sleep-deprived) University of Toronto students along with our friends from other universities across Ontario, with some advice and assistance from our friends at Department of Student Life (DSL) and Association of Mathematical and Computer Science Students (AMACSS). One hundred percent of the funding for Hack the Valley comes from corporate sponsor donations.",
   },
   {
     question: "Where is it?",

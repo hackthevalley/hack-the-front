@@ -36,7 +36,14 @@ const getApplicationStatus = (status: string) => {
         icon: "/dashboard/declined.svg",
         badge: "bg-gray-400",
       };
-    case "pending":
+    case "applying":
+      return {
+        color: "text-gray-300",
+        label: "Applying",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-gray-500",
+      };
+    case "applied":
       return {
         color: "text-gray-300",
         label: "Pending",
@@ -99,6 +106,11 @@ export default function DashboardPage() {
     new Date() < new Date(timeRange.end_at) &&
     new Date(timeRange.start_at) < new Date();
 
+  useEffect(() => {
+    console.log(status);
+    console.log(user?.application_status);
+  }, [status, user?.application_status]);
+
   return (
     <div>
       <Navbar hide={true} />
@@ -160,15 +172,26 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <Link
-                  href={isOpen ? "/application" : "#"}
-                  passHref
-                  className={`${
-                    isOpen ? "bg-lightgreen" : "pointer-events-none cursor-not-allowed bg-gray-400"
-                  } w-52 rounded-lg px-6 py-3 text-center text-lg font-semibold text-white`}
-                >
-                  {isOpen ? "Open" : "Closed"}
-                </Link>
+                {isOpen ? (
+                  user?.application_status === null ||
+                  user?.application_status === "" ||
+                  user?.application_status.toLowerCase() === "applying" ? (
+                    <Link
+                      href="/application"
+                      className="bg-lightgreen rounded-lg px-6 py-3 text-center text-lg font-semibold text-white"
+                    >
+                      Open
+                    </Link>
+                  ) : (
+                    <div className="pointer-events-none cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
+                      Applied
+                    </div>
+                  )
+                ) : (
+                  <div className="pointer-events-none cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
+                    Closed
+                  </div>
+                )}
               </div>
             </div>
             {/* Explore Section */}
@@ -177,7 +200,7 @@ export default function DashboardPage() {
               <div className="flex flex-col gap-6 md:flex-row">
                 {/* Discover Themes Card */}
                 <Link
-                  href="#themes"
+                  href="/#themes"
                   className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
                 >
                   <div className="flex min-w-[64px] gap-2">
@@ -196,7 +219,7 @@ export default function DashboardPage() {
                 </Link>
                 {/* FAQ Card */}
                 <Link
-                  href="#faq"
+                  href="/#faq"
                   className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
                 >
                   <div className="min-w-[64px]">

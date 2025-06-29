@@ -152,6 +152,16 @@ export default function EducationInfo(props: EducationInfoProps) {
         <Dropdown
           title={props.questions[2]?.label}
           required={true}
+          placeholder="Select major"
+          widthClasses="mx-[auto] sm:w-full"
+          textClasses="text-md placeholder:text-base"
+          options={majors}
+          fieldValue={props.major}
+          setFieldValue={props.setMajor}
+        />
+        <Dropdown
+          title={props.questions[3]?.label}
+          required={true}
           placeholder="Select level of education"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
@@ -167,16 +177,6 @@ export default function EducationInfo(props: EducationInfoProps) {
           ]}
           fieldValue={props.currentLevelOfStudy}
           setFieldValue={props.setCurrentLevelOfStudy}
-        />
-        <Dropdown
-          title={props.questions[3]?.label}
-          required={true}
-          placeholder="Select major"
-          widthClasses="mx-[auto] sm:w-full"
-          textClasses="text-md placeholder:text-base"
-          options={majors}
-          fieldValue={props.major}
-          setFieldValue={props.setMajor}
         />
       </div>
       <div className="mt-6 flex justify-center">
