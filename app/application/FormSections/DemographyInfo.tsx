@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
+
 import { Question } from "../context/QuestionContext";
 
 interface DemographyInfoProps {
@@ -24,7 +25,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           &gt; Step 3: Demography Info
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
         <Dropdown
           title={props.questions[0]?.label}
           required={true}
@@ -41,13 +42,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           placeholder="Gender"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          options={[
-            "Male",
-            "Female",
-            "Non-binary",
-            "Other",
-            "Prefer not to say"
-          ]}
+          options={["Male", "Female", "Non-binary", "Other", "Prefer not to say"]}
           fieldValue={props.gender}
           setFieldValue={props.setGender}
         />
@@ -62,7 +57,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
             "Arab/Middle Eastern",
             "East Asian (e.g. China, Japan, Korea)",
             "South/Southeast Asian (e.g. India, Pakistan, Sri Lanka, Philippines, Thailand)",
-            "Indigeneous Person of Canada",
+            "Indigenous Person of Canada",
             "Latinx",
             "West Asian (e.g. Iran, Afghanistan)",
             "White/People of European Descent",
@@ -78,28 +73,20 @@ export default function DemographyInfo(props: DemographyInfoProps) {
           placeholder="Part of the LGBTQI+ community?"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
-          options={[
-            "Yes", 
-            "No", 
-            "Prefer not to say"
-          ]}
+          options={["Yes", "No", "Prefer not to say"]}
           fieldValue={props.LGBTQI}
           setFieldValue={props.setLGBTGI}
         />
       </div>
-      <div className="flex justify-center mt-6">
-        <div className="grid grid-cols-1 gap-y-4 gap-x-7 w-2/3">
+      <div className="mt-6 flex justify-center">
+        <div className="grid w-2/3 grid-cols-1 gap-x-7 gap-y-4">
           <Dropdown
             title={props.questions[4]?.label}
             required={true}
             placeholder="Person with Disabilities?"
             widthClasses="mx-[auto] sm:w-full"
             textClasses="text-md placeholder:text-base"
-            options={[
-              "Yes",
-              "No",
-              "Prefer not to say"
-            ]}
+            options={["Yes", "No", "Prefer not to say"]}
             fieldValue={props.disabilities}
             setFieldValue={props.setDisabilities}
           />
