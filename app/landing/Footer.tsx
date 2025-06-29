@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { label } from "motion/react-client";
 
 const socialLinks = [
   {
@@ -26,28 +25,17 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black py-8 px-4 flex flex-col gap-y-7 items-center">
-      <div className="flex flex-wrap justify-center items-center gap-x-5 sm:gap-x-14 mb-2 z-10">
+    <footer className="flex flex-col items-center gap-y-7 bg-black px-4 py-8">
+      <div className="z-10 mb-2 flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-14">
         {socialLinks.map((item, index) => (
-          <a
-            key={index}
-            href={item.href}
-            className="flex items-center gap-2 text-white font-ecb"
-          >
-            <Image
-              src={item.icon}
-              alt={`${item.label}icon`}
-              width={24}
-              height={24}
-            />
-            <span className="text-white font-ecb font-bold text-xl">
-              hackthevalley
-            </span>
+          <a key={index} href={item.href} className="font-ecb flex items-center gap-2 text-white">
+            <Image src={item.icon} alt={`${item.label}icon`} width={24} height={24} />
+            <span className="font-ecb text-xl font-bold text-white">hackthevalley</span>
           </a>
         ))}
       </div>
       <a
-        className="underline text-gray text-[16px]"
+        className="text-gray text-[16px] underline"
         href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
       >
         MLH Code of Conduct
