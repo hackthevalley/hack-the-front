@@ -17,8 +17,6 @@ import { useQuestions } from "./context/QuestionContext";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const token = localStorage.getItem("auth-token");
-
 const findUserAppAnswer = (questionBank: any, question_id: string) => {
   if (question_id === "") return "";
   const answer = questionBank.find((item: any) => item.question_id === question_id);
@@ -211,6 +209,7 @@ export default function Application() {
 
   // Save user application progress every 5 seconds
   useEffect(() => {
+    const token = localStorage.getItem("auth-token");
     if (!isFormActive || !token) return;
 
     const interval = setInterval(() => {
@@ -244,7 +243,6 @@ export default function Application() {
   }, [
     isFormActive,
     hasLoadedAppData,
-    token,
     questions,
     firstName,
     lastName,

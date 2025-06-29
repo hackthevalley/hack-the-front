@@ -14,7 +14,7 @@ const fetchInstance = async (endpoint: string, options: FetchOptions = {}) => {
   const headers = {
     Accept: "application/json",
     ...(token && { Authorization: `Bearer ${token}` }),
-    ...(isForm ? {} : {"Content-Type": "application/json"})
+    ...(isForm ? {} : { "Content-Type": "application/json" }),
   };
 
   const config = {
