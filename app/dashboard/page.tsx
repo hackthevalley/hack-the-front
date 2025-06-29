@@ -94,7 +94,10 @@ export default function DashboardPage() {
   }, [ctx?.isAuthenticated]);
 
   const status = getApplicationStatus(user?.application_status || "");
-  const isOpen = timeRange && new Date() < new Date(timeRange.end_at);
+  const isOpen =
+    timeRange &&
+    new Date() < new Date(timeRange.end_at) &&
+    new Date(timeRange.start_at) < new Date();
 
   return (
     <div>
@@ -157,13 +160,15 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <span
+                <Link
+                  href={isOpen ? "/application" : "#"}
+                  passHref
                   className={`${
-                    isOpen ? "bg-lightgreen" : "bg-gray-400"
+                    isOpen ? "bg-lightgreen" : "pointer-events-none cursor-not-allowed bg-gray-400"
                   } w-52 rounded-lg px-6 py-3 text-center text-lg font-semibold text-white`}
                 >
                   {isOpen ? "Open" : "Closed"}
-                </span>
+                </Link>
               </div>
             </div>
             {/* Explore Section */}
