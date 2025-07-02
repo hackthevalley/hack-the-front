@@ -1,4 +1,5 @@
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 
 import GreenButton from "@/components/GreenButton";
 import SponsorField from "@/components/SponsorField";
@@ -31,6 +32,19 @@ export default function Sponsors() {
       H: "/icons/htv-logo.svg",
       I: "/icons/htv-logo.svg",
     },
+  };
+
+  const sponsorEmail = "sponsorships@hackthevalley.io";
+
+  const copySponsorEmail = () => {
+    navigator.clipboard
+      .writeText(sponsorEmail)
+      .then(() => {
+        toast.success(`Copied to clipboard`);
+      })
+      .catch((err) => {
+        toast.error("Failed to copy");
+      });
   };
 
   const renderSponsorGrid = (sponsors: SponsorData, tier: "gold" | "silver" | "bronze") => {
@@ -73,6 +87,29 @@ export default function Sponsors() {
       className="w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "10rem" }}
     >
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 2000,
+          removeDelay: 500,
+          style: {
+            background: "#0B1C34",
+            color: "white",
+          },
+          success: {
+            iconTheme: {
+              primary: "green",
+              secondary: "#0B1C34",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "red",
+              secondary: "#0B1C34",
+            },
+          },
+        }}
+      />
       <div className="relative flex h-full flex-col items-center justify-center">
         <h1
           className="bg-clip-text text-6xl font-bold text-transparent lg:text-7xl"
@@ -109,19 +146,25 @@ export default function Sponsors() {
               <p className="text-green w-fit text-center text-xs font-semibold whitespace-nowrap sm:text-xl">
                 @
               </p>
-              <a
-                href="mailto:sponsorships@hackthevalley.io"
+              <button
+                onClick={copySponsorEmail}
                 className="text-green text-xs underline sm:text-xl"
               >
                 sponsorships@hackthevalley.io
-              </a>
+              </button>
             </div>
-            <div className="absolute top-1/2 -right-20 hidden -translate-y-1/2 sm:block">
-              <Image src="/sponsor-page/badge.png" alt="badge" width={150} height={150} />
+            <div className="pointer-events-none absolute top-1/2 -right-20 hidden -translate-y-1/2 sm:block">
+              <Image
+                className="pointer-events-none"
+                src="/sponsor-page/badge.png"
+                alt="badge"
+                width={150}
+                height={150}
+              />
             </div>
           </div>
         </div>
-        <GreenButton text="Become a sponsor" />
+        <GreenButton text="Become a sponsor" externalLink="mailto:sponsorships@hackthevalley.io" />
         <div className="mt-24 mb-3 self-end">
           <div className="flex flex-row gap-x-1">
             <p className="w-fit text-center text-xl font-semibold whitespace-nowrap text-white">
@@ -135,7 +178,7 @@ export default function Sponsors() {
         </div>
         {/* Decorative Elements */}
         <div className="hidden sm:block">
-          <div className="absolute top-[26%] -right-1/8 -translate-y-1/2">
+          <div className="pointer-events-none absolute top-[26%] -right-1/8 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
           </div>
           <div className="pointer-events-none absolute top-[17%] -left-2 z-0 -translate-y-1/2">
