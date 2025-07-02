@@ -11,10 +11,10 @@ const questions = [
   {
     question: "What do I need to bring?",
     answer:
-      "You'll need: A laptop and charger. We'd also recommend a sleeping bag if plan to stay the night at the venue. Everything else is optional. You don't need: An idea and a team. You can create your own team (teams of 4 recommended) during the hackathon, and generate some amazing creations along the way. You also don't need to worry about food, we've got you covered.",
+      "You'll need: A laptop and charger. We'd also recommend a sleeping bag if you plan to stay the night at the venue. Everything else is optional. You don't need: An idea and a team. You can create your own team (teams of 4 recommended) during the hackathon, and generate some amazing ideas along the way. You also don't need to worry about food, we've got you covered.",
   },
   {
-    question: "How much will it cost to attend to Hack the Valley?",
+    question: "How much will it cost to attend Hack the Valley?",
     answer:
       "It’s completely free, so don’t worry! We'll provide you with a weekend's worth of meals, drinks, and snacks and a place to crash when you need a break from coding. In fact, you’ll probably walk away loaded with all the swag that you’ll get at Hack the Valley.",
   },
@@ -34,7 +34,7 @@ const questions = [
   },
   {
     question: "More Questions?",
-    answer: "Have an uncertainties? Voice it at hello@hackthevalley.io",
+    answer: "Have any questions or uncertainties? Voice it at hello@hackthevalley.io",
   },
 ];
 

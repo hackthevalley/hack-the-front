@@ -152,7 +152,7 @@ export default function SignupPage() {
           <div className="w-1/2">
             <p className="text-grey text-xl">$ npm start challenge</p>
 
-            <p className="mt-4 mb-8 text-5xl font-bold text-white">{">"} Welcome Back Hacker,</p>
+            <p className="mt-4 mb-8 text-5xl font-bold text-white">{">"} Hello Hacker,</p>
 
             <div className="my-8 w-full">
               <div className="flex items-center justify-between">

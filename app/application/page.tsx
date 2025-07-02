@@ -414,14 +414,14 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute top-10 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[-6.52deg] sm:right-20 md:right-10 lg:right-0 xl:-right-30"
+            className="pointer-events-none absolute top-10 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[-6.52deg] sm:right-20 md:right-10 lg:right-0 xl:-right-30"
           />
           <Image
             src="/application-page/star.svg"
             alt="star"
             width={485}
             height={447}
-            className="absolute -bottom-10 -left-20 object-cover"
+            className="pointer-events-none absolute -bottom-10 -left-20 object-cover"
           />
         </section>
       ),
@@ -457,7 +457,7 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-10 -left-100 translate-x-1/2 translate-y-1/2 rotate-[9.75deg]"
+            className="pointer-events-none absolute -top-10 -left-100 translate-x-1/2 translate-y-1/2 rotate-[9.75deg]"
           />
         </section>
       ),
@@ -493,7 +493,7 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute top-80 -right-20 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[38deg]"
+            className="pointer-events-none absolute top-80 -right-20 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[38deg]"
           />
         </section>
       ),
@@ -529,14 +529,14 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-10 -left-90 z-10 translate-x-1/2 translate-y-1/2 rotate-[-3.75deg]"
+            className="pointer-events-none absolute -top-10 -left-90 z-10 translate-x-1/2 translate-y-1/2 rotate-[-3.75deg]"
           />
           <Image
             src="/application-page/star.svg"
             alt="star"
             width={388}
             height={358}
-            className="absolute bottom-0 left-50 object-cover"
+            className="pointer-events-none absolute bottom-0 left-50 object-cover"
           />
         </section>
       ),
@@ -578,7 +578,7 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute top-10 -right-20 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[18deg]"
+            className="pointer-events-none absolute top-10 -right-20 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[18deg]"
           />
         </section>
       ),
@@ -608,14 +608,14 @@ export default function Application() {
             alt="spaceship"
             width={336}
             height={336}
-            className="absolute -top-60 -left-100 translate-x-1/2 translate-y-1/2 rotate-[30deg]"
+            className="pointer-events-none absolute -top-60 -left-100 translate-x-1/2 translate-y-1/2 rotate-[30deg]"
           />
           <Image
             src="/application-page/star.svg"
             alt="star"
             width={485}
             height={447}
-            className="absolute -top-60 -left-310 object-cover"
+            className="pointer-events-none absolute -top-60 -left-310 object-cover"
           />
         </section>
       ),
@@ -648,14 +648,14 @@ export default function Application() {
             alt="star"
             width={485}
             height={447}
-            className="absolute -top-10 -right-45 object-cover"
+            className="pointer-events-none absolute -top-10 -right-45 object-cover"
           />
           <Image
             src="/application-page/star.svg"
             alt="star"
             width={485}
             height={447}
-            className="absolute -top-60 -left-310 object-cover"
+            className="pointer-events-none absolute -top-60 -left-310 object-cover"
           />
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="mt-10">
             <Button
@@ -696,7 +696,7 @@ export default function Application() {
               alt="spaceship"
               width={350}
               height={350}
-              className="absolute -bottom-30 -left-40"
+              className="pointer-events-none absolute -bottom-30 -left-40"
             />
           </Card>
           <Image
@@ -704,7 +704,7 @@ export default function Application() {
             alt="star"
             width={485}
             height={447}
-            className="absolute -top-5 -right-40 object-cover"
+            className="pointer-events-none absolute -top-5 -right-40 object-cover"
           />
         </section>
 

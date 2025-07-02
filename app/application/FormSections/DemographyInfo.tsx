@@ -70,7 +70,7 @@ export default function DemographyInfo(props: DemographyInfoProps) {
         <Dropdown
           title={props.questions[3]?.label}
           required={true}
-          placeholder="Part of the LGBTQI+ community?"
+          placeholder="Part of the LGBTQ+ community?"
           widthClasses="mx-[auto] sm:w-full"
           textClasses="text-md placeholder:text-base"
           options={["Yes", "No", "Prefer not to say"]}
