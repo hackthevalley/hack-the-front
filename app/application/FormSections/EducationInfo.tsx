@@ -189,7 +189,7 @@ export default function EducationInfo(props: EducationInfoProps) {
             textClasses="text-md placeholder:text-base"
             fieldValue={props.expectedGraduationYear}
             setFieldValue={props.setExpectedGraduationYear}
-            options={["2025", "2026", "2027", "2028", "2029", "2030", "Other"]}
+            options={["2025", "2026", "2027", "2028", "2029", "2030", "2031", "Other"]}
           />
         </div>
       </div>

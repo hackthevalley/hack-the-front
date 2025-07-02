@@ -86,6 +86,8 @@ export default function Dropdown(props: DropdownProps) {
         <Select<OptionType, false>
           className={`${baseClasses} ${textClasses} ${heightClasses} ${widthClasses} bg-transparent`}
           placeholder={placeholder}
+          menuPortalTarget={document.body}
+          menuPosition="fixed"
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
@@ -95,6 +97,7 @@ export default function Dropdown(props: DropdownProps) {
               padding: 0,
               margin: 0,
             }),
+            menuPortal: (base) => ({ ...base, zIndex: 9999 }),
             singleValue: (baseStyles) => ({
               ...baseStyles,
               color: "var(--color-lightgrey)",
