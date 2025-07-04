@@ -43,7 +43,11 @@ export default function Sponsors() {
         toast.success(`Copied to clipboard`);
       })
       .catch((err) => {
-        toast.error("Failed to copy");
+        if (err instanceof Error) {
+          toast.error(err.message);
+        } else {
+          toast.error("Failed to copy");
+        }
       });
   };
 

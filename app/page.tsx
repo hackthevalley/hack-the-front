@@ -41,7 +41,7 @@ export default function Home() {
         <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
           <div className="mt-25 mb-40 flex w-full flex-col items-center gap-4 lg:flex-row">
             <div className="flex w-full flex-col items-center sm:w-1/2">
-              <div className="z-10 flex w-full flex-col items-center md:grid md:grid-cols-[auto_1fr] md:items-start md:gap-2">
+              <div className="z-10 flex w-fit flex-col items-center md:grid md:grid-cols-[auto_1fr] md:items-start md:gap-2">
                 {/* Positioning the ">" */}
                 <div className="mt-[2.3rem] hidden items-start justify-start md:flex">
                   <h1 className="text-7xl leading-tight font-medium text-[#4C6581] [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">
@@ -92,7 +92,7 @@ export default function Home() {
 
             {/* Event cards and metallic flowers with animation */}
             <div className="relative mt-35 flex w-full justify-center lg:mt-0 lg:w-1/2 lg:justify-start">
-              <div className="relative aspect-square w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:aspect-auto lg:max-w-none">
+              <div className="relative aspect-square w-full max-w-[350px] sm:max-w-[350px] md:max-w-[400px] lg:aspect-auto lg:max-w-[540px]">
                 {/* Terminal card */}
                 <motion.img
                   className="terminal-card relative h-auto w-[100%] cursor-pointer lg:w-[110%] lg:max-w-[700px]"
@@ -114,7 +114,7 @@ export default function Home() {
                 />
                 {/* Silver card */}
                 <motion.img
-                  className="event-card absolute top-[-3rem] left-[-1rem] h-auto w-[120%] max-w-none cursor-pointer sm:top-[-4rem] sm:left-[-1.5rem] sm:w-[100%] md:top-[-5rem] md:left-[-2rem] md:w-[120%] lg:top-[-10rem] lg:left-[-3rem] lg:w-[135%] lg:max-w-[750px]"
+                  className="event-card absolute top-[-6rem] left-[-1rem] h-auto w-[120%] max-w-none cursor-pointer sm:top-[-6rem] sm:left-[-1.5rem] sm:w-[120%] md:top-[-7rem] md:left-[-2rem] md:w-[120%] lg:top-[-11rem] lg:left-[-3rem] lg:w-[135%] lg:max-w-[750px]"
                   src="/landing-page/event-card-2.svg"
                   alt="Event Card"
                   // whileHover={!clicked ? { scale: 1.05 } : {}}
@@ -134,7 +134,7 @@ export default function Home() {
 
                 {/* Metallic Flowers */}
                 <motion.img
-                  className="absolute bottom-[16rem] z-20 h-28 w-28 sm:h-32 sm:w-32 md:bottom-[18rem] md:left-[-2rem] lg:bottom-[21.2rem] lg:left-[-2.5rem]"
+                  className="absolute bottom-[20rem] left-[-1rem] z-20 h-28 w-28 sm:bottom-[20rem] sm:left-[-2rem] sm:h-32 sm:w-32 md:bottom-[23rem] md:left-[-2rem] lg:bottom-[23.2rem] lg:left-[-0.5rem]"
                   src="/metallics/clover.svg"
                   alt="Metallic Clover"
                   width="151"
@@ -153,7 +153,7 @@ export default function Home() {
                 />
 
                 <motion.img
-                  className="absolute top-[10rem] right-[-1rem] z-20 h-20 w-20 lg:top-[12.5rem] lg:left-[24rem] lg:h-28 lg:w-28"
+                  className="absolute top-[10rem] right-[-1rem] z-20 h-20 w-20 md:top-[10.5rem] md:left-[20rem] lg:top-[15.5rem] lg:left-[27rem] lg:h-28 lg:w-28"
                   src="/metallics/flower.svg"
                   alt="Metallic Flower"
                   width="135"
