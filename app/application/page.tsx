@@ -384,7 +384,7 @@ export default function Application() {
   };
 
   // const sectionClassName = "flex items-center mx-20 relative";
-  const sectionClassName = `h-[calc(100vh-10rem)] min-height-fit snap-end scroll-smooth overflow-hidden relative items-center flex md:px-10`;
+  const sectionClassName = `h-[calc(100vh-6rem)] min-height-fit snap-end scroll-smooth overflow-hidden relative items-center flex md:px-10`;
   const formSections: {
     key: string;
     content: JSX.Element;
@@ -672,9 +672,9 @@ export default function Application() {
   return (
     <div className="h-screen">
       <Navbar hide={true} />
-      <div className="no-scrollbar relative h-[calc(100vh-10rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white">
+      <div className="no-scrollbar relative h-[calc(100vh-6rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white">
         {/* <Parallax speed={30}> */}
-        <section className="relative flex h-[calc(100vh-10rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-hidden scroll-smooth px-4 md:px-10">
+        <section className="relative flex h-[calc(100vh-6rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-hidden scroll-smooth px-4 md:px-10">
           <Card className="relative w-8/12 text-center">
             <div className="mb-10">
               <h1 className="text-6xl font-extrabold tracking-wide text-[#81C470]">APPLICATION</h1>

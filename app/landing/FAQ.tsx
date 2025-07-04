@@ -43,7 +43,7 @@ export default function FAQ() {
     <section
       id="faq"
       className="mb-44 w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
-      style={{ scrollMarginTop: "10rem" }}
+      style={{ scrollMarginTop: "6rem" }}
     >
       <div className="mx-auto max-w-6xl">
         <h1

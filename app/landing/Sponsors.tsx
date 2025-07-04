@@ -89,7 +89,7 @@ export default function Sponsors() {
     <section
       id="sponsors"
       className="w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
-      style={{ scrollMarginTop: "10rem" }}
+      style={{ scrollMarginTop: "6rem" }}
     >
       <Toaster
         position="bottom-center"

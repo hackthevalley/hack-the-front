@@ -21,7 +21,7 @@ export default function Button(props: ButtonProp) {
         href={props.route}
         className="text-cream bg-lightgreen h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md"
       >
-        <p className="text-lg font-bold">{props.text}</p>
+        <p className="text-lg font-bold text-nowrap">{props.text}</p>
       </Link>
     );
   } else if (props.externalLink != null) {

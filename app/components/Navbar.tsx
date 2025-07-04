@@ -45,8 +45,9 @@ export default function Navbar(props: NavbarProp) {
   }, []);
 
   return (
-    <div className="from-darkblue sticky top-0 z-50 flex bg-linear-to-b to-black sm:h-[10rem]">
-      <div className="flex w-full items-center justify-between p-2 py-4 sm:px-8">
+    // from-darkblue to-black bg-linear-to-b
+    <div className="from-darkblue sticky top-0 z-50 flex h-[6rem] bg-linear-to-b to-black sm:h-[6rem]">
+      <div className="flex w-full items-center justify-between sm:px-8">
         <div className="flex items-center gap-4">
           <button onClick={() => scrollToSection("home")}>
             <img src="/icons/htv-logo.svg" className="h-auto w-[100px] shrink-0" />
@@ -57,7 +58,8 @@ export default function Navbar(props: NavbarProp) {
           <>
             {/* Desktop */}
             {showDesktopNavbar && (
-              <ul className="tex-md flex-1 items-center justify-evenly font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white sm:flex sm:text-xl lg:text-2xl">
+              // justify-evenly flex-1
+              <ul className="text-md mx-10 flex w-4/5 items-center gap-x-10 font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white sm:flex sm:text-xl lg:text-2xl">
                 {[
                   { label: "About", id: "about" },
                   // { label: "Schedule", id: "schedule" },
@@ -80,7 +82,7 @@ export default function Navbar(props: NavbarProp) {
               {/* Mobile menu */}
               {!props.hide && !showDesktopNavbar && (
                 <button
-                  className="text-3xl text-white"
+                  className="mr-[1rem] text-3xl text-white"
                   onClick={toggleMobileMenu}
                   aria-label="Toggle Menu"
                 >
@@ -88,15 +90,17 @@ export default function Navbar(props: NavbarProp) {
                 </button>
               )}
 
+              {/* max-w-[100px] min-w-[60px] */}
               <Link
                 id="mlh-trust-badge"
-                className="z-[10000] block max-w-[100px] min-w-[60px]"
+                className="z-[10000] mt-[5rem] mr-[1.5rem] block w-[100px]"
                 href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
                 target="_blank"
               >
                 <Image
-                  width="100"
-                  height="175"
+                  className="relative top-0"
+                  width="150"
+                  height="131"
                   src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
                   alt="Major League Hacking 2025 Hackathon Season"
                 />
@@ -107,7 +111,7 @@ export default function Navbar(props: NavbarProp) {
       </div>
       {/* Mobile menu*/}
       {!props.hide && menuVisible && (
-        <div className="justimd:hidden bg-midnight absolute top-[10rem] left-0 z-40 w-full py-6 shadow-lg">
+        <div className="justimd:hidden bg-midnight absolute top-[6rem] left-0 z-40 w-full py-6 shadow-lg">
           <ul className="flex flex-col items-center gap-6 font-[family-name:var(--font-euclid-circular-b)] text-xl font-semibold text-white">
             {[
               { label: "About", id: "about" },
