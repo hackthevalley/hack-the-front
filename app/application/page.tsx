@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { JSX, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -12,6 +12,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
+import { UserContext } from "@/utils/auth";
 
 import { useQuestions } from "./context/QuestionContext";
 
@@ -24,12 +25,23 @@ const findUserAppAnswer = (questionBank: any, question_id: string) => {
 };
 
 export default function Application() {
+  const ctx = useContext(UserContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (ctx?.loading) return;
+
+    if (!ctx?.isAuthenticated) {
+      router.push("/login");
+      return;
+    }
+  }, [ctx?.isAuthenticated, ctx?.loading, router]);
+
   // Get application questions
   const { questions, loading, error } = useQuestions();
   const [isFormActive, setIsFormActive] = useState(false);
   const appRef = useRef<HTMLDivElement>(null);
   const [hasLoadedAppData, setHasLoadedAppData] = useState(false);
-  const router = useRouter();
 
   // find question_id by label
   const getQuestionId = (label: string) => {
@@ -668,7 +680,9 @@ export default function Application() {
       ),
     },
   ];
-
+  if (ctx?.loading || !ctx?.isAuthenticated) {
+    return null;
+  }
   return (
     <div className="h-screen">
       <Navbar hide={true} />

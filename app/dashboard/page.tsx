@@ -89,7 +89,12 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
-    if (!ctx?.isAuthenticated) return;
+    if (ctx?.loading) return;
+
+    if (!ctx?.isAuthenticated) {
+      router.push("/login");
+      return;
+    }
 
     getCurrentUser()
       .then(setUser)
@@ -98,7 +103,7 @@ export default function DashboardPage() {
     getRegTimeRange()
       .then(setTimeRange)
       .catch((err) => console.log(err.message));
-  }, [ctx?.isAuthenticated]);
+  }, [ctx?.isAuthenticated, ctx?.loading, router]);
 
   const status = getApplicationStatus(user?.application_status || "");
   const isOpen =
@@ -110,7 +115,9 @@ export default function DashboardPage() {
     console.log(status);
     console.log(user?.application_status);
   }, [status, user?.application_status]);
-
+  if (ctx?.loading || !ctx?.isAuthenticated) {
+    return null;
+  }
   return (
     <div>
       <Navbar hide={true} />
