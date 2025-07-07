@@ -4,6 +4,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -24,6 +25,9 @@ const navBarItems = [
 
 export default function Navbar(props: NavbarProp) {
   const [menuVisible, setMenuVisible] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
   // Responsiveness
   const isMobile = useMediaQuery({ maxWidth: 1080 });
 
@@ -42,6 +46,16 @@ export default function Navbar(props: NavbarProp) {
     closeMobileMenu();
   };
 
+  const handleLogoClick = () => {
+    if (pathname === "/") {
+      // If on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // If on other pages, navigate to home
+      router.push("/");
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 640) {
@@ -58,7 +72,7 @@ export default function Navbar(props: NavbarProp) {
     <div className="from-darkblue sticky top-0 z-50 flex h-[7rem] bg-linear-to-b to-black sm:h-[7rem]">
       <div className="flex w-full items-center justify-between sm:px-8">
         <div className="flex items-center gap-4">
-          <button onClick={() => scrollToSection("home")}>
+          <button onClick={handleLogoClick}>
             <Image
               width={0}
               height={0}
