@@ -72,7 +72,7 @@ export default function Navbar(props: NavbarProp) {
     <div className="from-darkblue sticky top-0 z-50 flex h-[7rem] bg-linear-to-b to-black sm:h-[7rem]">
       <div className="flex w-full items-center justify-between sm:px-8">
         <div className="flex items-center gap-4">
-          <button onClick={handleLogoClick}>
+          <button onClick={handleLogoClick} className="flex items-center">
             <Image
               width={0}
               height={0}
