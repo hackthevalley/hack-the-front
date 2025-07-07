@@ -20,7 +20,7 @@ const navBarItems = [
   { label: "Themes", id: "themes" },
   // { label: "Past Years", id: "past-years" },
   { label: "Sponsors", id: "sponsors" },
-]
+];
 
 export default function Navbar(props: NavbarProp) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -59,7 +59,13 @@ export default function Navbar(props: NavbarProp) {
       <div className="flex w-full items-center justify-between sm:px-8">
         <div className="flex items-center gap-4">
           <button onClick={() => scrollToSection("home")}>
-            <img src="/icons/htv-logo.svg" className="h-auto w-[100px] shrink-0" />
+            <Image
+              width={0}
+              height={0}
+              alt="HTV Logo"
+              src="/icons/htv-logo.svg"
+              className="h-auto w-[100px] shrink-0"
+            />
           </button>
         </div>
 
@@ -93,12 +99,12 @@ export default function Navbar(props: NavbarProp) {
               )}
 
               {/* max-w-[100px] min-w-[60px] */}
-                <Link
+              <Link
                 id="mlh-trust-badge"
-                className="z-[10000] sm:mt-[3rem] mt-[1rem] mr-[1.5rem] w-[80px] sm:w-[100px]"
+                className="z-[10000] mt-[1rem] mr-[1.5rem] w-[80px] sm:mt-[3rem] sm:w-[100px]"
                 href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
                 target="_blank"
-                >
+              >
                 <Image
                   className="relative"
                   width={120}
@@ -106,7 +112,7 @@ export default function Navbar(props: NavbarProp) {
                   src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
                   alt="Major League Hacking 2025 Hackathon Season"
                 />
-                </Link>
+              </Link>
             </div>
           </>
         )}
