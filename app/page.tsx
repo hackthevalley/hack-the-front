@@ -17,10 +17,10 @@ export default function Home() {
   return (
     <div id="home">
       <Navbar />
-      {/* Inside calc(100vh-6rem), the 6rem must be the same as the h-[6rem] in Navbar.tsx */}
+      {/* Inside calc(100vh-7rem), the 7rem must be the same as the h-[7rem] in Navbar.tsx */}
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      {/* min-h-screen sm:min-h-[calc(100vh-6rem)] */}
-      <div className="relative grid h-[calc(100vh-6rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center overflow-x-hidden bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
+      {/* min-h-screen sm:min-h-[calc(100vh-7rem)] */}
+      <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
         <Image
