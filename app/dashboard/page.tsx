@@ -50,11 +50,18 @@ const getApplicationStatus = (status: string) => {
         icon: "/dashboard/pending.svg",
         badge: "bg-gray-500",
       };
+    case "pending":
+      return {
+        color: "text-gray-300",
+        label: "Pending",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-gray-500",
+      };
     default:
       return {
         color: "text-gray-300",
-        label: "Not Submitted",
-        icon: "/dashboard/pending.svg",
+        label: "Pending",
+        icon: "/dashboard/notSubmitted.svg",
         badge: "bg-gray-500",
       };
   }
@@ -150,7 +157,10 @@ export default function DashboardPage() {
               <span className="text-grey font-[family-name:var(--font-source-code-pro)] text-xl">
                 $ npm start challenge
               </span>
-              <button onClick={handleLogout} className="text-lg font-semibold text-red-400">
+              <button
+                onClick={handleLogout}
+                className="text-lg font-semibold text-red-400 transition-colors duration-400 hover:text-red-600 active:text-red-700"
+              >
                 {"< Log Out"}
               </button>
             </div>
@@ -185,17 +195,17 @@ export default function DashboardPage() {
                   user?.application_status.toLowerCase() === "applying" ? (
                     <Link
                       href="/application"
-                      className="bg-lightgreen rounded-lg px-6 py-3 text-center text-lg font-semibold text-white"
+                      className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
                     >
                       Open
                     </Link>
                   ) : (
-                    <div className="pointer-events-none cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
+                    <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
                       Applied
                     </div>
                   )
                 ) : (
-                  <div className="pointer-events-none cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
+                  <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
                     Closed
                   </div>
                 )}
@@ -208,7 +218,7 @@ export default function DashboardPage() {
                 {/* Discover Themes Card */}
                 <Link
                   href="/#themes"
-                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
+                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors duration-400 hover:bg-[#1a2c4d] active:bg-[#2c3e5e]"
                 >
                   <div className="flex min-w-[64px] gap-2">
                     <Image
@@ -227,13 +237,13 @@ export default function DashboardPage() {
                 {/* FAQ Card */}
                 <Link
                   href="/#faq"
-                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
+                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors duration-400 hover:bg-[#1a2c4d] active:bg-[#2c3e5e]"
                 >
                   <div className="min-w-[64px]">
                     <Image
                       width={0}
                       height={0}
-                      src="/dashboard/FAQ Icon.svg"
+                      src="/dashboard/FAQIcon.svg"
                       alt="FAQ"
                       className="h-14 w-14"
                     />
