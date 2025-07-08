@@ -28,14 +28,22 @@ export default function Footer() {
     <footer className="flex flex-col items-center gap-y-7 bg-black px-4 py-8">
       <div className="z-10 mb-2 flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-14">
         {socialLinks.map((item, index) => (
-          <a key={index} href={item.href} className="font-ecb flex items-center gap-2 text-white">
+          <a
+            key={index}
+            href={item.href}
+            className="font-ecb flex items-center gap-2 text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image src={item.icon} alt={`${item.label}icon`} width={24} height={24} />
             <span className="font-ecb text-xl font-bold text-white">hackthevalley</span>
           </a>
         ))}
       </div>
       <a
-        className="text-gray text-[16px] underline"
+        className="text-gray z-20 text-[16px] underline"
+        target="_blank"
+        rel="noopener noreferrer"
         href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
       >
         MLH Code of Conduct

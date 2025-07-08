@@ -42,7 +42,7 @@ export default function ConsentInfo(props: ConsentInfoProps) {
         alt="spaceship"
         width={336}
         height={336}
-        className="absolute -bottom-20 -left-170 z-50 translate-x-1/2 translate-y-1/2 rotate-[-10deg]"
+        className="pointer-events-none absolute -bottom-20 -left-170 z-50 translate-x-1/2 translate-y-1/2 rotate-[-10deg]"
       />
     </Card>
   );
