@@ -1,15 +1,15 @@
 "use client";
 
+import { motion } from "motion/react";
 import Image from "next/image";
-import GreenButton from "@/components/GreenButton";
 import { useState } from "react";
 
-import { motion } from "motion/react";
+import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 
-import Sponsors from "./landing/Sponsors";
-import Footer from "./landing/Footer";
 import FAQ from "./landing/FAQ";
+import Footer from "./landing/Footer";
+import Sponsors from "./landing/Sponsors";
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
@@ -17,43 +17,43 @@ export default function Home() {
   return (
     <div id="home">
       <Navbar />
-      {/* Inside calc(100vh-10rem), the 10rem must be the same as the h-[10rem] in Navbar.tsx */}
+      {/* Inside calc(100vh-7rem), the 7rem must be the same as the h-[7rem] in Navbar.tsx */}
       {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      {/* min-h-screen sm:min-h-[calc(100vh-10rem)] */}
-      <div className="grid grid-rows-[auto_1fr_auto]  h-[calc(100vh-10rem)] items-center justify-items-center bg-black relative px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] overflow-x-hidden sm:px-20 sm:pt-27">
+      {/* min-h-screen sm:min-h-[calc(100vh-7rem)] */}
+      <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
         <Image
-          className="absolute object-cover bottom-[-1rem] left-[-2rem]"
+          className="absolute bottom-[-1rem] left-[-2rem] object-cover"
           src="/backgrounds/star-left.svg"
           alt="star"
           width="400"
           height="390"
         />
         <Image
-          className="absolute object-cover top-[-1rem] right-[0rem]"
+          className="absolute top-[-1rem] right-[0rem] object-cover"
           src="/backgrounds/star-right.svg"
           alt="star"
           width="340"
           height="509"
         />
 
-        <main className="flex flex-col gap-4 md:gap-6 row-start-2 items-center sm:items-start">
-          <div className="flex flex-col lg:flex-row items-center w-full gap-4 mt-25 mb-40 ">
-            <div className="w-full sm:w-1/2 flex flex-col items-center">
-              <div className="flex flex-col items-center md:items-start md:grid md:grid-cols-[auto_1fr] md:gap-2 w-full z-10">
+        <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
+          <div className="mt-25 mb-40 flex w-full flex-col items-center gap-4 lg:flex-row">
+            <div className="flex w-full flex-col items-center sm:w-1/2">
+              <div className="z-10 flex w-fit flex-col items-center md:grid md:grid-cols-[auto_1fr] md:items-start md:gap-2">
                 {/* Positioning the ">" */}
-                <div className="hidden md:flex justify-start items-start mt-[2.3rem] ">
-                  <h1 className="text-[#4C6581] text-7xl font-medium [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)] leading-tight">
+                <div className="mt-[2.3rem] hidden items-start justify-start md:flex">
+                  <h1 className="text-7xl leading-tight font-medium text-[#4C6581] [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">
                     {">"}
                   </h1>
                 </div>
-                <div className="flex flex-col gap-y-4">
-                  <p className="text-grey text-xl font-[family-name:var(--font-source-code-pro)] ">
+                <div className="flex w-fit flex-col gap-y-4">
+                  <p className="text-grey font-[family-name:var(--font-source-code-pro)] text-xl">
                     Up for the challenge?
                   </p>
                   <h1
-                    className="text-6xl text-nowrap sm:text-7xl font-bold text-transparent bg-clip-text"
+                    className="bg-clip-text text-6xl font-bold text-nowrap text-transparent sm:text-7xl"
                     style={{
                       backgroundImage:
                         "linear-gradient(160deg, #4C6581, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
@@ -62,7 +62,7 @@ export default function Home() {
                     HACK THE
                   </h1>
                   <h1
-                    className="text-6xl text-nowrap sm:text-7xl  font-bold text-transparent bg-clip-text"
+                    className="bg-clip-text text-6xl font-bold text-nowrap text-transparent sm:text-7xl"
                     style={{
                       backgroundImage:
                         "linear-gradient(100deg, #8E9CAA, #BDBEBF, #8E9CAA, #4C6581)",
@@ -73,9 +73,9 @@ export default function Home() {
 
                   {/* Date */}
                   <div className="flex-col">
-                    <div className="flex items-center justify-center gap-x-4 mb-[4rem] text-green ">
+                    <div className="text-green mb-[4rem] flex items-center justify-center gap-x-4">
                       <hr className="w-[20%]" />
-                      <p className="text-base sm:text-lg font-[family-name:var(--font-source-code-pro)]">
+                      <p className="font-[family-name:var(--font-source-code-pro)] text-base sm:text-lg">
                         Oct. 3-5, 2025
                       </p>
                       <hr className="w-[20%]" />
@@ -91,12 +91,11 @@ export default function Home() {
             </div>
 
             {/* Event cards and metallic flowers with animation */}
-            <div className="relative w-full lg:w-1/2 flex justify-center lg:justify-start mt-35 lg:mt-0">
-              <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-none aspect-square lg:aspect-auto">
+            <div className="relative mt-35 flex w-full justify-center lg:mt-0 lg:w-1/2 lg:justify-start">
+              <div className="relative aspect-square w-full max-w-[350px] sm:max-w-[350px] md:max-w-[400px] lg:aspect-auto lg:max-w-[540px]">
                 {/* Terminal card */}
                 <motion.img
-                  className="terminal-card relative cursor-pointer  w-[100%] h-auto
-                 lg:w-[110%] lg:max-w-[700px]"
+                  className="terminal-card relative h-auto w-[100%] cursor-pointer lg:w-[110%] lg:max-w-[700px]"
                   src="/landing-page/date-card.svg"
                   alt="Date Card"
                   // whileHover={clicked ? { scale: 1.05 } : {}}
@@ -115,10 +114,7 @@ export default function Home() {
                 />
                 {/* Silver card */}
                 <motion.img
-                  className="event-card max-w-none absolute top-[-3rem] left-[-1rem] cursor-pointer w-[120%] h-auto
-                 sm:top-[-4rem] sm:left-[-1.5rem] sm:w-[100%]
-                 md:top-[-5rem] md:left-[-2rem] md:w-[120%]
-                 lg:top-[-10rem] lg:left-[-3rem] lg:w-[135%] lg:max-w-[750px]"
+                  className="event-card absolute top-[-6rem] left-[-1rem] h-auto w-[120%] max-w-none cursor-pointer sm:top-[-6rem] sm:left-[-1.5rem] sm:w-[120%] md:top-[-7rem] md:left-[-2rem] md:w-[120%] lg:top-[-11rem] lg:left-[-3rem] lg:w-[135%] lg:max-w-[750px]"
                   src="/landing-page/event-card-2.svg"
                   alt="Event Card"
                   // whileHover={!clicked ? { scale: 1.05 } : {}}
@@ -138,9 +134,7 @@ export default function Home() {
 
                 {/* Metallic Flowers */}
                 <motion.img
-                  className="absolute bottom-[16rem] md:bottom-[18rem] md:left-[-2rem] 
-                 lg:bottom-[21.2rem] lg:left-[-2.5rem] 
-                 z-20 w-28 h-28 sm:w-32 sm:h-32"
+                  className="absolute bottom-[20rem] left-[-1rem] z-20 h-28 w-28 sm:bottom-[20rem] sm:left-[-2rem] sm:h-32 sm:w-32 md:bottom-[23rem] md:left-[-2rem] lg:bottom-[23.2rem] lg:left-[-0.5rem]"
                   src="/metallics/clover.svg"
                   alt="Metallic Clover"
                   width="151"
@@ -159,9 +153,7 @@ export default function Home() {
                 />
 
                 <motion.img
-                  className="absolute top-[10rem] right-[-1rem] 
-                 lg:top-[12.5rem] lg:left-[24rem] 
-                 z-20 w-20 h-20 lg:w-28 lg:h-28"
+                  className="absolute top-[10rem] right-[-1rem] z-20 h-20 w-20 md:top-[10.5rem] md:left-[20rem] lg:top-[15.5rem] lg:left-[27rem] lg:h-28 lg:w-28"
                   src="/metallics/flower.svg"
                   alt="Metallic Flower"
                   width="135"
@@ -183,7 +175,7 @@ export default function Home() {
           </div>
           <FAQ />
           <Sponsors />
-          <div className="justify-center items-center w-full mt-20">
+          <div className="mt-20 w-full items-center justify-center">
             <Footer />
           </div>
         </main>

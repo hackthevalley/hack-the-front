@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Source_Code_Pro } from "next/font/google";
 import localFont from "next/font/local";
+
 import "@/globals.css";
 import { AuthProvider } from "@/utils/auth";
 
@@ -78,12 +79,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${sourceCodePro.variable} ${euclidCircularB.variable} antialiased`}
-      >
-        <AuthProvider>
-          <main>{children}</main>
-        </AuthProvider>
+      <body className={`${sourceCodePro.variable} ${euclidCircularB.variable} antialiased`}>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

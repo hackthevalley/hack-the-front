@@ -1,19 +1,33 @@
 "use client";
 
-import GreenButton from "@/components/GreenButton";
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+
+import GreenButton from "@/components/GreenButton";
 
 interface NavbarProp {
   hide?: boolean;
 }
 
+const navBarItems = [
+  { label: "About", id: "about" },
+  // { label: "Schedule", id: "schedule" },
+  { label: "FAQ", id: "faq" },
+  { label: "Themes", id: "themes" },
+  // { label: "Past Years", id: "past-years" },
+  { label: "Sponsors", id: "sponsors" },
+];
+
 export default function Navbar(props: NavbarProp) {
   const [menuVisible, setMenuVisible] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
   // Responsiveness
   const isMobile = useMediaQuery({ maxWidth: 1080 });
 
@@ -32,6 +46,16 @@ export default function Navbar(props: NavbarProp) {
     closeMobileMenu();
   };
 
+  const handleLogoClick = () => {
+    if (pathname === "/") {
+      // If on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // If on other pages, navigate to home
+      router.push("/");
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 640) {
@@ -44,13 +68,17 @@ export default function Navbar(props: NavbarProp) {
   }, []);
 
   return (
-    <div className="sticky top-0 z-50 flex bg-linear-to-b from-darkblue to-black sm:h-[10rem]">
-      <div className="py-4 p-2 sm:px-8 flex items-center w-full justify-between">
+    // from-darkblue to-black bg-linear-to-b
+    <div className="from-darkblue sticky top-0 z-50 flex h-[7rem] bg-linear-to-b to-black sm:h-[7rem]">
+      <div className="flex w-full items-center justify-between sm:px-8">
         <div className="flex items-center gap-4">
-          <button onClick={() => scrollToSection("home")}>
-            <img
+          <button onClick={handleLogoClick} className="flex items-center">
+            <Image
+              width={0}
+              height={0}
+              alt="HTV Logo"
               src="/icons/htv-logo.svg"
-              className="w-[100px] h-auto shrink-0"
+              className="h-auto w-[100px] shrink-0"
             />
           </button>
         </div>
@@ -59,15 +87,9 @@ export default function Navbar(props: NavbarProp) {
           <>
             {/* Desktop */}
             {showDesktopNavbar && (
-              <ul className="sm:flex flex-1 justify-evenly items-center font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white tex-md sm:text-xl lg:text-2xl">
-                {[
-                  { label: "About", id: "about" },
-                  // { label: "Schedule", id: "schedule" },
-                  { label: "FAQ", id: "faq" },
-                  { label: "Themes", id: "themes" },
-                  // { label: "Past Years", id: "past-years" },
-                  { label: "Sponsors", id: "sponsors" },
-                ].map(({ label, id }) => (
+              // justify-evenly flex-1
+              <ul className="text-md mx-10 flex w-4/5 items-center gap-x-10 font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white sm:flex sm:text-xl lg:text-2xl">
+                {navBarItems.map(({ label, id }) => (
                   <li key={id}>
                     <button onClick={() => scrollToSection(id)}>{label}</button>
                   </li>
@@ -76,31 +98,31 @@ export default function Navbar(props: NavbarProp) {
             )}
 
             {/* MLH Badge & Apply now */}
-            <div className="flex justify-end items-center gap-x-10">
-              {showDesktopNavbar && (
-                <GreenButton text="Apply Now" route="/login" />
-              )}
+            <div className="flex items-center justify-end gap-x-10">
+              {showDesktopNavbar && <GreenButton text="Apply Now" route="/login" />}
 
               {/* Mobile menu */}
               {!props.hide && !showDesktopNavbar && (
                 <button
-                  className="text-white text-3xl"
+                  className="mr-[1rem] text-3xl text-white"
                   onClick={toggleMobileMenu}
                   aria-label="Toggle Menu"
                 >
-                  <FontAwesomeIcon icon={menuVisible ? faXmark : faBars} />
+                  <FontAwesomeIcon icon={menuVisible ? faTimes : faBars} />
                 </button>
               )}
 
+              {/* max-w-[100px] min-w-[60px] */}
               <Link
                 id="mlh-trust-badge"
-                className="block max-w-[100px] min-w-[60px] z-[10000]"
+                className="z-[10000] mt-[1rem] mr-[1.5rem] w-[80px] sm:mt-[3rem] sm:w-[100px]"
                 href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
                 target="_blank"
               >
                 <Image
-                  width="100"
-                  height="175"
+                  className="relative"
+                  width={120}
+                  height={105}
                   src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
                   alt="Major League Hacking 2025 Hackathon Season"
                 />
@@ -111,17 +133,9 @@ export default function Navbar(props: NavbarProp) {
       </div>
       {/* Mobile menu*/}
       {!props.hide && menuVisible && (
-        <div className="justimd:hidden bg-midnight py-6 shadow-lg z-40 absolute w-full left-0 top-[10rem]">
-          <ul className="flex flex-col items-center gap-6 font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white text-xl">
-            {[
-              { label: "About", id: "about" },
-              // { label: "Schedule", id: "schedule" },
-              { label: "FAQ", id: "faq" },
-              { label: "Themes", id: "themes" },
-              // { label: "Past Years", id: "past-years" },
-              { label: "Sponsors", id: "sponsors" },
-              { label: "Apply", id: "login" },
-            ].map(({ label, id }) => (
+        <div className="justimd:hidden bg-midnight absolute top-[6rem] left-0 z-40 w-full py-6 shadow-lg">
+          <ul className="flex flex-col items-center gap-6 font-[family-name:var(--font-euclid-circular-b)] text-xl font-semibold text-white">
+            {navBarItems.map(({ label, id }) => (
               <li key={id}>
                 {id === "login" ? (
                   <Link href={"/login"}>{label}</Link>

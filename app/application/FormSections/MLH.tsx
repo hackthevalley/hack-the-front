@@ -103,7 +103,7 @@ export default function MLH(props: MLHProps) {
         alt="spaceship"
         width={336}
         height={336}
-        className="absolute -right-[20%] -bottom-[8%] z-50 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[5deg]"
+        className="pointer-events-none absolute -right-[20%] -bottom-[8%] z-50 translate-x-1/2 translate-y-1/2 -scale-x-100 rotate-[5deg]"
       />
     </Card>
   );
