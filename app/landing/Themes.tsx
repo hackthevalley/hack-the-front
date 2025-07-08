@@ -8,7 +8,7 @@ interface themeData {
   alt: string;
 }
 
-export default function Sponsors() {
+export default function Themes() {
   const themes: themeData[] = [
     {
       name: "Sustainability",
