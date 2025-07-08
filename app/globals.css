@@ -72,7 +72,7 @@ body {
     "Helvetica Neue",
     Arial,
     sans-serif;
-  overflow: auto;
+  overflow-x: hidden;
   height: auto;
 }
 

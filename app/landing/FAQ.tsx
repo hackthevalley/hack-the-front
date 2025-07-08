@@ -1,6 +1,7 @@
 "use client";
 
 import FAQItem from "@/components/FAQItem";
+import Image from "next/image";
 
 const questions = [
   {
@@ -11,10 +12,10 @@ const questions = [
   {
     question: "What do I need to bring?",
     answer:
-      "You'll need: A laptop and charger. We'd also recommend a sleeping bag if plan to stay the night at the venue. Everything else is optional. You don't need: An idea and a team. You can create your own team (teams of 4 recommended) during the hackathon, and generate some amazing creations along the way. You also don't need to worry about food, we've got you covered.",
+      "You'll need: A laptop and charger. We'd also recommend a sleeping bag if you plan to stay the night at the venue. Everything else is optional. You don't need: An idea and a team. You can create your own team (teams of 4 recommended) during the hackathon, and generate some amazing ideas along the way. You also don't need to worry about food, we've got you covered.",
   },
   {
-    question: "How much will it cost to attend to Hack the Valley?",
+    question: "How much will it cost to attend Hack the Valley?",
     answer:
       "It’s completely free, so don’t worry! We'll provide you with a weekend's worth of meals, drinks, and snacks and a place to crash when you need a break from coding. In fact, you’ll probably walk away loaded with all the swag that you’ll get at Hack the Valley.",
   },
@@ -34,7 +35,7 @@ const questions = [
   },
   {
     question: "More Questions?",
-    answer: "Have an uncertainties? Voice it at hello@hackthevalley.io",
+    answer: "Have any questions or uncertainties? Voice it at hello@hackthevalley.io",
   },
 ];
 
@@ -42,9 +43,20 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="mb-44 w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
-      style={{ scrollMarginTop: "10rem" }}
+      className="mb-44 w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32 z-2"
+      style={{ scrollMarginTop: "6rem" }}
     >
+      <div className="relative hidden sm:block -z-1">
+        <div className="pointer-events-none absolute top-[26%]">
+          <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
+        </div>
+        <div className="pointer-events-none absolute -top-2 left-50">
+          <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
+        </div>
+        <div className="pointer-events-none absolute top-140 right-10">
+          <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
+        </div>
+      </div>
       <div className="mx-auto max-w-6xl">
         <h1
           className="bg-clip-text text-center text-6xl font-bold text-transparent sm:text-5xl lg:text-7xl"
