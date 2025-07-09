@@ -59,7 +59,7 @@ export default function ABOUT() {
         </div>
 
         <div className="flex flex-col">
-          <div className="border-indigo bg-bgblue relative z-10 mx-auto mb-8 flex w-full flex-col items-center justify-center rounded-[20px] border-2 px-6 py-10">
+          <div className="border-indigo bg-bgblue relative z-10 mx-auto mb-8 flex w-full flex-col items-center justify-center rounded-[20px] border-2 py-10">
             <div className="absolute top-1/2 -left-12 z-20 hidden -translate-y-1/2 sm:block">
               <Image
                 src="/about-page/htv-logo.svg"
@@ -70,39 +70,38 @@ export default function ABOUT() {
               />
             </div>
 
-            <div className="flex w-full items-center pl-16">
-              <div className="max-w-3xl">
-                <p className="text-sm font-semibold sm:text-lg">
+            <div className="flex w-full items-center">
+              <div className="w-full px-10 sm:px-14 md:px-18 lg:px-20">
+                <p className="mb-6 text-sm font-semibold sm:text-lg">
                   <span className="text-white">Join </span>
                   <span className="text-green">750 innovative </span>
                   <span className="text-white">
                     and creative developers, designers, and creators for{" "}
                   </span>
-                </p>
-                <p className="mb-6 text-sm font-semibold sm:text-lg">
                   <span className="text-green">36 hours of hacking.</span>
                 </p>
                 <p className="text-sm font-semibold sm:text-lg">
-                  <span className="text-white">You'll get access to some of the </span>
+                  <span className="text-white">{"You'll get access to some of the "}</span>
                   <span className="text-green">best hardware and APIs </span>
                   <span className="text-white">
                     on the market. Plus get to meet some experienced and awesome mentors!{" "}
                   </span>
                   <span className="text-green">All this in just one weekend? </span>
-                  <span className="text-white">I know, it's hard to believe.</span>
+                  <span className="text-white">{"I know, it's hard to believe."}</span>
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="border-indigo bg-bgblue relative mb-8 flex w-full flex-col items-center justify-center rounded-[20px] border-2 px-8 py-6">
-            <div className="w-full">
+          <div className="border-indigo bg-bgblue relative mb-8 flex w-full flex-col items-center justify-center rounded-[20px] border-2 py-6">
+            <div className="w-full px-10 sm:px-14 md:px-18 lg:px-20">
               <p className="text-sm font-semibold sm:text-lg">
-                <span className="text-white">Remember, </span>
-                <span className="text-green">you don't need to be a pro to attend. </span>
+                <span className="inline-block text-white">Remember,</span>
+                <span className="text-green">{" you don't need to be a pro to attend. "}</span>
                 <span className="text-white">
-                  So if this is your first hackathon, we can't wait to expose you to the
-                  incomparable world of creation.
+                  {
+                    "So if this is your first hackathon, we can't wait to expose you to the incomparable world of creation."
+                  }
                 </span>
               </p>
             </div>
