@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-export default function ABOUT() {
+export default function About() {
   return (
     <section
       id="about"
@@ -74,7 +74,7 @@ export default function ABOUT() {
               <div className="w-full px-10 sm:px-14 md:px-18 lg:px-20">
                 <p className="mb-6 text-sm font-semibold sm:text-lg">
                   <span className="text-white">Join </span>
-                  <span className="text-green">750 innovative </span>
+                  <span className="text-green">500+ innovative </span>
                   <span className="text-white">
                     and creative developers, designers, and creators for{" "}
                   </span>
