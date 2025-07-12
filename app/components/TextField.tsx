@@ -2,9 +2,8 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AsYouType, isValidPhoneNumber } from "libphonenumber-js";
-import { usePathname } from "next/navigation";
 import React, { useMemo, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import fetchInstance from "@/utils/api";
 
@@ -68,7 +67,7 @@ export default function TextField(props: TextFieldProps) {
         setFile?.(file);
         const uploadFile = async () => {
           try {
-            const res = await fetchInstance("forms/uploadresume", {
+            await fetchInstance("forms/uploadresume", {
               method: "POST",
               body: (() => {
                 const formData = new FormData();
@@ -76,12 +75,14 @@ export default function TextField(props: TextFieldProps) {
                 return formData;
               })(),
             });
-            console.log("File upload response:", res);
+            
             toast.dismiss(uploadingFile);
             toast.success("File uploaded successfully!");
           } catch (error) {
             console.error("File upload failed:", error);
             toast.dismiss(uploadingFile);
+            setFieldValue("");
+            setFile?.(null);
             toast.error("File upload failed.");
           }
         };
@@ -103,7 +104,7 @@ export default function TextField(props: TextFieldProps) {
         setFile?.(file);
         const uploadFile = async () => {
           try {
-            const res = await fetchInstance("forms/uploadresume", {
+            await fetchInstance("forms/uploadresume", {
               method: "POST",
               body: (() => {
                 const formData = new FormData();
@@ -111,12 +112,13 @@ export default function TextField(props: TextFieldProps) {
                 return formData;
               })(),
             });
-            console.log("File upload response:", res);
             toast.dismiss(uploadingFile);
             toast.success("File uploaded successfully!");
           } catch (error) {
             console.error("File upload failed:", error);
             toast.dismiss(uploadingFile);
+            setFieldValue("");
+            setFile?.(null);
             toast.error("File upload failed.");
           }
         };
@@ -349,31 +351,6 @@ export default function TextField(props: TextFieldProps) {
         borderColor: borderColor,
       }}
     >
-      {usePathname() === "/application" && (
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 6000,
-            removeDelay: 1000,
-            style: {
-              background: "#0B1C34",
-              color: "white",
-            },
-            success: {
-              iconTheme: {
-                primary: "green",
-                secondary: "#0B1C34",
-              },
-            },
-            error: {
-              iconTheme: {
-                primary: "red",
-                secondary: "#0B1C34",
-              },
-            },
-          }}
-        />
-      )}
       <label
         className={`mb-1 flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)]`}
       >

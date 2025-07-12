@@ -78,7 +78,7 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
       <div className="mt-3 flex justify-center">
         <div className="grid w-11/12 grid-cols-1 gap-x-7 gap-y-4">
           <TextField
-            title="Upload or Drag & Drop Your Resume"
+            title="Upload or Drag & Drop Your Resume (Max 5MB)"
             required={true}
             type="file"
             placeholder="Upload your resume"
