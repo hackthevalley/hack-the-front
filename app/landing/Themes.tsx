@@ -1,8 +1,5 @@
 import Image from "next/image";
 
-import GreenButton from "@/components/GreenButton";
-import SponsorField from "@/components/SponsorField";
-
 interface themeData {
   name: string;
   src: string;
@@ -33,23 +30,23 @@ export default function Themes() {
     },
   ];
 
-  const renderThemes = () => {
-    return (
-      <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
-        {themes.map((theme) => (
-          <div
-            key={theme.name}
-            className="bg-bgblue flex flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
-          >
-            <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
-              {theme.name}
-            </p>
-            <Image src={theme.src} alt={theme.alt} width={150} height={150} />
-          </div>
-        ))}
-      </div>
-    );
-  };
+  //   const renderThemes = () => {
+  //     return (
+  //       <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
+  //         {themes.map((theme) => (
+  //           <div
+  //             key={theme.name}
+  //             className="bg-bgblue flex flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
+  //           >
+  //             <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
+  //               {theme.name}
+  //             </p>
+  //             <Image src={theme.src} alt={theme.alt} width={150} height={150} />
+  //           </div>
+  //         ))}
+  //       </div>
+  //     );
+  //   };
 
   const renderComingSoon = () => {
     return (
@@ -74,11 +71,11 @@ export default function Themes() {
           <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
         </div>
       </div> */}
-      <div className="relative sm:block">
+      {/* <div className="relative sm:block">
         <div className="pointer-events-none absolute top-[26%]">
           <Image src="/themes-page/roadmap-1.png" alt="Roadmap1" width={1140} height={468} />
         </div>
-      </div>
+      </div> */}
       <Image
         className="pointer-events-none absolute top-[1rem] left-[-15rem] hidden object-cover sm:block"
         src="/backgrounds/star.svg"

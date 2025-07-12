@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
+// import Image from "next/image";
 import FAQItem from "@/components/FAQItem";
 
 const questions = [
@@ -48,9 +47,9 @@ export default function FAQ() {
       style={{ scrollMarginTop: "6rem" }}
     >
       <div className="relative -z-1 hidden sm:block">
-        <div className="pointer-events-none absolute top-[26%]">
+        {/* <div className="pointer-events-none absolute top-[26%]">
           <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
-        </div>
+        </div> */}
         {/* <div className="pointer-events-none absolute -top-2 left-50">
           <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
         </div>

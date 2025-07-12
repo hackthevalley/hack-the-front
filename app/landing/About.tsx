@@ -38,7 +38,7 @@ export default function About() {
       </div>
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col justify-center">
         <div className="hidden sm:block">
-          <div className="absolute top-[30%] -translate-y-1/2">
+          {/* <div className="absolute top-[30%] -translate-y-1/2">
             <Image
               src="/about-page/trail.png"
               width={1300}
@@ -46,7 +46,7 @@ export default function About() {
               className="pointer-events-none"
               alt="Trail"
             />
-          </div>
+          </div> */}
           {/* <div className="absolute top-[-22%] right-[8%] -translate-y-1/2">
             <Image
               src="/about-page/dot.png"
