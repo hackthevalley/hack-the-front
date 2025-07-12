@@ -206,7 +206,7 @@ export default function DashboardPage() {
               <h2 className="mb-4 text-xl font-semibold text-white">Explore</h2>
               <div className="flex flex-col gap-6 md:flex-row">
                 {/* Discover Themes Card */}
-                <Link
+                {/* <Link
                   href="/#themes"
                   className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors duration-400 hover:bg-[#1a2c4d] active:bg-[#2c3e5e]"
                 >
@@ -223,7 +223,7 @@ export default function DashboardPage() {
                     <div className="text-2xl font-semibold text-white">Discover Themes</div>
                     <div className="text-grey text-lg">Factions of HTVX</div>
                   </div>
-                </Link>
+                </Link> */}
                 {/* FAQ Card */}
                 <Link
                   href="/#faq"
