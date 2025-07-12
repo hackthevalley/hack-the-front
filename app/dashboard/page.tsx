@@ -50,17 +50,10 @@ const getApplicationStatus = (status: string) => {
         icon: "/dashboard/pending.svg",
         badge: "bg-gray-500",
       };
-    case "pending":
-      return {
-        color: "text-gray-300",
-        label: "Pending",
-        icon: "/dashboard/pending.svg",
-        badge: "bg-gray-500",
-      };
     default:
       return {
         color: "text-gray-300",
-        label: "Pending",
+        label: "Not Submitted",
         icon: "/dashboard/notSubmitted.svg",
         badge: "bg-gray-500",
       };
