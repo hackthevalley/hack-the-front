@@ -8,6 +8,7 @@ import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 
 import FAQ from "./landing/FAQ";
+import About from "./landing/About";
 import Footer from "./landing/Footer";
 import Sponsors from "./landing/Sponsors";
 
@@ -173,6 +174,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <About />
           <FAQ />
           <Sponsors />
           <div className="mt-20 w-full items-center justify-center">
