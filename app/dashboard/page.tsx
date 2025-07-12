@@ -157,10 +157,7 @@ export default function DashboardPage() {
               <span className="text-grey font-[family-name:var(--font-source-code-pro)] text-xl">
                 $ npm start challenge
               </span>
-              <button
-                onClick={handleLogout}
-                className="text-lg font-semibold text-red-400 transition-colors duration-400 hover:text-red-600 active:text-red-700"
-              >
+              <button onClick={handleLogout} className="text-lg font-semibold text-red-400">
                 {"< Log Out"}
               </button>
             </div>
