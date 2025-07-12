@@ -2,7 +2,6 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AsYouType, isValidPhoneNumber } from "libphonenumber-js";
-// import { usePathname } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -76,7 +75,6 @@ export default function TextField(props: TextFieldProps) {
                 return formData;
               })(),
             });
-            console.log("File upload response:", res);
             toast.dismiss(uploadingFile);
             toast.success("File uploaded successfully!");
           } catch (error) {
@@ -113,7 +111,6 @@ export default function TextField(props: TextFieldProps) {
                 return formData;
               })(),
             });
-            console.log("File upload response:", res);
             toast.dismiss(uploadingFile);
             toast.success("File uploaded successfully!");
           } catch (error) {

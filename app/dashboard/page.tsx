@@ -111,10 +111,6 @@ export default function DashboardPage() {
     new Date() < new Date(timeRange.end_at) &&
     new Date(timeRange.start_at) < new Date();
 
-  useEffect(() => {
-    console.log(status);
-    console.log(user?.application_status);
-  }, [status, user?.application_status]);
   if (ctx?.loading || !ctx?.isAuthenticated) {
     return null;
   }

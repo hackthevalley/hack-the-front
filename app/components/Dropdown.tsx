@@ -41,9 +41,6 @@ export default function Dropdown(props: DropdownProps) {
     disabled = false,
   } = props;
   
-  // useEffect(() => {
-  //   console.log("DROPDOWN", props.fieldValue);
-  // }, []);
   const [otherSelected, setOtherSelected] = useState<boolean>(false);
   const [localFieldValue, setLocalFieldValue] = useState<string>(fieldValue);
   const [otherFieldValue, setOtherFieldValue] = useState<string>("");

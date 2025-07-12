@@ -22,7 +22,6 @@ import { useQuestions } from "./context/QuestionContext";
 const findUserAppAnswer = (questionBank: any, question_id: string) => {
   if (question_id === "") return "";
   const answer = questionBank.find((item: any) => item.question_id === question_id);
-  // console.log("findUserAppAnswer:", question_id, answer);
   return answer && answer.answer !== null ? answer.answer : "";
 };
 
@@ -48,7 +47,6 @@ export default function Application() {
   // find question_id by label
   const getQuestionId = (label: string) => {
     const question = questions.find((q) => q.label.toLowerCase() === label.toLowerCase());
-    // console.log("getQuestionId:", question);
     return question?.question_id || "";
   };
 
@@ -147,7 +145,6 @@ export default function Application() {
         const res = await fetchInstance("forms/getapplication", {
           method: "GET",
         });
-        // console.log(res.form_answers)
 
         setFirstName(findUserAppAnswer(res.form_answers, getQuestionId("First Name")));
         setLastName(findUserAppAnswer(res.form_answers, getQuestionId("Last Name")));
@@ -236,41 +233,6 @@ export default function Application() {
 
         if (!questions || questions.length === 0) return;
         const payloads = getPayloads();
-
-        // console.log("Saving progress with the following fields:");
-        // console.log({
-        //   firstName,
-        //   lastName,
-        //   email,
-        //   phoneNumber,
-        //   country,
-        //   schoolName,
-        //   currentLevelOfStudy,
-        //   major,
-        //   expectedGraduationYear,
-        //   age,
-        //   gender,
-        //   raceEthinicity,
-        //   LGBTQI,
-        //   disabilities,
-        //   hackathonCount,
-        //   github,
-        //   linkedin,
-        //   portfolio,
-        //   uiux,
-        //   frontend,
-        //   backend,
-        //   fullstack,
-        //   pm,
-        //   crypto,
-        //   cyber,
-        //   ml,
-        //   dietaryRestrictions,
-        //   shirtSize,
-        //   mlhCodeOfConduct,
-        //   mlhPrivacyPolicy,
-        //   mlhEmailConsent,
-        // });
 
         try {
           await fetchInstance("forms/saveAnswers", {
@@ -389,8 +351,6 @@ export default function Application() {
         answer: consentAgreed.toString(),
       },
     ];
-
-    // console.log("[PAYLOADS] ", tempPayload);
 
     return tempPayload.filter(
       (p) => typeof p.question_id === "string" && p.question_id.trim() !== "",

@@ -5,7 +5,6 @@ import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 
 import { Question } from "../context/QuestionContext";
-// import { useEffect } from "react";
 
 interface ExperienceInfoProps {
   questions: Question[];
@@ -22,15 +21,6 @@ interface ExperienceInfoProps {
 }
 
 export default function ExperienceInfo(props: ExperienceInfoProps) {
-  // useEffect(() => {
-  //   console.log("EXPEIRINCE INFO PROPS CHANGED:");
-  //   console.log(props.hackathonCount);
-  //   console.log(props.github);
-  //   console.log(props.linkedin);
-  //   console.log(props.portfolio);
-  //   console.log(props.resumeFile);
-  // }
-  // , [props.hackathonCount, props.github, props.linkedin, props.portfolio, props.resumeFile]);
   return (
     <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
