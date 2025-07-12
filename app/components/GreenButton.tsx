@@ -19,7 +19,7 @@ export default function Button(props: ButtonProp) {
     return (
       <Link
         href={props.route}
-        className="text-cream bg-lightgreen h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md"
+        className="text-cream bg-lightgreen hover:bg-lightgreenhover hover:text-charcoal active:bg-lightgreenactive h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md transition-colors duration-400"
       >
         <p className="text-lg font-bold text-nowrap">{props.text}</p>
       </Link>
@@ -27,7 +27,7 @@ export default function Button(props: ButtonProp) {
   } else if (props.externalLink != null) {
     return (
       <a
-        className="text-cream bg-lightgreen h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md"
+        className="text-cream bg-lightgreen hover:bg-lightgreenhover hover:text-charcoal active:bg-lightgreenactive h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md transition-colors duration-400"
         href={props.externalLink}
       >
         <p className="text-lg font-bold">{props.text}</p>
@@ -38,8 +38,10 @@ export default function Button(props: ButtonProp) {
     return (
       <button
         onClick={props.onClick}
-        className={`text-cream h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md ${
-          formFilled ? "bg-lightgreen" : "bg-darkgrey"
+        className={`text-cream h-fit w-fit rounded-xl px-8 py-2 text-center shadow-md transition-colors duration-400 ${
+          formFilled
+            ? "bg-lightgreen hover:bg-lightgreenhover hover:text-mayo active:bg-lightgreenactive cursor-pointer"
+            : "bg-darkgrey cursor-not-allowed"
         }`}
         disabled={!formFilled}
       >

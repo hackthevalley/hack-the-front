@@ -113,7 +113,7 @@ export default function SignupPage() {
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
+        className="pointer-events-none absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -143,7 +143,10 @@ export default function SignupPage() {
 
       <div className="relative z-10 flex flex-col">
         <div className="mx-auto mb-4 w-3/4 items-start">
-          <Link className="text-2xl font-semibold text-white" href="/">
+          <Link
+            className="cursor-pointer text-2xl font-semibold text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+            href="/"
+          >
             {"<"} Back
           </Link>
         </div>
@@ -222,7 +225,10 @@ export default function SignupPage() {
               />
               <div className="my-4 flex">
                 <p className="text-grey mr-2 text-lg">Already have an account?</p>
-                <Link className="text-lightgreen text-lg font-semibold" href="/login">
+                <Link
+                  className="text-lightgreen hover:text-lightgreenhover active:text-lightgreenactive text-lg font-semibold transition-colors duration-400"
+                  href="/login"
+                >
                   Sign in.
                 </Link>
               </div>
