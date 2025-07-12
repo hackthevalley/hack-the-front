@@ -7,10 +7,11 @@ import { useState } from "react";
 import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 
-import FAQ from "./landing/FAQ";
 import About from "./landing/About";
+import FAQ from "./landing/FAQ";
 import Footer from "./landing/Footer";
 import Sponsors from "./landing/Sponsors";
+import Themes from "./landing/Themes";
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
@@ -25,18 +26,18 @@ export default function Home() {
         {/* star art */}
         {/* Note we need to change z-index as it overlaps on phones */}
         <Image
-          className="absolute bottom-[-1rem] left-[-2rem] object-cover"
-          src="/backgrounds/star-left.svg"
+          className="absolute top-[28rem] left-[-10rem] hidden object-cover sm:block"
+          src="/backgrounds/star.svg"
           alt="star"
-          width="400"
-          height="390"
+          width="530"
+          height="530"
         />
         <Image
-          className="absolute top-[-1rem] right-[0rem] object-cover"
-          src="/backgrounds/star-right.svg"
+          className="absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
+          src="/backgrounds/star.svg"
           alt="star"
-          width="340"
-          height="509"
+          width="530"
+          height="530"
         />
 
         <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
@@ -176,6 +177,7 @@ export default function Home() {
           </div>
           <About />
           <FAQ />
+          <Themes />
           <Sponsors />
           <div className="mt-20 w-full items-center justify-center">
             <Footer />

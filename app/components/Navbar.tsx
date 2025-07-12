@@ -21,6 +21,7 @@ const navBarItems = [
   { label: "Themes", id: "themes" },
   // { label: "Past Years", id: "past-years" },
   { label: "Sponsors", id: "sponsors" },
+  { label: "Apply", id: "login" },
 ];
 
 export default function Navbar(props: NavbarProp) {
@@ -91,7 +92,16 @@ export default function Navbar(props: NavbarProp) {
               <ul className="text-md mx-10 flex w-4/5 items-center gap-x-10 font-[family-name:var(--font-euclid-circular-b)] font-semibold text-white sm:flex sm:text-xl lg:text-2xl">
                 {navBarItems.map(({ label, id }) => (
                   <li key={id}>
-                    <button onClick={() => scrollToSection(id)}>{label}</button>
+                    {id !== "login" ? (
+                      <button
+                        className="text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+                        onClick={() => scrollToSection(id)}
+                      >
+                        {label}
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -138,9 +148,19 @@ export default function Navbar(props: NavbarProp) {
             {navBarItems.map(({ label, id }) => (
               <li key={id}>
                 {id === "login" ? (
-                  <Link href={"/login"}>{label}</Link>
+                  <Link
+                    className="hover:text-lightgreen active:text-lightgreenactive text-white transition-colors duration-400"
+                    href={"/login"}
+                  >
+                    {label}
+                  </Link>
                 ) : (
-                  <button onClick={() => scrollToSection(id)}>{label}</button>
+                  <button
+                    className="text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70"
+                    onClick={() => scrollToSection(id)}
+                  >
+                    {label}
+                  </button>
                 )}
               </li>
             ))}

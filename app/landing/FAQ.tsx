@@ -1,7 +1,8 @@
 "use client";
 
-import FAQItem from "@/components/FAQItem";
 import Image from "next/image";
+
+import FAQItem from "@/components/FAQItem";
 
 const questions = [
   {
@@ -43,19 +44,19 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="mb-44 w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32 z-2"
+      className="z-2 mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "6rem" }}
     >
-      <div className="relative hidden sm:block -z-1">
+      <div className="relative -z-1 hidden sm:block">
         <div className="pointer-events-none absolute top-[26%]">
           <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
         </div>
-        <div className="pointer-events-none absolute -top-2 left-50">
+        {/* <div className="pointer-events-none absolute -top-2 left-50">
           <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
         </div>
         <div className="pointer-events-none absolute top-140 right-10">
           <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
-        </div>
+        </div> */}
       </div>
       <div className="mx-auto max-w-6xl">
         <h1

@@ -88,7 +88,7 @@ export default function Sponsors() {
   return (
     <section
       id="sponsors"
-      className="w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
+      className="w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "6rem" }}
     >
       <Toaster
@@ -185,24 +185,24 @@ export default function Sponsors() {
           <div className="pointer-events-none absolute top-[26%] -right-1/8 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
           </div>
-          <div className="pointer-events-none absolute top-[17%] -left-2 z-0 -translate-y-1/2">
+          {/* <div className="pointer-events-none absolute top-[17%] -left-2 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
           </div>
           <div className="pointer-events-none absolute top-[29%] -right-[14%] z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-2" width={20} height={20} />
-          </div>
+          </div> */}
           <div className="pointer-events-none absolute top-[55%] -left-1/8 z-0 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-2.png" alt="Roadmap2" />
           </div>
-          <div className="pointer-events-none absolute top-[58%] -left-22 z-0 -translate-y-1/2">
+          {/* <div className="pointer-events-none absolute top-[58%] -left-22 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-3" width={20} height={20} />
-          </div>
+          </div> */}
           <div className="pointer-events-none absolute top-[84%] -right-1/9 z-0 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-3.png" alt="Roadmap" />
           </div>
-          <div className="pointer-events-none absolute top-[74%] -right-1/9 z-0 -translate-y-1/2">
+          {/* <div className="pointer-events-none absolute top-[74%] -right-1/9 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-4" width={20} height={20} />
-          </div>
+          </div> */}
           <div className="pointer-events-none absolute top-[102%] left-3 z-0 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-4.png" alt="Roadmap" />
           </div>

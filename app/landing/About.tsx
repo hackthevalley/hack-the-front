@@ -6,8 +6,8 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative mb-44 w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
-      style={{ scrollMarginTop: "10rem" }}
+      className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
+      style={{ scrollMarginTop: "6rem" }}
     >
       {/* Background gradient */}
       <Image
@@ -47,7 +47,7 @@ export default function About() {
               alt="Trail"
             />
           </div>
-          <div className="absolute top-[-22%] right-[8%] -translate-y-1/2">
+          {/* <div className="absolute top-[-22%] right-[8%] -translate-y-1/2">
             <Image
               src="/about-page/dot.png"
               className="pointer-events-none"
@@ -55,7 +55,7 @@ export default function About() {
               width={20}
               height={20}
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="flex flex-col">
