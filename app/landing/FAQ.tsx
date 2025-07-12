@@ -1,6 +1,7 @@
 "use client";
 
-// import Image from "next/image";
+import Image from "next/image";
+
 import FAQItem from "@/components/FAQItem";
 
 const questions = [
@@ -43,9 +44,26 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="z-2 mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
+      className="relative z-2 mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "6rem" }}
     >
+      {/* Stars */}
+      <Image
+        className="pointer-events-none absolute top-[2rem] right-[-20rem] hidden object-cover sm:block"
+        src="/backgrounds/star.svg"
+        alt="star"
+        width="530"
+        height="530"
+      />
+
+      <Image
+        className="pointer-events-none absolute bottom-[-20rem] left-[-19rem] hidden object-cover sm:block"
+        src="/backgrounds/star.svg"
+        alt="star"
+        width="530"
+        height="530"
+      />
+
       <div className="relative -z-1 hidden sm:block">
         {/* <div className="pointer-events-none absolute top-[26%]">
           <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />

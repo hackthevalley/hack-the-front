@@ -23,7 +23,7 @@ export default function Home() {
       <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
         {/* star art */}
         <Image
-          className="pointer-events-none absolute top-[28rem] left-[-10rem] hidden object-cover sm:block"
+          className="pointer-events-none absolute top-[26rem] left-[-10rem] hidden object-cover sm:block"
           src="/backgrounds/star.svg"
           alt="star"
           width="530"

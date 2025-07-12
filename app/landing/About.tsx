@@ -9,6 +9,22 @@ export default function About() {
       className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "6rem" }}
     >
+      {/* Stars */}
+      <Image
+        className="pointer-events-none absolute bottom-[-18rem] left-[-20rem] hidden object-cover sm:block"
+        src="/backgrounds/star.svg"
+        alt="star"
+        width="530"
+        height="530"
+      />
+
+      <Image
+        className="pointer-events-none absolute top-[2rem] right-[-16rem] hidden object-cover sm:block"
+        src="/backgrounds/star.svg"
+        alt="star"
+        width="530"
+        height="530"
+      />
       {/* Background gradient */}
       <Image
         width={0}

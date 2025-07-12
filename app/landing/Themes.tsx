@@ -76,8 +76,10 @@ export default function Themes() {
           <Image src="/themes-page/roadmap-1.png" alt="Roadmap1" width={1140} height={468} />
         </div>
       </div> */}
+
+      {/* Stars */}
       <Image
-        className="pointer-events-none absolute top-[1rem] left-[-15rem] hidden object-cover sm:block"
+        className="pointer-events-none absolute top-[3rem] right-[-12rem] hidden object-cover sm:block"
         src="/backgrounds/star.svg"
         alt="star"
         width="530"
@@ -85,7 +87,7 @@ export default function Themes() {
       />
 
       <Image
-        className="pointer-events-none absolute right-[-12rem] bottom-[-2rem] hidden object-cover sm:block"
+        className="pointer-events-none absolute bottom-[-5rem] left-[-12rem] hidden object-cover sm:block"
         src="/backgrounds/star.svg"
         alt="star"
         width="530"
