@@ -91,7 +91,7 @@ export default function ResetPasswordPage() {
 
       <div className="relative z-10 flex flex-col">
         <div className="mx-auto mb-4 w-3/4 items-start">
-          {/* <Link className="text-white font-semibold text-2xl" href="/">
+          {/* <Link className="cursor-pointer text-2xl font-semibold text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70" href="/">
             {"<"} Back
           </Link> */}
         </div>
