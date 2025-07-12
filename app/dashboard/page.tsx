@@ -54,7 +54,7 @@ const getApplicationStatus = (status: string) => {
       return {
         color: "text-gray-300",
         label: "Not Submitted",
-        icon: "/dashboard/pending.svg",
+        icon: "/dashboard/notSubmitted.svg",
         badge: "bg-gray-500",
       };
   }
@@ -110,7 +110,6 @@ export default function DashboardPage() {
     timeRange &&
     new Date() < new Date(timeRange.end_at) &&
     new Date(timeRange.start_at) < new Date();
-
   if (ctx?.loading || !ctx?.isAuthenticated) {
     return null;
   }
@@ -185,17 +184,17 @@ export default function DashboardPage() {
                   user?.application_status.toLowerCase() === "applying" ? (
                     <Link
                       href="/application"
-                      className="bg-lightgreen rounded-lg px-6 py-3 text-center text-lg font-semibold text-white"
+                      className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
                     >
                       Open
                     </Link>
                   ) : (
-                    <div className="pointer-events-none cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
+                    <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
                       Applied
                     </div>
                   )
                 ) : (
-                  <div className="pointer-events-none cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
+                  <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
                     Closed
                   </div>
                 )}
@@ -206,9 +205,9 @@ export default function DashboardPage() {
               <h2 className="mb-4 text-xl font-semibold text-white">Explore</h2>
               <div className="flex flex-col gap-6 md:flex-row">
                 {/* Discover Themes Card */}
-                <Link
+                {/* <Link
                   href="/#themes"
-                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
+                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors duration-400 hover:bg-[#1a2c4d] active:bg-[#2c3e5e]"
                 >
                   <div className="flex min-w-[64px] gap-2">
                     <Image
@@ -223,17 +222,17 @@ export default function DashboardPage() {
                     <div className="text-2xl font-semibold text-white">Discover Themes</div>
                     <div className="text-grey text-lg">Factions of HTVX</div>
                   </div>
-                </Link>
+                </Link> */}
                 {/* FAQ Card */}
                 <Link
                   href="/#faq"
-                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors hover:bg-[#1a2c4d]"
+                  className="flex flex-1 items-center gap-6 rounded-xl bg-[#0B1627] p-6 transition-colors duration-400 hover:bg-[#1a2c4d] active:bg-[#2c3e5e]"
                 >
                   <div className="min-w-[64px]">
                     <Image
                       width={0}
                       height={0}
-                      src="/dashboard/FAQ Icon.svg"
+                      src="/dashboard/FAQIcon.svg"
                       alt="FAQ"
                       className="h-14 w-14"
                     />
