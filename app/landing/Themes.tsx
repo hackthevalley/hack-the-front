@@ -7,28 +7,28 @@ interface themeData {
 }
 
 export default function Themes() {
-  const themes: themeData[] = [
-    {
-      name: "theme1",
-      src: "/themes-page/theme1.svg",
-      alt: "",
-    },
-    {
-      name: "theme2",
-      src: "/themes-page/theme2.svg",
-      alt: "",
-    },
-    {
-      name: "theme3",
-      src: "/themes-page/theme3.svg",
-      alt: "",
-    },
-    {
-      name: "theme4",
-      src: "/themes-page/theme4.svg",
-      alt: "",
-    },
-  ];
+  //   const themes: themeData[] = [
+  //     {
+  //       name: "theme1",
+  //       src: "/themes-page/theme1.svg",
+  //       alt: "",
+  //     },
+  //     {
+  //       name: "theme2",
+  //       src: "/themes-page/theme2.svg",
+  //       alt: "",
+  //     },
+  //     {
+  //       name: "theme3",
+  //       src: "/themes-page/theme3.svg",
+  //       alt: "",
+  //     },
+  //     {
+  //       name: "theme4",
+  //       src: "/themes-page/theme4.svg",
+  //       alt: "",
+  //     },
+  //   ];
 
   //   const renderThemes = () => {
   //     return (
