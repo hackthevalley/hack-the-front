@@ -82,6 +82,8 @@ export default function TextField(props: TextFieldProps) {
           } catch (error) {
             console.error("File upload failed:", error);
             toast.dismiss(uploadingFile);
+            setFieldValue("");
+            setFile?.(null);
             toast.error("File upload failed.");
           }
         };
@@ -117,6 +119,8 @@ export default function TextField(props: TextFieldProps) {
           } catch (error) {
             console.error("File upload failed:", error);
             toast.dismiss(uploadingFile);
+            setFieldValue("");
+            setFile?.(null);
             toast.error("File upload failed.");
           }
         };
@@ -349,31 +353,6 @@ export default function TextField(props: TextFieldProps) {
         borderColor: borderColor,
       }}
     >
-      {usePathname() === "/application" && (
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 6000,
-            removeDelay: 1000,
-            style: {
-              background: "#0B1C34",
-              color: "white",
-            },
-            success: {
-              iconTheme: {
-                primary: "green",
-                secondary: "#0B1C34",
-              },
-            },
-            error: {
-              iconTheme: {
-                primary: "red",
-                secondary: "#0B1C34",
-              },
-            },
-          }}
-        />
-      )}
       <label
         className={`mb-1 flex items-center font-[var(--font-ecb)] text-[color:var(--color-white)]`}
       >

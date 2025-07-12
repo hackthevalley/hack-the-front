@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useRef } from "react";
 import { JSX, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import toast, { Toaster } from "react-hot-toast";
 
 import { FormSections } from "@/application/FormSections";
 import Button from "@/components/Button";
@@ -401,34 +402,46 @@ export default function Application() {
     appRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Submit workflow
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const confirmSubmit = () => {
+    setShowConfirmation(true);
+  };
+  
   const handleSubmit = async () => {
     if (loading) {
-      console.log("Questions are still loading. Please wait.");
+      toast.loading("Questions are still loading. Please wait.");
       return;
     }
-
+  
     if (error) {
-      console.log("Error loading questions. Please refresh the page.");
+      toast.error("Error loading questions. Please refresh the page.");
       return;
     }
+  
     try {
       if (!questions || questions.length === 0) return;
       const payloads = getPayloads();
-      payloads.filter((payload) => payload.question_id && payload.answer !== "");
+      const filteredPayloads = payloads.filter(
+        (payload) => payload.question_id && payload.answer !== ""
+      );
+  
       await fetchInstance("forms/saveAnswers", {
         method: "POST",
-        body: JSON.stringify(payloads),
+        body: JSON.stringify(filteredPayloads),
       });
-
+  
       await fetchInstance("forms/submit", {
         method: "POST",
       });
-
+  
       setIsFormActive(false);
       router.push("/dashboard");
     } catch (err) {
-      console.error("Submission error:", err);
-      alert("Failed to submit application. Please try again.");
+      toast.error(`Submission ${err}`);
+      setShowConfirmation(false); 
+      
     }
   };
 
@@ -710,7 +723,7 @@ export default function Application() {
             <Button
               text="Submit Application"
               extraClass="py-3 cursor-pointer"
-              onClick={handleSubmit}
+              onClick={confirmSubmit}
             />
           </motion.div>
         </section>
@@ -722,6 +735,29 @@ export default function Application() {
   }
   return (
     <div className="h-screen">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 6000,
+          removeDelay: 1000,
+          style: {
+            background: "#0B1C34",
+            color: "white",
+          },
+          success: {
+            iconTheme: {
+              primary: "green",
+              secondary: "#0B1C34",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "red",
+              secondary: "#0B1C34",
+            },
+          },
+        }}
+      />
       <Navbar hide={true} />
       <div className="no-scrollbar relative h-[calc(100vh-6rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white">
         {/* <Parallax speed={30}> */}
@@ -765,6 +801,33 @@ export default function Application() {
           </div>
         ))}
       </div>
+
+      {showConfirmation && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
+          <div className="rounded-xl bg-white p-6 text-black shadow-xl w-[90%] max-w-md">
+            <h2 className="text-xl font-bold mb-4">Confirm Submission</h2>
+            <p className="mb-6">
+              Are you sure you want to submit your application? You won’t be able to make changes after
+              this.
+            </p>
+            <div className="flex justify-end gap-4">
+              <button
+                onClick={() => setShowConfirmation(false)}
+                className="px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

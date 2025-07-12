@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 import { Question } from "../context/QuestionContext";
 
