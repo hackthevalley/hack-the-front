@@ -11,26 +11,23 @@ interface SponsorData {
 export default function Sponsors() {
   const sponsorData = {
     gold: {
-      A: "/icons/htv-logo.svg",
-      B: "/icons/htv-logo.svg",
-      C: "/icons/htv-logo.svg",
+      Dell: "/sponsor-page/sponsors/Dell-Logo.svg",
     },
     silver: {
-      A: "/icons/htv-logo.svg",
-      B: "/icons/htv-logo.svg",
-      C: "/icons/htv-logo.svg",
-      D: "/icons/htv-logo.svg",
+      EY: "/sponsor-page/sponsors/EY-Logo.svg",
+      SDG: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
+      CSE: "/sponsor-page/sponsors/CSE-Logo.jpg",
     },
     bronze: {
-      A: "/icons/htv-logo.svg",
-      B: "/icons/htv-logo.svg",
-      C: "/icons/htv-logo.svg",
-      D: "/icons/htv-logo.svg",
-      E: "/icons/htv-logo.svg",
-      F: "/icons/htv-logo.svg",
-      G: "/icons/htv-logo.svg",
-      H: "/icons/htv-logo.svg",
-      I: "/icons/htv-logo.svg",
+      FGF: "/sponsor-page/sponsors/FGF-Brands-Logo.svg",
+      CMS: "/sponsor-page/sponsors/CMS-UTSC-Logo.png",
+      // C: "/icons/htv-logo.svg",
+      // D: "/icons/htv-logo.svg",
+      // E: "/icons/htv-logo.svg",
+      // F: "/icons/htv-logo.svg",
+      // G: "/icons/htv-logo.svg",
+      // H: "/icons/htv-logo.svg",
+      // I: "/icons/htv-logo.svg",
     },
   };
 
@@ -61,12 +58,12 @@ export default function Sponsors() {
         itemClass: "h-40 sm:h-48 md:h-56",
       },
       silver: {
-        gridClass: "grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 ",
-        itemClass: "h-36 sm:h-44 md:h-56",
+        gridClass: "flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10",
+        itemClass: "w-[calc(50%-0.75rem)] sm:w-[calc(50%-1.25rem)] h-36 sm:h-44 md:h-56",
       },
       bronze: {
-        gridClass: "grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6",
-        itemClass: "h-28 sm:h-32 md:h-36",
+        gridClass: "flex flex-wrap justify-center gap-4 sm:gap-6",
+        itemClass: "w-[calc(33.333%-0.5rem)] sm:w-[calc(33.333%-1rem)] h-28 sm:h-32 md:h-36",
       },
     };
 
