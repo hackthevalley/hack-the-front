@@ -20,20 +20,17 @@ export default function Home() {
     <div id="home">
       <Navbar />
       {/* Inside calc(100vh-7rem), the 7rem must be the same as the h-[7rem] in Navbar.tsx */}
-      {/* font-[family-name:var(--font-euclid-circular-b)] */}
-      {/* min-h-screen sm:min-h-[calc(100vh-7rem)] */}
       <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
         {/* star art */}
-        {/* Note we need to change z-index as it overlaps on phones */}
         <Image
-          className="absolute top-[28rem] left-[-10rem] hidden object-cover sm:block"
+          className="pointer-events-none absolute top-[28rem] left-[-10rem] hidden object-cover sm:block"
           src="/backgrounds/star.svg"
           alt="star"
           width="530"
           height="530"
         />
         <Image
-          className="absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
+          className="pointer-events-none absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
           src="/backgrounds/star.svg"
           alt="star"
           width="530"
@@ -44,7 +41,6 @@ export default function Home() {
           <div className="mt-25 mb-40 flex w-full flex-col items-center gap-4 lg:flex-row">
             <div className="flex w-full flex-col items-center sm:w-1/2">
               <div className="z-10 flex w-fit flex-col items-center md:grid md:grid-cols-[auto_1fr] md:items-start md:gap-2">
-                {/* Positioning the ">" */}
                 <div className="mt-[2.3rem] hidden items-start justify-start md:flex">
                   <h1 className="text-7xl leading-tight font-medium text-[#4C6581] [--tw-text-stroke:2px_white] [text-stroke:var(--tw-text-stroke)]">
                     {">"}

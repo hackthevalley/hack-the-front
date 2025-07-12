@@ -76,13 +76,7 @@ export default function Themes() {
       </div> */}
       <div className="relative sm:block">
         <div className="pointer-events-none absolute top-[26%]">
-          <Image
-            src="/themes-page/roadmap-1.png"
-            alt="Roadmap1"
-            className="relative"
-            width={1140}
-            height={468}
-          />
+          <Image src="/themes-page/roadmap-1.png" alt="Roadmap1" width={1140} height={468} />
         </div>
       </div>
       <Image

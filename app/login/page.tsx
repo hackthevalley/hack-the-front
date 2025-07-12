@@ -96,7 +96,7 @@ export default function LoginPage() {
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
+        className="pointer-events-none absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
