@@ -10,7 +10,7 @@ import Navbar from "@/components/Navbar";
 import About from "./landing/About";
 import FAQ from "./landing/FAQ";
 import Footer from "./landing/Footer";
-import Sponsors from "./landing/Sponsors";
+// import Sponsors from "./landing/Sponsors";
 import Themes from "./landing/Themes";
 
 export default function Home() {
@@ -174,7 +174,7 @@ export default function Home() {
           <About />
           <FAQ />
           <Themes />
-          <Sponsors />
+          {/* <Sponsors /> */}
           <div className="mt-20 w-full items-center justify-center">
             <Footer />
           </div>
