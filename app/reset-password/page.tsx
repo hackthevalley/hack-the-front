@@ -1,12 +1,13 @@
 "use client";
-import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import { useSearchParams, useRouter } from "next/navigation";
-import GreenButton from "@/components/GreenButton";
-import TextField from "@/components/TextField";
+
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import GreenButton from "@/components/GreenButton";
+import Navbar from "@/components/Navbar";
+import TextField from "@/components/TextField";
 import fetchInstance from "@/utils/api";
 
 export default function ResetPasswordPage() {
@@ -55,12 +56,12 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="bg-black h-screen overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative">
+    <div className="relative h-screen overflow-y-auto bg-black font-[family-name:var(--font-euclid-circular-b)]">
       <Image
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+        className="pointer-events-none absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -88,9 +89,9 @@ export default function ResetPasswordPage() {
         }}
       />
 
-      <div className="flex flex-col relative z-10">
-        <div className="w-3/4 mx-auto items-start mb-4">
-          {/* <Link className="text-white font-semibold text-2xl" href="/">
+      <div className="relative z-10 flex flex-col">
+        <div className="mx-auto mb-4 w-3/4 items-start">
+          {/* <Link className="cursor-pointer text-2xl font-semibold text-white transition-colors duration-400 hover:text-neutral-400 active:text-white/70" href="/">
             {"<"} Back
           </Link> */}
         </div>
@@ -99,20 +100,18 @@ export default function ResetPasswordPage() {
           <div className="w-1/2">
             <p className="text-grey text-xl">$ npm start challenge</p>
 
-            <p className="text-white font-bold text-5xl mt-4 mb-8">
-              {">"} Reset Password
-            </p>
+            <p className="mt-4 mb-8 text-5xl font-bold text-white">{">"} Reset Password</p>
 
-            <div className="w-full my-8">
-              <div className="flex justify-between items-center">
-                <hr className="bg-indigo border-none mr-4 w-full h-[2px]" />
-                <p className="text-white w-fit whitespace-nowrap font-semibold text-2xl">
+            <div className="my-8 w-full">
+              <div className="flex items-center justify-between">
+                <hr className="bg-indigo mr-4 h-[2px] w-full border-none" />
+                <p className="w-fit text-2xl font-semibold whitespace-nowrap text-white">
                   Reset your password here
                 </p>
-                <hr className="bg-indigo border-none ml-4 w-full h-[2px]" />
+                <hr className="bg-indigo ml-4 h-[2px] w-full border-none" />
               </div>
             </div>
-            <div className="flex flex-col gap-y-8 mb-4">
+            <div className="mb-4 flex flex-col gap-y-8">
               <TextField
                 title="New Password"
                 placeholder="new password"

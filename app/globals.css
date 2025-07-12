@@ -29,12 +29,16 @@
   --color-indigo: #1a427d;
   --color-green: #a5d6a7;
   --color-lightgreen: #81c470;
-  --color-lightgreenactive: #92d481;
+  --color-lightgreenhover: #62a66f;
+  --color-lightgreenactive: #599464;
   --color-darkgreen: #6eac5e;
   --color-red: #ff5552;
+  --color-redhover: #f59090;
+  --color-redactive: #d45959;
   --color-aquamarine: #6b8f9f;
   --color-white: #fff;
   --color-cream: #f5f3e7;
+  --color-mayo: #e3e1d5;
   --color-grey: #9b9ea1;
   --color-darkgrey: #979797;
   --color-lightgrey: #bababa;

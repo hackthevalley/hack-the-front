@@ -11,26 +11,23 @@ interface SponsorData {
 export default function Sponsors() {
   const sponsorData = {
     gold: {
-      A: "/icons/htv-logo.svg",
-      B: "/icons/htv-logo.svg",
-      C: "/icons/htv-logo.svg",
+      Dell: "/sponsor-page/sponsors/Dell-Logo.svg",
     },
     silver: {
-      A: "/icons/htv-logo.svg",
-      B: "/icons/htv-logo.svg",
-      C: "/icons/htv-logo.svg",
-      D: "/icons/htv-logo.svg",
+      EY: "/sponsor-page/sponsors/EY-Logo.svg",
+      SDG: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
+      CSE: "/sponsor-page/sponsors/CSE-Logo.jpg",
     },
     bronze: {
-      A: "/icons/htv-logo.svg",
-      B: "/icons/htv-logo.svg",
-      C: "/icons/htv-logo.svg",
-      D: "/icons/htv-logo.svg",
-      E: "/icons/htv-logo.svg",
-      F: "/icons/htv-logo.svg",
-      G: "/icons/htv-logo.svg",
-      H: "/icons/htv-logo.svg",
-      I: "/icons/htv-logo.svg",
+      FGF: "/sponsor-page/sponsors/FGF-Brands-Logo.svg",
+      CMS: "/sponsor-page/sponsors/CMS-UTSC-Logo.png",
+      // C: "/icons/htv-logo.svg",
+      // D: "/icons/htv-logo.svg",
+      // E: "/icons/htv-logo.svg",
+      // F: "/icons/htv-logo.svg",
+      // G: "/icons/htv-logo.svg",
+      // H: "/icons/htv-logo.svg",
+      // I: "/icons/htv-logo.svg",
     },
   };
 
@@ -61,12 +58,12 @@ export default function Sponsors() {
         itemClass: "h-40 sm:h-48 md:h-56",
       },
       silver: {
-        gridClass: "grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 ",
-        itemClass: "h-36 sm:h-44 md:h-56",
+        gridClass: "flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10",
+        itemClass: "w-[calc(50%-0.75rem)] sm:w-[calc(50%-1.25rem)] h-36 sm:h-44 md:h-56",
       },
       bronze: {
-        gridClass: "grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6",
-        itemClass: "h-28 sm:h-32 md:h-36",
+        gridClass: "flex flex-wrap justify-center gap-4 sm:gap-6",
+        itemClass: "w-[calc(33.333%-0.5rem)] sm:w-[calc(33.333%-1rem)] h-28 sm:h-32 md:h-36",
       },
     };
 
@@ -88,7 +85,7 @@ export default function Sponsors() {
   return (
     <section
       id="sponsors"
-      className="w-full max-w-full scroll-mt-25 sm:px-8 md:px-16 lg:px-32"
+      className="w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "6rem" }}
     >
       <Toaster
@@ -182,30 +179,30 @@ export default function Sponsors() {
         </div>
         {/* Decorative Elements */}
         <div className="hidden sm:block">
-          <div className="pointer-events-none absolute top-[26%] -right-1/8 -translate-y-1/2">
+          {/* <div className="pointer-events-none absolute top-[26%] -right-1/8 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-1.png" alt="Roadmap1" />
-          </div>
-          <div className="pointer-events-none absolute top-[17%] -left-2 z-0 -translate-y-1/2">
+          </div> */}
+          {/* <div className="pointer-events-none absolute top-[17%] -left-2 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-1" width={20} height={20} />
           </div>
           <div className="pointer-events-none absolute top-[29%] -right-[14%] z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-2" width={20} height={20} />
-          </div>
-          <div className="pointer-events-none absolute top-[55%] -left-1/8 z-0 -translate-y-1/2">
+          </div> */}
+          {/* <div className="pointer-events-none absolute top-[55%] -left-1/8 z-0 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-2.png" alt="Roadmap2" />
-          </div>
-          <div className="pointer-events-none absolute top-[58%] -left-22 z-0 -translate-y-1/2">
+          </div> */}
+          {/* <div className="pointer-events-none absolute top-[58%] -left-22 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-3" width={20} height={20} />
-          </div>
-          <div className="pointer-events-none absolute top-[84%] -right-1/9 z-0 -translate-y-1/2">
+          </div> */}
+          {/* <div className="pointer-events-none absolute top-[84%] -right-1/9 z-0 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-3.png" alt="Roadmap" />
-          </div>
-          <div className="pointer-events-none absolute top-[74%] -right-1/9 z-0 -translate-y-1/2">
+          </div> */}
+          {/* <div className="pointer-events-none absolute top-[74%] -right-1/9 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/dot.png" alt="dot-4" width={20} height={20} />
-          </div>
-          <div className="pointer-events-none absolute top-[102%] left-3 z-0 -translate-y-1/2">
+          </div> */}
+          {/* <div className="pointer-events-none absolute top-[102%] left-3 z-0 -translate-y-1/2">
             <img src="/sponsor-page/roadmap-4.png" alt="Roadmap" />
-          </div>
+          </div> */}
           <div className="pointer-events-none absolute top-[22%] -left-14 z-0 -translate-y-1/2">
             <Image src="/sponsor-page/star.png" alt="star-1" width={140} height={160} />
           </div>

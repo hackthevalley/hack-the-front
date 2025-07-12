@@ -122,7 +122,7 @@ export default function DashboardPage() {
           height={0}
           src="/backgrounds/smaller-gradient.svg"
           alt="Background Gradient"
-          className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
+          className="pointer-events-none absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         />
         {/* Mini Browser Border Start */}
         <div className="relative z-10 mx-auto mb-8 w-full max-w-5xl rounded-2xl border border-blue-900 bg-[#12213A] shadow-lg">
@@ -145,7 +145,11 @@ export default function DashboardPage() {
               <span className="text-grey font-[family-name:var(--font-source-code-pro)] text-xl">
                 $ npm start challenge
               </span>
-              <button onClick={handleLogout} className="text-lg font-semibold text-red-400">
+              <button
+                onClick={handleLogout}
+                className="hover:text-redhover active:text-redactive text-lg font-semibold text-red-400 transition-colors duration-400"
+              >
+                {/* text-lightgreen hover:text-lightgreenhover active:text-lightgreenactive text-lg font-semibold transition-colors duration-400 */}
                 {"< Log Out"}
               </button>
             </div>
