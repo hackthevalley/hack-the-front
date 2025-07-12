@@ -67,7 +67,7 @@ export default function TextField(props: TextFieldProps) {
         setFile?.(file);
         const uploadFile = async () => {
           try {
-            const res = await fetchInstance("forms/uploadresume", {
+            await fetchInstance("forms/uploadresume", {
               method: "POST",
               body: (() => {
                 const formData = new FormData();
@@ -75,6 +75,7 @@ export default function TextField(props: TextFieldProps) {
                 return formData;
               })(),
             });
+            
             toast.dismiss(uploadingFile);
             toast.success("File uploaded successfully!");
           } catch (error) {
@@ -103,7 +104,7 @@ export default function TextField(props: TextFieldProps) {
         setFile?.(file);
         const uploadFile = async () => {
           try {
-            const res = await fetchInstance("forms/uploadresume", {
+            await fetchInstance("forms/uploadresume", {
               method: "POST",
               body: (() => {
                 const formData = new FormData();
