@@ -2,9 +2,9 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AsYouType, isValidPhoneNumber } from "libphonenumber-js";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import React, { useMemo, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 
 import fetchInstance from "@/utils/api";
 
