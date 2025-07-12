@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-interface themeData {
-  name: string;
-  src: string;
-  alt: string;
-}
+// interface themeData {
+//   name: string;
+//   src: string;
+//   alt: string;
+// }
 
 export default function Themes() {
   //   const themes: themeData[] = [
