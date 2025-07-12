@@ -21,6 +21,7 @@ import { useQuestions } from "./context/QuestionContext";
 const findUserAppAnswer = (questionBank: any, question_id: string) => {
   if (question_id === "") return "";
   const answer = questionBank.find((item: any) => item.question_id === question_id);
+  // console.log("findUserAppAnswer:", question_id, answer);
   return answer && answer.answer !== null ? answer.answer : "";
 };
 
@@ -145,6 +146,7 @@ export default function Application() {
         const res = await fetchInstance("forms/getapplication", {
           method: "GET",
         });
+        // console.log(res.form_answers)
 
         setFirstName(findUserAppAnswer(res.form_answers, getQuestionId("First Name")));
         setLastName(findUserAppAnswer(res.form_answers, getQuestionId("Last Name")));
@@ -233,6 +235,41 @@ export default function Application() {
 
         if (!questions || questions.length === 0) return;
         const payloads = getPayloads();
+
+        // console.log("Saving progress with the following fields:");
+        // console.log({
+        //   firstName,
+        //   lastName,
+        //   email,
+        //   phoneNumber,
+        //   country,
+        //   schoolName,
+        //   currentLevelOfStudy,
+        //   major,
+        //   expectedGraduationYear,
+        //   age,
+        //   gender,
+        //   raceEthinicity,
+        //   LGBTQI,
+        //   disabilities,
+        //   hackathonCount,
+        //   github,
+        //   linkedin,
+        //   portfolio,
+        //   uiux,
+        //   frontend,
+        //   backend,
+        //   fullstack,
+        //   pm,
+        //   crypto,
+        //   cyber,
+        //   ml,
+        //   dietaryRestrictions,
+        //   shirtSize,
+        //   mlhCodeOfConduct,
+        //   mlhPrivacyPolicy,
+        //   mlhEmailConsent,
+        // });
 
         try {
           await fetchInstance("forms/saveAnswers", {

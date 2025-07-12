@@ -5,6 +5,7 @@ import Dropdown from "@/components/Dropdown";
 import TextField from "@/components/TextField";
 
 import { Question } from "../context/QuestionContext";
+import { useEffect } from "react";
 
 interface ExperienceInfoProps {
   questions: Question[];
@@ -21,6 +22,15 @@ interface ExperienceInfoProps {
 }
 
 export default function ExperienceInfo(props: ExperienceInfoProps) {
+  // useEffect(() => {
+  //   console.log("EXPEIRINCE INFO PROPS CHANGED:");
+  //   console.log(props.hackathonCount);
+  //   console.log(props.github);
+  //   console.log(props.linkedin);
+  //   console.log(props.portfolio);
+  //   console.log(props.resumeFile);
+  // }
+  // , [props.hackathonCount, props.github, props.linkedin, props.portfolio, props.resumeFile]);
   return (
     <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
@@ -78,7 +88,7 @@ export default function ExperienceInfo(props: ExperienceInfoProps) {
       <div className="mt-3 flex justify-center">
         <div className="grid w-11/12 grid-cols-1 gap-x-7 gap-y-4">
           <TextField
-            title="Upload or Drag & Drop Your Resume"
+            title="Upload or Drag & Drop Your Resume (Max 5MB)"
             required={true}
             type="file"
             placeholder="Upload your resume"

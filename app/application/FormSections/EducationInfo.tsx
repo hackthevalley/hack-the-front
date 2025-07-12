@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
+import { useEffect } from "react";
 
 import { Question } from "../context/QuestionContext";
 
@@ -121,6 +122,20 @@ interface EducationInfoProps {
 }
 
 export default function EducationInfo(props: EducationInfoProps) {
+  // useEffect(() => {
+  //   console.log("EDUCATION INFO PROPS CHANGED:");
+  //   console.log(props.country);
+  //   console.log(props.schoolName);
+  //   console.log(props.currentLevelOfStudy);
+  //   console.log(props.major);
+  //   console.log(props.expectedGraduationYear);
+  // }, [
+  //   props.country,
+  //   props.schoolName,
+  //   props.currentLevelOfStudy,
+  //   props.major,
+  //   props.expectedGraduationYear,
+  // ]);
   return (
     <Card className="mx-10 w-full max-w-3xl">
       <div className="mb-10">
