@@ -31,7 +31,7 @@ export default function NotFound() {
         Oops, this page is not found!
       </motion.h2>
       <motion.p
-        className="text-grey text-center text-base sm:text-xl"
+        className="text-grey text-center text-base sm:text-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
