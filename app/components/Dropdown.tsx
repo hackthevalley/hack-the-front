@@ -40,25 +40,10 @@ export default function Dropdown(props: DropdownProps) {
     errorMessage = "Invalid value",
     disabled = false,
   } = props;
-  
+
   const [otherSelected, setOtherSelected] = useState<boolean>(false);
   const [localFieldValue, setLocalFieldValue] = useState<string>(fieldValue);
   const [otherFieldValue, setOtherFieldValue] = useState<string>("");
-
-  useEffect(() => {
-    setLocalFieldValue(fieldValue);
-  }, [fieldValue]);
-
-  useEffect(() => {
-    if (localFieldValue === "Other") {
-      setOtherSelected(true);
-      setFieldValue(otherFieldValue);
-    } else {
-      setOtherSelected(false);
-      setFieldValue(localFieldValue);
-      setOtherFieldValue("");
-    }
-  }, [localFieldValue, otherFieldValue]);
 
   const formattedOptions = useMemo(() => {
     if (Array.isArray(options) && typeof options[0] === "string") {
@@ -70,6 +55,38 @@ export default function Dropdown(props: DropdownProps) {
 
     return options as { label: string; value: string }[];
   }, [options]);
+
+  // Initialize state based on whether the field value is a custom value
+  useEffect(() => {
+    const isCustomValue = fieldValue && !formattedOptions.some((opt) => opt.value === fieldValue);
+    if (isCustomValue) {
+      setLocalFieldValue("Other");
+      setOtherSelected(true);
+      setOtherFieldValue(fieldValue);
+    } else {
+      setLocalFieldValue(fieldValue);
+    }
+  }, [fieldValue, formattedOptions]);
+
+  useEffect(() => {
+    if (localFieldValue === "Other") {
+      setOtherSelected(true);
+      // Don't change the parent field value when Other is selected
+      // Let the otherFieldValue handle that
+    } else {
+      setOtherSelected(false);
+      setFieldValue(localFieldValue);
+      setOtherFieldValue("");
+    }
+  }, [localFieldValue, setFieldValue]);
+
+  // Update parent field value when typing in the other field
+  useEffect(() => {
+    if (otherSelected) {
+      // Always update the parent with the other field value (even if empty)
+      setFieldValue(otherFieldValue || "Other");
+    }
+  }, [otherFieldValue, otherSelected, setFieldValue]);
 
   const baseClasses = `font-[Euclid Circular B] font-normal placeholder-grey text-grey outline-none focus:outline-none focus:placeholder-transparent w-full bg-bgblue`;
   const [touched, setTouched] = useState<boolean>(false);
@@ -176,7 +193,7 @@ export default function Dropdown(props: DropdownProps) {
   };
   return (
     <div
-      className={`relative flex flex-col justify-start rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${backgroundClasses} ${widthClasses} ${heightClasses}`}
+      className={`relative flex flex-col justify-start self-start rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${backgroundClasses} ${widthClasses} ${heightClasses}`}
       style={{
         borderColor: borderColor,
       }}
