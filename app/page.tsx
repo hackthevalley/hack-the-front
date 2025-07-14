@@ -20,7 +20,7 @@ export default function Home() {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <div id="home" className="overflow-x-hidden">
+    <div id="home">
       <Navbar />
       {/* Inside calc(100vh-7rem), the 7rem must be the same as the h-[7rem] in Navbar.tsx */}
       <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
