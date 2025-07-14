@@ -31,8 +31,8 @@ export default function Home() {
           alt="star"
           width="530"
           height="530"
-          priority={true}
-          fetchPriority="high"
+          priority={false}
+          loading="lazy"
         />
         <Image
           className="pointer-events-none absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
@@ -40,8 +40,8 @@ export default function Home() {
           alt="star"
           width="530"
           height="530"
-          priority={true}
-          fetchPriority="high"
+          priority={false}
+          loading="lazy"
         />
 
         <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
@@ -171,8 +171,8 @@ export default function Home() {
                     alt="Metallic Clover"
                     width={151}
                     height={151}
-                    priority={true}
-                    fetchPriority="high"
+                    priority={false}
+                    loading="lazy"
                   />
                 </motion.div>
 
@@ -197,8 +197,8 @@ export default function Home() {
                     alt="Metallic Flower"
                     width={135}
                     height={135}
-                    priority={true}
-                    fetchPriority="high"
+                    priority={false}
+                    loading="lazy"
                   />
                 </motion.div>
               </div>
