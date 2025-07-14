@@ -20,7 +20,7 @@ export default function Home() {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <div id="home">
+    <div id="home" className="overflow-x-hidden">
       <Navbar />
       {/* Inside calc(100vh-7rem), the 7rem must be the same as the h-[7rem] in Navbar.tsx */}
       <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
@@ -173,7 +173,7 @@ export default function Home() {
 
                 {/* Metallic Flower */}
                 <motion.div
-                  className="absolute top-[10rem] right-[-1rem] z-20 h-20 w-20 md:top-[10.5rem] md:left-[20rem] lg:top-[15.5rem] lg:left-[27rem] lg:h-28 lg:w-28"
+                  className="absolute top-[10rem] right-0 z-20 h-20 w-20 md:top-[10.5rem] md:left-[20rem] lg:top-[15.5rem] lg:left-[27rem] lg:h-28 lg:w-28"
                   onClick={() => setClicked(!clicked)}
                   animate={{
                     rotate: clicked ? 20 : 0,
