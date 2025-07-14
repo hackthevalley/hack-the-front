@@ -193,7 +193,7 @@ export default function Dropdown(props: DropdownProps) {
   };
   return (
     <div
-      className={`relative flex flex-col justify-start rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${backgroundClasses} ${widthClasses} ${heightClasses}`}
+      className={`relative flex flex-col justify-start self-start rounded-[20px] border-2 px-5 py-2 transition-colors duration-400 ${backgroundClasses} ${widthClasses} ${heightClasses}`}
       style={{
         borderColor: borderColor,
       }}
