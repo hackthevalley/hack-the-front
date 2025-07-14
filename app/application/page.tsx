@@ -5,8 +5,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useRef } from "react";
 import { JSX, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import toast, { Toaster } from "react-hot-toast";
+import { useMediaQuery } from "react-responsive";
 
 import { FormSections } from "@/application/FormSections";
 import Button from "@/components/Button";
@@ -368,40 +368,39 @@ export default function Application() {
   const confirmSubmit = () => {
     setShowConfirmation(true);
   };
-  
+
   const handleSubmit = async () => {
     if (loading) {
       toast.loading("Questions are still loading. Please wait.");
       return;
     }
-  
+
     if (error) {
       toast.error("Error loading questions. Please refresh the page.");
       return;
     }
-  
+
     try {
       if (!questions || questions.length === 0) return;
       const payloads = getPayloads();
       const filteredPayloads = payloads.filter(
-        (payload) => payload.question_id && payload.answer !== ""
+        (payload) => payload.question_id && payload.answer !== "",
       );
-  
+
       await fetchInstance("forms/saveAnswers", {
         method: "POST",
         body: JSON.stringify(filteredPayloads),
       });
-  
+
       await fetchInstance("forms/submit", {
         method: "POST",
       });
-  
+
       setIsFormActive(false);
       router.push("/dashboard");
     } catch (err) {
       toast.error(`Submission ${err}`);
-      setShowConfirmation(false); 
-      
+      setShowConfirmation(false);
     }
   };
 
@@ -763,23 +762,23 @@ export default function Application() {
       </div>
 
       {showConfirmation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
-          <div className="rounded-xl bg-white p-6 text-black shadow-xl w-[90%] max-w-md">
-            <h2 className="text-xl font-bold mb-4">Confirm Submission</h2>
+        <div className="bg-opacity-20 fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <div className="w-[90%] max-w-md rounded-xl bg-white p-6 text-black shadow-xl">
+            <h2 className="mb-4 text-xl font-bold">Confirm Submission</h2>
             <p className="mb-6">
-              Are you sure you want to submit your application? You won’t be able to make changes after
-              this.
+              Are you sure you want to submit your application? You won’t be able to make changes
+              after this.
             </p>
             <div className="flex justify-end gap-4">
               <button
                 onClick={() => setShowConfirmation(false)}
-                className="px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 transition"
+                className="rounded-md bg-gray-300 px-4 py-2 transition hover:bg-gray-400"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSubmit}
-                className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition"
+                className="rounded-md bg-green-600 px-4 py-2 text-white transition hover:bg-green-700"
               >
                 Confirm
               </button>
@@ -787,7 +786,6 @@ export default function Application() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

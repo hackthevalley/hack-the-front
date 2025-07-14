@@ -16,7 +16,7 @@ export default function Button(props: ButtonProp) {
     return (
       <Link
         href={props.route}
-        className={`text-cream from-darkgreen to-aquamarine h-fit w-fit rounded-xl bg-linear-to-b px-8 shadow-md ${props.extraClass}`}
+        className={`text-cream from-darkgreen to-aquamarine inline-block h-fit w-fit rounded-xl bg-linear-to-b px-8 shadow-md ${props.extraClass}`}
       >
         <p className="text-lg font-bold">{props.text}</p>
       </Link>
@@ -25,7 +25,7 @@ export default function Button(props: ButtonProp) {
     return (
       <button
         onClick={props.onClick}
-        className={`text-cream from-darkgreen to-aquamarine h-fit w-fit rounded-xl bg-linear-to-b px-8 shadow-md ${props.extraClass}`}
+        className={`text-cream from-darkgreen to-aquamarine inline-block h-fit w-fit rounded-xl bg-linear-to-b px-8 shadow-md ${props.extraClass}`}
       >
         <p className="text-lg font-bold">{props.text}</p>
       </button>

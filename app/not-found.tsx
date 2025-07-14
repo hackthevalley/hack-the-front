@@ -2,7 +2,23 @@
 
 import { motion } from "motion/react";
 
-import GreenButton from "@/components/GreenButton";
+import Button from "@/components/Button";
+
+const buttonVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.7 }, // ✅ Only affects animate
+  },
+  hover: {
+    scale: 1.1,
+    transition: { duration: 0.2 }, // ✅ No delay here
+  },
+  tap: {
+    scale: 0.95,
+    transition: { duration: 0.1 }, // ✅ No delay here
+  },
+};
 
 export default function NotFound() {
   return (
@@ -39,12 +55,14 @@ export default function NotFound() {
         The link might be corrupted or the page <br /> may have been removed.
       </motion.p>
       <motion.div
-        className="mt-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
+        className="mx-auto mt-6 w-fit"
+        variants={buttonVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover="hover"
+        whileTap="tap"
       >
-        <GreenButton text="Go back home" route="/" />
+        <Button extraClass="py-3" text="Go back home" route="/" />
       </motion.div>
     </motion.div>
   );
