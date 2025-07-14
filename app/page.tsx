@@ -1,6 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
+// import Sponsors from "./landing/Sponsors";
+
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -8,16 +11,16 @@ import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 
 import About from "./landing/About";
-import FAQ from "./landing/FAQ";
-import Footer from "./landing/Footer";
-// import Sponsors from "./landing/Sponsors";
-import Themes from "./landing/Themes";
+
+const FAQ = dynamic(() => import("./landing/FAQ"), { ssr: false });
+const Themes = dynamic(() => import("./landing/Themes"), { ssr: false });
+const Footer = dynamic(() => import("./landing/Footer"), { ssr: false });
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <div id="home">
+    <div id="home" className="overflow-x-hidden">
       <Navbar />
       {/* Inside calc(100vh-7rem), the 7rem must be the same as the h-[7rem] in Navbar.tsx */}
       <div className="relative grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr_auto] items-center justify-items-center bg-black px-4 py-8 pb-10 font-[family-name:var(--font-euclid-circular-b)] sm:px-20 sm:pt-27">
@@ -28,6 +31,7 @@ export default function Home() {
           alt="star"
           width="530"
           height="530"
+          priority={true}
         />
         <Image
           className="pointer-events-none absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
@@ -35,6 +39,7 @@ export default function Home() {
           alt="star"
           width="530"
           height="530"
+          priority={true}
         />
 
         <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
@@ -92,11 +97,8 @@ export default function Home() {
             <div className="relative mt-35 flex w-full justify-center lg:mt-0 lg:w-1/2 lg:justify-start">
               <div className="relative aspect-square w-full max-w-[350px] sm:max-w-[350px] md:max-w-[400px] lg:aspect-auto lg:max-w-[540px]">
                 {/* Terminal card */}
-                <motion.img
+                <motion.div
                   className="terminal-card relative h-auto w-[100%] cursor-pointer lg:w-[110%] lg:max-w-[700px]"
-                  src="/landing-page/date-card.svg"
-                  alt="Date Card"
-                  // whileHover={clicked ? { scale: 1.05 } : {}}
                   onClick={() => setClicked(!clicked)}
                   animate={{
                     rotate: clicked ? 13.97 : 0,
@@ -109,13 +111,19 @@ export default function Home() {
                     duration: 0.8,
                     ease: "easeInOut",
                   }}
-                />
+                >
+                  <Image
+                    src="/landing-page/date-card.svg"
+                    alt="Date Card"
+                    width={700}
+                    height={700}
+                    priority={true}
+                  />
+                </motion.div>
+
                 {/* Silver card */}
-                <motion.img
+                <motion.div
                   className="event-card absolute top-[-6rem] left-[-1rem] h-auto w-[120%] max-w-none cursor-pointer sm:top-[-6rem] sm:left-[-1.5rem] sm:w-[120%] md:top-[-7rem] md:left-[-2rem] md:w-[120%] lg:top-[-11rem] lg:left-[-3rem] lg:w-[135%] lg:max-w-[750px]"
-                  src="/landing-page/event-card-2.svg"
-                  alt="Event Card"
-                  // whileHover={!clicked ? { scale: 1.05 } : {}}
                   onClick={() => setClicked(!clicked)}
                   animate={{
                     rotate: clicked ? -13.97 : 0,
@@ -128,14 +136,19 @@ export default function Home() {
                     duration: 0.8,
                     ease: "easeInOut",
                   }}
-                />
+                >
+                  <Image
+                    src="/landing-page/event-card-2.svg"
+                    alt="Event Card"
+                    width={750}
+                    height={750}
+                    priority={true}
+                  />
+                </motion.div>
 
-                {/* Metallic Flowers */}
-                <motion.img
+                {/* Metallic Clover */}
+                <motion.div
                   className="absolute bottom-[20rem] left-[-1rem] z-20 h-28 w-28 sm:bottom-[20rem] sm:left-[-2rem] sm:h-32 sm:w-32 md:bottom-[23rem] md:left-[-2rem] lg:bottom-[23.2rem] lg:left-[-0.5rem]"
-                  src="/metallics/clover.svg"
-                  alt="Metallic Clover"
-                  width="151"
                   onClick={() => setClicked(!clicked)}
                   animate={{
                     rotate: clicked ? -25 : 0,
@@ -148,13 +161,19 @@ export default function Home() {
                     duration: 0.3,
                     ease: "easeInOut",
                   }}
-                />
+                >
+                  <Image
+                    src="/metallics/clover.svg"
+                    alt="Metallic Clover"
+                    width={151}
+                    height={151}
+                    priority={true}
+                  />
+                </motion.div>
 
-                <motion.img
-                  className="absolute top-[10rem] right-[-1rem] z-20 h-20 w-20 md:top-[10.5rem] md:left-[20rem] lg:top-[15.5rem] lg:left-[27rem] lg:h-28 lg:w-28"
-                  src="/metallics/flower.svg"
-                  alt="Metallic Flower"
-                  width="135"
+                {/* Metallic Flower */}
+                <motion.div
+                  className="absolute top-[10rem] right-0 z-20 h-20 w-20 md:top-[10.5rem] md:left-[20rem] lg:top-[15.5rem] lg:left-[27rem] lg:h-28 lg:w-28"
                   onClick={() => setClicked(!clicked)}
                   animate={{
                     rotate: clicked ? 20 : 0,
@@ -167,7 +186,15 @@ export default function Home() {
                     duration: 0.3,
                     ease: "easeInOut",
                   }}
-                />
+                >
+                  <Image
+                    src="/metallics/flower.svg"
+                    alt="Metallic Flower"
+                    width={135}
+                    height={135}
+                    priority={true}
+                  />
+                </motion.div>
               </div>
             </div>
           </div>

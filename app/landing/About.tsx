@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
+      className="relative mb-44 w-full max-w-full scroll-mt-25 overflow-x-hidden pt-20 sm:px-8 md:px-16 lg:px-32"
       style={{ scrollMarginTop: "6rem" }}
     >
       {/* Stars */}
