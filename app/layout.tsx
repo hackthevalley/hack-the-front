@@ -71,7 +71,7 @@ const euclidCircularB = localFont({
 export const metadata: Metadata = {
   title: "Hack the Valley",
   description:
-    "Join 500+ innovative and creative developers, designers, and creators for 36 hours of hacking. You'll get access to some of the best hardware and APIs on the market. Plus get to meet some experienced and awesome mentors! All this in just one weekend? I know, it's hard to believe.",
+    "Join 600+ innovative and creative developers, designers, and creators for 36 hours of hacking. You'll get access to some of the best hardware and APIs on the market. Plus get to meet some experienced and awesome mentors! All this in just one weekend? I know, it's hard to believe.",
 };
 
 export default function RootLayout({
