@@ -8,10 +8,12 @@ import { AuthProvider } from "@/utils/auth";
 const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const euclidCircularB = localFont({
   variable: "--font-euclid-circular-b",
+  display: "swap",
   src: [
     {
       path: "./assets/fonts/Euclid-Circular-B-Bold.ttf",
