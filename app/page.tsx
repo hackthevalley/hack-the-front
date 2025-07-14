@@ -32,6 +32,7 @@ export default function Home() {
           width="530"
           height="530"
           priority={true}
+          fetchPriority="high"
         />
         <Image
           className="pointer-events-none absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
@@ -40,6 +41,7 @@ export default function Home() {
           width="530"
           height="530"
           priority={true}
+          fetchPriority="high"
         />
 
         <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
@@ -118,6 +120,7 @@ export default function Home() {
                     width={700}
                     height={700}
                     priority={true}
+                    fetchPriority="high"
                   />
                 </motion.div>
 
@@ -143,6 +146,7 @@ export default function Home() {
                     width={750}
                     height={750}
                     priority={true}
+                    fetchPriority="high"
                   />
                 </motion.div>
 
@@ -168,6 +172,7 @@ export default function Home() {
                     width={151}
                     height={151}
                     priority={true}
+                    fetchPriority="high"
                   />
                 </motion.div>
 
@@ -193,6 +198,7 @@ export default function Home() {
                     width={135}
                     height={135}
                     priority={true}
+                    fetchPriority="high"
                   />
                 </motion.div>
               </div>
