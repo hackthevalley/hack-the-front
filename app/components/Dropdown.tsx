@@ -40,7 +40,7 @@ export default function Dropdown(props: DropdownProps) {
     errorMessage = "Invalid value",
     disabled = false,
   } = props;
-  
+
   const [otherSelected, setOtherSelected] = useState<boolean>(false);
   const [localFieldValue, setLocalFieldValue] = useState<string>(fieldValue);
   const [otherFieldValue, setOtherFieldValue] = useState<string>("");
@@ -52,13 +52,23 @@ export default function Dropdown(props: DropdownProps) {
   useEffect(() => {
     if (localFieldValue === "Other") {
       setOtherSelected(true);
-      setFieldValue(otherFieldValue);
+      // Set field value to "Other" initially to indicate selection
+      if (!otherFieldValue) {
+        setFieldValue("Other");
+      }
     } else {
       setOtherSelected(false);
       setFieldValue(localFieldValue);
       setOtherFieldValue("");
     }
-  }, [localFieldValue, otherFieldValue]);
+  }, [localFieldValue, setFieldValue]);
+
+  // Separate effect to handle otherFieldValue changes
+  useEffect(() => {
+    if (otherSelected && otherFieldValue) {
+      setFieldValue(otherFieldValue);
+    }
+  }, [otherFieldValue, otherSelected, setFieldValue]);
 
   const formattedOptions = useMemo(() => {
     if (Array.isArray(options) && typeof options[0] === "string") {
