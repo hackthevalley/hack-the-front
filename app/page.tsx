@@ -10,8 +10,7 @@ import { useState } from "react";
 import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 
-import About from "./landing/About";
-
+const About = dynamic(() => import("./landing/About"), { ssr: false });
 const FAQ = dynamic(() => import("./landing/FAQ"), { ssr: false });
 const Themes = dynamic(() => import("./landing/Themes"), { ssr: false });
 const Footer = dynamic(() => import("./landing/Footer"), { ssr: false });
@@ -33,6 +32,7 @@ export default function Home() {
           height="530"
           priority={false}
           loading="lazy"
+          placeholder="empty"
         />
         <Image
           className="pointer-events-none absolute top-[-1rem] right-[-12rem] hidden object-cover sm:block"
@@ -42,6 +42,7 @@ export default function Home() {
           height="530"
           priority={false}
           loading="lazy"
+          placeholder="empty"
         />
 
         <main className="row-start-2 flex flex-col items-center gap-4 sm:items-start md:gap-6">
