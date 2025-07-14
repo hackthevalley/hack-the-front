@@ -10,10 +10,10 @@ import { useState } from "react";
 import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
 
-const About = dynamic(() => import("./landing/About"), { ssr: false });
-const FAQ = dynamic(() => import("./landing/FAQ"), { ssr: false });
-const Themes = dynamic(() => import("./landing/Themes"), { ssr: false });
-const Footer = dynamic(() => import("./landing/Footer"), { ssr: false });
+const About = dynamic(() => import("./landing/About"));
+const FAQ = dynamic(() => import("./landing/FAQ"));
+const Themes = dynamic(() => import("./landing/Themes"));
+const Footer = dynamic(() => import("./landing/Footer"));
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
