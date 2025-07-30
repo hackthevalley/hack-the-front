@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import ProfileCard from "@/components/ProfileCard";
 
 export default function Team() {
   const [organizerName, setOrganizerName] = useState("");
@@ -72,6 +73,7 @@ export default function Team() {
           alt="spaceship"
           className="scale-x-[-1]"
         />
+        {/* <ProfileCard isDefault={true} /> */}
       </div>
     </section>
   );
