@@ -1,65 +1,58 @@
 import Image from "next/image";
 
-// interface themeData {
-//   name: string;
-//   src: string;
-//   alt: string;
-// }
+interface themeData {
+  name: string;
+  description: string;
+  src: string;
+  alt: string;
+}
 
 export default function Themes() {
-  //   const themes: themeData[] = [
-  //     {
-  //       name: "theme1",
-  //       src: "/themes-page/theme1.svg",
-  //       alt: "",
-  //     },
-  //     {
-  //       name: "theme2",
-  //       src: "/themes-page/theme2.svg",
-  //       alt: "",
-  //     },
-  //     {
-  //       name: "theme3",
-  //       src: "/themes-page/theme3.svg",
-  //       alt: "",
-  //     },
-  //     {
-  //       name: "theme4",
-  //       src: "/themes-page/theme4.svg",
-  //       alt: "",
-  //     },
-  //   ];
+  const themes: themeData[] = [
+    {
+      name: "Smart Economies",
+      description:
+        "As finance continues to merge with the digital world, challenges like privacy, security, misinformation and fraud are on the rise. This theme challenges innovators like you to develop fintech solutions that make banking, investing, and financial management more efficient, secure and accessible to all. Whether you are designing AI driven budgeting apps, blockchain based payment systems, or data powered fraud prevention tools, this is your chance to redefine the future of finance through software.",
+      src: "/themes-page/economies.png",
+      alt: "",
+    },
+    {
+      name: "Inclusive Innovation / Tech for All",
+      description:
+        "Technology has the power to bridge gaps and uplift communities only if it’s built for everyone. This theme focuses on making tech more inclusive, accessible and representative of diverse needs. Whether you are designing assistive tech for the disabled or building tools that empower marginalised communities, your ideas break down barriers that separate society and create a future where everyone is more connected.",
+      src: "/themes-page/innovation.png",
+      alt: "",
+    },
+    {
+      name: "Revolutionizing Learning ",
+      description:
+        "Technology is at the forefront of education. This theme challenges you to develop software solutions that make learning more accessible, engaging and effective. Whether you're building AI powered tutoring systems, gamified learning platforms or tools that personalize education for diverse learners, your ideas will shape the future of knowledge and redefine how the next generation learns.",
+      src: "/themes-page/learning.png",
+      alt: "",
+    },
+    {
+      name: "Future of Our Planet",
+      description:
+        "With sustainability and our planet’s well-being at risk, its future is in our hands. This theme challenges innovators like you to develop software driven solutions to combat climate change, reduce waste and promote a greener future. Whether you are designing apps that encourage sustainable habits or creating smarter ways to optimise energy and resource usage, this is your chance to innovate and drive society towards a greener future.",
+      src: "/themes-page/planet.png",
+      alt: "",
+    },
+  ];
 
-  //   const renderThemes = () => {
-  //     return (
-  //       <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
-  //         {themes.map((theme) => (
-  //           <div
-  //             key={theme.name}
-  //             className="bg-bgblue flex flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
-  //           >
-  //             <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
-  //               {theme.name}
-  //             </p>
-  //             <Image src={theme.src} alt={theme.alt} width={150} height={150} />
-  //           </div>
-  //         ))}
-  //       </div>
-  //     );
-  //   };
-
-  const renderComingSoon = () => {
+  const renderThemes = () => {
     return (
-      <div className="z-10 my-10 flex w-full flex-col items-center justify-center px-4 sm:my-20">
-        <div className="bg-bgblue flex flex-col items-center justify-center rounded-[20px] border-2 border-[#ffffff12] px-8 py-8 sm:px-12 sm:py-16 lg:px-20 lg:py-20">
-          <p className="mb-4 text-4xl font-semibold text-white sm:mb-8 sm:text-5xl lg:mb-16 lg:text-7xl">
-            Coming Soon
-          </p>
-
-          <p className="mx-auto mb-4 text-center text-lg text-white sm:mb-6 sm:text-xl">
-            Stay tuned for updates!
-          </p>
-        </div>
+      <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
+        {themes.map((theme) => (
+          <div
+            key={theme.name}
+            className="bg-bgblue flex flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
+          >
+            <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
+              {theme.name}
+            </p>
+            <Image src={theme.src} alt={theme.alt} width={150} height={150} />
+          </div>
+        ))}
       </div>
     );
   };
@@ -115,9 +108,7 @@ export default function Themes() {
             <hr className="bg-indigo ml-2 h-[2px] w-full border-none sm:ml-4" />
           </div>
         </div>
-
-        {/* {renderThemes()} */}
-        {renderComingSoon()}
+        {renderThemes()}
       </div>
     </section>
   );
