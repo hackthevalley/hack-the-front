@@ -1,11 +1,11 @@
 "use client";
 
+import { animate, motion, useMotionValue, useReducedMotion } from "framer-motion";
+import type { AnimationPlaybackControls } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import ProfileCard from "@/components/ProfileCard";
-import TrainBody from "@/components/trainBody";
-import TrainHead from "@/components/trainHead";
+import Train from "@/components/train";
 
 interface exec {
   name: string;
@@ -207,10 +207,40 @@ export default function Team() {
 
   const organizerSelected = organizerName !== "" && role !== "";
 
+  const SPEED = 40;
+  const reduce = useReducedMotion();
+  const x = useMotionValue(0); // <-- holds current x
+  const trackRef = useRef<HTMLDivElement>(null);
+  const animRef = useRef<AnimationPlaybackControls | null>(null);
+
+  const startLoop = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const half = el.scrollWidth / 2;
+    if (!half) return;
+
+    const duration = half / SPEED;
+
+    animRef.current?.stop();
+    animRef.current = animate(x, [x.get(), x.get() - half], {
+      ease: "linear",
+      duration,
+      repeat: Infinity,
+      repeatType: "loop",
+    });
+  }, [x]);
+
+  useEffect(() => {
+    if (reduce) return;
+    startLoop();
+    return () => animRef.current?.stop();
+  }, [reduce, startLoop]);
+
   return (
     <section
       id="team"
-      className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20 sm:px-8 md:px-16 lg:px-32"
+      className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20"
       style={{ scrollMarginTop: "6rem" }}
     >
       {/* Stars */}
@@ -237,7 +267,7 @@ export default function Team() {
         className="pointer-events-none absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
-      <div className="relative z-10 mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto max-w-6xl sm:px-8 md:px-16 lg:px-32">
         <h1
           className="bg-clip-text text-center text-6xl font-bold text-transparent sm:text-5xl lg:text-7xl"
           style={{
@@ -262,45 +292,26 @@ export default function Team() {
           </div>
         </div>
       </div>
-      <div className="relative z-10 mx-auto flex max-w-6xl flex-col justify-center">
-        <Image
-          src="/team-page/spaceship.png"
-          width={350}
-          height={350}
-          alt="spaceship"
-          className="scale-x-[-1]"
-        />
-
-        <TrainHead
-          execs={cochairs}
-          className="aspect-[755/257] max-h-[257px] w-full max-w-[755px]"
-        />
-        <TrainBody
-          execs={developers}
-          className="aspect-[1219/257] max-h-[257px] w-full max-w-[1219px]"
-          cart="/team-page/developer-cart.svg"
-        />
-        <TrainBody
-          execs={logistics}
-          className="aspect-[1773/257] max-h-[257px] w-full max-w-[1773px]"
-          cart="/team-page/logistics-cart.svg"
-        />
-        <TrainBody
-          execs={sponsorships}
-          className="aspect-[1920/257] max-h-[257px] w-full max-w-[1920px]"
-          cart="/team-page/sponsorship-cart.svg"
-        />
-        <TrainBody
-          execs={finance}
-          className="aspect-[514/257] max-h-[257px] w-full max-w-[514px]"
-          cart="/team-page/finance-cart.svg"
-        />
-        <TrainBody
-          execs={designAndMarketing}
-          className="aspect-[1378/257] max-h-[257px] w-full max-w-[1378px]"
-          cart="/team-page/designMarketing-cart.svg"
-        />
-        {/* <ProfileCard isDefault={true} /> */}
+      <div className="absolute relative -left-4 z-10 w-screen overflow-hidden sm:-left-20">
+        <motion.div
+          ref={trackRef}
+          className="flex w-max select-none"
+          style={{ x }}
+          initial={false}
+          onMouseEnter={() => animRef.current?.stop()}
+          onMouseLeave={() => startLoop()}
+          role="marquee"
+          aria-label="Scrolling team train"
+        >
+          <Train
+            data={{ cochairs, developers, logistics, sponsorships, finance, designAndMarketing }}
+          />
+          {/* duplicate for seamless wrap */}
+          <Train
+            data={{ cochairs, developers, logistics, sponsorships, finance, designAndMarketing }}
+            aria-hidden
+          />
+        </motion.div>
       </div>
     </section>
   );

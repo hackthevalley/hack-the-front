@@ -20,11 +20,14 @@ interface TrainBodyProps {
 export default function TrainBody({ execs, className = "", cart = "" }: TrainBodyProps) {
   return (
     <div className={`relative ${className}`}>
-      {/* Make the body stretch to the container's aspect */}
-      <Image src={cart} alt="train-body" fill className="pointer-events-none object-fill" />
+      <Image
+        src={cart}
+        alt="train-body"
+        fill
+        className={`pointer-events-none ${className} object-fill`}
+      />
 
-      {/* Wheels (percent sizes/positions so they scale with width) */}
-      <div className="absolute bottom-0 left-[14%] h-[8.95%] w-[13.9%] translate-y-full">
+      <div className="absolute bottom-0 left-[14%] h-[23px] w-[105px] translate-y-full">
         <Image
           src="/team-page/wheels.svg"
           alt="front wheels"
@@ -32,7 +35,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
           className="pointer-events-none object-contain"
         />
       </div>
-      <div className="absolute right-[14%] bottom-0 h-[8.95%] w-[13.9%] translate-y-full">
+      <div className="absolute right-[14%] bottom-0 h-[23px] w-[105px] translate-y-full">
         <Image
           src="/team-page/wheels.svg"
           alt="back wheels"
@@ -41,8 +44,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
         />
       </div>
 
-      {/* Door anchored to right edge */}
-      <div className="absolute right-0 bottom-0 h-[82.8%] w-[14.6%] -translate-x-1/2">
+      <div className="absolute right-10 bottom-0 h-4/5 w-1/5">
         <Image
           src="/team-page/door.svg"
           alt="door"
@@ -51,8 +53,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
         />
       </div>
 
-      {/* Execs area; scales with width */}
-      <div className="absolute inset-y-0 left-4 flex w-[70%] items-center gap-x-6 md:gap-x-10">
+      <div className="absolute inset-y-0 left-5 flex w-[70%] items-center gap-x-6 md:gap-x-10">
         {execs.map((exec) => (
           <ProfileCard key={exec.name} isDefault className="relative">
             <Image
