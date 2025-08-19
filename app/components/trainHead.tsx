@@ -21,7 +21,7 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
     <div className={`relative h-[280px] shrink-0 overflow-y-visible ${className}`}>
       {/* Cart body fills the box responsively */}
       <Image
-        src="/team-page/cart-body.png"
+        src="/team-page/cart-body.webp"
         alt="train-body"
         fill
         className={`pointer-events-none max-h-[257px] object-fill`}

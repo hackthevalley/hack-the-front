@@ -213,7 +213,7 @@ export default function Team() {
 
   const organizerSelected = organizerName !== "" && role !== "";
 
-  const SPEED = 300; // 40
+  const SPEED = 40; // 40
   const reduce = useReducedMotion();
   const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
