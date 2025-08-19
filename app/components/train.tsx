@@ -15,33 +15,21 @@ export default function TrainOnce({
         width={350}
         height={350}
         alt="spaceship"
-        className="shrink-0 scale-x-[-1]"
+        className="scale-x-[-1]"
       />
-      <TrainHead execs={cochairs} className="h-[257px] w-[755px] shrink-0" />
-      <TrainBody
-        execs={developers}
-        className="h-[257px] w-[1219px] shrink-0"
-        cart="/team-page/developer-cart.svg"
-      />
-      <TrainBody
-        execs={logistics}
-        className="h-[257px] w-[1883px] shrink-0"
-        cart="/team-page/logistics-cart.svg"
-      />
+      <TrainHead execs={cochairs} className="w-[655px]" />
+      <TrainBody execs={developers} className="w-[1150px]" cart="/team-page/developer-cart.png" />
+      <TrainBody execs={logistics} className="w-[1480px]" cart="/team-page/logistics-cart.png" />
       <TrainBody
         execs={sponsorships}
-        className="h-[257px] w-[1920px] shrink-0"
-        cart="/team-page/sponsorship-cart.svg"
+        className="w-[1620px]"
+        cart="/team-page/sponsorship-cart.png"
       />
-      <TrainBody
-        execs={finance}
-        className="h-[257px] w-[514px] shrink-0"
-        cart="/team-page/finance-cart.svg"
-      />
+      <TrainBody execs={finance} className="w-[514px]" cart="/team-page/finance-cart.png" />
       <TrainBody
         execs={designAndMarketing}
-        className="h-[257px] w-[1378px] shrink-0"
-        cart="/team-page/designMarketing-cart.svg"
+        className="w-[1178px]"
+        cart="/team-page/designMarketing-cart.png"
       />
     </div>
   );

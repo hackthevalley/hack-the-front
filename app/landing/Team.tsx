@@ -1,6 +1,12 @@
 "use client";
 
-import { animate, motion, useMotionValue, useReducedMotion } from "framer-motion";
+import {
+  animate,
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useReducedMotion,
+} from "framer-motion";
 import type { AnimationPlaybackControls } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -207,35 +213,27 @@ export default function Team() {
 
   const organizerSelected = organizerName !== "" && role !== "";
 
-  const SPEED = 40;
+  const SPEED = 300; // 40
   const reduce = useReducedMotion();
-  const x = useMotionValue(0); // <-- holds current x
+  const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<AnimationPlaybackControls | null>(null);
+  const [paused, setPaused] = useState(false);
 
-  const startLoop = useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-
-    const half = el.scrollWidth / 2;
-    if (!half) return;
-
-    const duration = half / SPEED;
-
-    animRef.current?.stop();
-    animRef.current = animate(x, [x.get(), x.get() - half], {
-      ease: "linear",
-      duration,
-      repeat: Infinity,
-      repeatType: "loop",
-    });
-  }, [x]);
+  const [half, setHalf] = useState(0);
 
   useEffect(() => {
-    if (reduce) return;
-    startLoop();
-    return () => animRef.current?.stop();
-  }, [reduce, startLoop]);
+    const el = trackRef.current;
+    if (!el) return;
+    setHalf(el.scrollWidth / 2);
+  }, []);
+
+  useAnimationFrame((_t, delta) => {
+    if (paused || reduce || !half) return;
+    const dx = (SPEED * delta) / 1000;
+    const next = (x.get() - dx) % half;
+    x.set(next);
+  });
 
   return (
     <section
@@ -298,8 +296,8 @@ export default function Team() {
           className="flex w-max select-none"
           style={{ x }}
           initial={false}
-          onMouseEnter={() => animRef.current?.stop()}
-          onMouseLeave={() => startLoop()}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
           role="marquee"
           aria-label="Scrolling team train"
         >

@@ -18,15 +18,13 @@ interface TrainHeadProps {
 
 export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative h-[280px] shrink-0 overflow-y-visible ${className}`}>
       {/* Cart body fills the box responsively */}
       <Image
-        src="/team-page/cart-body.svg"
+        src="/team-page/cart-body.png"
         alt="train-body"
         fill
-        priority
-        sizes="(max-width: 768px) 100vw, 755px"
-        className="object-contain"
+        className={`pointer-events-none max-h-[257px] object-fill`}
       />
 
       <div className="absolute top-1/4 left-0 h-[49.8%] w-[11%]">
@@ -38,15 +36,20 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
         />
       </div>
 
-      <div className="absolute bottom-0 left-[14%] h-[8.95%] w-[13.9%] translate-y-full">
-        <Image src="/team-page/wheels.svg" alt="front wheels" fill className="object-contain" />
-      </div>
-      <div className="absolute right-[14%] bottom-0 h-[8.95%] w-[13.9%] translate-y-full">
-        <Image src="/team-page/wheels.svg" alt="back wheels" fill className="object-contain" />
+      <div className="absolute bottom-0 left-[14%]">
+        <Image src="/team-page/wheels.svg" alt="front wheels" width={105} height={23} />
       </div>
 
-      <div className="absolute right-1/8 bottom-0 h-[82.8%] w-[14.6%] translate-x-1/2">
-        <Image src="/team-page/door.svg" alt="door" fill className="object-contain" />
+      <div className="absolute right-[14%] bottom-0">
+        <Image src="/team-page/wheels.svg" alt="back wheels" width={105} height={23} />
+      </div>
+      <div className="absolute right-10 bottom-[23px] h-4/5 w-1/5">
+        <Image
+          src="/team-page/door.svg"
+          alt="door"
+          fill
+          className="pointer-events-none object-contain"
+        />
       </div>
 
       <div className="absolute inset-y-0 left-[18%] flex w-[60%] items-center gap-x-6 md:gap-x-10">

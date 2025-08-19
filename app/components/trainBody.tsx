@@ -19,32 +19,22 @@ interface TrainBodyProps {
 
 export default function TrainBody({ execs, className = "", cart = "" }: TrainBodyProps) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative h-[280px] shrink-0 overflow-y-visible ${className}`}>
       <Image
         src={cart}
         alt="train-body"
         fill
-        className={`pointer-events-none ${className} object-fill`}
+        className={`pointer-events-none max-h-[257px] object-fill`}
       />
 
-      <div className="absolute bottom-0 left-[14%] h-[23px] w-[105px] translate-y-full">
-        <Image
-          src="/team-page/wheels.svg"
-          alt="front wheels"
-          fill
-          className="pointer-events-none object-contain"
-        />
-      </div>
-      <div className="absolute right-[14%] bottom-0 h-[23px] w-[105px] translate-y-full">
-        <Image
-          src="/team-page/wheels.svg"
-          alt="back wheels"
-          fill
-          className="pointer-events-none object-contain"
-        />
+      <div className="absolute bottom-0 left-[14%]">
+        <Image src="/team-page/wheels.svg" alt="front wheels" width={105} height={23} />
       </div>
 
-      <div className="absolute right-10 bottom-0 h-4/5 w-1/5">
+      <div className="absolute right-[14%] bottom-0">
+        <Image src="/team-page/wheels.svg" alt="back wheels" width={105} height={23} />
+      </div>
+      <div className="absolute right-10 bottom-[23px] h-4/5 w-1/5">
         <Image
           src="/team-page/door.svg"
           alt="door"
@@ -53,7 +43,8 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
         />
       </div>
 
-      <div className="absolute inset-y-0 left-5 flex w-[70%] items-center gap-x-6 md:gap-x-10">
+      {/* execs row */}
+      <div className="absolute inset-y-0 left-5 flex items-center gap-x-6 pr-[20%] md:gap-x-10">
         {execs.map((exec) => (
           <ProfileCard key={exec.name} isDefault className="relative">
             <Image
