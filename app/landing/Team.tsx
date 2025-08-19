@@ -213,7 +213,7 @@ export default function Team() {
 
   const organizerSelected = organizerName !== "" && role !== "";
 
-  const SPEED = 40; // 40
+  const SPEED = 100; // 40
   const reduce = useReducedMotion();
   const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -231,7 +231,13 @@ export default function Team() {
   useAnimationFrame((_t, delta) => {
     if (paused || reduce || !half) return;
     const dx = (SPEED * delta) / 1000;
-    const next = (x.get() - dx) % half;
+    let next = x.get() - dx;
+
+    if (next <= -half * 1.06) {
+      // reset exactly snap position for clean loop. Must be these values
+      next = -80;
+    }
+
     x.set(next);
   });
 
@@ -293,9 +299,8 @@ export default function Team() {
       <div className="absolute relative -left-4 z-10 w-screen overflow-hidden sm:-left-20">
         <motion.div
           ref={trackRef}
-          className="flex w-max select-none"
-          style={{ x }}
-          initial={false}
+          className="flex w-max will-change-transform select-none"
+          style={{ x, transform: "translateZ(0)" }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           role="marquee"

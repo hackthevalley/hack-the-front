@@ -18,7 +18,9 @@ interface TrainHeadProps {
 
 export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
   return (
-    <div className={`relative h-[280px] shrink-0 overflow-y-visible ${className}`}>
+    <div
+      className={`relative h-[280px] shrink-0 overflow-x-hidden overflow-y-visible ${className}`}
+    >
       {/* Cart body fills the box responsively */}
       <Image
         src="/team-page/cart-body.webp"

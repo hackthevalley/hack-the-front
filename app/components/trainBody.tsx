@@ -19,7 +19,9 @@ interface TrainBodyProps {
 
 export default function TrainBody({ execs, className = "", cart = "" }: TrainBodyProps) {
   return (
-    <div className={`relative h-[280px] shrink-0 overflow-y-visible ${className}`}>
+    <div
+      className={`relative h-[280px] shrink-0 overflow-x-hidden overflow-y-visible ${className}`}
+    >
       <Image
         src={cart}
         alt="train-body"
