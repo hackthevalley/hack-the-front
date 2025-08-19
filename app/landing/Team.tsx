@@ -244,7 +244,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20"
+      className="relative mb-44 w-full max-w-full scroll-mt-25 pt-20 pb-60"
       style={{ scrollMarginTop: "6rem" }}
     >
       {/* Stars */}
@@ -296,7 +296,7 @@ export default function Team() {
           </div>
         </div>
       </div>
-      <div className="absolute relative -left-4 z-10 w-screen overflow-hidden sm:-left-20">
+      <div className="absolute -left-4 z-10 mt-16 w-screen overflow-hidden sm:-left-20">
         <motion.div
           ref={trackRef}
           className="flex w-max will-change-transform select-none"
