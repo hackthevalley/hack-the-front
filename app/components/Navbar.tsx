@@ -126,14 +126,14 @@ export default function Navbar(props: NavbarProp) {
               <Link
                 id="mlh-trust-badge"
                 className="z-[10000] mt-[1rem] mr-[1.5rem] w-[80px] sm:mt-[3rem] sm:w-[100px]"
-                href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
+                href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
                 target="_blank"
               >
                 <Image
                   className="relative"
                   width={120}
                   height={105}
-                  src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
+                  src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg"
                   alt="Major League Hacking 2025 Hackathon Season"
                 />
               </Link>
