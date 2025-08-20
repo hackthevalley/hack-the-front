@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 interface themeData {
   name: string;
@@ -12,12 +13,12 @@ export default function Themes() {
     {
       name: "Smart Economies",
       description:
-        "As finance continues to merge with the digital world, challenges like privacy, security, misinformation and fraud are on the rise. This theme challenges innovators like you to develop fintech solutions that make banking, investing, and financial management more efficient, secure and accessible to all. Whether you are designing AI driven budgeting apps, blockchain based payment systems, or data powered fraud prevention tools, this is your chance to redefine the future of finance through software.",
+        "With sustainability at risk, the planet’s future is in our hands. Build software that combats climate change, reduces waste, and promotes sustainability. From apps encouraging green habits to smarter energy solutions, this is your chance to drive society toward a greener future.",
       src: "/themes-page/economies.png",
       alt: "",
     },
     {
-      name: "Inclusive Innovation / Tech for All",
+      name: "Inclusive Innovation",
       description:
         "Technology has the power to bridge gaps and uplift communities only if it’s built for everyone. This theme focuses on making tech more inclusive, accessible and representative of diverse needs. Whether you are designing assistive tech for the disabled or building tools that empower marginalised communities, your ideas break down barriers that separate society and create a future where everyone is more connected.",
       src: "/themes-page/innovation.png",
@@ -39,20 +40,44 @@ export default function Themes() {
     },
   ];
 
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  const handleToggle = (name: string) => {
+    setExpanded(expanded === name ? null : name);
+  };
+
   const renderThemes = () => {
     return (
       <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
-        {themes.map((theme) => (
-          <div
-            key={theme.name}
-            className="bg-bgblue flex flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
-          >
-            <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
-              {theme.name}
-            </p>
-            <Image src={theme.src} alt={theme.alt} width={150} height={150} />
-          </div>
-        ))}
+        {themes.map((theme) => {
+          const isOpen = expanded === theme.name;
+          return (
+            <div
+              key={theme.name}
+              className="bg-bgblue flex cursor-pointer flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
+              onClick={() => handleToggle(theme.name)}
+              style={{ minHeight: 220 }}
+            >
+              <div
+                className={`transition-opacity duration-500 ${
+                  isOpen ? "pointer-events-none absolute opacity-0" : "relative opacity-100"
+                } flex w-full flex-col items-center`}
+              >
+                <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
+                  {theme.name}
+                </p>
+                <Image src={theme.src} alt={theme.alt} width={150} height={150} />
+              </div>
+              <div
+                className={`transition-opacity duration-500 ${
+                  isOpen ? "relative opacity-100" : "pointer-events-none absolute opacity-0"
+                } flex w-full flex-col items-center`}
+              >
+                <p className="text-center text-base text-white sm:text-lg">{theme.description}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   };
