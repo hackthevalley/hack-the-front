@@ -23,7 +23,7 @@ export default function TrainOnce({
           width={150}
           height={100}
           alt="dotted line"
-          className="relative mt-4 translate-x-2 transform-gpu"
+          className="pointer-events-none relative mt-4 translate-x-2 transform-gpu"
         />
       </div>
       <TrainHead execs={cochairs} className="w-[655px]" />
@@ -32,7 +32,7 @@ export default function TrainOnce({
         width={80}
         height={80}
         alt="connector"
-        className="relative mb-3"
+        className="pointer-events-none relative mb-3"
       />
       <TrainBody execs={developers} className="w-[1150px]" cart="/team-page/developer-cart.webp" />
       <Image
@@ -40,7 +40,7 @@ export default function TrainOnce({
         width={80}
         height={80}
         alt="connector"
-        className="relative mb-3"
+        className="pointer-events-none relative mb-3"
       />
       <TrainBody execs={logistics} className="w-[1480px]" cart="/team-page/logistics-cart.webp" />
       <Image
@@ -48,7 +48,7 @@ export default function TrainOnce({
         width={80}
         height={80}
         alt="connector"
-        className="relative mb-3"
+        className="pointer-events-none relative mb-3"
       />
       <TrainBody
         execs={sponsorships}
@@ -60,7 +60,7 @@ export default function TrainOnce({
         width={80}
         height={80}
         alt="connector"
-        className="relative mb-3"
+        className="pointer-events-none relative mb-3"
       />
       <TrainBody execs={finance} className="w-[514px]" cart="/team-page/finance-cart.webp" />
       <Image
@@ -68,7 +68,7 @@ export default function TrainOnce({
         width={80}
         height={80}
         alt="connector"
-        className="relative mb-3"
+        className="pointer-events-none relative mb-3"
       />
       <TrainBody
         execs={designAndMarketing}

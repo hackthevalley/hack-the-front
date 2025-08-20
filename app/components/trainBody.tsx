@@ -46,7 +46,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
       </div>
 
       {/* execs row */}
-      <div className="absolute inset-y-0 left-5 flex items-center gap-x-6 pr-[20%] md:gap-x-10">
+      <div className="absolute inset-y-0 left-10 flex items-center gap-x-6 pr-[20%] md:gap-x-10">
         {execs.map((exec) => (
           <ProfileCard key={exec.name} isDefault className="relative">
             <Image
@@ -54,7 +54,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
               alt={exec.name}
               width={100}
               height={100}
-              className="h-auto w-24 md:w-28"
+              className="pointer-events-none h-auto w-24 md:w-28"
             />
             {exec.lead && (
               <Image
@@ -62,7 +62,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
                 alt="crown"
                 width={50}
                 height={50}
-                className="absolute -top-2 left-1/2 h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
+                className="pointer-events-none absolute -top-2 left-1/2 h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
               />
             )}
           </ProfileCard>

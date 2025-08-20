@@ -34,7 +34,7 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
           src="/team-page/front-window.svg"
           alt="front window"
           fill
-          className="object-contain"
+          className="pointer-events-none object-contain"
         />
       </div>
 
@@ -62,7 +62,7 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
               alt={exec.name}
               width={100}
               height={100}
-              className="h-auto w-24 md:w-28"
+              className="pointer-events-none h-auto w-24 md:w-28"
             />
             {exec.lead && (
               <Image
@@ -70,7 +70,7 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
                 alt="crown"
                 width={50}
                 height={50}
-                className="absolute -top-2 left-1/2 h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
+                className="pointer-events-none absolute -top-2 left-1/2 h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
               />
             )}
           </ProfileCard>
