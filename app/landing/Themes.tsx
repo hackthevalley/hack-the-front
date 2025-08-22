@@ -1,65 +1,85 @@
 import Image from "next/image";
+import { useState } from "react";
 
-// interface themeData {
-//   name: string;
-//   src: string;
-//   alt: string;
-// }
+interface themeData {
+  name: string;
+  description: string;
+  src: string;
+  alt: string;
+}
 
 export default function Themes() {
-  //   const themes: themeData[] = [
-  //     {
-  //       name: "theme1",
-  //       src: "/themes-page/theme1.svg",
-  //       alt: "",
-  //     },
-  //     {
-  //       name: "theme2",
-  //       src: "/themes-page/theme2.svg",
-  //       alt: "",
-  //     },
-  //     {
-  //       name: "theme3",
-  //       src: "/themes-page/theme3.svg",
-  //       alt: "",
-  //     },
-  //     {
-  //       name: "theme4",
-  //       src: "/themes-page/theme4.svg",
-  //       alt: "",
-  //     },
-  //   ];
+  const themes: themeData[] = [
+    {
+      name: "Smart Economies",
+      description:
+        "As finance goes digital, challenges like privacy, security, and fraud are rising. Create fintech that makes banking, investing, and money management more efficient and secure. From AI budgeting apps to blockchain payments, this is your chance to redefine finance.",
+      src: "/themes-page/economies.png",
+      alt: "",
+    },
+    {
+      name: "Inclusive Innovation",
+      description:
+        "Technology can bridge gaps and uplift communities only if built for everyone. Focus on making tech inclusive, accessible, and representative. Whether designing assistive tools or empowering marginalized communities, your ideas can break barriers and connect the world.",
+      src: "/themes-page/innovation.png",
+      alt: "",
+    },
+    {
+      name: "Revolutionizing Learning ",
+      description:
+        "Technology is transforming education. Design solutions that make learning more engaging, personalized, and accessible. From AI tutoring to gamified platforms or adaptive tools, your ideas can reshape knowledge and how the next generation learns.",
+      src: "/themes-page/learning.png",
+      alt: "",
+    },
+    {
+      name: "Future of Our Planet",
+      description:
+        "With sustainability at risk, the planet’s future is in our hands. Build software that combats climate change, reduces waste, and promotes sustainability. From apps encouraging green habits to smarter energy solutions, this is your chance to drive society toward a greener future.",
+      src: "/themes-page/planet.png",
+      alt: "",
+    },
+  ];
 
-  //   const renderThemes = () => {
-  //     return (
-  //       <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
-  //         {themes.map((theme) => (
-  //           <div
-  //             key={theme.name}
-  //             className="bg-bgblue flex flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
-  //           >
-  //             <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
-  //               {theme.name}
-  //             </p>
-  //             <Image src={theme.src} alt={theme.alt} width={150} height={150} />
-  //           </div>
-  //         ))}
-  //       </div>
-  //     );
-  //   };
+  const [expanded, setExpanded] = useState<string | null>(null);
 
-  const renderComingSoon = () => {
+  const handleToggle = (name: string) => {
+    setExpanded(expanded === name ? null : name);
+  };
+
+  const renderThemes = () => {
     return (
-      <div className="z-10 my-10 flex w-full flex-col items-center justify-center px-4 sm:my-20">
-        <div className="bg-bgblue flex flex-col items-center justify-center rounded-[20px] border-2 border-[#ffffff12] px-8 py-8 sm:px-12 sm:py-16 lg:px-20 lg:py-20">
-          <p className="mb-4 text-4xl font-semibold text-white sm:mb-8 sm:text-5xl lg:mb-16 lg:text-7xl">
-            Coming Soon
-          </p>
-
-          <p className="mx-auto mb-4 text-center text-lg text-white sm:mb-6 sm:text-xl">
-            Stay tuned for updates!
-          </p>
-        </div>
+      <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 lg:grid-cols-2">
+        {themes.map((theme) => {
+          const isOpen = expanded === theme.name;
+          return (
+            <div
+              key={theme.name}
+              className="bg-bgblue flex cursor-pointer flex-col items-center justify-center border-2 border-[#ffffff12] px-8 py-6"
+              onClick={() => handleToggle(theme.name)}
+              style={{ minHeight: 220 }}
+            >
+              <div
+                className={`transition-all duration-500 ${
+                  isOpen ? "pointer-events-none absolute opacity-0" : "relative opacity-100"
+                } flex w-full flex-col items-center`}
+              >
+                <p className="text-md mb-6 w-fit text-center font-semibold whitespace-nowrap text-white sm:text-xl">
+                  {theme.name}
+                </p>
+                <Image src={theme.src} alt={theme.alt} width={150} height={150} />
+              </div>
+              <div
+                className={`transition-all duration-500 ${
+                  isOpen ? "relative opacity-100" : "pointer-events-none absolute opacity-0"
+                } flex w-full flex-col items-center`}
+              >
+                {isOpen && (
+                  <p className="text-center text-base text-white sm:text-lg">{theme.description}</p>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -115,9 +135,7 @@ export default function Themes() {
             <hr className="bg-indigo ml-2 h-[2px] w-full border-none sm:ml-4" />
           </div>
         </div>
-
-        {/* {renderThemes()} */}
-        {renderComingSoon()}
+        {renderThemes()}
       </div>
     </section>
   );
