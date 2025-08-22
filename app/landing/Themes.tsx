@@ -13,28 +13,28 @@ export default function Themes() {
     {
       name: "Smart Economies",
       description:
-        "With sustainability at risk, the planet’s future is in our hands. Build software that combats climate change, reduces waste, and promotes sustainability. From apps encouraging green habits to smarter energy solutions, this is your chance to drive society toward a greener future.",
+        "As finance goes digital, challenges like privacy, security, and fraud are rising. Create fintech that makes banking, investing, and money management more efficient and secure. From AI budgeting apps to blockchain payments, this is your chance to redefine finance.",
       src: "/themes-page/economies.png",
       alt: "",
     },
     {
       name: "Inclusive Innovation",
       description:
-        "Technology has the power to bridge gaps and uplift communities only if it’s built for everyone. This theme focuses on making tech more inclusive, accessible and representative of diverse needs. Whether you are designing assistive tech for the disabled or building tools that empower marginalised communities, your ideas break down barriers that separate society and create a future where everyone is more connected.",
+        "Technology can bridge gaps and uplift communities only if built for everyone. Focus on making tech inclusive, accessible, and representative. Whether designing assistive tools or empowering marginalized communities, your ideas can break barriers and connect the world.",
       src: "/themes-page/innovation.png",
       alt: "",
     },
     {
       name: "Revolutionizing Learning ",
       description:
-        "Technology is at the forefront of education. This theme challenges you to develop software solutions that make learning more accessible, engaging and effective. Whether you're building AI powered tutoring systems, gamified learning platforms or tools that personalize education for diverse learners, your ideas will shape the future of knowledge and redefine how the next generation learns.",
+        "Technology is transforming education. Design solutions that make learning more engaging, personalized, and accessible. From AI tutoring to gamified platforms or adaptive tools, your ideas can reshape knowledge and how the next generation learns.",
       src: "/themes-page/learning.png",
       alt: "",
     },
     {
       name: "Future of Our Planet",
       description:
-        "With sustainability and our planet’s well-being at risk, its future is in our hands. This theme challenges innovators like you to develop software driven solutions to combat climate change, reduce waste and promote a greener future. Whether you are designing apps that encourage sustainable habits or creating smarter ways to optimise energy and resource usage, this is your chance to innovate and drive society towards a greener future.",
+        "With sustainability at risk, the planet’s future is in our hands. Build software that combats climate change, reduces waste, and promotes sustainability. From apps encouraging green habits to smarter energy solutions, this is your chance to drive society toward a greener future.",
       src: "/themes-page/planet.png",
       alt: "",
     },
@@ -48,7 +48,7 @@ export default function Themes() {
 
   const renderThemes = () => {
     return (
-      <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 sm:grid-cols-2">
+      <div className="z-10 grid grid-cols-1 gap-x-16 gap-y-11 lg:grid-cols-2">
         {themes.map((theme) => {
           const isOpen = expanded === theme.name;
           return (
@@ -59,7 +59,7 @@ export default function Themes() {
               style={{ minHeight: 220 }}
             >
               <div
-                className={`transition-opacity duration-500 ${
+                className={`transition-all duration-500 ${
                   isOpen ? "pointer-events-none absolute opacity-0" : "relative opacity-100"
                 } flex w-full flex-col items-center`}
               >
@@ -69,11 +69,13 @@ export default function Themes() {
                 <Image src={theme.src} alt={theme.alt} width={150} height={150} />
               </div>
               <div
-                className={`transition-opacity duration-500 ${
+                className={`transition-all duration-500 ${
                   isOpen ? "relative opacity-100" : "pointer-events-none absolute opacity-0"
                 } flex w-full flex-col items-center`}
               >
-                <p className="text-center text-base text-white sm:text-lg">{theme.description}</p>
+                {isOpen && (
+                  <p className="text-center text-base text-white sm:text-lg">{theme.description}</p>
+                )}
               </div>
             </div>
           );
