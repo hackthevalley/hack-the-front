@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  animate,
-  motion,
-  useAnimationFrame,
-  useMotionValue,
-  useReducedMotion,
-} from "framer-motion";
-import type { AnimationPlaybackControls } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Train from "@/components/train";
 

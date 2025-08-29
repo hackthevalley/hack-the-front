@@ -5,14 +5,21 @@ import Image from "next/image";
 import TrainBody from "@/components/trainBody";
 import TrainHead from "@/components/trainHead";
 
+interface exec {
+  name: string;
+  role: string;
+  image: string;
+  lead: boolean;
+}
+
 interface TrainProps {
   data: {
-    cochairs: any[];
-    developers: any[];
-    logistics: any[];
-    sponsorships: any[];
-    finance: any[];
-    designAndMarketing: any[];
+    cochairs: exec[];
+    developers: exec[];
+    logistics: exec[];
+    sponsorships: exec[];
+    finance: exec[];
+    designAndMarketing: exec[];
   };
   setOrganizerName: (name: string) => void;
   setRole: (role: string) => void;
