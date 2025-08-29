@@ -15,9 +15,28 @@ interface TrainBodyProps {
   execs: Exec[];
   className?: string;
   cart?: string;
+  setOrganizerName: (name: string) => void;
+  setRole: (role: string) => void;
 }
 
-export default function TrainBody({ execs, className = "", cart = "" }: TrainBodyProps) {
+export default function TrainBody({
+  execs,
+  className = "",
+  cart = "",
+  setOrganizerName,
+  setRole,
+}: TrainBodyProps) {
+  // Cause the photos are not centered when taken, need to adjust crown position manually
+  const getCrownAdjustment = (execName: string) => {
+    const adjustments: Record<string, string> = {
+      "Johnson Jiang": "right-[1.2rem]",
+      "Salimata Leye": "right-[1.2rem]",
+      "James Liang": "right-[1rem]",
+      "Jinie Choi": "right-[2.1rem]",
+    };
+
+    return adjustments[execName] ?? "right-[1.8rem]";
+  };
   return (
     <div
       className={`relative h-[280px] shrink-0 overflow-x-hidden overflow-y-visible ${className}`}
@@ -48,7 +67,19 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
       {/* execs row */}
       <div className="absolute inset-y-0 left-10 flex items-center gap-x-6 pr-[20%] md:gap-x-10">
         {execs.map((exec) => (
-          <ProfileCard key={exec.name} isDefault className="relative">
+          <ProfileCard
+            key={exec.name}
+            isDefault
+            className="relative"
+            onMouseEnter={() => {
+              setOrganizerName(exec.name);
+              setRole(exec.role);
+            }}
+            onMouseLeave={() => {
+              setOrganizerName("");
+              setRole("");
+            }}
+          >
             <Image
               src={exec.image}
               alt={exec.name}
@@ -62,7 +93,7 @@ export default function TrainBody({ execs, className = "", cart = "" }: TrainBod
                 alt="crown"
                 width={50}
                 height={50}
-                className="pointer-events-none absolute -top-2 left-1/2 h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
+                className={`pointer-events-none absolute -top-2 ${getCrownAdjustment(exec.name)} h-8 w-8 -translate-x-1/2 md:h-10 md:w-10`}
               />
             )}
           </ProfileCard>

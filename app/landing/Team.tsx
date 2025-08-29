@@ -24,6 +24,15 @@ export default function Team() {
   const [organizerName, setOrganizerName] = useState("");
   const [role, setRole] = useState("");
 
+  // Add debugging for state changes
+  const handleSetOrganizerName = (name: string) => {
+    setOrganizerName(name);
+  };
+
+  const handleSetRole = (role: string) => {
+    setRole(role);
+  };
+
   const cochairs: exec[] = [
     {
       name: "Josephine Tjhia",
@@ -213,11 +222,10 @@ export default function Team() {
 
   const organizerSelected = organizerName !== "" && role !== "";
 
-  const SPEED = 100; // 40
+  const SPEED = 200; // 100
   const reduce = useReducedMotion();
   const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
-  const animRef = useRef<AnimationPlaybackControls | null>(null);
   const [paused, setPaused] = useState(false);
 
   const [half, setHalf] = useState(0);
@@ -233,7 +241,7 @@ export default function Team() {
     const dx = (SPEED * delta) / 1000;
     let next = x.get() - dx;
 
-    if (next <= -half * 1.06) {
+    if (next <= -half * 1.016) {
       // reset exactly snap position for clean loop. Must be these values
       next = -80;
     }
@@ -282,16 +290,36 @@ export default function Team() {
         </h1>
         <div className="my-[2rem] mb-16 w-full">
           <div className="flex items-center justify-between">
-            <hr
-              className={`bg-indigo ${organizerSelected ? "mr-4" : ""} h-[2px] w-full border-none`}
+            <motion.hr
+              className="bg-indigo my-4 h-[2px] border-none"
+              initial={{ width: "100%" }}
+              animate={{
+                width: organizerSelected ? "calc(100% - 200px)" : "100%",
+                marginRight: organizerSelected ? "1rem" : "0rem",
+              }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
             />
-            {organizerSelected && (
-              <p className="w-fit text-xl font-semibold whitespace-nowrap text-white sm:text-2xl">
-                {organizerName}, {role}
-              </p>
-            )}
-            <hr
-              className={`bg-indigo ${organizerSelected ? "ml-4" : ""} h-[2px] w-full border-none`}
+            <motion.p
+              className="w-fit text-xl font-semibold whitespace-nowrap text-white sm:text-2xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: organizerSelected ? 1 : 0,
+                scale: organizerSelected ? 1 : 0.8,
+              }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              {organizerName}
+              {organizerSelected ? ", " : ""}
+              {role}
+            </motion.p>
+            <motion.hr
+              className="bg-indigo my-4 h-[2px] border-none"
+              initial={{ width: "100%" }}
+              animate={{
+                width: organizerSelected ? "calc(100% - 200px)" : "100%",
+                marginLeft: organizerSelected ? "1rem" : "0rem",
+              }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
             />
           </div>
         </div>
@@ -308,10 +336,14 @@ export default function Team() {
         >
           <Train
             data={{ cochairs, developers, logistics, sponsorships, finance, designAndMarketing }}
+            setOrganizerName={handleSetOrganizerName}
+            setRole={handleSetRole}
           />
           {/* duplicate for seamless wrap */}
           <Train
             data={{ cochairs, developers, logistics, sponsorships, finance, designAndMarketing }}
+            setOrganizerName={handleSetOrganizerName}
+            setRole={handleSetRole}
             aria-hidden
           />
         </motion.div>

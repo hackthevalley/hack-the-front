@@ -14,9 +14,16 @@ interface Exec {
 interface TrainHeadProps {
   execs: Exec[];
   className?: string;
+  setOrganizerName: (name: string) => void;
+  setRole: (role: string) => void;
 }
 
-export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
+export default function TrainHead({
+  execs,
+  className = "",
+  setOrganizerName,
+  setRole,
+}: TrainHeadProps) {
   return (
     <div
       className={`relative h-[280px] shrink-0 overflow-x-hidden overflow-y-visible ${className}`}
@@ -56,7 +63,19 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
 
       <div className="absolute inset-y-0 left-[18%] flex w-[60%] items-center gap-x-6 md:gap-x-10">
         {execs.map((exec) => (
-          <ProfileCard key={exec.name} isDefault className="relative">
+          <ProfileCard
+            key={exec.name}
+            isDefault
+            className="relative"
+            onMouseEnter={() => {
+              setOrganizerName(exec.name);
+              setRole(exec.role);
+            }}
+            onMouseLeave={() => {
+              setOrganizerName("");
+              setRole("");
+            }}
+          >
             <Image
               src={exec.image}
               alt={exec.name}
@@ -70,7 +89,7 @@ export default function TrainHead({ execs, className = "" }: TrainHeadProps) {
                 alt="crown"
                 width={50}
                 height={50}
-                className="pointer-events-none absolute -top-2 left-1/2 h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
+                className="pointer-events-none absolute -top-2 right-[1.8rem] h-8 w-8 -translate-x-1/2 md:h-10 md:w-10"
               />
             )}
           </ProfileCard>
