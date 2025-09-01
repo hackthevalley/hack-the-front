@@ -14,6 +14,7 @@ const About = dynamic(() => import("./landing/About"));
 const FAQ = dynamic(() => import("./landing/FAQ"));
 const Themes = dynamic(() => import("./landing/Themes"));
 const Footer = dynamic(() => import("./landing/Footer"));
+const Team = dynamic(() => import("./landing/Team"));
 
 export default function Home() {
   const [clicked, setClicked] = useState(false);
@@ -208,6 +209,7 @@ export default function Home() {
           <About />
           <FAQ />
           <Themes />
+          <Team />
           {/* <Sponsors /> */}
           <div className="mt-20 w-full items-center justify-center">
             <Footer />
