@@ -6,8 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import ConfirmationDialog from "@/components/ConfirmationDialog";
 
+import ConfirmationDialog from "@/components/ConfirmationDialog";
 import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
@@ -36,7 +36,6 @@ interface User {
   application_status: Status | null;
 }
 
-
 const getApplicationStatus = (status: Status | null) => {
   switch (status) {
     case Status.ACCEPTED:
@@ -53,20 +52,20 @@ const getApplicationStatus = (status: Status | null) => {
         icon: "/dashboard/accepted.svg",
         badge: "bg-green-600",
       };
-      case Status.REJECTED:
-        return {
-          color: "text-red-400",
-          label: "Declined",
-          icon: "/dashboard/declined.svg",
-          badge: "bg-gray-400",
-        };
-      case Status.REJECTED_INVITE:
-        return {
-          color: "text-red-400",
-          label: "Declined RSVP",
-          icon: "/dashboard/declined.svg",
-          badge: "bg-green-600",
-        };
+    case Status.REJECTED:
+      return {
+        color: "text-red-400",
+        label: "Declined",
+        icon: "/dashboard/declined.svg",
+        badge: "bg-gray-400",
+      };
+    case Status.REJECTED_INVITE:
+      return {
+        color: "text-red-400",
+        label: "Declined RSVP",
+        icon: "/dashboard/declined.svg",
+        badge: "bg-green-600",
+      };
     case Status.APPLYING:
       return {
         color: "text-gray-300",
@@ -148,11 +147,11 @@ export default function DashboardPage() {
     timeRange &&
     new Date() < new Date(timeRange.end_at) &&
     new Date(timeRange.start_at) < new Date();
-  
+
   const handleRSVPUpdate = async () => {
     if (!pendingRSVP) return;
     const { uid, status } = pendingRSVP;
-    
+
     try {
       const res = await fetchInstance(`account/rsvpstatusupdate/${uid}`, {
         method: "PUT",
@@ -160,15 +159,13 @@ export default function DashboardPage() {
       });
 
       if (res) {
-        setUser((oldUserInfo) => 
-          oldUserInfo ? { ...oldUserInfo, application_status: res.new_status } : null
+        setUser((oldUserInfo) =>
+          oldUserInfo ? { ...oldUserInfo, application_status: res.new_status } : null,
         );
 
         toast.success(
-          res.new_status === Status.ACCEPTED_INVITE 
-            ? "RSVP Accepted!" 
-            : "RSVP Declined!"
-          );
+          res.new_status === Status.ACCEPTED_INVITE ? "RSVP Accepted!" : "RSVP Declined!",
+        );
       }
     } catch (err) {
       console.log(err);
@@ -248,38 +245,37 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                {isOpen ? (
-                  user?.application_status === null ||
-                  user?.application_status === Status.ACCEPTED ? (
-                    <div className="flex flex-col gap-4 md:flex-row">
-                      <button
-                        onClick={() => rsvpStatusUpdate(user?.uid || "", Status.ACCEPTED_INVITE)}
-                        className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
-                      >
-                        Accept RSVP
-                      </button>
-                      <button
-                        onClick={() => rsvpStatusUpdate(user?.uid || "", Status.REJECTED_INVITE)}
-                        className="bg-red-800 hover:bg-red-900 rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
-                      >
-                        Decline RSVP
-                      </button>
-                      {showConfirmation && (
-                        <ConfirmationDialog
-                          title="Confirm RSVP Decision"
-                          message={`Are you sure you want to ${
-                            pendingRSVP?.status === Status.ACCEPTED_INVITE ? "ACCEPT" : "DECLINE"
-                          } the RSVP?`}
-                          onConfirm={handleRSVPUpdate}
-                          onCancel={() => {
-                            setShowConfirmation(false);
-                            setPendingRSVP(null);
-                          }}
-                        />
-                      )}
-                    </div>
-                 ) :
-                  user?.application_status === Status.APPLYING ? (
+                {user?.application_status === Status.ACCEPTED ? (
+                  // Always allow RSVP if Accepted
+                  <div className="flex flex-col gap-4 md:flex-row">
+                    <button
+                      onClick={() => rsvpStatusUpdate(user?.uid || "", Status.ACCEPTED_INVITE)}
+                      className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
+                    >
+                      Accept RSVP
+                    </button>
+                    <button
+                      onClick={() => rsvpStatusUpdate(user?.uid || "", Status.REJECTED_INVITE)}
+                      className="rounded-lg bg-red-800 px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400 hover:bg-red-900"
+                    >
+                      Decline RSVP
+                    </button>
+                    {showConfirmation && (
+                      <ConfirmationDialog
+                        title="Confirm RSVP Decision"
+                        message={`Are you sure you want to ${
+                          pendingRSVP?.status === Status.ACCEPTED_INVITE ? "ACCEPT" : "DECLINE"
+                        } the RSVP?`}
+                        onConfirm={handleRSVPUpdate}
+                        onCancel={() => {
+                          setShowConfirmation(false);
+                          setPendingRSVP(null);
+                        }}
+                      />
+                    )}
+                  </div>
+                ) : user?.application_status === Status.APPLYING ? (
+                  isOpen ? (
                     <Link
                       href="/application"
                       className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
@@ -288,12 +284,12 @@ export default function DashboardPage() {
                     </Link>
                   ) : (
                     <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
-                      Applied
+                      Closed
                     </div>
                   )
                 ) : (
                   <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
-                    Closed
+                    Applied
                   </div>
                 )}
               </div>
