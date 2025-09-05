@@ -5,6 +5,7 @@ interface FetchOptions {
   headers?: Record<string, string>;
   body?: string | FormData;
   signal?: AbortSignal;
+  queryParams?: Record<string, string | number | boolean>;
 }
 
 const fetchInstance = async (endpoint: string, options: FetchOptions = {}) => {
@@ -17,13 +18,24 @@ const fetchInstance = async (endpoint: string, options: FetchOptions = {}) => {
     ...(isForm ? {} : { "Content-Type": "application/json" }),
   };
 
+  const queryString = options.queryParams
+    ? `?${new URLSearchParams(
+      Object.entries(options.queryParams).reduce((acc, [key, value]) => {
+        if (value !== undefined && value !== null) {
+          acc[key] = String(value);
+        }
+        return acc;
+      }, {} as Record<string, string>)
+    ).toString()}`
+    : "";
+
   const config = {
     ...options,
     headers: { ...headers, ...options.headers },
   };
 
   try {
-    const response = await fetch(`${API_BASE_URL}/${endpoint}`, config);
+    const response = await fetch(`${API_BASE_URL}/${endpoint}${queryString}`, config);
 
     if (!response.ok) {
       const errorData = await response.json();
