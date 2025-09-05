@@ -245,7 +245,8 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                {user?.application_status === Status.ACCEPTED ? (
+                {user?.application_status === Status.ACCEPTED ||
+                user?.application_status === Status.NOT_APPLIED ? (
                   // Always allow RSVP if Accepted
                   <div className="flex flex-col gap-4 md:flex-row">
                     <button
