@@ -275,7 +275,7 @@ export default function DashboardPage() {
                     )}
                   </div>
                 ) : user?.application_status === Status.APPLYING ||
-                  user?.application_status === Status.NOT_APPLIED ? (
+                  user?.application_status === null ? (
                   isOpen ? (
                     <Link
                       href="/application"
