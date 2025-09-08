@@ -21,6 +21,7 @@ const navBarItems = [
   { label: "Themes", id: "themes" },
   // { label: "Past Years", id: "past-years" },
   { label: "Sponsors", id: "sponsors" },
+  { label: "Team", id: "team" },
   { label: "Apply", id: "login" },
 ];
 

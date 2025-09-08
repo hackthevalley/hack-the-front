@@ -5,10 +5,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
+import ConfirmationDialog from "@/components/ConfirmationDialog";
 import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
 import { UserContext } from "@/utils/auth";
+
+enum Status {
+  ACCOUNT_INACTIVE = "ACCOUNT_INACTIVE",
+  NOT_APPLIED = "NOT_APPLIED",
+  APPLYING = "APPLYING",
+  APPLIED = "APPLIED",
+  UNDER_REVIEW = "UNDER_REVIEW",
+  WAITLISTED = "WAITLISTED",
+  ACCEPTED = "ACCEPTED",
+  REJECTED = "REJECTED",
+  ACCEPTED_INVITE = "ACCEPTED_INVITE",
+  REJECTED_INVITE = "REJECTED_INVITE",
+  SCANNED_IN = "SCANNED_IN",
+}
 
 interface User {
   first_name: string;
@@ -17,36 +33,50 @@ interface User {
   uid: string;
   role: string;
   is_active: boolean;
-  application_status: string;
+  application_status: Status | null;
 }
 
-const getApplicationStatus = (status: string) => {
-  switch (status.toLowerCase()) {
-    case "accepted":
+const getApplicationStatus = (status: Status | null) => {
+  switch (status) {
+    case Status.ACCEPTED:
       return {
         color: "text-green-400",
         label: "Accepted",
         icon: "/dashboard/accepted.svg",
         badge: "bg-green-600",
       };
-    case "declined":
+    case Status.ACCEPTED_INVITE:
+      return {
+        color: "text-green-400",
+        label: "Accepted RSVP",
+        icon: "/dashboard/accepted.svg",
+        badge: "bg-green-600",
+      };
+    case Status.REJECTED:
       return {
         color: "text-red-400",
         label: "Declined",
         icon: "/dashboard/declined.svg",
         badge: "bg-gray-400",
       };
-    case "applying":
+    case Status.REJECTED_INVITE:
+      return {
+        color: "text-red-400",
+        label: "Declined RSVP",
+        icon: "/dashboard/declined.svg",
+        badge: "bg-green-600",
+      };
+    case Status.APPLYING:
       return {
         color: "text-gray-300",
         label: "Applying",
         icon: "/dashboard/pending.svg",
         badge: "bg-gray-500",
       };
-    case "applied":
+    case Status.APPLIED:
       return {
         color: "text-gray-300",
-        label: "Pending",
+        label: "Applied",
         icon: "/dashboard/pending.svg",
         badge: "bg-gray-500",
       };
@@ -70,6 +100,13 @@ export default function DashboardPage() {
   const [timeRange, setTimeRange] = useState<TimeRange | null>(null);
   const ctx = useContext(UserContext);
   const router = useRouter();
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [pendingRSVP, setPendingRSVP] = useState<{ uid: string; status: Status } | null>(null);
+
+  const rsvpStatusUpdate = async (uid: string, status: Status) => {
+    setPendingRSVP({ uid, status });
+    setShowConfirmation(true);
+  };
 
   const getCurrentUser = async (): Promise<User> => {
     return await fetchInstance("account/me", {
@@ -105,17 +142,47 @@ export default function DashboardPage() {
       .catch((err) => console.log(err.message));
   }, [ctx?.isAuthenticated, ctx?.loading, router]);
 
-  const status = getApplicationStatus(user?.application_status || "");
+  const status = getApplicationStatus(user?.application_status || null);
   const isOpen =
     timeRange &&
     new Date() < new Date(timeRange.end_at) &&
     new Date(timeRange.start_at) < new Date();
+
+  const handleRSVPUpdate = async () => {
+    if (!pendingRSVP) return;
+    const { uid, status } = pendingRSVP;
+
+    try {
+      const res = await fetchInstance(`account/rsvpstatusupdate/${uid}`, {
+        method: "PUT",
+        queryParams: { status: status },
+      });
+
+      if (res) {
+        setUser((oldUserInfo) =>
+          oldUserInfo ? { ...oldUserInfo, application_status: res.new_status } : null,
+        );
+
+        toast.success(
+          res.new_status === Status.ACCEPTED_INVITE ? "RSVP Accepted!" : "RSVP Declined!",
+        );
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setShowConfirmation(false);
+      setPendingRSVP(null);
+    }
+  };
+
   if (ctx?.loading || !ctx?.isAuthenticated) {
     return null;
   }
   return (
     <div>
       <Navbar hide={true} />
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="relative flex min-h-[calc(100vh-6rem)] flex-col items-center justify-start overflow-hidden bg-black pt-10 font-[family-name:var(--font-euclid-circular-b)]">
         <Image
           width={0}
@@ -178,10 +245,38 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                {isOpen ? (
-                  user?.application_status === null ||
-                  user?.application_status === "" ||
-                  user?.application_status.toLowerCase() === "applying" ? (
+                {user?.application_status === Status.ACCEPTED ? (
+                  // Always allow RSVP if Accepted
+                  <div className="flex flex-col gap-4 md:flex-row">
+                    <button
+                      onClick={() => rsvpStatusUpdate(user?.uid || "", Status.ACCEPTED_INVITE)}
+                      className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
+                    >
+                      Accept RSVP
+                    </button>
+                    <button
+                      onClick={() => rsvpStatusUpdate(user?.uid || "", Status.REJECTED_INVITE)}
+                      className="rounded-lg bg-red-800 px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400 hover:bg-red-900"
+                    >
+                      Decline RSVP
+                    </button>
+                    {showConfirmation && (
+                      <ConfirmationDialog
+                        title="Confirm RSVP Decision"
+                        message={`Are you sure you want to ${
+                          pendingRSVP?.status === Status.ACCEPTED_INVITE ? "ACCEPT" : "DECLINE"
+                        } the RSVP?`}
+                        onConfirm={handleRSVPUpdate}
+                        onCancel={() => {
+                          setShowConfirmation(false);
+                          setPendingRSVP(null);
+                        }}
+                      />
+                    )}
+                  </div>
+                ) : user?.application_status === Status.APPLYING ||
+                  user?.application_status === null ? (
+                  isOpen ? (
                     <Link
                       href="/application"
                       className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
@@ -190,12 +285,12 @@ export default function DashboardPage() {
                     </Link>
                   ) : (
                     <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
-                      Applied
+                      Closed
                     </div>
                   )
                 ) : (
                   <div className="cursor-not-allowed rounded-lg bg-gray-400 px-6 py-3 text-center text-lg font-semibold text-white">
-                    Closed
+                    Applied
                   </div>
                 )}
               </div>

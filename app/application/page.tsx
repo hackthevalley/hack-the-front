@@ -233,6 +233,10 @@ export default function Application() {
 
         if (!questions || questions.length === 0) return;
         const payloads = getPayloads();
+        const filteredPayloads = payloads.filter(
+          (payload) => payload.question_id && payload.answer !== "",
+        );
+        console.log(filteredPayloads);
 
         try {
           await fetchInstance("forms/saveAnswers", {
@@ -241,7 +245,7 @@ export default function Application() {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(payloads),
+            body: JSON.stringify(filteredPayloads),
           });
         } catch (err) {
           console.error("Error saving application progress:", err);
