@@ -1,5 +1,6 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
 interface SponsorFieldProps {
   sponsorName: string;
   logoSrc: string;
@@ -10,13 +11,10 @@ interface SponsorFieldProps {
 export default function SponsorField(props: SponsorFieldProps) {
   return (
     <div
-      className={`
-        flex flex-col justify-center items-center border-[2px] bg-bgblue rounded-xl border-gold
-        ${props.className}
-      `}
+      className={`border-gold flex flex-col items-center justify-center rounded-xl border-[2px] bg-white ${props.className} `}
     >
-      <div className="w-full h-full flex flex-col items-center justify-center text-center p-4">
-        <div className="relative flex-1 w-full max-w-full max-h-full">
+      <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center">
+        <div className="relative max-h-full w-full max-w-full flex-1">
           <Image
             src={props.logoSrc}
             alt={`${props.sponsorName} logo`}
