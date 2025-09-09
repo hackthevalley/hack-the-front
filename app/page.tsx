@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "motion/react";
-// import Sponsors from "./landing/Sponsors";
-
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
 
 import GreenButton from "@/components/GreenButton";
 import Navbar from "@/components/Navbar";
+
+import Sponsors from "./landing/Sponsors";
 
 const About = dynamic(() => import("./landing/About"));
 const FAQ = dynamic(() => import("./landing/FAQ"));
@@ -209,8 +209,8 @@ export default function Home() {
           <About />
           <FAQ />
           <Themes />
+          <Sponsors />
           <Team />
-          {/* <Sponsors /> */}
           <div className="mt-20 w-full items-center justify-center">
             <Footer />
           </div>

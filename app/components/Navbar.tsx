@@ -20,7 +20,7 @@ const navBarItems = [
   { label: "FAQ", id: "faq" },
   { label: "Themes", id: "themes" },
   // { label: "Past Years", id: "past-years" },
-  // { label: "Sponsors", id: "sponsors" },
+  { label: "Sponsors", id: "sponsors" },
   { label: "Team", id: "team" },
   { label: "Apply", id: "login" },
 ];

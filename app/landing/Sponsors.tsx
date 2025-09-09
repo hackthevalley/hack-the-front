@@ -12,22 +12,20 @@ export default function Sponsors() {
   const sponsorData = {
     gold: {
       Dell: "/sponsor-page/sponsors/Dell-Logo.svg",
+      OVPRI: "/sponsor-page/sponsors/OVPRI.png",
     },
     silver: {
       EY: "/sponsor-page/sponsors/EY-Logo.svg",
+      AWS: "/sponsor-page/sponsors/AWS-Logo.svg",
       SDG: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
       CSE: "/sponsor-page/sponsors/CSE-Logo.jpg",
     },
     bronze: {
       FGF: "/sponsor-page/sponsors/FGF-Brands-Logo.svg",
       CMS: "/sponsor-page/sponsors/CMS-UTSC-Logo.png",
-      // C: "/icons/htv-logo.svg",
-      // D: "/icons/htv-logo.svg",
-      // E: "/icons/htv-logo.svg",
-      // F: "/icons/htv-logo.svg",
-      // G: "/icons/htv-logo.svg",
-      // H: "/icons/htv-logo.svg",
-      // I: "/icons/htv-logo.svg",
+      VoiceFlow: "/sponsor-page/sponsors/Voiceflow-Logomark-Black.svg",
+      Awake: "/sponsor-page/sponsors/Awake_Logo_Brown_V1.png",
+      Accenture: "/sponsor-page/sponsors/Accenture-Logo.svg",
     },
   };
 
