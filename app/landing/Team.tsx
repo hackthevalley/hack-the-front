@@ -157,12 +157,6 @@ export default function Team() {
       image: "/team-page/sponsorship/ilia.png",
       lead: false,
     },
-    {
-      name: "Jerry Zhu",
-      role: "Sponsorship Coordinator",
-      image: "/team-page/sponsorship/jerry.png",
-      lead: false,
-    },
   ];
 
   const finance: exec[] = [
