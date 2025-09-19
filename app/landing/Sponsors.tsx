@@ -26,6 +26,7 @@ export default function Sponsors() {
       VoiceFlow: "/sponsor-page/sponsors/Voiceflow-Logomark-Black.svg",
       Awake: "/sponsor-page/sponsors/Awake_Logo_Brown_V1.png",
       Accenture: "/sponsor-page/sponsors/Accenture-Logo.svg",
+      CGI: "/sponsor-page/sponsors/CGI-Logo.png",
     },
   };
 
