@@ -177,7 +177,7 @@ export default function Team() {
   const designAndMarketing: exec[] = [
     {
       name: "Jinie Choi",
-      role: "Directory of Design and Marketing",
+      role: "Director of Design and Marketing",
       image: "/team-page/design-marketing/jinie.png",
       lead: true,
     },
