@@ -19,6 +19,7 @@ export default function Sponsors() {
       AWS: "/sponsor-page/sponsors/AWS-Logo.svg",
       SDG: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
       CSE: "/sponsor-page/sponsors/CSE-Logo.jpg",
+      Scotiabank: "/sponsor-page/sponsors/Scotiabank-Logo.svg",
     },
     bronze: {
       FGF: "/sponsor-page/sponsors/FGF-Brands-Logo.svg",
@@ -27,6 +28,8 @@ export default function Sponsors() {
       Awake: "/sponsor-page/sponsors/Awake_Logo_Brown_V1.png",
       Accenture: "/sponsor-page/sponsors/Accenture-Logo.svg",
       CGI: "/sponsor-page/sponsors/CGI-Logo.png",
+      Savi: "/sponsor-page/sponsors/Savi-Logo.png",
+      Nord: "/sponsor-page/sponsors/Nord-Logo.svg",
     },
   };
 
