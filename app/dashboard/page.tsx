@@ -80,6 +80,13 @@ const getApplicationStatus = (status: Status | null) => {
         icon: "/dashboard/pending.svg",
         badge: "bg-gray-500",
       };
+    case Status.WAITLISTED:
+      return {
+        color: "text-yellow-400",
+        label: "Waitlisted",
+        icon: "/dashboard/waitlisted.svg",
+        badge: "bg-yellow-600",
+      };
     default:
       return {
         color: "text-gray-300",
