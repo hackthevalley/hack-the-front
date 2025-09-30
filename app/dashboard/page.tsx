@@ -24,6 +24,8 @@ enum Status {
   ACCEPTED_INVITE = "ACCEPTED_INVITE",
   REJECTED_INVITE = "REJECTED_INVITE",
   SCANNED_IN = "SCANNED_IN",
+  WALK_IN = "WALK_IN",
+  WALK_IN_SUBMITTED = "WALK_IN_SUBMITTED",
 }
 
 interface User {
@@ -86,6 +88,20 @@ const getApplicationStatus = (status: Status | null) => {
         label: "Waitlisted",
         icon: "/dashboard/waitlisted.svg",
         badge: "bg-yellow-600",
+      };
+    case Status.WALK_IN:
+      return {
+        color: "text-blue-400",
+        label: "Walk-In",
+        icon: "/dashboard/pending.svg",
+        badge: "bg-blue-600",
+      };
+    case Status.WALK_IN_SUBMITTED:
+      return {
+        color: "text-green-400",
+        label: "Walk-In Submitted",
+        icon: "/dashboard/accepted.svg",
+        badge: "bg-green-600",
       };
     default:
       return {
@@ -281,6 +297,14 @@ export default function DashboardPage() {
                       />
                     )}
                   </div>
+                ) : user?.application_status === Status.WALK_IN ? (
+                  // Walk-in users can always access the application (bypasses deadline)
+                  <Link
+                    href="/application"
+                    className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
+                  >
+                    Open
+                  </Link>
                 ) : user?.application_status === Status.APPLYING ||
                   user?.application_status === null ? (
                   isOpen ? (
