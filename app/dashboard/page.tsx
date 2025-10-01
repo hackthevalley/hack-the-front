@@ -89,6 +89,13 @@ const getApplicationStatus = (status: Status | null) => {
         icon: "/dashboard/waitlisted.svg",
         badge: "bg-yellow-600",
       };
+    case Status.SCANNED_IN:
+      return {
+        color: "text-green-400",
+        label: "Scanned In",
+        icon: "/dashboard/accepted.svg",
+        badge: "bg-green-600",
+      };
     case Status.WALK_IN:
       return {
         color: "text-blue-400",
