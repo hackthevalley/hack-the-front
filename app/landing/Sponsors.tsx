@@ -29,7 +29,12 @@ export default function Sponsors() {
       Accenture: "/sponsor-page/sponsors/Accenture-Logo.svg",
       CGI: "/sponsor-page/sponsors/CGI-Logo.png",
       Savi: "/sponsor-page/sponsors/Savi-Logo.png",
-      Nord: "/sponsor-page/sponsors/Nord-Logo.svg",
+      Saily: "/sponsor-page/sponsors/saily-logo.svg",
+      NordVPN: "/sponsor-page/sponsors/NordVPN-Logo.svg",
+      NordProtect: "/sponsor-page/sponsors/NordProtect.svg",
+      NordPass: "/sponsor-page/sponsors/NordPass-Logo.svg",
+      NexosAI: "/sponsor-page/sponsors/nexos-ai-logo.png",
+      Incogni: "/sponsor-page/sponsors/Incogni-Logo.svg",
     },
   };
 
