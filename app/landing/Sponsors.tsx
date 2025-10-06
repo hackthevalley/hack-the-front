@@ -4,37 +4,100 @@ import toast, { Toaster } from "react-hot-toast";
 import GreenButton from "@/components/GreenButton";
 import SponsorField from "@/components/SponsorField";
 
-interface SponsorData {
-  [sponsorName: string]: string;
-}
+type SponsorEntry = {
+  logoSrc: string;
+  link?: string | null;
+};
+
+type SponsorData = Record<string, SponsorEntry>;
 
 export default function Sponsors() {
   const sponsorData = {
     gold: {
-      Dell: "/sponsor-page/sponsors/Dell-Logo.svg",
-      OVPRI: "/sponsor-page/sponsors/OVPRI.png",
+      Dell: {
+        logoSrc: "/sponsor-page/sponsors/Dell-Logo.svg",
+        link: "https://www.dell.com/",
+      },
+      OVPRI: {
+        logoSrc: "/sponsor-page/sponsors/OVPRI.png",
+        link: "https://www.utsc.utoronto.ca/research/",
+      },
     },
     silver: {
-      EY: "/sponsor-page/sponsors/EY-Logo.svg",
-      AWS: "/sponsor-page/sponsors/AWS-Logo.svg",
-      SDG: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
-      CSE: "/sponsor-page/sponsors/CSE-Logo.jpg",
-      Scotiabank: "/sponsor-page/sponsors/Scotiabank-Logo.svg",
+      EY: {
+        logoSrc: "/sponsor-page/sponsors/EY-Logo.svg",
+        link: "https://www.ey.com/",
+      },
+      AWS: {
+        logoSrc: "/sponsor-page/sponsors/AWS-Logo.svg",
+        link: "https://aws.amazon.com/",
+      },
+      SDG: {
+        logoSrc: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
+        link: "https://sdg.utoronto.ca/",
+      },
+      CSE: {
+        logoSrc: "/sponsor-page/sponsors/CSE-Logo.jpg",
+        link: "https://www.cse-cst.gc.ca/en",
+      },
+      Scotiabank: {
+        logoSrc: "/sponsor-page/sponsors/Scotiabank-Logo.svg",
+        link: "https://www.scotiabank.com/global/en/global-site.html",
+      },
     },
     bronze: {
-      FGF: "/sponsor-page/sponsors/FGF-Brands-Logo.svg",
-      CMS: "/sponsor-page/sponsors/CMS-UTSC-Logo.png",
-      VoiceFlow: "/sponsor-page/sponsors/Voiceflow-Logomark-Black.svg",
-      Awake: "/sponsor-page/sponsors/Awake_Logo_Brown_V1.png",
-      Accenture: "/sponsor-page/sponsors/Accenture-Logo.svg",
-      CGI: "/sponsor-page/sponsors/CGI-Logo.png",
-      Savi: "/sponsor-page/sponsors/Savi-Logo.png",
-      Saily: "/sponsor-page/sponsors/saily-logo.svg",
-      NordVPN: "/sponsor-page/sponsors/NordVPN-Logo.svg",
-      NordProtect: "/sponsor-page/sponsors/NordProtect.svg",
-      NordPass: "/sponsor-page/sponsors/NordPass-Logo.svg",
-      NexosAI: "/sponsor-page/sponsors/nexos-ai-logo.png",
-      Incogni: "/sponsor-page/sponsors/Incogni-Logo.svg",
+      FGF: {
+        logoSrc: "/sponsor-page/sponsors/FGF-Brands-Logo.svg",
+        link: "https://www.fgfbrands.com/",
+      },
+      CMS: {
+        logoSrc: "/sponsor-page/sponsors/CMS-UTSC-Logo.png",
+        link: "https://www.utsc.utoronto.ca/cms/",
+      },
+      VoiceFlow: {
+        logoSrc: "/sponsor-page/sponsors/Voiceflow-Logomark-Black.svg",
+        link: "https://www.voiceflow.com/",
+      },
+      Awake: {
+        logoSrc: "/sponsor-page/sponsors/Awake_Logo_Brown_V1.png",
+        link: "https://awakechocolate.com/",
+      },
+      Accenture: {
+        logoSrc: "/sponsor-page/sponsors/Accenture-Logo.svg",
+        link: "https://www.accenture.com/ca-en",
+      },
+      CGI: {
+        logoSrc: "/sponsor-page/sponsors/CGI-Logo.png",
+        link: "https://www.cgi.com/en",
+      },
+      Savi: {
+        logoSrc: "/sponsor-page/sponsors/Savi-Logo.png",
+        link: "https://financesavi.com/",
+      },
+      Saily: {
+        logoSrc: "/sponsor-page/sponsors/saily-logo.svg",
+        link: "https://saily.com/",
+      },
+      NordVPN: {
+        logoSrc: "/sponsor-page/sponsors/NordVPN-Logo.svg",
+        link: "https://nordvpn.com/hackathons",
+      },
+      NordProtect: {
+        logoSrc: "/sponsor-page/sponsors/NordProtect.svg",
+        link: "https://nordprotect.com/",
+      },
+      NordPass: {
+        logoSrc: "/sponsor-page/sponsors/NordPass-Logo.svg",
+        link: "https://nordpass.com/",
+      },
+      NexosAI: {
+        logoSrc: "/sponsor-page/sponsors/nexos-ai-logo.png",
+        link: "https://nexos.ai/",
+      },
+      Incogni: {
+        logoSrc: "/sponsor-page/sponsors/Incogni-Logo.svg",
+        link: "https://incogni.com/",
+      },
     },
   };
 
@@ -77,12 +140,13 @@ export default function Sponsors() {
     const config = gridConfig[tier];
     return (
       <div className={config.gridClass}>
-        {entries.map(([sponsorName, logoSrc]) => (
+        {entries.map(([sponsorName, { logoSrc, link }]) => (
           <SponsorField
             key={sponsorName}
             sponsorName={sponsorName}
             logoSrc={logoSrc}
             tier={tier}
+            link={link ?? undefined}
             className={config.itemClass}
           />
         ))}
