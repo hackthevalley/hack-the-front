@@ -34,7 +34,7 @@ export default function Sponsors() {
       },
       SDG: {
         logoSrc: "/sponsor-page/sponsors/SDGs-header-logo-white-300.png",
-        link: null,
+        link: "https://sdg.utoronto.ca/",
       },
       CSE: {
         logoSrc: "/sponsor-page/sponsors/CSE-Logo.jpg",
@@ -52,19 +52,19 @@ export default function Sponsors() {
       },
       CMS: {
         logoSrc: "/sponsor-page/sponsors/CMS-UTSC-Logo.png",
-        link: null,
+        link: "https://www.utsc.utoronto.ca/cms/",
       },
       VoiceFlow: {
         logoSrc: "/sponsor-page/sponsors/Voiceflow-Logomark-Black.svg",
-        link: null,
+        link: "https://www.voiceflow.com/",
       },
       Awake: {
         logoSrc: "/sponsor-page/sponsors/Awake_Logo_Brown_V1.png",
-        link: null,
+        link: "https://awakechocolate.com/",
       },
       Accenture: {
         logoSrc: "/sponsor-page/sponsors/Accenture-Logo.svg",
-        link: null,
+        link: "https://www.accenture.com/ca-en",
       },
       CGI: {
         logoSrc: "/sponsor-page/sponsors/CGI-Logo.png",
