@@ -1,10 +1,11 @@
 "use client";
-import { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import { useSearchParams, useRouter } from "next/navigation";
+
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import Navbar from "@/components/Navbar";
 import fetchInstance from "@/utils/api";
 
 export default function ActivatePage() {
@@ -50,12 +51,12 @@ export default function ActivatePage() {
   }
 
   return (
-    <div className="bg-black min-h-screen overflow-y-auto font-[family-name:var(--font-euclid-circular-b)] relative flex flex-col">
+    <div className="relative flex min-h-screen flex-col overflow-y-auto bg-black font-[family-name:var(--font-euclid-circular-b)]">
       <Image
         width={0}
         height={0}
         alt="Background Gradient"
-        className="absolute z-0 opacity-15 top-6/10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+        className="absolute top-6/10 left-1/2 z-0 w-1/2 -translate-x-1/2 -translate-y-1/2 transform opacity-15"
         src="/backgrounds/smaller-gradient.svg"
       />
       <Navbar hide={true} />
@@ -83,11 +84,9 @@ export default function ActivatePage() {
         }}
       />
 
-      <div className="flex flex-col grow relative z-10 justify-center items-center animate-pulse">
-        <p className="text-white font-bold text-5xl mt-4] mb-8">Loading...</p>
-        <p className="text-grey text-xl">
-          Please wait as we activate your account
-        </p>
+      <div className="relative z-10 flex grow animate-pulse flex-col items-center justify-center">
+        <p className="mt-4] mb-8 text-5xl font-bold text-white">Loading...</p>
+        <p className="text-grey text-xl">Please wait as we activate your account</p>
       </div>
     </div>
   );

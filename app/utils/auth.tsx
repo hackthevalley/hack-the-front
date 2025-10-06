@@ -1,6 +1,7 @@
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Loader2 } from "lucide-react";
 import { createContext, useCallback, useEffect, useState } from "react";
 
 import fetchInstance from "./api";
@@ -79,7 +80,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [login]);
   return (
     <UserContext.Provider value={{ login, logout, loading, isAuthenticated }}>
-      {loading ? "Loading..." : children}
+      {loading ? (
+        <div className="flex h-screen items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+        </div>
+      ) : (
+        children
+      )}
     </UserContext.Provider>
   );
 }
