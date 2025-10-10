@@ -18,7 +18,7 @@ export default function MLH(props: MLHProps) {
   const inView6 = useInView(spaceshipRef6, { once: false, margin: "-20% 0px" });
 
   return (
-    <Card className="mx-10 w-full max-w-7xl" isLeft={true}>
+    <Card className="mx-4 w-full max-w-7xl md:mx-10" isLeft={true}>
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; MLH Code of Conduct, Data Sharing, and Terms & Conditions

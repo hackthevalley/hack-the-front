@@ -409,7 +409,7 @@ export default function Application() {
   };
 
   // const sectionClassName = "flex items-center mx-20 relative";
-  const sectionClassName = `h-[calc(100vh-6rem)] min-height-fit snap-end scroll-smooth overflow-hidden relative items-center flex md:px-10`;
+  const sectionClassName = `min-h-[calc(100vh-6rem)] snap-end scroll-smooth relative items-center flex px-4 md:px-10 md:h-[calc(100vh-6rem)] md:overflow-hidden overflow-visible py-8 md:py-0`;
   const formSections: {
     key: string;
     content: JSX.Element;
@@ -722,14 +722,16 @@ export default function Application() {
         }}
       />
       <Navbar hide={true} />
-      <div className="no-scrollbar relative h-[calc(100vh-6rem)] snap-y snap-mandatory overflow-y-scroll bg-black text-white">
+      <div className="no-scrollbar relative h-[calc(100vh-6rem)] overflow-y-scroll bg-black text-white md:snap-y md:snap-mandatory">
         {/* <Parallax speed={30}> */}
         <section className="relative flex h-[calc(100vh-6rem)] snap-end flex-col items-center justify-center overflow-x-hidden overflow-y-hidden scroll-smooth px-4 md:px-10">
-          <Card className="relative w-8/12 text-center">
+          <Card className="relative w-11/12 text-center md:w-8/12">
             <div className="mb-10">
-              <h1 className="text-6xl font-extrabold tracking-wide text-[#81C470]">APPLICATION</h1>
+              <h1 className="text-4xl font-extrabold tracking-wide text-[#81C470] md:text-6xl">
+                APPLICATION
+              </h1>
             </div>
-            <p className="mb-10 text-xl">
+            <p className="mb-10 text-base md:text-xl">
               Hey hacker, welcome aboard&#x1F44B; <br />
               Your co-pilot <strong>Valerie</strong> will track your journey through this
               application. Buckle up!
@@ -746,7 +748,7 @@ export default function Application() {
               alt="spaceship"
               width={350}
               height={350}
-              className="pointer-events-none absolute -bottom-30 -left-40"
+              className="pointer-events-none absolute -bottom-30 -left-40 hidden md:block"
             />
           </Card>
           <Image

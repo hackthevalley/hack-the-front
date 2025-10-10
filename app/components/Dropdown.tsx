@@ -30,7 +30,7 @@ export default function Dropdown(props: DropdownProps) {
     required = false,
     placeholder = "",
     widthClasses = "w-full",
-    heightClasses = "min-h-15 sm:min-h-10",
+    heightClasses = "min-h-10 md:min-h-12",
     backgroundClasses = "bg-gradient-to-b from-[#183766] to-[#0B1C34]",
     textClasses = "text-[20px]",
     options = [],

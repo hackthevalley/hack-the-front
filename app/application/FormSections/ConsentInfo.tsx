@@ -14,7 +14,7 @@ export default function ConsentInfo(props: ConsentInfoProps) {
   const inView7 = useInView(spaceshipRef7, { once: false, margin: "-20% 0px" });
 
   return (
-    <Card className="mx-10 w-full max-w-7xl">
+    <Card className="mx-4 w-full max-w-7xl md:mx-10">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">&gt; Consent Form</h1>
       </div>

@@ -16,7 +16,7 @@ interface GeneralInfoProps {
 
 export default function GeneralInfo(props: GeneralInfoProps) {
   return (
-    <Card className="mx-10 w-full max-w-3xl">
+    <Card className="mx-4 w-full max-w-3xl md:mx-10">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 6: General Info

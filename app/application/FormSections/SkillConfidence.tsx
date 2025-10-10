@@ -2,6 +2,7 @@
 
 import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
+
 import { Question } from "../context/QuestionContext";
 
 interface SkillConfidenceProps {
@@ -28,13 +29,13 @@ export default function SkillConfidence(props: SkillConfidenceProps) {
   const levels = ["Beginner", "Intermediate", "Advanced", "Expert"];
 
   return (
-    <Card className="mx-10 w-full max-w-3xl">
+    <Card className="mx-4 w-full max-w-3xl md:mx-10">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 5: Tell Us How Comfy You Feel With...
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
         <Dropdown
           title={props.questions[0]?.label}
           required={false}

@@ -35,7 +35,7 @@ export default function TextField(props: TextFieldProps) {
     required = false,
     placeholder = "",
     widthClasses = "mx-[auto] sm:w-full",
-    heightClasses = "min-h-15 sm:min-h-10",
+    heightClasses = "min-h-10 md:min-h-12",
     backgroundClasses = "bg-bgblue",
     multiline = false,
     type = "text",
@@ -75,7 +75,7 @@ export default function TextField(props: TextFieldProps) {
                 return formData;
               })(),
             });
-            
+
             toast.dismiss(uploadingFile);
             toast.success("File uploaded successfully!");
           } catch (error) {

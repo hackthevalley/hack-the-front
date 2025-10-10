@@ -19,7 +19,7 @@ interface DemographyInfoProps {
 
 export default function DemographyInfo(props: DemographyInfoProps) {
   return (
-    <Card className="mx-10 w-full max-w-[52rem]">
+    <Card className="mx-4 w-full max-w-[52rem] md:mx-10">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 3: Demography Info

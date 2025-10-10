@@ -22,7 +22,7 @@ interface ExperienceInfoProps {
 
 export default function ExperienceInfo(props: ExperienceInfoProps) {
   return (
-    <Card className="mx-10 w-full max-w-3xl">
+    <Card className="mx-4 w-full max-w-3xl md:mx-10">
       <div className="mb-10">
         <h1 className="text-2xl font-extrabold tracking-wide text-[#81C470]">
           &gt; Step 4: Experience Info
