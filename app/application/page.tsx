@@ -222,7 +222,7 @@ export default function Application() {
   // Save user application progress every 5 seconds
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
-    if (!isFormActive || !token) return;
+    if (!isFormActive || !token || !hasLoadedAppData) return;
 
     const interval = setInterval(() => {
       const saveProgress = async () => {
