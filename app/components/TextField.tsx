@@ -67,7 +67,7 @@ export default function TextField(props: TextFieldProps) {
         setFile?.(file);
         const uploadFile = async () => {
           try {
-            await fetchInstance("forms/uploadresume", {
+            await fetchInstance("forms/resume", {
               method: "POST",
               body: (() => {
                 const formData = new FormData();
@@ -104,7 +104,7 @@ export default function TextField(props: TextFieldProps) {
         setFile?.(file);
         const uploadFile = async () => {
           try {
-            await fetchInstance("forms/uploadresume", {
+            await fetchInstance("forms/resume", {
               method: "POST",
               body: (() => {
                 const formData = new FormData();

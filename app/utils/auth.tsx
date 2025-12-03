@@ -47,7 +47,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         return;
       }
       try {
-        const response = await fetchInstance("account/refresh", {
+        const response = await fetchInstance("account/tokens", {
           method: "POST",
         });
         localStorage.setItem("auth-token", response.access_token);

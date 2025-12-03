@@ -142,7 +142,7 @@ export default function Application() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetchInstance("forms/getapplication", {
+        const res = await fetchInstance("forms/application", {
           method: "GET",
         });
 
@@ -239,8 +239,8 @@ export default function Application() {
         console.log(filteredPayloads);
 
         try {
-          await fetchInstance("forms/saveAnswers", {
-            method: "POST",
+          await fetchInstance("forms/answers", {
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
@@ -391,12 +391,12 @@ export default function Application() {
         (payload) => payload.question_id && payload.answer !== "",
       );
 
-      await fetchInstance("forms/saveAnswers", {
-        method: "POST",
+      await fetchInstance("forms/answers", {
+        method: "PUT",
         body: JSON.stringify(filteredPayloads),
       });
 
-      await fetchInstance("forms/submit", {
+      await fetchInstance("forms/submission", {
         method: "POST",
       });
 

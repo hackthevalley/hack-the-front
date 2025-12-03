@@ -27,7 +27,7 @@ export const QuestionsProvider = ({ children }: { children: React.ReactNode }) =
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetchInstance("forms/getquestions", {
+        const res = await fetchInstance("forms/questions", {
           method: "GET",
         });
         setQuestions(res);

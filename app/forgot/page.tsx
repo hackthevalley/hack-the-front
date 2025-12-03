@@ -60,7 +60,7 @@ export default function ForgotPage() {
       email: email,
     };
     try {
-      const response = await fetchInstance("account/send_reset_password", {
+      const response = await fetchInstance("password-resets", {
         method: "POST",
         body: JSON.stringify(data),
       });
