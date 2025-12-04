@@ -145,7 +145,7 @@ export default function DashboardPage() {
   };
 
   const getRegTimeRange = async (): Promise<TimeRange> => {
-    return await fetchInstance("forms/getregtimerange", {
+    return await fetchInstance("forms/registration-timerange", {
       method: "GET",
     });
   };
@@ -183,8 +183,8 @@ export default function DashboardPage() {
     const { uid, status } = pendingRSVP;
 
     try {
-      const res = await fetchInstance(`account/rsvpstatusupdate/${uid}`, {
-        method: "PUT",
+      const res = await fetchInstance(`users/${uid}/rsvp-status`, {
+        method: "PATCH",
         queryParams: { status: status },
       });
 

@@ -23,7 +23,7 @@ export default function ActivatePage() {
       };
 
       try {
-        const response = await fetchInstance("account/activate", {
+        const response = await fetchInstance("account/activations", {
           method: "POST",
           body: JSON.stringify(data),
         });
