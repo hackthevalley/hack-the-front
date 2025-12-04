@@ -183,7 +183,7 @@ export default function DashboardPage() {
     const { uid, status } = pendingRSVP;
 
     try {
-      const res = await fetchInstance(`users/${uid}/rsvp-status`, {
+      const res = await fetchInstance(`account/users/${uid}/rsvp-status`, {
         method: "PATCH",
         queryParams: { status: status },
       });

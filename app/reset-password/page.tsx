@@ -36,7 +36,7 @@ export default function ResetPasswordPage() {
       password: newpassword,
     };
     try {
-      const response = await fetchInstance("password-resets", {
+      const response = await fetchInstance("account/password-resets", {
         method: "PUT",
         body: JSON.stringify(data),
       });

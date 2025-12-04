@@ -67,7 +67,7 @@ export default function LoginPage() {
     urlEncodedData.append("username", email);
     urlEncodedData.append("password", password);
     try {
-      const response = await fetchInstance("sessions", {
+      const response = await fetchInstance("account/sessions", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

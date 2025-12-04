@@ -87,7 +87,7 @@ export default function SignupPage() {
     };
 
     try {
-      await fetchInstance("users", {
+      await fetchInstance("account/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
