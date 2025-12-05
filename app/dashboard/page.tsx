@@ -131,10 +131,10 @@ export default function DashboardPage() {
   const ctx = useContext(UserContext);
   const router = useRouter();
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [pendingRSVP, setPendingRSVP] = useState<{ uid: string; status: Status } | null>(null);
+  const [pendingRSVP, setPendingRSVP] = useState<{ status: Status } | null>(null);
 
-  const rsvpStatusUpdate = async (uid: string, status: Status) => {
-    setPendingRSVP({ uid, status });
+  const rsvpStatusUpdate = async (status: Status) => {
+    setPendingRSVP({ status });
     setShowConfirmation(true);
   };
 
@@ -180,10 +180,10 @@ export default function DashboardPage() {
 
   const handleRSVPUpdate = async () => {
     if (!pendingRSVP) return;
-    const { uid, status } = pendingRSVP;
+    const { status } = pendingRSVP;
 
     try {
-      const res = await fetchInstance(`account/users/${uid}/rsvp-status`, {
+      const res = await fetchInstance(`account/rsvp-status`, {
         method: "PATCH",
         queryParams: { status: status },
       });
@@ -279,13 +279,13 @@ export default function DashboardPage() {
                   // Always allow RSVP if Accepted
                   <div className="flex flex-col gap-4 md:flex-row">
                     <button
-                      onClick={() => rsvpStatusUpdate(user?.uid || "", Status.ACCEPTED_INVITE)}
+                      onClick={() => rsvpStatusUpdate(Status.ACCEPTED_INVITE)}
                       className="bg-lightgreen hover:bg-lightgreenactive rounded-lg px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400"
                     >
                       Accept RSVP
                     </button>
                     <button
-                      onClick={() => rsvpStatusUpdate(user?.uid || "", Status.REJECTED_INVITE)}
+                      onClick={() => rsvpStatusUpdate(Status.REJECTED_INVITE)}
                       className="rounded-lg bg-red-800 px-6 py-3 text-center text-lg font-semibold text-white transition-colors duration-400 hover:bg-red-900"
                     >
                       Decline RSVP
